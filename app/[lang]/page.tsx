@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
-import { ArchDiagram } from "@/components/ArchDiagram";
+import { PipelineDiagram } from "@/components/PipelineDiagram";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -120,8 +120,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           {profile.projects.map((project) => (
             <article
               key={project.slug}
-              className={`flex flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50 ${
-                project.featured ? "sm:col-span-2" : ""
+              // min-w-0 จำเป็น: grid item ไม่ยอมหดต่ำกว่าความกว้างเนื้อหา
+              // ทำให้ svg ใน overflow-x-auto ดันทั้งหน้าให้เลื่อนแนวนอนแทน
+              className={`flex min-w-0 flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50 ${
+                project.featured
+                  ? // การ์ดที่มีแผนภาพต้องกว้างกว่าคอลัมน์ปกติ ไม่งั้นต้องเลื่อนดูทั้งภาพ
+                    "sm:col-span-2 lg:-mx-24 xl:-mx-56"
+                  : ""
               }`}
             >
               <div className="flex items-baseline justify-between gap-3">
@@ -136,11 +141,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </p>
               )}
               <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
-              {project.architecture && (
-                <ArchDiagram
-                  tiers={project.architecture}
+              {project.diagram && (
+                <PipelineDiagram
+                  t={project.diagram}
                   lang={lang}
                   caption={ui.diagramCaption[lang]}
+                  scrollHint={ui.scrollHint[lang]}
                 />
               )}
               <ul className="mt-4 space-y-1.5 text-sm text-muted">

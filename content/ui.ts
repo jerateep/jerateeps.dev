@@ -33,6 +33,7 @@ export const ui = {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
     en: "Conceptual overview, not the actual system topology.",
   },
+  scrollHint: { th: "เลื่อนดูแนวนอนได้", en: "Scroll sideways to see it all." },
   contactLead: {
     th: "มีงานที่อยากคุย หรือแค่อยากทักมาถาม — ยินดีเสมอครับ",
     en: "Got a project in mind, or just want to say hi? Always happy to talk.",

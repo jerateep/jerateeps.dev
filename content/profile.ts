@@ -46,10 +46,10 @@ export type Project = {
   link?: string;
   confidential?: boolean;
   /**
-   * แผนภาพสถาปัตยกรรมแบ่งชั้น — กฎเดียวกับ flow
+   * ป้ายในแผนภาพสถาปัตยกรรม (ตำแหน่งอยู่ในคอมโพเนนต์)
    * เรียกทุกอย่างตามหน้าที่ ห้ามชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อคู่ค้า
    */
-  architecture?: { title: L; nodes: { label: L; note?: L }[] }[];
+  diagram?: Record<string, L>;
   /** การ์ดกินความกว้าง 2 คอลัมน์ (ใช้กับการ์ดที่มีแผนภาพ) */
   featured?: boolean;
 };
@@ -204,77 +204,59 @@ export const profile = {
       confidential: true,
       featured: true,
       year: "2025–2026",
-      architecture: [
-        {
-          title: { th: "หน้าบ้าน", en: "Front end" },
-          nodes: [
-            {
-              label: { th: "เว็บพอร์ทัล", en: "Web portal" },
-              note: { th: "ตั้งคิว · แก้ข้อมูล · พรีวิว", en: "queue · edit · preview" },
-            },
-          ],
-        },
-        {
-          title: { th: "คิวงาน", en: "Queue" },
-          nodes: [
-            {
-              label: { th: "คิวข้อความ", en: "Message queue" },
-              note: { th: "1 งาน = 1 message", en: "one job, one message" },
-            },
-          ],
-        },
-        {
-          title: { th: "เครื่องประมวลผล", en: "Workers" },
-          nodes: [
-            {
-              label: { th: "Consumer ประจำเครื่อง", en: "Per-machine consumer" },
-              note: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
-            },
-            {
-              label: { th: "Robot ขับระบบ ERP", en: "Robot drives the ERP" },
-              note: { th: "ดึง print-image ออกมา", en: "pulls the print image" },
-            },
-            {
-              label: { th: "ตัวแงะข้อความ", en: "Parser" },
-              note: { th: "ข้อความดิบ → โครงสร้าง", en: "raw text to structure" },
-            },
-          ],
-        },
-        {
-          title: { th: "บริการเรนเดอร์", en: "Render services" },
-          nodes: [
-            {
-              label: { th: "Render service", en: "Render service" },
-              note: { th: "ประกอบ payload ที่เดียว", en: "one payload builder" },
-            },
-            {
-              label: { th: "Report engine", en: "Report engine" },
-              note: { th: "PDF · HTML · DOCX", en: "PDF · HTML · DOCX" },
-            },
-            {
-              label: { th: "ตัวประกอบสเปรดชีตเอง", en: "Hand-built spreadsheet writer" },
-              note: { th: "เลี่ยง exporter ที่ทำข้อมูลหาย", en: "avoids a lossy exporter" },
-            },
-          ],
-        },
-        {
-          title: { th: "ปลายทาง", en: "Destinations" },
-          nodes: [
-            {
-              label: { th: "คลังบล็อกที่สกัดแล้ว", en: "Extracted block store" },
-              note: { th: "แงะครั้งเดียว ใช้ซ้ำทุกที่", en: "parse once, reuse everywhere" },
-            },
-            {
-              label: { th: "ไฟล์แชร์เอกสาร", en: "Document file share" },
-              note: { th: "แยกฉบับ + รวมเล่ม", en: "per-sheet and combined" },
-            },
-            {
-              label: { th: "ระบบรับบิลของคู่ค้า", en: "Partner billing systems" },
-              note: { th: "ล้มเหลว → แจ้งเตือนอัตโนมัติ", en: "failures raise an alert" },
-            },
-          ],
-        },
-      ],
+      /**
+       * ป้ายทุกตัวในแผนภาพ — ตำแหน่งอยู่ใน components/PipelineDiagram.tsx
+       * ห้ามใส่ชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อระบบของคู่ค้า
+       */
+      diagram: {
+        panelApp: { th: "เซิร์ฟเวอร์แอป", en: "APP SERVER" },
+        panelWorker: { th: "เครื่องประมวลผล", en: "WORKER MACHINE" },
+        panelData: { th: "ฐานข้อมูล", en: "DATABASE" },
+
+        user: { th: "ผู้ใช้", en: "User" },
+        portal: { th: "เว็บพอร์ทัล", en: "Web portal" },
+        portalSub: { th: "ตั้งคิว · แก้ · พรีวิว", en: "queue · edit · preview" },
+        queue: { th: "คิวข้อความ", en: "Message queue" },
+        queueSub: { th: "1 งาน = 1 message", en: "one job, one message" },
+        render: { th: "Render service", en: "Render service" },
+        renderSub: { th: "ประกอบ payload ที่เดียว", en: "single payload builder" },
+        engine: { th: "Report engine", en: "Report engine" },
+        engineSub: { th: "PDF · HTML · DOCX", en: "PDF · HTML · DOCX" },
+
+        consumer: { th: "Consumer", en: "Consumer" },
+        consumerSub: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
+        robot: { th: "Robot", en: "Robot" },
+        robotSub: { th: "ขับระบบ ERP", en: "drives the ERP" },
+        parser: { th: "ตัวแงะข้อความ", en: "Parser" },
+        parserSub: { th: "ดิบ → โครงสร้าง", en: "raw to structure" },
+
+        config: { th: "ค่าตั้งระบบ", en: "Configuration" },
+        configSub: { th: "แหล่งเดียว ทับ env", en: "one source, beats env" },
+        blocks: { th: "คลังบล็อก", en: "Block store" },
+        blocksSub: { th: "แงะครั้งเดียว", en: "parsed once" },
+
+        erp: { th: "ระบบ ERP", en: "ERP system" },
+        erpSub: { th: "ต้นทาง print-image", en: "print-image source" },
+        partner: { th: "ระบบรับบิลคู่ค้า", en: "Partner billing" },
+        partnerSub: { th: "ล้มเหลว → แจ้งเตือน", en: "failure raises alert" },
+        share: { th: "ไฟล์แชร์เอกสาร", en: "Document share" },
+        shareSub: { th: "แยกฉบับ + รวมเล่ม", en: "per-sheet + combined" },
+
+        eSubmit: { th: "ส่งเลขเอกสาร", en: "submit doc no." },
+        eEnqueue: { th: "เข้าคิว", en: "enqueue" },
+        eConsume: { th: "ดึงงาน", en: "consume" },
+        eTrigger: { th: "สั่งทำงาน", en: "trigger" },
+        ePull: { th: "ดึง print-image", en: "pull print image" },
+        eHandoff: { th: "ส่งไฟล์ต่อ", en: "hand off file" },
+        eStore: { th: "เก็บโครงสร้าง", en: "store blocks" },
+        eConfig: { th: "โหลดค่าตั้ง", en: "load config" },
+        eRenderIngest: { th: "เรนเดอร์ตอนออกใบ", en: "render on ingest" },
+        ePreview: { th: "พรีวิว / export", en: "preview / export" },
+        eLoadBlocks: { th: "อ่านบล็อกเดิม", en: "load blocks" },
+        eRender: { th: "เรนเดอร์", en: "render" },
+        eUpload: { th: "อัปโหลดบิล", en: "upload billing" },
+        eSave: { th: "บันทึกไฟล์", en: "save files" },
+      } satisfies Record<string, L>,
       impact: [
         {
           th: "ย้อนประมวลผลเอกสารเก่าทั้งคลัง (หลักหมื่นใบ) แล้วเทียบกับต้นฉบับทีละใบได้ 0 ความต่าง ก่อนจะกล้าสลับมาใช้ของใหม่เป็นค่าเริ่มต้น",
