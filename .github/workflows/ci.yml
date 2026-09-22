@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # ต้องอยู่ระดับ job ไม่ใช่ระดับ step — step if: จะอ่านค่าไม่เจอถ้าประกาศใน step เอง
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Sonar ต้องเห็นประวัติทั้งหมดถึงจะคำนวณ new code ได้ถูก
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      # ข้ามไปเงียบ ๆ ถ้ายังไม่ได้ตั้ง SONAR_TOKEN — เว็บจะได้ deploy ได้ก่อน
+      - name: SonarCloud scan
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_HOST_URL: https://sonarcloud.io
