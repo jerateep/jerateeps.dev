@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
-import { FlowDiagram } from "@/components/FlowDiagram";
+import { ArchDiagram } from "@/components/ArchDiagram";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -136,11 +136,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </p>
               )}
               <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
-              {project.flow && (
-                <FlowDiagram
-                  steps={project.flow}
+              {project.architecture && (
+                <ArchDiagram
+                  tiers={project.architecture}
                   lang={lang}
-                  caption={ui.flowCaption[lang]}
+                  caption={ui.diagramCaption[lang]}
                 />
               )}
               <ul className="mt-4 space-y-1.5 text-sm text-muted">
@@ -189,6 +189,29 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* AI ในกระบวนการทำงาน */}
+      <Section id="ai" title={ui.sections.ai[lang]}>
+        <p className="max-w-2xl text-muted">{ui.aiLead[lang]}</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {profile.aiPractice.map((item, i) => (
+            <article
+              key={i}
+              className="flex flex-col rounded-lg border border-border bg-surface p-5"
+            >
+              <h3 className="font-medium">{item.title[lang]}</h3>
+              <p className="mt-3 flex-1 text-sm text-muted">{item.body[lang]}</p>
+              <p className="mt-4 border-t border-border pt-4 text-sm">
+                <span className="font-mono text-xs tracking-wide text-accent uppercase">
+                  {ui.aiResultLabel[lang]}
+                </span>
+                <br />
+                <span className="text-muted">{item.result[lang]}</span>
+              </p>
+            </article>
           ))}
         </div>
       </Section>

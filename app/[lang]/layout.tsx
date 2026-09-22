@@ -83,7 +83,7 @@ export default async function RootLayout({
             </Link>
             <ul className="ml-auto hidden items-center gap-5 text-muted sm:flex">
               {(
-                ["about", "experience", "projects", "domains", "contact"] as const
+                ["about", "experience", "projects", "ai", "contact"] as const
               ).map(
                 (key) => (
                   <li key={key}>

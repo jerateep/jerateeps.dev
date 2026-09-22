@@ -7,6 +7,7 @@ export const ui = {
     experience: { th: "ประสบการณ์", en: "Experience" },
     projects: { th: "ผลงาน", en: "Work" },
     domains: { th: "ขอบเขตงาน", en: "Coverage" },
+    ai: { th: "AI", en: "AI" },
     skills: { th: "ทักษะ", en: "Skills" },
     contact: { th: "ติดต่อ", en: "Contact" },
   },
@@ -15,14 +16,20 @@ export const ui = {
     experience: { th: "ประสบการณ์ทำงาน", en: "Experience" },
     projects: { th: "ผลงานที่ผ่านมา", en: "Selected work" },
     domains: { th: "ขอบเขตระบบที่เคยดูแล", en: "Systems I've worked on" },
+    ai: { th: "AI ในกระบวนการทำงาน", en: "How I work with AI" },
     skills: { th: "ทักษะและเครื่องมือ", en: "Skills & tools" },
     contact: { th: "ติดต่อ", en: "Get in touch" },
   },
+  aiLead: {
+    th: "ผมไม่ได้ใช้ AI แค่เติมโค้ดให้จบบรรทัด แต่วางมันเป็นส่วนหนึ่งของกระบวนการ — มีคลังความรู้ให้มันอ่าน มีกฎของแต่ละระบบให้มันรู้ และมีด่านตรวจที่รันเองก่อนงานจะขึ้น",
+    en: "I don't use AI just to finish lines of code. It's wired into the process: a knowledge base it reads from, per-system rules it knows, and automated gates that run before anything ships.",
+  },
+  aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   domainsLead: {
     th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",
     en: "20+ systems inside one organisation. The names are confidential, so they are listed by what they do.",
   },
-  flowCaption: {
+  diagramCaption: {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
     en: "Conceptual overview, not the actual system topology.",
   },

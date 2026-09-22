@@ -43,6 +43,11 @@ const RULES = [
     re: /\b(?:Z[A-Z0-9_]{4,}|REDACTED|REDACTED|REDACTED|REDACTED|REDACTED)\b/g,
   },
   {
+    id: "internal-codename",
+    why: "ชื่อเล่นของเครื่อง/ระบบภายในหรือของคู่ค้า",
+    re: /\b(?:REDACTED|REDACTED|REDACTED\d*|REDACTED|REDACTED|REDACTED|REDACTED|REDACTED|REDACTED)\b/gi,
+  },
+  {
     id: "guid",
     why: "GUID ของ environment/site",
     re: /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi,

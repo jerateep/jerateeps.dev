@@ -46,11 +46,11 @@ export type Project = {
   link?: string;
   confidential?: boolean;
   /**
-   * แผนภาพ flow ของระบบ — ต้องเป็นภาพรวมเชิงแนวคิดเท่านั้น
-   * ห้ามใส่ชื่อเครื่อง ชื่อ queue จริง ชื่อตาราง หรือ endpoint
+   * แผนภาพสถาปัตยกรรมแบ่งชั้น — กฎเดียวกับ flow
+   * เรียกทุกอย่างตามหน้าที่ ห้ามชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อคู่ค้า
    */
-  flow?: { label: L; note?: L }[];
-  /** การ์ดกินความกว้าง 2 คอลัมน์ (ใช้กับการ์ดที่มี flow) */
+  architecture?: { title: L; nodes: { label: L; note?: L }[] }[];
+  /** การ์ดกินความกว้าง 2 คอลัมน์ (ใช้กับการ์ดที่มีแผนภาพ) */
   featured?: boolean;
 };
 
@@ -65,6 +65,13 @@ export type DomainGroup = {
   items: L[];
 };
 
+/** วิธีทำงาน 1 อย่าง: ทำอะไร → ได้ผลอะไร */
+export type Practice = {
+  title: L;
+  body: L;
+  result: L;
+};
+
 export const profile = {
   /** TODO: เปลี่ยนเป็นชื่อจริงถ้าต้องการให้ recruiter เห็นชื่อ */
   name: { th: "jerateeps", en: "jerateeps" } satisfies L,
@@ -73,8 +80,8 @@ export const profile = {
     en: "Full-stack Developer · Back-office & Automation",
   } satisfies L,
   tagline: {
-    th: "สร้างระบบหลังบ้านองค์กรที่คนใช้จริงทุกวัน — .NET, Next.js, SQL Server และงาน automation",
-    en: "I build the enterprise back-office systems people actually use every day — .NET, Next.js, SQL Server, and automation.",
+    th: "สร้างระบบหลังบ้านองค์กรที่คนใช้จริงทุกวัน — .NET, Next.js, SQL Server และงาน automation โดยมี AI เป็นส่วนหนึ่งของกระบวนการ ไม่ใช่ของเล่นข้างทาง",
+    en: "I build the enterprise back-office systems people actually use every day — .NET, Next.js, SQL Server, and automation — with AI wired into the process, not bolted on the side.",
   } satisfies L,
   location: { th: "กรุงเทพฯ ประเทศไทย", en: "Bangkok, Thailand" } satisfies L,
   available: {
@@ -181,85 +188,125 @@ export const profile = {
       stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
     },
     {
-      slug: "legacy-form-migration",
+      slug: "sap-doc-pipeline",
       name: {
-        th: "ย้ายเอกสารพิมพ์จากระบบเก่าให้ตรงต้นฉบับ 100%",
-        en: "Pixel-accurate legacy document migration",
+        th: "ระบบผลิตเอกสารจาก SAP อัตโนมัติ (end-to-end)",
+        en: "End-to-end SAP document production pipeline",
       },
       summary: {
-        th: "เขียน pipeline ใหม่ที่ดึงข้อมูลจาก SAP มา render เป็นเอกสารพิมพ์ (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) โดยต้องออกมา “เหมือนของเดิมทุกจุด” เพราะเป็นเอกสารที่ส่งให้ลูกค้าและใช้ทางบัญชี",
-        en: "A new pipeline that pulls data from SAP and renders printed documents (invoices, credit notes, receipts) that must match the originals exactly — these go to customers and into the books.",
+        th: "งานที่ใหญ่ที่สุดที่เคยทำ — ยกกระบวนการออกเอกสารให้ลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) ทั้งสายจากที่เคยสั่งพิมพ์จากระบบ ERP ทีละใบ มาเป็น pipeline ที่ตั้งคิวแล้วจบเอง ตั้งแต่ robot ไปดึงข้อมูล แงะ print-image ออกเป็นโครงสร้าง เรนเดอร์เป็นเอกสาร ไปจนถึงส่งต่อให้ระบบรับบิลของคู่ค้า",
+        en: "The largest system I've built — it takes customer-facing documents (invoices, credit notes, receipts) end to end: a robot pulls the data, the print image is parsed into structure, documents are rendered, and the results are handed off to partner billing systems. What used to be printed one page at a time is now a queue you walk away from.",
       },
-      role: { th: "ออกแบบ + พัฒนา + วางวิธีตรวจ", en: "Design, build, and the verification method" },
-      confidential: true,
-      year: "2025",
-      impact: [
-        {
-          th: "วางระบบตรวจแบบ golden-file เทียบกับเอกสารต้นฉบับทุกใบ จับความต่างได้ก่อนถึงมือลูกค้า",
-          en: "Set up golden-file verification against every original document, catching differences before customers ever see them.",
-        },
-        {
-          th: "แยก report engine ออกเป็น service ของตัวเอง ทำให้ scale และ deploy แยกจากตัวคิวงานได้",
-          en: "Split the report engine into its own service so it scales and deploys independently of the job queue.",
-        },
-        {
-          th: "ไล่เก็บเคสขอบที่ระบบเก่าทำเงียบ ๆ เช่น รูปแบบวันที่ที่ทำทั้งใบหายไปโดยไม่มี error",
-          en: "Hunted down edge cases the old system failed silently on — including a date format that made whole documents vanish without an error.",
-        },
-      ],
-      stack: ["Python", "Jasper Reports", "SQL Server", "SAP"],
-    },
-    {
-      slug: "rpa-queue",
-      name: {
-        th: "แพลตฟอร์มคิวงาน RPA",
-        en: "RPA job queue platform",
+      role: {
+        th: "ออกแบบสถาปัตยกรรม + พัฒนาทั้ง 3 ภาษา + วางวิธีตรวจความถูกต้อง",
+        en: "Architecture, implementation across three languages, and the correctness strategy",
       },
-      summary: {
-        th: "เว็บพอร์ทัลให้ผู้ใช้ส่งงานเอกสารเป็น batch เข้าคิว แล้วมี consumer บนหลายเครื่องดึงไปสั่ง robot ทำงานต่อ พร้อมหน้าติดตามสถานะรายใบ",
-        en: "A portal where users queue document batches, with consumers across several machines pulling jobs and driving desktop robots, plus per-item status tracking.",
-      },
-      role: { th: "Full-stack · ออกแบบ + พัฒนา", en: "Full-stack · design + build" },
       confidential: true,
       featured: true,
-      year: "2025",
-      flow: [
+      year: "2025–2026",
+      architecture: [
         {
-          label: { th: "ผู้ใช้ตั้งคิวงาน", en: "User queues a batch" },
-          note: { th: "เว็บพอร์ทัล", en: "Web portal" },
+          title: { th: "หน้าบ้าน", en: "Front end" },
+          nodes: [
+            {
+              label: { th: "เว็บพอร์ทัล", en: "Web portal" },
+              note: { th: "ตั้งคิว · แก้ข้อมูล · พรีวิว", en: "queue · edit · preview" },
+            },
+          ],
         },
         {
-          label: { th: "คิวข้อความ", en: "Message queue" },
-          note: { th: "1 งาน = 1 message", en: "one job, one message" },
+          title: { th: "คิวงาน", en: "Queue" },
+          nodes: [
+            {
+              label: { th: "คิวข้อความ", en: "Message queue" },
+              note: { th: "1 งาน = 1 message", en: "one job, one message" },
+            },
+          ],
         },
         {
-          label: { th: "Consumer ประจำเครื่อง", en: "Per-machine consumer" },
-          note: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
+          title: { th: "เครื่องประมวลผล", en: "Workers" },
+          nodes: [
+            {
+              label: { th: "Consumer ประจำเครื่อง", en: "Per-machine consumer" },
+              note: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
+            },
+            {
+              label: { th: "Robot ขับระบบ ERP", en: "Robot drives the ERP" },
+              note: { th: "ดึง print-image ออกมา", en: "pulls the print image" },
+            },
+            {
+              label: { th: "ตัวแงะข้อความ", en: "Parser" },
+              note: { th: "ข้อความดิบ → โครงสร้าง", en: "raw text to structure" },
+            },
+          ],
         },
         {
-          label: { th: "Robot ทำงานบนเดสก์ท็อป", en: "Desktop robot" },
-          note: { th: "คีย์งานเข้าระบบ ERP", en: "keys into the ERP" },
+          title: { th: "บริการเรนเดอร์", en: "Render services" },
+          nodes: [
+            {
+              label: { th: "Render service", en: "Render service" },
+              note: { th: "ประกอบ payload ที่เดียว", en: "one payload builder" },
+            },
+            {
+              label: { th: "Report engine", en: "Report engine" },
+              note: { th: "PDF · HTML · DOCX", en: "PDF · HTML · DOCX" },
+            },
+            {
+              label: { th: "ตัวประกอบสเปรดชีตเอง", en: "Hand-built spreadsheet writer" },
+              note: { th: "เลี่ยง exporter ที่ทำข้อมูลหาย", en: "avoids a lossy exporter" },
+            },
+          ],
         },
         {
-          label: { th: "อัปเดตสถานะรายใบ", en: "Per-item status back" },
-          note: { th: "ล้มเหลว → retry เอง", en: "failures retry themselves" },
+          title: { th: "ปลายทาง", en: "Destinations" },
+          nodes: [
+            {
+              label: { th: "คลังบล็อกที่สกัดแล้ว", en: "Extracted block store" },
+              note: { th: "แงะครั้งเดียว ใช้ซ้ำทุกที่", en: "parse once, reuse everywhere" },
+            },
+            {
+              label: { th: "ไฟล์แชร์เอกสาร", en: "Document file share" },
+              note: { th: "แยกฉบับ + รวมเล่ม", en: "per-sheet and combined" },
+            },
+            {
+              label: { th: "ระบบรับบิลของคู่ค้า", en: "Partner billing systems" },
+              note: { th: "ล้มเหลว → แจ้งเตือนอัตโนมัติ", en: "failures raise an alert" },
+            },
+          ],
         },
       ],
       impact: [
         {
-          th: "งานคีย์เอกสารซ้ำ ๆ ที่เคยทำมือ กลายเป็นตั้งคิวแล้วเดินจากไปได้",
-          en: "Turned repetitive manual data entry into a queue-and-walk-away job.",
+          th: "ย้อนประมวลผลเอกสารเก่าทั้งคลัง (หลักหมื่นใบ) แล้วเทียบกับต้นฉบับทีละใบได้ 0 ความต่าง ก่อนจะกล้าสลับมาใช้ของใหม่เป็นค่าเริ่มต้น",
+          en: "Re-processed the entire back catalogue (tens of thousands of documents) and diffed every one against its original to zero differences before the new path became the default.",
         },
         {
-          th: "งานที่ fail retry เองได้ ไม่ต้องรอคนมาไล่ดู",
-          en: "Failed jobs retry themselves instead of waiting for someone to notice.",
+          th: "ตัดสินใจ “แงะครั้งเดียว” — อ่าน print-image ทีเดียวแล้วเก็บเป็นโครงสร้าง ทั้งตอนออกเอกสารและตอนพรีวิวจึงอ่านจากแหล่งเดียวกัน ไม่มีตัวประกอบข้อมูลซ้ำสองที่ให้ผลต่างกัน",
+          en: "Settled on parse-once: the print image is read a single time into structured storage, so rendering and preview read the same source and there is no second builder to drift.",
         },
         {
-          th: "เพิ่มเครื่องประมวลผลได้โดยไม่ต้องแก้โค้ด — เครื่องใหม่มาต่อคิวเดิมแล้วช่วยกันดึงงาน",
-          en: "Capacity scales by adding machines, not by changing code — a new worker just joins the same queue.",
+          th: "ข้อมูลที่คนแก้เองถูกทำเครื่องหมายไว้ การ re-parse รอบหลังจะข้ามใบนั้นถาวร — งานที่คนตรวจแล้วไม่ถูกทับ",
+          en: "Human edits are flagged, so later re-parses skip those documents permanently — work a person verified never gets overwritten.",
+        },
+        {
+          th: "เก็บ print-image ต้นฉบับไว้แบบอ่านอย่างเดียวเป็น audit trail เวลาสงสัยว่าอ่านตกบรรทัด เปิดเทียบได้ทันที",
+          en: "The original print image is kept read-only as an audit trail, so a suspected missed line can be compared against the source immediately.",
+        },
+        {
+          th: "รันได้ครบทั้ง pipeline บนเครื่องตัวเองด้วยคำสั่งเดียว ทำให้แก้ layout แล้วเห็นผลโดยไม่ต้องรอ deploy",
+          en: "The whole pipeline runs locally with one command, so layout changes can be checked without waiting on a deploy.",
         },
       ],
-      stack: [".NET", "RabbitMQ", "SQL Server", "Power Automate Desktop"],
+      stack: [
+        "Python",
+        ".NET",
+        "Java",
+        "RabbitMQ",
+        "SQL Server",
+        "Docker",
+        "Power Automate Desktop",
+        "SAP",
+      ],
     },
     {
       slug: "sap-middleware",
@@ -454,6 +501,69 @@ export const profile = {
     },
   ] satisfies DomainGroup[],
 
+  /**
+   * AI ในกระบวนการทำงานจริง — เล่าเป็น "ทำอะไร → ได้ผลอะไร"
+   * เขียนเฉพาะสิ่งที่ใช้อยู่จริงและอธิบายได้ตอนสัมภาษณ์ ไม่ใส่คำสวยที่พิสูจน์ไม่ได้
+   */
+  aiPractice: [
+    {
+      title: {
+        th: "คลังความรู้ที่ AI อ่านต่อได้",
+        en: "A knowledge base the assistant reads from",
+      },
+      body: {
+        th: "ทุกครั้งที่แงะระบบไหนจนเข้าใจ ผมเขียนสิ่งที่ git บอกไม่ได้ทิ้งไว้ — เหตุผลเบื้องหลัง กับดักที่เจอ ข้อเท็จจริงของฐานข้อมูลและ deploy — เป็นโน้ตแยกตามระบบ แล้ว sync เข้าคลังกลางอัตโนมัติ งานรอบถัดไปเริ่มจากตรงนั้นแทนที่จะขุดใหม่",
+        en: "Every time I dig into a system, I write down what git can't tell you later — the reasoning, the traps, the non-obvious facts about the database and deployment — as per-system notes synced into one shared store. The next task starts from there instead of from scratch.",
+      },
+      result: {
+        th: "คำถามแบบ “ระบบนี้ทำงานยังไง” ที่เคยต้องไล่โค้ดครึ่งวัน เหลือระดับนาที และคนอื่นในทีมอ่านต่อได้",
+        en: "“How does this system work?” went from half a day of code archaeology to minutes — and other people can read it too.",
+      },
+    },
+    {
+      title: {
+        th: "กฎของแต่ละระบบ เขียนให้ AI รู้",
+        en: "Domain rules the assistant actually knows",
+      },
+      body: {
+        th: "ผมเขียนคู่มือสั้น ๆ ต่อระบบให้ผู้ช่วย AI โหลดเองเมื่อเข้าเรื่องนั้น — สัญญาของ webservice, โครงสิทธิ์, ขั้นตอน deploy, กติกาของ flow อนุมัติ ทำให้มันตอบจากของจริง ไม่ใช่เดาจากรูปแบบทั่วไป",
+        en: "Each system has a short playbook the assistant loads when the topic comes up — webservice contracts, permission structures, deployment steps, approval-flow rules — so answers come from how the system really behaves, not from a generic guess.",
+      },
+      result: {
+        th: "ลดข้อเสนอที่ฟังดูดีแต่ผิดบริบท ซึ่งเป็นความเสี่ยงที่แท้จริงของการใช้ AI กับระบบที่แตะเงินและการอนุมัติ",
+        en: "Cuts the plausible-but-wrong suggestions — the real risk of using AI on systems that touch money and approvals.",
+      },
+    },
+    {
+      title: {
+        th: "ด่านอัตโนมัติ แทนการอาศัยความจำ",
+        en: "Automated gates instead of remembering",
+      },
+      body: {
+        th: "กติกาที่เคยต้องจำเอง ผมย้ายไปเป็น hook และ agent ที่รันตอนนั้นเลย — ตรวจช่องโหว่ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push, บังคับรูปแบบ branch และ commit, เตือนเมื่อกำลังจะเดาพฤติกรรมของ legacy แทนที่จะไปอ่านโค้ดจริง",
+        en: "Rules I used to have to remember now run at the moment they matter — a security scan against the same criteria as the org quality gate before every push, enforced branch and commit conventions, and a prompt when I'm about to assume legacy behaviour instead of reading the source.",
+      },
+      result: {
+        th: "ความผิดพลาดถูกจับตั้งแต่ก่อนขึ้น ไม่ใช่ตอน review หรือหลัง deploy",
+        en: "Mistakes get caught before they ship, not at review or after deploy.",
+      },
+    },
+    {
+      title: {
+        th: "ให้ AI ทำงานกว้าง คนตัดสินใจ",
+        en: "AI covers ground, I make the calls",
+      },
+      body: {
+        th: "งานที่กินเวลาแต่ไม่กินความคิด — ไล่อ่านหลายสิบไฟล์ เทียบ dev กับ prod ร่างเอกสาร — ให้ผู้ช่วยทำขนานกัน ส่วนการตัดสินใจเชิงออกแบบและอะไรที่แตะข้อมูลจริง ผมอ่านเองก่อนเสมอ",
+        en: "The work that eats time but not judgement — reading dozens of files, diffing dev against prod, drafting documentation — runs in parallel through the assistant. Design decisions and anything touching real data, I read myself first.",
+      },
+      result: {
+        th: "งาน reverse-engineer ที่เคยกินเวลาเป็นวัน จบใน session เดียว โดยยังมีคนรับผิดชอบผลลัพธ์",
+        en: "Reverse-engineering that used to take days now finishes in one session, with a human still accountable for the result.",
+      },
+    },
+  ] satisfies Practice[],
+
   skills: [
     {
       title: { th: "หลัก", en: "Core" },
@@ -470,6 +580,16 @@ export const profile = {
     {
       title: { th: "ข้อมูลและโครงสร้าง", en: "Data & infra" },
       items: ["SQL Server", "RabbitMQ", "Hangfire", "Docker", "GitLab CI", "Nginx"],
+    },
+    {
+      title: { th: "AI ในงานวิศวกรรม", en: "AI engineering" },
+      items: [
+        "Claude Code",
+        "MCP servers",
+        "Agent workflows",
+        "Prompt/context engineering",
+        "Automated code review",
+      ],
     },
     {
       title: { th: "องค์กรและ automation", en: "Enterprise & automation" },
