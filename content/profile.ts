@@ -159,35 +159,6 @@ export const profile = {
 
   projects: [
     {
-      slug: "iam-rewrite",
-      name: {
-        th: "ระบบจัดการสิทธิ์เข้าถึงองค์กร (เขียนใหม่)",
-        en: "Enterprise access management (rewrite)",
-      },
-      summary: {
-        th: "ยกระบบสิทธิ์เมนูของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js โดยใช้ฐานข้อมูลเดิม จุดขายคือให้สิทธิ์ด้วย “กฎตามโครงสร้างองค์กร” แทนการจิ้มรายคน",
-        en: "Lifted the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API + Next.js front end on the same database. The core idea: grant access with org-structure rules instead of per-person assignment.",
-      },
-      role: { th: "Full-stack · ออกแบบ + พัฒนา", en: "Full-stack · design + build" },
-      confidential: true,
-      year: "2025",
-      impact: [
-        {
-          th: "เพิ่มพนักงานใหม่ไม่ต้องตั้งสิทธิ์ทีละคนอีกต่อไป — เข้ากฎไหนได้เมนูชุดนั้นทันที",
-          en: "Onboarding no longer needs per-person setup — matching a rule grants the whole menu set instantly.",
-        },
-        {
-          th: "เพิ่มชุด report สำหรับ audit ตามมาตรฐาน ISO: matrix กฎ×เมนู, เทียบสิทธิ์ระหว่างคน, หา orphan account, และ audit log",
-          en: "Added an ISO-audit reporting set: rule×menu matrix, access comparison between users, orphan-account detection, and audit logging.",
-        },
-        {
-          th: "มีหน้า My Access ให้พนักงานตรวจสิทธิ์ตัวเองได้ ลดคำถามที่วิ่งเข้าทีม IT",
-          en: "A self-service My Access page lets staff check their own permissions, cutting the questions that used to land on IT.",
-        },
-      ],
-      stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
-    },
-    {
       slug: "sap-doc-pipeline",
       name: {
         th: "ระบบผลิตเอกสารจาก SAP อัตโนมัติ (end-to-end)",
@@ -289,6 +260,35 @@ export const profile = {
         "Power Automate Desktop",
         "SAP",
       ],
+    },
+    {
+      slug: "iam-rewrite",
+      name: {
+        th: "ระบบจัดการสิทธิ์เข้าถึงองค์กร (เขียนใหม่)",
+        en: "Enterprise access management (rewrite)",
+      },
+      summary: {
+        th: "ยกระบบสิทธิ์เมนูของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js โดยใช้ฐานข้อมูลเดิม จุดขายคือให้สิทธิ์ด้วย “กฎตามโครงสร้างองค์กร” แทนการจิ้มรายคน",
+        en: "Lifted the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API + Next.js front end on the same database. The core idea: grant access with org-structure rules instead of per-person assignment.",
+      },
+      role: { th: "Full-stack · ออกแบบ + พัฒนา", en: "Full-stack · design + build" },
+      confidential: true,
+      year: "2025",
+      impact: [
+        {
+          th: "เพิ่มพนักงานใหม่ไม่ต้องตั้งสิทธิ์ทีละคนอีกต่อไป — เข้ากฎไหนได้เมนูชุดนั้นทันที",
+          en: "Onboarding no longer needs per-person setup — matching a rule grants the whole menu set instantly.",
+        },
+        {
+          th: "เพิ่มชุด report สำหรับ audit ตามมาตรฐาน ISO: matrix กฎ×เมนู, เทียบสิทธิ์ระหว่างคน, หา orphan account, และ audit log",
+          en: "Added an ISO-audit reporting set: rule×menu matrix, access comparison between users, orphan-account detection, and audit logging.",
+        },
+        {
+          th: "มีหน้า My Access ให้พนักงานตรวจสิทธิ์ตัวเองได้ ลดคำถามที่วิ่งเข้าทีม IT",
+          en: "A self-service My Access page lets staff check their own permissions, cutting the questions that used to land on IT.",
+        },
+      ],
+      stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
     },
     {
       slug: "sap-middleware",

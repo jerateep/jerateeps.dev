@@ -25,6 +25,10 @@ export const ui = {
     en: "I don't use AI just to finish lines of code. It's wired into the process: a knowledge base it reads from, per-system rules it knows, and automated gates that run before anything ships.",
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
+  projectsLead: {
+    th: "เกือบทั้งหมดเป็นระบบภายในองค์กร — ชื่อจริงและภาพหน้าจอเปิดเผยไม่ได้ จึงเรียกตามหน้าที่และเล่าเฉพาะสิ่งที่อธิบายได้",
+    en: "Almost all of these are internal systems — the real names and screenshots can't be shown, so each is named by what it does and described only as far as I can defend it.",
+  },
   domainsLead: {
     th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",
     en: "20+ systems inside one organisation. The names are confidential, so they are listed by what they do.",

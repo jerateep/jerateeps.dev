@@ -82,6 +82,26 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </Section>
 
+      {/* Skills */}
+      <Section id="skills" title={ui.sections.skills[lang]}>
+        <dl className="space-y-6">
+          {profile.skills.map((group, i) => (
+            <div key={i} className="sm:flex sm:gap-6">
+              <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
+                {group.title[lang]}
+              </dt>
+              <dd className="flex-1">
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* Experience */}
       <Section id="experience" title={ui.sections.experience[lang]}>
         <div className="space-y-12">
@@ -116,6 +136,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       {/* Projects */}
       <Section id="projects" title={ui.sections.projects[lang]}>
+        <p className="mb-8 max-w-2xl text-muted">{ui.projectsLead[lang]}</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {profile.projects.map((project) => (
             <article
@@ -135,11 +156,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   {project.year}
                 </span>
               </div>
-              {project.confidential && (
-                <p className="mt-2">
-                  <ConfidentialBadge lang={lang} />
-                </p>
-              )}
+              {/* badge รายการ์ดถูกถอดออก — ประกาศครั้งเดียวที่หัว section แทน
+                  เพราะ 8 ใน 9 ใบเป็นระบบภายใน ซ้ำทุกใบแล้วอ่านเหมือนกำแพงปิดบัง */}
               <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
               {project.diagram && (
                 <PipelineDiagram
@@ -220,26 +238,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </article>
           ))}
         </div>
-      </Section>
-
-      {/* Skills */}
-      <Section id="skills" title={ui.sections.skills[lang]}>
-        <dl className="space-y-6">
-          {profile.skills.map((group, i) => (
-            <div key={i} className="sm:flex sm:gap-6">
-              <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
-                {group.title[lang]}
-              </dt>
-              <dd className="flex-1">
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <Tag key={item}>{item}</Tag>
-                  ))}
-                </ul>
-              </dd>
-            </div>
-          ))}
-        </dl>
       </Section>
 
       {/* Contact */}
