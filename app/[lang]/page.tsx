@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
+import { FlowDiagram } from "@/components/FlowDiagram";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -119,7 +120,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           {profile.projects.map((project) => (
             <article
               key={project.slug}
-              className="flex flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50"
+              className={`flex flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50 ${
+                project.featured ? "sm:col-span-2" : ""
+              }`}
             >
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-medium">{project.name[lang]}</h3>
@@ -133,6 +136,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </p>
               )}
               <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
+              {project.flow && (
+                <FlowDiagram
+                  steps={project.flow}
+                  lang={lang}
+                  caption={ui.flowCaption[lang]}
+                />
+              )}
               <ul className="mt-4 space-y-1.5 text-sm text-muted">
                 {project.impact.map((item, i) => (
                   <li key={i} className="flex gap-2">
@@ -159,6 +169,26 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </a>
               )}
             </article>
+          ))}
+        </div>
+      </Section>
+
+      {/* Coverage — ความกว้างของงาน */}
+      <Section id="domains" title={ui.sections.domains[lang]}>
+        <p className="text-muted">{ui.domainsLead[lang]}</p>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          {profile.domains.map((domain, i) => (
+            <div key={i}>
+              <h3 className="mb-3 text-sm font-medium">{domain.title[lang]}</h3>
+              <ul className="space-y-1.5 text-sm text-muted">
+                {domain.items.map((item, j) => (
+                  <li key={j} className="flex gap-2">
+                    <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-border" />
+                    <span>{item[lang]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </Section>

@@ -1,7 +1,13 @@
 /**
  * แหล่งข้อมูลเดียวของทั้งเว็บ — แก้ที่นี่ที่เดียว หน้าเว็บอัปเดตตาม
  *
- * PDPA / ความลับของนายจ้าง — อ่านก่อนใส่ข้อมูล:
+ * ผลงานด้านล่างเรียบเรียงจาก second-brain vault (knowledge/<ระบบ>/*-index.md)
+ * แล้ว sanitize ก่อนลงเว็บ — สิ่งที่ "ถอดออกทุกครั้ง" ห้ามใส่กลับ:
+ *   IP/hostname ภายใน · ชื่อ DB และชื่อตาราง · path repo และ GitLab remote
+ *   GUID ของ environment/site · ชื่อ view ที่เก็บข้อมูลพนักงาน · ชื่อ function ของ SAP
+ *   URL ระบบภายใน · อะไรก็ตามที่แตะ credential
+ *
+ * PDPA — อ่านก่อนเติมของใหม่:
  *   1. อย่าใส่ชื่อ-นามสกุล, อีเมล, เบอร์โทรของ "คนอื่น" (หัวหน้า ลูกค้า เพื่อนร่วมทีม) เด็ดขาด
  *   2. ระบบภายในของบริษัท: ตั้ง confidential: true แล้วใช้ชื่อกลาง ๆ
  *      (เช่น "ระบบอนุมัติงบภายในองค์กร" แทนชื่อระบบจริง) — หน้าเว็บจะขึ้น badge ให้เอง
@@ -39,11 +45,24 @@ export type Project = {
   /** ลิงก์สาธารณะเท่านั้น — ระบบภายในไม่ต้องใส่ */
   link?: string;
   confidential?: boolean;
+  /**
+   * แผนภาพ flow ของระบบ — ต้องเป็นภาพรวมเชิงแนวคิดเท่านั้น
+   * ห้ามใส่ชื่อเครื่อง ชื่อ queue จริง ชื่อตาราง หรือ endpoint
+   */
+  flow?: { label: L; note?: L }[];
+  /** การ์ดกินความกว้าง 2 คอลัมน์ (ใช้กับการ์ดที่มี flow) */
+  featured?: boolean;
 };
 
-export type SkillGroup = {
+export type Group = {
   title: L;
   items: string[];
+};
+
+/** กลุ่มระบบที่เคยดูแล — โชว์ความกว้าง ไม่ลงรายละเอียด */
+export type DomainGroup = {
+  title: L;
+  items: L[];
 };
 
 export const profile = {
@@ -65,12 +84,16 @@ export const profile = {
 
   about: [
     {
-      th: "ผมทำงานกับระบบหลังบ้านขององค์กรเป็นหลัก — ระบบอนุมัติเอกสาร, ระบบสิทธิ์การใช้งาน, งาน automation ที่เชื่อมหลายระบบเข้าด้วยกัน งานส่วนใหญ่ไม่ได้อยู่ในที่สว่าง แต่ถ้ามันล่ม ทั้งออฟฟิศรู้ทันที",
-      en: "I work mostly on enterprise back-office systems — approval workflows, permission management, and automation that stitches several systems together. Most of it is invisible, but everyone notices the day it breaks.",
+      th: "ผมดูแลระบบหลังบ้านขององค์กรกว่า 20 ระบบ — ตั้งแต่สายอนุมัติเอกสารและการเบิกจ่าย ไปจนถึงงาน automation ที่เชื่อม SAP, Active Directory และ Microsoft 365 เข้าด้วยกัน งานพวกนี้ไม่ได้อยู่ในที่สว่าง แต่ถ้ามันล่ม ทั้งออฟฟิศรู้ทันที",
+      en: "I look after 20+ enterprise back-office systems — approval and expense workflows, and the automation that ties SAP, Active Directory and Microsoft 365 together. None of it is glamorous, but everyone notices the day it breaks.",
     },
     {
-      th: "ถนัดงานที่ต้องเข้าใจของเดิมก่อนแก้: อ่านโค้ด legacy ที่ไม่มีเอกสาร, ย้ายระบบเก่าขึ้นของใหม่โดยไม่ทำ flow ธุรกิจพัง, และเขียนสิ่งที่ค้นเจอทิ้งไว้ให้คนถัดไป",
-      en: "My strength is understanding what already exists before changing it: reading undocumented legacy code, migrating old systems without breaking the business flow, and writing down what I learn for whoever comes next.",
+      th: "ถนัดงานที่ต้องเข้าใจของเดิมก่อนแก้: อ่านโค้ด legacy ที่ไม่มีเอกสาร เทียบพฤติกรรมจริงกับฐานข้อมูล แล้วค่อยย้ายขึ้นของใหม่โดยไม่ทำ flow ธุรกิจพัง ระบบที่ทำงานเกี่ยวกับเงินและการอนุมัติ ผิดไม่ได้แม้แต่ใบเดียว",
+      en: "My strength is understanding what already exists before changing it: reading undocumented legacy code, checking its real behaviour against the database, then migrating it without breaking the business flow. When a system moves money or approvals, a single wrong document is one too many.",
+    },
+    {
+      th: "อีกครึ่งหนึ่งของงานคือเขียนสิ่งที่ค้นเจอทิ้งไว้ — reverse-engineer ระบบเก่าเป็นเอกสาร วาง convention ให้ทีม และทำให้คนถัดไปไม่ต้องขุดซ้ำ",
+      en: "The other half of the job is writing down what I find — reverse-engineering old systems into documentation, setting team conventions, and making sure the next person doesn't have to dig it all up again.",
     },
   ] satisfies L[],
 
@@ -85,24 +108,37 @@ export const profile = {
       period: { th: "ปัจจุบัน", en: "Present" },
       confidential: true,
       summary: {
-        th: "ดูแลและพัฒนาระบบ back-office ที่พนักงานทั้งองค์กรใช้ — ตั้งแต่ระบบอนุมัติเอกสาร ระบบจัดการสิทธิ์เมนู ไปจนถึงงาน RPA ที่ยิงงานเข้า SAP",
-        en: "Build and maintain the back-office systems used across the organisation — document approval, menu permission management, and RPA pipelines that feed SAP.",
+        th: "ดูแลและพัฒนาระบบ back-office ที่พนักงานทั้งองค์กรใช้ — งานเอกสารและสายอนุมัติ, ระบบสิทธิ์การเข้าถึง, ตัวกลางคุย SAP, และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
+        en: "Build and maintain the back-office systems used across the organisation — document and approval workflows, access management, SAP middleware, and automation on both the server and RPA side.",
       },
       highlights: [
         {
-          th: "ย้ายระบบ ASP.NET WebForms เดิมขึ้น .NET 8 + Next.js โดยรักษา business flow เดิมไว้ครบ",
-          en: "Migrated legacy ASP.NET WebForms systems to .NET 8 + Next.js while preserving the original business flow.",
+          th: "ย้ายระบบ ASP.NET WebForms อายุสิบกว่าปีขึ้น .NET 8 + Next.js โดยใช้ฐานข้อมูลเดิมต่อไร้รอยต่อ ไม่ต้องหยุดให้บริการ",
+          en: "Migrated decade-old ASP.NET WebForms systems to .NET 8 + Next.js on the existing database, with no service interruption.",
         },
         {
-          th: "ออกแบบชั้น permission ที่ให้สิทธิ์ตามโครงสร้างองค์กร แทนการผูกสิทธิ์รายคน",
-          en: "Designed a permission layer that grants access by org attributes instead of per-user assignment.",
+          th: "ออกแบบชั้น permission ที่ให้สิทธิ์ตามโครงสร้างองค์กร (สังกัด/แผนก/ตำแหน่ง) แทนการผูกสิทธิ์รายคน แก้กฎที่เดียวมีผลทุกแอปที่ผ่าน SSO",
+          en: "Designed a permission layer that grants access by org attributes (BU, department, position) instead of per-user assignment — one rule change propagates to every app behind SSO.",
         },
         {
-          th: "วางระบบคิวงาน automation บน message queue ให้หลายเซิร์ฟเวอร์รับงานขนานกันได้",
-          en: "Built a message-queue based automation pipeline so multiple worker servers process jobs in parallel.",
+          th: "วางระบบคิวงาน automation บน message queue ให้ worker หลายเครื่องรับงานขนานกัน และ retry งานที่ล้มเองได้",
+          en: "Built a message-queue automation pipeline so worker machines process jobs in parallel and failed jobs retry themselves.",
+        },
+        {
+          th: "reverse-engineer ระบบเก่าที่ไม่มีเอกสารให้กลายเป็น reference ที่ทีมใช้ต่อได้ พร้อม flowchart และตารางผู้รับผิดชอบราย step",
+          en: "Reverse-engineered undocumented legacy systems into references the team can work from, with flowcharts and per-step ownership tables.",
         },
       ],
-      stack: [".NET 8", "ASP.NET", "Next.js", "SQL Server", "RabbitMQ", "Docker"],
+      stack: [
+        ".NET 8",
+        "ASP.NET",
+        "Next.js",
+        "SQL Server",
+        "RabbitMQ",
+        "Python",
+        "Docker",
+        "SAP",
+      ],
     },
     // {
     //   company: { th: "ชื่อบริษัทก่อนหน้า", en: "Previous company" },
@@ -114,32 +150,64 @@ export const profile = {
     // },
   ] satisfies Job[],
 
-  /** TODO: เติมผลงานที่อยากโชว์ — ระบบภายในใช้ confidential: true */
   projects: [
     {
-      slug: "approval-workflow",
+      slug: "iam-rewrite",
       name: {
-        th: "ระบบขออนุมัติงบประมาณภายในองค์กร",
-        en: "Internal budget approval system",
+        th: "ระบบจัดการสิทธิ์เข้าถึงองค์กร (เขียนใหม่)",
+        en: "Enterprise access management (rewrite)",
       },
       summary: {
-        th: "ระบบยื่นและอนุมัติคำขอใช้งบ ที่สร้างสายอนุมัติอัตโนมัติตามโครงสร้างองค์กรและวงเงิน พร้อมเช็คยอดคงเหลือกับระบบบัญชีแบบเรียลไทม์",
-        en: "A budget request and approval system that generates the approver line automatically from org structure and amount, with real-time balance checks against the accounting system.",
+        th: "ยกระบบสิทธิ์เมนูของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js โดยใช้ฐานข้อมูลเดิม จุดขายคือให้สิทธิ์ด้วย “กฎตามโครงสร้างองค์กร” แทนการจิ้มรายคน",
+        en: "Lifted the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API + Next.js front end on the same database. The core idea: grant access with org-structure rules instead of per-person assignment.",
       },
       role: { th: "Full-stack · ออกแบบ + พัฒนา", en: "Full-stack · design + build" },
       confidential: true,
-      year: "2024",
+      year: "2025",
       impact: [
         {
-          th: "ลดเวลารออนุมัติจากหลายวันเหลือระดับชั่วโมง",
-          en: "Cut approval turnaround from days to hours.",
+          th: "เพิ่มพนักงานใหม่ไม่ต้องตั้งสิทธิ์ทีละคนอีกต่อไป — เข้ากฎไหนได้เมนูชุดนั้นทันที",
+          en: "Onboarding no longer needs per-person setup — matching a rule grants the whole menu set instantly.",
         },
         {
-          th: "ตัดขั้นตอนเดินเอกสารกระดาษออกทั้งหมด",
-          en: "Removed the paper routing step entirely.",
+          th: "เพิ่มชุด report สำหรับ audit ตามมาตรฐาน ISO: matrix กฎ×เมนู, เทียบสิทธิ์ระหว่างคน, หา orphan account, และ audit log",
+          en: "Added an ISO-audit reporting set: rule×menu matrix, access comparison between users, orphan-account detection, and audit logging.",
+        },
+        {
+          th: "มีหน้า My Access ให้พนักงานตรวจสิทธิ์ตัวเองได้ ลดคำถามที่วิ่งเข้าทีม IT",
+          en: "A self-service My Access page lets staff check their own permissions, cutting the questions that used to land on IT.",
         },
       ],
-      stack: ["ASP.NET", "SQL Server", "SOAP integration"],
+      stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
+    },
+    {
+      slug: "legacy-form-migration",
+      name: {
+        th: "ย้ายเอกสารพิมพ์จากระบบเก่าให้ตรงต้นฉบับ 100%",
+        en: "Pixel-accurate legacy document migration",
+      },
+      summary: {
+        th: "เขียน pipeline ใหม่ที่ดึงข้อมูลจาก SAP มา render เป็นเอกสารพิมพ์ (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) โดยต้องออกมา “เหมือนของเดิมทุกจุด” เพราะเป็นเอกสารที่ส่งให้ลูกค้าและใช้ทางบัญชี",
+        en: "A new pipeline that pulls data from SAP and renders printed documents (invoices, credit notes, receipts) that must match the originals exactly — these go to customers and into the books.",
+      },
+      role: { th: "ออกแบบ + พัฒนา + วางวิธีตรวจ", en: "Design, build, and the verification method" },
+      confidential: true,
+      year: "2025",
+      impact: [
+        {
+          th: "วางระบบตรวจแบบ golden-file เทียบกับเอกสารต้นฉบับทุกใบ จับความต่างได้ก่อนถึงมือลูกค้า",
+          en: "Set up golden-file verification against every original document, catching differences before customers ever see them.",
+        },
+        {
+          th: "แยก report engine ออกเป็น service ของตัวเอง ทำให้ scale และ deploy แยกจากตัวคิวงานได้",
+          en: "Split the report engine into its own service so it scales and deploys independently of the job queue.",
+        },
+        {
+          th: "ไล่เก็บเคสขอบที่ระบบเก่าทำเงียบ ๆ เช่น รูปแบบวันที่ที่ทำทั้งใบหายไปโดยไม่มี error",
+          en: "Hunted down edge cases the old system failed silently on — including a date format that made whole documents vanish without an error.",
+        },
+      ],
+      stack: ["Python", "Jasper Reports", "SQL Server", "SAP"],
     },
     {
       slug: "rpa-queue",
@@ -148,12 +216,35 @@ export const profile = {
         en: "RPA job queue platform",
       },
       summary: {
-        th: "เว็บพอร์ทัลให้ผู้ใช้ส่งงานเอกสารเป็น batch เข้าคิว แล้วมี worker บนหลายเครื่องดึงไปสั่ง robot ทำงานต่อ พร้อมหน้าติดตามสถานะรายใบ",
-        en: "A portal where users queue document batches, with workers across several machines pulling jobs and driving desktop robots, plus per-item status tracking.",
+        th: "เว็บพอร์ทัลให้ผู้ใช้ส่งงานเอกสารเป็น batch เข้าคิว แล้วมี consumer บนหลายเครื่องดึงไปสั่ง robot ทำงานต่อ พร้อมหน้าติดตามสถานะรายใบ",
+        en: "A portal where users queue document batches, with consumers across several machines pulling jobs and driving desktop robots, plus per-item status tracking.",
       },
       role: { th: "Full-stack · ออกแบบ + พัฒนา", en: "Full-stack · design + build" },
       confidential: true,
-      year: "2024",
+      featured: true,
+      year: "2025",
+      flow: [
+        {
+          label: { th: "ผู้ใช้ตั้งคิวงาน", en: "User queues a batch" },
+          note: { th: "เว็บพอร์ทัล", en: "Web portal" },
+        },
+        {
+          label: { th: "คิวข้อความ", en: "Message queue" },
+          note: { th: "1 งาน = 1 message", en: "one job, one message" },
+        },
+        {
+          label: { th: "Consumer ประจำเครื่อง", en: "Per-machine consumer" },
+          note: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
+        },
+        {
+          label: { th: "Robot ทำงานบนเดสก์ท็อป", en: "Desktop robot" },
+          note: { th: "คีย์งานเข้าระบบ ERP", en: "keys into the ERP" },
+        },
+        {
+          label: { th: "อัปเดตสถานะรายใบ", en: "Per-item status back" },
+          note: { th: "ล้มเหลว → retry เอง", en: "failures retry themselves" },
+        },
+      ],
       impact: [
         {
           th: "งานคีย์เอกสารซ้ำ ๆ ที่เคยทำมือ กลายเป็นตั้งคิวแล้วเดินจากไปได้",
@@ -163,8 +254,141 @@ export const profile = {
           th: "งานที่ fail retry เองได้ ไม่ต้องรอคนมาไล่ดู",
           en: "Failed jobs retry themselves instead of waiting for someone to notice.",
         },
+        {
+          th: "เพิ่มเครื่องประมวลผลได้โดยไม่ต้องแก้โค้ด — เครื่องใหม่มาต่อคิวเดิมแล้วช่วยกันดึงงาน",
+          en: "Capacity scales by adding machines, not by changing code — a new worker just joins the same queue.",
+        },
       ],
       stack: [".NET", "RabbitMQ", "SQL Server", "Power Automate Desktop"],
+    },
+    {
+      slug: "sap-middleware",
+      name: {
+        th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
+        en: "SAP integration middleware",
+      },
+      summary: {
+        th: "ห่อ SOAP web service ของ SAP ให้กลายเป็น REST ที่ระบบอื่นเรียกง่าย ๆ พร้อม job ตามเวลาที่ดึง master data ไปป้อนระบบปลายน้ำ (ทรัพย์สิน, สินค้าคงคลัง, ลูกค้า, ผู้ขาย, งบประมาณ)",
+        en: "Wraps SAP's SOAP services as a REST API other systems can call, plus scheduled jobs that feed master data downstream (assets, inventory, customers, vendors, budgets).",
+      },
+      role: { th: "Backend · ออกแบบ + พัฒนา", en: "Backend · design + build" },
+      confidential: true,
+      year: "2025",
+      impact: [
+        {
+          th: "ระบบปลายน้ำเลิกต่อ SAP เองทีละระบบ เหลือจุดเดียวที่ต้องดูแล",
+          en: "Downstream systems stopped each wiring up SAP themselves — one place to maintain instead of many.",
+        },
+        {
+          th: "เพิ่มทางอ่านตาราง SAP ตรงสำหรับข้อมูลที่ service เดิมมองไม่เห็น ไม่ต้องรอทีม ABAP เขียนของใหม่ให้",
+          en: "Added a direct table-read path for data the existing services couldn't see, removing the wait on the ABAP team for new endpoints.",
+        },
+        {
+          th: "อุด gate ที่ทำให้ข้อมูล sync ค้างเงียบ ๆ — จากเดิมที่ไม่มีใครรู้ว่าของไม่มา",
+          en: "Closed a failure gate that let syncs stall silently, where previously nobody knew the data had stopped arriving.",
+        },
+      ],
+      stack: ["ASP.NET Core", "Hangfire", "SOAP", "SQL Server", "SAP"],
+    },
+    {
+      slug: "money-request",
+      name: {
+        th: "ระบบขออนุมัติใช้เงิน",
+        en: "Money request & approval system",
+      },
+      summary: {
+        th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ สร้างสายอนุมัติอัตโนมัติจากโครงสร้างองค์กรและวงเงิน พร้อมยกระดับผู้อนุมัติเองเมื่อเกินงบ",
+        en: "Submit and approve funding requests — budgeted, non-budgeted, and budget transfers. The approver line is generated from org structure and amount, and escalates automatically when a request goes over budget.",
+      },
+      role: { th: "Full-stack · พัฒนาและดูแลต่อเนื่อง", en: "Full-stack · ongoing development" },
+      confidential: true,
+      year: "2024–2025",
+      impact: [
+        {
+          th: "ตัดขั้นตอนเดินเอกสารกระดาษออกทั้งหมด ผู้อนุมัติกดจบได้จากพอร์ทัลกลาง",
+          en: "Removed paper routing entirely — approvers finish the job from the central portal.",
+        },
+        {
+          th: "เช็คยอดงบคงเหลือกับระบบบัญชีตอนยื่น ไม่ต้องรอให้ถึงฝ่ายการเงินแล้วค่อยรู้ว่างบไม่พอ",
+          en: "Checks remaining budget against the accounting system at submission, instead of finding out at finance that the money isn't there.",
+        },
+      ],
+      stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
+    },
+    {
+      slug: "expense-system",
+      name: {
+        th: "ระบบเบิกค่าใช้จ่ายพนักงาน",
+        en: "Employee expense system",
+      },
+      summary: {
+        th: "ระบบเบิกและเคลียร์ค่าใช้จ่าย — เบิกคืน เงินยืม ค่าเดินทาง ผูกกับงบประมาณและสายอนุมัติ แล้วยิงรายการเข้าระบบบัญชีให้อัตโนมัติ",
+        en: "Expense claims and clearing — reimbursement, cash advances, and travel — tied to budgets and approval lines, then posted into the accounting system automatically.",
+      },
+      role: { th: "พัฒนาและดูแลระบบ", en: "Development and maintenance" },
+      confidential: true,
+      year: "2024–2025",
+      impact: [
+        {
+          th: "รายการที่อนุมัติแล้วเข้าบัญชีเองโดยไม่ต้องคีย์ซ้ำ",
+          en: "Approved items post to accounting without being re-keyed.",
+        },
+        {
+          th: "แยกโมดูลตั๋วเครื่องบินและอัตราแลกเปลี่ยนออกมาเป็นของตัวเอง แก้ทีละส่วนได้โดยไม่กระทบตัวหลัก",
+          en: "Split the air-ticket and exchange-rate modules out so each can change without touching the core.",
+        },
+      ],
+      stack: ["ASP.NET WebForms", "SQL Server", "SAP"],
+    },
+    {
+      slug: "ad-provisioning",
+      name: {
+        th: "ระบบจัดการบัญชีผู้ใช้อัตโนมัติ",
+        en: "Automated account provisioning",
+      },
+      summary: {
+        th: "Web API ที่ดูแลวงจรชีวิตบัญชีผู้ใช้ — สร้าง แก้ ปิด และ sync ข้อมูลพนักงานจากระบบ HR เข้า directory ขององค์กร รวมถึงจัดการ mail contact และการส่งต่อเมล",
+        en: "A Web API that owns the account lifecycle — create, update, disable — and syncs employee attributes from HR into the corporate directory, including mail contacts and forwarding.",
+      },
+      role: { th: "Backend · พัฒนาและแก้ปัญหาหน้างาน", en: "Backend · development and troubleshooting" },
+      confidential: true,
+      year: "2025",
+      impact: [
+        {
+          th: "งาน onboarding/offboarding ที่เคยทำมือทีละบัญชี กลายเป็น job ที่รันตามข้อมูล HR",
+          en: "Onboarding and offboarding went from per-account manual work to a job driven by HR data.",
+        },
+        {
+          th: "แก้จุดที่ job รายงานว่า “ผ่าน” ทั้งที่ directory ปฏิเสธคำสั่ง เพราะอ่านผลลัพธ์ไม่ครบทั้งสองช่องทาง",
+          en: "Fixed a case where the job reported success while the directory had rejected the command, because only one of the two output streams was being read.",
+        },
+      ],
+      stack: ["ASP.NET Core", "PowerShell", "SSH", "Active Directory", "Docker"],
+    },
+    {
+      slug: "dashboard-platform",
+      name: {
+        th: "แพลตฟอร์ม dashboard ภายในองค์กร",
+        en: "In-house dashboard platform",
+      },
+      summary: {
+        th: "แพลตฟอร์มทำ report/dashboard ของ back-office ที่เขียนเอง แทนการซื้อ license เครื่องมือ BI — วางโครงให้เพิ่ม report ตัวใหม่ได้โดยไม่ต้องตั้งโปรเจกต์ใหม่ทุกครั้ง",
+        en: "An in-house reporting and dashboard platform for back-office, built instead of buying BI licences — structured so a new report drops in without standing up a new project each time.",
+      },
+      role: { th: "Full-stack · วางรากฐานแพลตฟอร์ม", en: "Full-stack · platform foundation" },
+      confidential: true,
+      year: "2025",
+      impact: [
+        {
+          th: "report ตัวแรกคือ dashboard ผลแบบทดสอบพนักงานทั้งองค์กร ต่อจากฟอร์มออนไลน์ผ่าน flow ที่ตรวจคะแนนและส่งเมลเอง",
+          en: "The first report is an org-wide assessment dashboard, fed by an online form through a flow that scores submissions and sends the mail itself.",
+        },
+        {
+          th: "แยกเป็น 2 deployable (API กับหน้าเว็บ) ใช้ origin เดียวกันทั้ง dev และ prod ลดปัญหา CORS/cookie",
+          en: "Two deployables (API and web) served from one origin in both dev and prod, which keeps CORS and cookie issues off the table.",
+        },
+      ],
+      stack: [".NET", "Next.js", "Power Automate", "SQL Server", "Docker"],
     },
     {
       slug: "freelance",
@@ -188,40 +412,78 @@ export const profile = {
       stack: ["Next.js", "ASP.NET", "SQL Server"], // TODO: ปรับตามงานจริง
       link: "https://fastwork.co/byob/2KRa1es4ON",
     },
-    // {
-    //   slug: "your-project",
-    //   name: { th: "ชื่อผลงาน", en: "Project name" },
-    //   summary: { th: "...", en: "..." },
-    //   role: { th: "...", en: "..." },
-    //   year: "2025",
-    //   impact: [{ th: "...", en: "..." }],
-    //   stack: ["..."],
-    //   link: "https://example.com",
-    // },
   ] satisfies Project[],
+
+  /** ความกว้างของงาน — ชื่อกลาง ๆ ทั้งหมด ไม่มีชื่อระบบภายใน */
+  domains: [
+    {
+      title: { th: "การเงินและอนุมัติ", en: "Finance & approvals" },
+      items: [
+        { th: "ขออนุมัติใช้เงิน (มีงบ/ไม่มีงบ/โอนงบ)", en: "Funding requests (budgeted, non-budgeted, transfers)" },
+        { th: "เบิกค่าใช้จ่ายและเงินยืมพนักงาน", en: "Employee expenses and cash advances" },
+        { th: "วิเคราะห์อายุลูกหนี้และสุขภาพ AR", en: "AR aging and receivable health analysis" },
+        { th: "พอร์ทัลอนุมัติกลางที่ทุกระบบมาเสียบ", en: "Central approval portal every system plugs into" },
+      ],
+    },
+    {
+      title: { th: "ปฏิบัติการและซัพพลายเชน", en: "Operations & supply chain" },
+      items: [
+        { th: "จัดการทรัพย์สิน: ย้าย โอน ยืม คืน", en: "Asset management: movement, transfer, borrow, return" },
+        { th: "งานขนส่งและ job costing ของ forwarder", en: "Logistics jobs and forwarder job costing" },
+        { th: "จัดสรร capacity ดาวเทียมและ service request", en: "Satellite capacity allocation and service requests" },
+        { th: "บริหารความเสี่ยงองค์กร (ERM)", en: "Enterprise risk management" },
+      ],
+    },
+    {
+      title: { th: "แพลตฟอร์มกลาง", en: "Shared platforms" },
+      items: [
+        { th: "Single sign-on และการมอบอำนาจอนุมัติ", en: "Single sign-on and approval delegation" },
+        { th: "จัดการสิทธิ์เมนูและ audit ตาม ISO", en: "Menu permissions and ISO-aligned audit" },
+        { th: "คิวส่งอีเมลกลางพร้อมติดตามสถานะ", en: "Central mail queue with delivery tracking" },
+        { th: "middleware จองปฏิทินและจัดการ mailbox", en: "Calendar booking and mailbox management middleware" },
+      ],
+    },
+    {
+      title: { th: "เว็บและ low-code", en: "Web & low-code" },
+      items: [
+        { th: "เว็บไซต์องค์กรสองภาษาบน Webflow", en: "Bilingual corporate website on Webflow" },
+        { th: "อินทราเน็ตพนักงานบน Dataverse + Power Pages", en: "Employee intranet on Dataverse + Power Pages" },
+        { th: "แอป CRUD บน SharePoint ผ่าน Microsoft Graph", en: "SharePoint CRUD apps over Microsoft Graph" },
+        { th: "cloud flow เชื่อมฟอร์ม ฐานข้อมูล และอีเมล", en: "Cloud flows linking forms, databases, and mail" },
+      ],
+    },
+  ] satisfies DomainGroup[],
 
   skills: [
     {
       title: { th: "หลัก", en: "Core" },
-      items: ["C#", "TypeScript", "SQL", "JavaScript"],
+      items: ["C#", "TypeScript", "SQL", "Python", "JavaScript"],
     },
     {
       title: { th: "Backend", en: "Backend" },
-      items: [".NET 8", "ASP.NET Core", "ASP.NET WebForms", "REST", "SOAP"],
+      items: [".NET 8", "ASP.NET Core", "ASP.NET WebForms", "Dapper", "EF Core", "REST", "SOAP"],
     },
     {
       title: { th: "Frontend", en: "Frontend" },
-      items: ["Next.js", "React", "Tailwind CSS"],
+      items: ["Next.js", "React", "Tailwind CSS", "HeroUI"],
     },
     {
       title: { th: "ข้อมูลและโครงสร้าง", en: "Data & infra" },
-      items: ["SQL Server", "RabbitMQ", "Docker", "GitLab CI", "Nginx"],
+      items: ["SQL Server", "RabbitMQ", "Hangfire", "Docker", "GitLab CI", "Nginx"],
     },
     {
-      title: { th: "Automation", en: "Automation" },
-      items: ["Power Automate", "Power Apps", "SAP integration", "Microsoft Graph"],
+      title: { th: "องค์กรและ automation", en: "Enterprise & automation" },
+      items: [
+        "SAP integration",
+        "Active Directory",
+        "Microsoft Graph",
+        "Power Automate",
+        "Power Pages",
+        "Dataverse",
+        "Webflow",
+      ],
     },
-  ] satisfies SkillGroup[],
+  ] satisfies Group[],
 
   /** TODO: ใส่ลิงก์จริง — ลบอันที่ไม่ใช้ออก */
   links: [

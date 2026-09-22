@@ -6,6 +6,7 @@ export const ui = {
     about: { th: "เกี่ยวกับ", en: "About" },
     experience: { th: "ประสบการณ์", en: "Experience" },
     projects: { th: "ผลงาน", en: "Work" },
+    domains: { th: "ขอบเขตงาน", en: "Coverage" },
     skills: { th: "ทักษะ", en: "Skills" },
     contact: { th: "ติดต่อ", en: "Contact" },
   },
@@ -13,8 +14,17 @@ export const ui = {
     about: { th: "เกี่ยวกับผม", en: "About" },
     experience: { th: "ประสบการณ์ทำงาน", en: "Experience" },
     projects: { th: "ผลงานที่ผ่านมา", en: "Selected work" },
+    domains: { th: "ขอบเขตระบบที่เคยดูแล", en: "Systems I've worked on" },
     skills: { th: "ทักษะและเครื่องมือ", en: "Skills & tools" },
     contact: { th: "ติดต่อ", en: "Get in touch" },
+  },
+  domainsLead: {
+    th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",
+    en: "20+ systems inside one organisation. The names are confidential, so they are listed by what they do.",
+  },
+  flowCaption: {
+    th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
+    en: "Conceptual overview, not the actual system topology.",
   },
   contactLead: {
     th: "มีงานที่อยากคุย หรือแค่อยากทักมาถาม — ยินดีเสมอครับ",

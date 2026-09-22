@@ -82,7 +82,9 @@ export default async function RootLayout({
               jerateeps.dev
             </Link>
             <ul className="ml-auto hidden items-center gap-5 text-muted sm:flex">
-              {(["about", "experience", "projects", "contact"] as const).map(
+              {(
+                ["about", "experience", "projects", "domains", "contact"] as const
+              ).map(
                 (key) => (
                   <li key={key}>
                     <a href={`#${key}`} className="transition-colors hover:text-fg">
