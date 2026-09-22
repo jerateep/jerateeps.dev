@@ -26,6 +26,10 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # ด่านแรก — ถ้ามีข้อมูลภายในหลุดเข้ามาใน content ให้ตกตรงนี้ ไม่ต้องรอ build
+      - run: npm run check:content
+
       - run: npm run lint
       - run: npm run build
 
