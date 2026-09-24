@@ -10,7 +10,7 @@
  * PDPA — อ่านก่อนเติมของใหม่:
  *   1. อย่าใส่ชื่อ-นามสกุล, อีเมล, เบอร์โทรของ "คนอื่น" (หัวหน้า ลูกค้า เพื่อนร่วมทีม) เด็ดขาด
  *   2. ระบบภายในของบริษัท: ตั้ง confidential: true แล้วใช้ชื่อกลาง ๆ
- *      (เช่น "ระบบอนุมัติงบภายในองค์กร" แทนชื่อระบบจริง) — หน้าเว็บจะขึ้น badge ให้เอง
+ *      (เช่น "ระบบอนุมัติงบภายในองค์กร" แทนชื่อระบบจริง) — คำอธิบายรวมอยู่หัว section ผลงาน
  *   3. ภาพหน้าจอระบบภายใน = ห้ามขึ้นเว็บ เว้นแต่เบลอ/วาดใหม่จนไม่เหลือข้อมูลจริง
  *      (ชื่อพนักงาน, เลขเอกสาร, ยอดเงิน, ชื่อลูกค้า ฯลฯ)
  *   4. ตัวเลข impact ให้ใช้แบบสัมพัทธ์ ("ลดเวลา ~70%") ไม่ใช่ยอดเงินหรือจำนวนจริงของบริษัท
@@ -30,8 +30,6 @@ export type Job = {
   summary: L;
   highlights: L[];
   stack: string[];
-  /** true = ชื่อบริษัท/ระบบปกปิด ใช้ชื่อกลาง ๆ แทน */
-  confidential?: boolean;
 };
 
 export type Project = {
@@ -72,21 +70,27 @@ export type Practice = {
   result: L;
 };
 
+export type Education = {
+  school: L;
+  degree: L;
+  period: string;
+};
+
 export const profile = {
-  /** TODO: เปลี่ยนเป็นชื่อจริงถ้าต้องการให้ recruiter เห็นชื่อ */
-  name: { th: "jerateeps", en: "jerateeps" } satisfies L,
+  name: { th: "Jerateep Saelee", en: "Jerateep Saelee" } satisfies L,
   role: {
-    th: "Full-stack Developer · Back-office & Automation",
-    en: "Full-stack Developer · Back-office & Automation",
+    th: "Full-stack Developer · ประสบการณ์ 10+ ปี · Back-office & Automation",
+    en: "Full-stack Developer · 10+ years · Back-office & Automation",
   } satisfies L,
   tagline: {
     th: "สร้างระบบหลังบ้านองค์กรที่คนใช้จริงทุกวัน — .NET, Next.js, SQL Server และงาน automation โดยมี AI เป็นส่วนหนึ่งของกระบวนการ ไม่ใช่ของเล่นข้างทาง",
     en: "I build the enterprise back-office systems people actually use every day — .NET, Next.js, SQL Server, and automation — with AI wired into the process, not bolted on the side.",
   } satisfies L,
-  location: { th: "กรุงเทพฯ ประเทศไทย", en: "Bangkok, Thailand" } satisfies L,
+  location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
+  /** TODO: ยืนยันว่ารับงานแบบไหนบ้าง และพร้อมเริ่มเมื่อไหร่ */
   available: {
-    th: "เปิดรับงานฟรีแลนซ์และโอกาสใหม่ ๆ",
-    en: "Open to freelance work and new opportunities",
+    th: "เปิดรับงานประจำและงานฟรีแลนซ์",
+    en: "Open to full-time roles and freelance work",
   } satisfies L,
 
   about: [
@@ -104,19 +108,18 @@ export const profile = {
     },
   ] satisfies L[],
 
-  /**
-   * TODO: ที่ทำงานก่อนหน้า — เดี๋ยวเติมทีหลัง
-   * คัดลอกบล็อกข้างล่างแล้วแก้ข้อมูลได้เลย เรียงจากใหม่ → เก่า
-   */
+  /** เรียงจากใหม่ → เก่า */
   experience: [
     {
-      company: { th: "บริษัทด้านโทรคมนาคมดาวเทียม", en: "Satellite telecom company" },
-      role: { th: "Software Developer", en: "Software Developer" },
-      period: { th: "ปัจจุบัน", en: "Present" },
-      confidential: true,
+      company: {
+        th: "ไทยคม (มหาชน)",
+        en: "Thaicom Public Company Limited",
+      },
+      role: { th: "Full Stack Developer", en: "Full Stack Developer" },
+      period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
       summary: {
-        th: "ดูแลและพัฒนาระบบ back-office ที่พนักงานทั้งองค์กรใช้ — งานเอกสารและสายอนุมัติ, ระบบสิทธิ์การเข้าถึง, ตัวกลางคุย SAP, และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
-        en: "Build and maintain the back-office systems used across the organisation — document and approval workflows, access management, SAP middleware, and automation on both the server and RPA side.",
+        th: "ดูแลและพัฒนาระบบ back-office ที่พนักงานทั้งองค์กรใช้ — ทั้งประคอง legacy ASP.NET Web Forms และเขียนของใหม่บน ASP.NET Core ครอบคลุมงานเอกสารและสายอนุมัติ ระบบสิทธิ์การเข้าถึง ตัวกลางคุย SAP และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
+        en: "Build and maintain the back-office systems used across the organisation — keeping legacy ASP.NET Web Forms alive while writing new services on ASP.NET Core: document and approval workflows, access management, SAP middleware, and automation on both the server and RPA side.",
       },
       highlights: [
         {
@@ -128,17 +131,31 @@ export const profile = {
           en: "Designed a permission layer that grants access by org attributes (BU, department, position) instead of per-user assignment — one rule change propagates to every app behind SSO.",
         },
         {
-          th: "วางระบบคิวงาน automation บน message queue ให้ worker หลายเครื่องรับงานขนานกัน และ retry งานที่ล้มเองได้",
-          en: "Built a message-queue automation pipeline so worker machines process jobs in parallel and failed jobs retry themselves.",
+          th: "วางระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงานเอกสาร และเพื่อข้ามข้อจำกัดที่ระบบ SAP ECC6 ทำเองไม่ได้",
+          en: "Architected automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
         },
         {
-          th: "reverse-engineer ระบบเก่าที่ไม่มีเอกสารให้กลายเป็น reference ที่ทีมใช้ต่อได้ พร้อม flowchart และตารางผู้รับผิดชอบราย step",
-          en: "Reverse-engineered undocumented legacy systems into references the team can work from, with flowcharts and per-step ownership tables.",
+          th: "ยกระบบ authentication ของแอปเดิมขึ้น Microsoft Entra ID (OAuth 2.0) ทำให้ล็อกอินครั้งเดียวใช้ได้ทั้งชุดและปลอดภัยขึ้น",
+          en: "Modernised legacy application authentication onto Microsoft Entra ID (OAuth 2.0), enabling single sign-on and tightening security.",
+        },
+        {
+          th: "เขียน web service และ flow ที่ sync ข้อมูลพนักงานจากฐานข้อมูลเข้า Active Directory ทำให้การเปิด-ปิดบัญชีผู้ใช้เป็นอัตโนมัติ",
+          en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
+        },
+        {
+          th: "ทำงานร่วมกับ vendor ภายนอก — มอบหมายงาน review โค้ด และติดตามการแก้ปัญหากับผู้ขายระบบ SAP",
+          en: "Coordinated with external vendors — assigning work, reviewing code, and tracking issue resolution with the SAP system vendor.",
+        },
+        {
+          th: "ใช้เครื่องมือ AI ใน development lifecycle เพื่อช่วย debug และไล่ปัญหา ทำให้ส่งงานได้เร็วขึ้น",
+          en: "Applied AI tooling across the development lifecycle for debugging and troubleshooting, shortening delivery time.",
         },
       ],
       stack: [
         ".NET 8",
-        "ASP.NET",
+        "ASP.NET Core",
+        "ASP.NET Web Forms",
+        "Vue.js",
         "Next.js",
         "SQL Server",
         "RabbitMQ",
@@ -147,14 +164,74 @@ export const profile = {
         "SAP",
       ],
     },
-    // {
-    //   company: { th: "ชื่อบริษัทก่อนหน้า", en: "Previous company" },
-    //   role: { th: "ตำแหน่ง", en: "Role" },
-    //   period: { th: "2563 – 2565", en: "2020 – 2022" },
-    //   summary: { th: "...", en: "..." },
-    //   highlights: [{ th: "...", en: "..." }],
-    //   stack: ["..."],
-    // },
+    {
+      company: {
+        th: "สำนักวัณโรค กรมควบคุมโรค กระทรวงสาธารณสุข",
+        en: "Bureau of Tuberculosis, Ministry of Public Health",
+      },
+      role: { th: "Programmer", en: "Programmer" },
+      period: { th: "ต.ค. 2560 – ต.ค. 2561 · กรุงเทพฯ", en: "Oct 2017 – Oct 2018 · Bangkok" },
+      summary: {
+        th: "เก็บความต้องการจากผู้ใช้แล้วพัฒนาเองทั้งหน้าบ้านและหลังบ้านด้วย C#/.NET Framework พร้อมดูแลงานฝั่งข้อมูลและ Active Directory",
+        en: "Gathered requirements directly from users and built both front and back end in C#/.NET Framework, alongside the data and Active Directory side.",
+      },
+      highlights: [
+        {
+          th: "พัฒนาเว็บด้วย C#.NET บน .NET Framework 4.5 และเขียน stored procedure ฝั่งฐานข้อมูลเอง",
+          en: "Developed web applications in C#.NET on .NET Framework 4.5 and wrote the database stored procedures.",
+        },
+        {
+          th: "ทำงานฝั่ง BI ด้วย SSAS และ Tableau",
+          en: "Worked on the BI side with SSAS and Tableau.",
+        },
+      ],
+      stack: ["C#", ".NET Framework", "SQL Server", "SSAS", "Tableau"],
+    },
+    {
+      company: {
+        th: "Ramathibodi Facilities Services",
+        en: "Ramathibodi Facilities Services",
+      },
+      role: {
+        th: "System Development and IT Support Officer",
+        en: "System Development and IT Support Officer",
+      },
+      period: { th: "ก.ค. 2558 – ก.ย. 2560", en: "Jul 2015 – Sep 2017" },
+      summary: {
+        th: "ทำสองบทบาทพร้อมกัน — พัฒนาระบบภายในเอง และดูแลงาน IT support ของทั้งสำนักงาน",
+        en: "Two roles at once — building internal systems, and running IT support for the whole office.",
+      },
+      highlights: [
+        {
+          th: "พัฒนาระบบจัดการทรัพย์สิน IT และระบบรับคำขอบริการ IT (C#, ASP.NET MVC, Entity Framework) รวมถึงระบบลงทะเบียนงานสัมมนา",
+          en: "Built an IT asset management system, an IT service request system (C#, ASP.NET MVC, Entity Framework) and a seminar registration system.",
+        },
+        {
+          th: "ดูแล Active Directory, ระบบเอกสารอิเล็กทรอนิกส์, G Suite และการย้ายเมลเข้า G Suite รวมถึงงาน hardware/network และแผนบำรุงรักษาเชิงป้องกัน",
+          en: "Administered Active Directory, the electronic document system and G Suite (including mailbox migration), plus hardware, network and preventive-maintenance planning.",
+        },
+      ],
+      stack: ["C#", "ASP.NET MVC", "Entity Framework", "Active Directory", "K2"],
+    },
+    {
+      company: {
+        th: "เอสวีโอเอ (มหาชน)",
+        en: "SVOA Public Company Limited",
+      },
+      role: { th: "IT Technician", en: "IT Technician" },
+      period: { th: "ก.ค. 2556 – มี.ค. 2557", en: "Jul 2013 – Mar 2014" },
+      summary: {
+        th: "งาน IT support หน้างานในโรงพยาบาล — ดูแลอุปกรณ์และเครือข่าย พร้อมระบบติดตามปัญหา",
+        en: "On-site IT support in a hospital — equipment and network upkeep, with issue tracking.",
+      },
+      highlights: [
+        {
+          th: "สนับสนุนบุคลากรทางการแพทย์หน้างาน พร้อมทำบำรุงรักษาเชิงป้องกันของอุปกรณ์และเครือข่าย",
+          en: "Supported medical staff on site and performed preventive maintenance on IT equipment and networks.",
+        },
+      ],
+      stack: ["IT support", "Networking"],
+    },
   ] satisfies Job[],
 
   projects: [
@@ -483,6 +560,51 @@ export const profile = {
     },
   ] satisfies DomainGroup[],
 
+  education: [
+    {
+      school: {
+        th: "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",
+        en: "King Mongkut's University of Technology North Bangkok",
+      },
+      degree: {
+        th: "วิทยาศาสตรบัณฑิต (วท.บ.) วิทยาการคอมพิวเตอร์",
+        en: "B.Sc. Computer Science",
+      },
+      period: "2009 – 2013",
+    },
+    {
+      school: { th: "วิทยาลัยเทคนิคตรัง", en: "Trang Technical College" },
+      degree: {
+        th: "บริหารธุรกิจบัณฑิต (บธ.บ.) คอมพิวเตอร์ธุรกิจ",
+        en: "B.B.A. Business Computer",
+      },
+      period: "2004 – 2009",
+    },
+  ] satisfies Education[],
+
+  /** ใบรับรอง — ใช้ชื่อทางการตามที่ผู้ออกให้เรียก */
+  certifications: [
+    "Build a Website on Google Cloud",
+    "Automate Data Capture at Scale with Document AI",
+    "Use APIs to Work with Cloud Storage",
+    "Manage Kubernetes in Google Cloud",
+    "Monitoring in Google Cloud",
+  ],
+
+  languages: [
+    {
+      name: { th: "ไทย", en: "Thai" },
+      level: { th: "ภาษาแม่", en: "Native" },
+    },
+    {
+      name: { th: "อังกฤษ", en: "English" },
+      level: {
+        th: "ใช้งานได้ระดับพื้นฐาน",
+        en: "Limited working proficiency",
+      },
+    },
+  ],
+
   /**
    * AI ในกระบวนการทำงานจริง — เล่าเป็น "ทำอะไร → ได้ผลอะไร"
    * เขียนเฉพาะสิ่งที่ใช้อยู่จริงและอธิบายได้ตอนสัมภาษณ์ ไม่ใส่คำสวยที่พิสูจน์ไม่ได้
@@ -557,11 +679,15 @@ export const profile = {
     },
     {
       title: { th: "Frontend", en: "Frontend" },
-      items: ["Next.js", "React", "Tailwind CSS", "HeroUI"],
+      items: ["Vue.js", "Next.js", "React", "Tailwind CSS", "HeroUI", "HTML/CSS"],
     },
     {
-      title: { th: "ข้อมูลและโครงสร้าง", en: "Data & infra" },
-      items: ["SQL Server", "RabbitMQ", "Hangfire", "Docker", "GitLab CI", "Nginx"],
+      title: { th: "ฐานข้อมูล", en: "Databases" },
+      items: ["SQL Server", "MySQL", "MariaDB", "Oracle"],
+    },
+    {
+      title: { th: "โครงสร้างและ DevOps", en: "Infra & DevOps" },
+      items: ["Docker", "RabbitMQ", "Hangfire", "Git", "GitLab CI", "Nginx"],
     },
     {
       title: { th: "AI ในงานวิศวกรรม", en: "AI engineering" },
@@ -576,23 +702,30 @@ export const profile = {
     {
       title: { th: "องค์กรและ automation", en: "Enterprise & automation" },
       items: [
-        "SAP integration",
+        "SAP integration (RFC)",
         "Active Directory",
+        "Microsoft Entra ID",
         "Microsoft Graph",
         "Power Automate",
+        "Power Apps",
         "Power Pages",
+        "AI Builder",
         "Dataverse",
+        "UiPath",
         "Webflow",
       ],
     },
   ] satisfies Group[],
 
-  /** TODO: ใส่ลิงก์จริง — ลบอันที่ไม่ใช้ออก */
+  /** เบอร์โทรจงใจไม่ใส่ — หน้าเว็บสาธารณะคือแหล่งเก็บเบอร์ของบอทสแปม */
   links: [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/jerateep-saelee-2b4b8bb2/",
+    },
     { label: "GitHub", href: "https://github.com/jerateep" },
     { label: "Fastwork", href: "https://fastwork.co/byob/2KRa1es4ON" },
     { label: "Email", href: "mailto:jerateep_@live.com" },
-    // { label: "LinkedIn", href: "https://linkedin.com/in/..." },
   ],
 } as const;
 
