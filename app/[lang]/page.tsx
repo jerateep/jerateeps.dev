@@ -18,7 +18,7 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-20 border-t border-border/70 py-14">
-      <h2 className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+      <h2 className="section-label mb-8 text-accent">
         {title}
       </h2>
       {children}
@@ -39,7 +39,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   if (!isLocale(lang)) notFound();
 
   return (
-    <main id="main" className="mx-auto w-full max-w-3xl px-6">
+    <main id="main" tabIndex={-1} className="mx-auto w-full max-w-3xl px-6">
       {/* Hero */}
       <section className="py-20 sm:py-28">
         <p className="mb-4 font-mono text-sm text-accent">
@@ -80,7 +80,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <dl className="space-y-6">
           {profile.skills.map((group, i) => (
             <div key={i} className="sm:flex sm:gap-6">
-              <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
+              <dt className="mb-2 shrink-0 text-sm font-medium sm:mb-0 sm:w-44">
                 {group.title[lang]}
               </dt>
               <dd className="flex-1">
@@ -111,7 +111,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <ul className="mt-4 space-y-2 text-muted">
                 {job.highlights.map((item, j) => (
                   <li key={j} className="flex gap-3">
-                    <span aria-hidden className="mt-2.5 size-1 shrink-0 rounded-full bg-accent" />
+                    <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-accent" />
                     <span>{item[lang]}</span>
                   </li>
                 ))}
@@ -136,10 +136,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               // min-w-0 จำเป็น: grid item ไม่ยอมหดต่ำกว่าความกว้างเนื้อหา
               // ทำให้ svg ใน overflow-x-auto ดันทั้งหน้าให้เลื่อนแนวนอนแทน
               className={`flex min-w-0 flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50 ${
-                project.featured
-                  ? // การ์ดที่มีแผนภาพต้องกว้างกว่าคอลัมน์ปกติ ไม่งั้นต้องเลื่อนดูทั้งภาพ
-                    "sm:col-span-2 lg:-mx-24 xl:-mx-56"
-                  : ""
+                // การ์ดอยู่ในคอลัมน์เสมอ ส่วนที่ทะลุออกคือแผนภาพอย่างเดียว
+                // (เดิมทั้งการ์ดทะลุออก ทำให้บรรทัดข้อความยาวถึง 173 ตัวอักษร)
+                project.featured ? "sm:col-span-2" : ""
               }`}
             >
               <div className="flex items-baseline justify-between gap-3">
@@ -169,7 +168,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   </li>
                 ))}
               </ul>
-              <ul className="mt-5 flex flex-wrap gap-2">
+              {/* mt-auto ดันป้ายลงก้นการ์ด ไม่ให้เหลือที่ว่างตายเมื่อ grid ยืดความสูงให้เท่ากัน */}
+              <ul className="mt-auto flex flex-wrap gap-2 pt-5">
                 {project.stack.map((tech) => (
                   <Tag key={tech}>{tech}</Tag>
                 ))}
@@ -199,7 +199,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <ul className="space-y-1.5 text-sm text-muted">
                 {domain.items.map((item, j) => (
                   <li key={j} className="flex gap-2">
-                    <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-border" />
+                    <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-muted/50" />
                     <span>{item[lang]}</span>
                   </li>
                 ))}
@@ -249,7 +249,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <p className="text-sm font-medium">{item.school[lang]}</p>
                   <p className="text-sm text-muted">
                     {item.degree[lang]}{" "}
-                    <span className="font-mono text-xs">· {item.period}</span>
+                    <span className="font-mono text-xs whitespace-nowrap">
+                      · {item.period}
+                    </span>
                   </p>
                 </div>
               ))}
@@ -261,10 +263,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {ui.certifications[lang]}
             </dt>
             <dd className="flex-1">
-              <ul className="grid gap-1.5 text-sm text-muted sm:grid-cols-2">
+              <ul className="space-y-1.5 text-sm text-muted sm:columns-2 sm:gap-x-8">
                 {profile.certifications.map((cert) => (
                   <li key={cert} className="flex gap-2">
-                    <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-border" />
+                    <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-muted/50" />
                     <span>{cert}</span>
                   </li>
                 ))}
@@ -314,7 +316,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 href={link.href}
                 target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noreferrer noopener"
-                className="inline-block rounded-md border border-border px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
+                // อีเมลคือปลายทางที่เว็บนี้อยากให้กด จึงเป็นปุ่มทึบใบเดียว ที่เหลือเป็นเส้นขอบ
+                className={`inline-block rounded-lg px-4 py-2 text-sm transition-colors ${
+                  link.href.startsWith("mailto:")
+                    ? "bg-accent text-bg hover:opacity-90"
+                    : "border border-border hover:border-accent hover:text-accent"
+                }`}
               >
                 {link.label}
               </a>

@@ -16,8 +16,8 @@ import type { L, Locale } from "@/content/profile";
 
 type Dict = Record<string, L>;
 
-const W = 1320;
-const H = 580;
+/** กรอบพอดีเนื้อหาจริง (กล่องอยู่ x 20–1280, y 60–490) ไม่เผื่อที่ว่างตาย */
+const VIEW = { x: 8, y: 48, w: 1284, h: 456 };
 
 /**
  * ไอคอน 20x20 วาดเองทั้งหมด — ไม่ดึง icon library เข้ามาเพื่อใช้แค่แปดรูป
@@ -213,14 +213,16 @@ export function PipelineDiagram({
   const s = (key: string) => t[key]?.[lang] ?? "";
 
   return (
-    <figure className="mt-6">
-      <div className="overflow-x-auto rounded-lg border border-border bg-bg">
+    // เฉพาะแผนภาพที่ทะลุออกนอกคอลัมน์ข้อความ ตัวการ์ดและข้อความยังอยู่ในกริด
+    <figure className="mt-6 lg:-mx-16 xl:-mx-40">
+      {/* fade ขอบขวาบอกว่ายังมีต่อ — scrollbar บน macOS เป็น overlay จึงไม่เห็น affordance */}
+      <div className="overflow-x-auto rounded-lg border border-border bg-bg [mask-image:linear-gradient(to_right,#000_92%,transparent)] xl:[mask-image:none]">
         <svg
-          viewBox={`0 0 ${W} ${H}`}
+          viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`}
           width="100%"
           role="img"
           aria-label={caption}
-          className="block min-w-[880px]"
+          className="block min-w-[760px]"
         >
           <defs>
             <marker
@@ -325,7 +327,7 @@ export function PipelineDiagram({
       </div>
       <figcaption className="mt-2 flex flex-wrap gap-x-3 text-xs text-muted">
         {caption && <span>{caption}</span>}
-        {scrollHint && <span className="sm:hidden">{scrollHint}</span>}
+        {scrollHint && <span className="xl:hidden">{scrollHint}</span>}
       </figcaption>
     </figure>
   );

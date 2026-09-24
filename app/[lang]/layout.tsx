@@ -31,8 +31,10 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!isLocale(lang)) return {};
 
-  const title = `${profile.name[lang]} — ${profile.role[lang]}`;
-  const description = profile.tagline[lang];
+  // Google ตัด title ที่ ~60 อักขระ และแท็บเบราว์เซอร์สั้นกว่านั้นอีก
+  // ตำแหน่งกับจำนวนปีจึงอยู่ใน description ไม่ใช่ท้าย title
+  const title = `${profile.name[lang]} — Full-stack Developer`;
+  const description = `${profile.role[lang]} · ${profile.tagline[lang]}`;
 
   return {
     metadataBase: new URL("https://jerateeps.dev"),
@@ -81,13 +83,14 @@ export default async function RootLayout({
             <Link href={`/${lang}`} className="font-mono text-accent">
               jerateeps.dev
             </Link>
-            <ul className="ml-auto hidden items-center gap-5 text-muted sm:flex">
+            {/* จอแคบเลื่อนแถวเมนูแทนการซ่อน — หน้ายาวหลายพัน px ถ้าไม่มีทางกระโดดคือต้องสกรอลล์ทั้งหน้า */}
+            <ul className="-mx-1 flex flex-1 items-center gap-4 overflow-x-auto px-1 text-muted [scrollbar-width:none] sm:ml-auto sm:flex-none sm:gap-5 sm:overflow-visible">
               {(
                 ["about", "experience", "projects", "ai", "contact"] as const
               ).map(
                 (key) => (
                   <li key={key}>
-                    <a href={`#${key}`} className="transition-colors hover:text-fg">
+                    <a href={`#${key}`} className="whitespace-nowrap transition-colors hover:text-fg">
                       {ui.nav[key][lang]}
                     </a>
                   </li>
@@ -98,7 +101,7 @@ export default async function RootLayout({
               href={`/${other}`}
               hrefLang={other}
               aria-label={ui.switchLangLabel[lang]}
-              className="ml-auto rounded-full border border-border px-3 py-1 text-muted transition-colors hover:border-accent hover:text-accent sm:ml-0"
+              className="shrink-0 rounded-full border border-border px-3 py-1 text-muted transition-colors hover:border-accent hover:text-accent"
             >
               {ui.switchLang[lang]}
             </Link>
