@@ -497,6 +497,82 @@ export const profile = {
       stack: [".NET", "Next.js", "Power Automate", "SQL Server", "Docker"],
     },
     {
+      slug: "corporate-website",
+      name: {
+        th: "เว็บไซต์องค์กรสองภาษาบน Webflow",
+        en: "Bilingual corporate website on Webflow",
+      },
+      summary: {
+        th: "ย้ายเว็บไซต์องค์กรจากระบบ WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา",
+        en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement.",
+      },
+      role: {
+        th: "พัฒนาและย้ายข้อมูล ผ่าน API เป็นหลัก",
+        en: "Implementation and content migration, primarily through the platform API",
+      },
+      confidential: true,
+      year: "2025–2026",
+      impact: [
+        {
+          th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของปลั๊กอิน จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
+          en: "Parts of the old site were not present in the HTML because a plugin loaded them over AJAX, so those endpoints were analysed and called directly to retrieve the content in full.",
+        },
+        {
+          th: "ออกแบบให้องค์ประกอบสำคัญของหน้าแรก ทั้งวิดีโอพื้นหลัง ข้อความหลัก และการไล่สี ผูกกับ CMS เพื่อให้เจ้าของเนื้อหาปรับเองได้",
+          en: "Bound the key homepage elements — background video, headline and its colour treatment — to the CMS so content owners can adjust them directly.",
+        },
+        {
+          th: "แก้กรณีหน้ารายการแสดงข้อมูลไม่ครบ เนื่องจากข้อจำกัดจำนวนรายการต่อ Collection List ของแพลตฟอร์ม ซึ่งไม่มีการแจ้งเตือนใด ๆ",
+          en: "Resolved a case where a listing page showed incomplete data due to a platform cap on items per Collection List, a limit that surfaces no warning.",
+        },
+        {
+          th: "รองรับงานเปลี่ยนอัตลักษณ์องค์กร ทั้งชุดสี โลโก้ และหน้าแจ้งปิดปรับปรุงระหว่างเปลี่ยนผ่าน",
+          en: "Supported a corporate rebrand, covering the colour system, logo and the maintenance page used during the transition.",
+        },
+      ],
+      stack: ["Webflow", "Webflow CMS", "JavaScript", "CSS", "Cloudflare"],
+    },
+    {
+      slug: "power-platform-automation",
+      name: {
+        th: "งาน automation บน Power Platform",
+        en: "Automation on the Power Platform",
+      },
+      summary: {
+        th: "ออกแบบและพัฒนา cloud flow ที่เชื่อมแบบฟอร์มออนไลน์ ฐานข้อมูล ระบบอีเมล และ directory ขององค์กรเข้าด้วยกัน ครอบคลุมทั้งงานประมวลผลแบบทดสอบพนักงาน งานแจ้งเตือน และงานอ่านข้อมูลจากเอกสารด้วย AI Builder",
+        en: "Designed and built cloud flows connecting online forms, databases, mail systems and the corporate directory, covering employee assessment processing, notifications, and document data capture with AI Builder.",
+      },
+      role: { th: "ออกแบบและพัฒนา flow", en: "Flow design and implementation" },
+      confidential: true,
+      year: "2025–2026",
+      impact: [
+        {
+          th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลงฐานข้อมูล และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
+          en: "A flow scores employee code-of-conduct assessments against the answer key, records results in the database, and emails the outcome to each respondent automatically, in both Thai and English editions.",
+        },
+        {
+          th: "ผลที่บันทึกไว้ถูกนำไปใช้ในรายงานติดตามความคืบหน้ารายหน่วยงาน สำหรับรายงานต่อคณะกรรมการ",
+          en: "The recorded results feed a completion-tracking report broken down by business unit for reporting to the governing committee.",
+        },
+        {
+          th: "ย้ายการส่งอีเมลของระบบคิวเมลกลางมาใช้ cloud flow และเพิ่มการอ้างอิงข้ามระบบ เพื่อให้ติดตามอีเมลที่ส่งไม่สำเร็จกลับไปยังรายการต้นทางได้",
+          en: "Moved the central mail queue's delivery onto a cloud flow and added cross-system references so bounced mail can be traced back to the originating record.",
+        },
+        {
+          th: "ใช้ AI Builder อ่านข้อมูลจากเอกสารเพื่อลดงานคีย์ข้อมูลด้วยมือ และใช้ร่วมกับ UiPath ในงานที่ระบบ ERP ไม่เปิดช่องทางให้เชื่อมต่อโดยตรง",
+          en: "Applied AI Builder to extract data from documents, reducing manual entry, and combined it with UiPath where the ERP offered no direct integration path.",
+        },
+      ],
+      stack: [
+        "Power Automate",
+        "AI Builder",
+        "Microsoft Forms",
+        "SQL Server",
+        "Microsoft Graph",
+        "UiPath",
+      ],
+    },
+    {
       slug: "freelance",
       name: {
         th: "งานฟรีแลนซ์ผ่าน Fastwork",
