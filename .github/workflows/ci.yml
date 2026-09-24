@@ -22,7 +22,9 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          # 24 เพราะ scripts/check-diagram.mjs import ไฟล์ .ts ตรง ๆ
+          # ซึ่งต้องการ type stripping ที่เปิดเป็นค่าเริ่มต้น
+          node-version: 24
           cache: npm
 
       - run: npm ci
