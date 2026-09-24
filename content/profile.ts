@@ -139,7 +139,7 @@ export const profile = {
           en: "Modernised legacy application authentication onto Microsoft Entra ID (OAuth 2.0), enabling single sign-on and tightening security.",
         },
         {
-          th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจากฐานข้อมูลเข้าสู่ Active Directory เพื่อให้การเปิดและปิดบัญชีผู้ใช้เป็นไปโดยอัตโนมัติ",
+          th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อให้การเปิดและปิดบัญชีผู้ใช้เป็นไปโดยอัตโนมัติ",
           en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
         },
         {
@@ -259,24 +259,24 @@ export const profile = {
       diagram: {
         panelApp: { th: "เซิร์ฟเวอร์แอป", en: "APP SERVER" },
         panelWorker: { th: "เครื่องประมวลผล", en: "WORKER MACHINE" },
-        panelData: { th: "ฐานข้อมูล", en: "DATABASE" },
+        panelData: { th: "SQL SERVER", en: "SQL SERVER" },
 
         user: { th: "ผู้ใช้", en: "User" },
         portal: { th: "เว็บพอร์ทัล", en: "Web portal" },
-        portalSub: { th: "ตั้งคิว · แก้ · พรีวิว", en: "queue · edit · preview" },
-        queue: { th: "คิวข้อความ", en: "Message queue" },
+        portalSub: { th: "ASP.NET · ตั้งคิว · แก้ไข", en: "ASP.NET · queue · edit" },
+        queue: { th: "RabbitMQ", en: "RabbitMQ" },
         queueSub: { th: "1 งาน = 1 message", en: "one job, one message" },
         render: { th: "Render service", en: "Render service" },
         renderSub: { th: "ประกอบ payload ที่เดียว", en: "single payload builder" },
-        engine: { th: "Report engine", en: "Report engine" },
+        engine: { th: "JasperReports", en: "JasperReports" },
         engineSub: { th: "PDF · HTML · DOCX", en: "PDF · HTML · DOCX" },
 
         consumer: { th: "Consumer", en: "Consumer" },
-        consumerSub: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
-        robot: { th: "Robot", en: "Robot" },
-        robotSub: { th: "ขับระบบ SAP", en: "drives SAP" },
+        consumerSub: { th: ".NET · ขนานหลายเครื่อง", en: ".NET · runs in parallel" },
+        robot: { th: "Power Automate", en: "Power Automate" },
+        robotSub: { th: "Desktop · ขับ SAP", en: "Desktop · drives SAP" },
         parser: { th: "ตัวแปลงข้อความ", en: "Parser" },
-        parserSub: { th: "ข้อความดิบ → โครงสร้าง", en: "raw text to structure" },
+        parserSub: { th: "Python · ดิบ → โครงสร้าง", en: "Python · raw to structure" },
 
         config: { th: "ค่าตั้งระบบ", en: "Configuration" },
         configSub: { th: "แหล่งเดียว ทับ env", en: "one source, beats env" },
@@ -415,8 +415,8 @@ export const profile = {
           en: "Eliminated paper routing entirely; approvers complete the process through the central portal.",
         },
         {
-          th: "ตรวจสอบยอดงบประมาณคงเหลือกับระบบบัญชีตั้งแต่ขั้นตอนยื่นคำขอ แทนการตรวจพบเมื่อเอกสารถึงฝ่ายการเงินแล้ว",
-          en: "Validates remaining budget against the accounting system at submission, rather than at the point the request reaches finance.",
+          th: "ตรวจสอบยอดงบประมาณคงเหลือกับ SAP ตั้งแต่ขั้นตอนยื่นคำขอ แทนการตรวจพบเมื่อเอกสารถึงฝ่ายการเงินแล้ว",
+          en: "Validates remaining budget against SAP at submission, rather than at the point the request reaches finance.",
         },
       ],
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
@@ -428,16 +428,16 @@ export const profile = {
         en: "Employee expense system",
       },
       summary: {
-        th: "ระบบเบิกและเคลียร์ค่าใช้จ่าย — เบิกคืน เงินยืม ค่าเดินทาง ผูกกับงบประมาณและสายอนุมัติ แล้วยิงรายการเข้าระบบบัญชีให้อัตโนมัติ",
-        en: "Expense claims and clearing — reimbursement, cash advances, and travel — tied to budgets and approval lines, then posted into the accounting system automatically.",
+        th: "ระบบเบิกและเคลียร์ค่าใช้จ่าย — เบิกคืน เงินยืม ค่าเดินทาง ผูกกับงบประมาณและสายอนุมัติ แล้วส่งรายการเข้า SAP ให้อัตโนมัติ",
+        en: "Expense claims and clearing — reimbursement, cash advances, and travel — tied to budgets and approval lines, then posted into SAP automatically.",
       },
       role: { th: "พัฒนาและดูแลระบบ", en: "Development and maintenance" },
       confidential: true,
       year: "2024–2025",
       impact: [
         {
-          th: "รายการที่ได้รับอนุมัติถูกบันทึกเข้าระบบบัญชีอัตโนมัติ โดยไม่ต้องคีย์ข้อมูลซ้ำ",
-          en: "Approved items are posted to the accounting system automatically, without re-keying.",
+          th: "รายการที่ได้รับอนุมัติถูกบันทึกเข้า SAP อัตโนมัติ โดยไม่ต้องคีย์ข้อมูลซ้ำ",
+          en: "Approved items are posted to SAP automatically, without re-keying.",
         },
         {
           th: "แยกโมดูลตั๋วเครื่องบินและอัตราแลกเปลี่ยนออกเป็นส่วนอิสระ ทำให้ปรับปรุงแต่ละส่วนได้โดยไม่กระทบระบบหลัก",
@@ -478,8 +478,8 @@ export const profile = {
         en: "In-house dashboard platform",
       },
       summary: {
-        th: "แพลตฟอร์มรายงานและ dashboard สำหรับงาน back-office ที่พัฒนาขึ้นเองแทนการจัดซื้อ license เครื่องมือ BI ออกแบบโครงสร้างให้เพิ่มรายงานใหม่ได้โดยไม่ต้องตั้งโปรเจกต์ใหม่",
-        en: "An in-house reporting and dashboard platform for back-office, built instead of buying BI licences — structured so a new report drops in without standing up a new project each time.",
+        th: "แพลตฟอร์มรายงานและ dashboard สำหรับงาน back-office ที่พัฒนาขึ้นเองแทนการจัดซื้อ license Power BI ออกแบบโครงสร้างให้เพิ่มรายงานใหม่ได้โดยไม่ต้องตั้งโปรเจกต์ใหม่",
+        en: "An in-house reporting and dashboard platform for back-office, built instead of buying Power BI licences — structured so a new report drops in without standing up a new project each time.",
       },
       role: { th: "Full-stack · ออกแบบโครงสร้างแพลตฟอร์ม", en: "Full-stack · platform foundation" },
       confidential: true,
@@ -503,7 +503,7 @@ export const profile = {
         en: "Bilingual corporate website on Webflow",
       },
       summary: {
-        th: "ย้ายเว็บไซต์องค์กรจากระบบ WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา",
+        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา",
         en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement.",
       },
       role: {
@@ -539,16 +539,16 @@ export const profile = {
         en: "Automation on the Power Platform",
       },
       summary: {
-        th: "ออกแบบและพัฒนา cloud flow ที่เชื่อมแบบฟอร์มออนไลน์ ฐานข้อมูล ระบบอีเมล และ directory ขององค์กรเข้าด้วยกัน ครอบคลุมทั้งงานประมวลผลแบบทดสอบพนักงาน งานแจ้งเตือน และงานอ่านข้อมูลจากเอกสารด้วย AI Builder",
-        en: "Designed and built cloud flows connecting online forms, databases, mail systems and the corporate directory, covering employee assessment processing, notifications, and document data capture with AI Builder.",
+        th: "ออกแบบและพัฒนา cloud flow ที่เชื่อม Microsoft Forms, SQL Server, Exchange Online และ Active Directory เข้าด้วยกัน ครอบคลุมทั้งงานประมวลผลแบบทดสอบพนักงาน งานแจ้งเตือน และงานอ่านข้อมูลจากเอกสารด้วย AI Builder",
+        en: "Designed and built cloud flows connecting Microsoft Forms, SQL Server, Exchange Online and Active Directory, covering employee assessment processing, notifications, and document data capture with AI Builder.",
       },
       role: { th: "ออกแบบและพัฒนา flow", en: "Flow design and implementation" },
       confidential: true,
       year: "2025–2026",
       impact: [
         {
-          th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลงฐานข้อมูล และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
-          en: "A flow scores employee code-of-conduct assessments against the answer key, records results in the database, and emails the outcome to each respondent automatically, in both Thai and English editions.",
+          th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลง SQL Server และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
+          en: "A flow scores employee code-of-conduct assessments against the answer key, records results in SQL Server, and emails the outcome to each respondent automatically, in both Thai and English editions.",
         },
         {
           th: "ผลที่บันทึกไว้ถูกนำไปใช้ในรายงานติดตามความคืบหน้ารายหน่วยงาน สำหรับรายงานต่อคณะกรรมการ",
@@ -622,7 +622,7 @@ export const profile = {
         { th: "ระบบ single sign-on และการมอบอำนาจอนุมัติ", en: "Single sign-on and approval delegation" },
         { th: "ระบบจัดการสิทธิ์การเข้าถึงและการตรวจสอบตามมาตรฐาน ISO", en: "Menu permissions and ISO-aligned audit" },
         { th: "ระบบคิวส่งอีเมลกลางพร้อมการติดตามสถานะการส่ง", en: "Central mail queue with delivery tracking" },
-        { th: "Middleware สำหรับการจองปฏิทินและจัดการ mailbox", en: "Calendar booking and mailbox management middleware" },
+        { th: "Middleware จองปฏิทินและจัดการ mailbox บน Microsoft 365", en: "Calendar booking and mailbox management middleware on Microsoft 365" },
       ],
     },
     {
