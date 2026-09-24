@@ -274,7 +274,7 @@ export const profile = {
         consumer: { th: "Consumer", en: "Consumer" },
         consumerSub: { th: "ขนานกันหลายเครื่อง", en: "runs in parallel" },
         robot: { th: "Robot", en: "Robot" },
-        robotSub: { th: "ขับระบบ ERP", en: "drives the ERP" },
+        robotSub: { th: "ขับระบบ SAP", en: "drives SAP" },
         parser: { th: "ตัวแปลงข้อความ", en: "Parser" },
         parserSub: { th: "ข้อความดิบ → โครงสร้าง", en: "raw text to structure" },
 
@@ -283,7 +283,7 @@ export const profile = {
         blocks: { th: "คลังบล็อก", en: "Block store" },
         blocksSub: { th: "แปลงครั้งเดียว", en: "parsed once" },
 
-        erp: { th: "ระบบ ERP", en: "ERP system" },
+        erp: { th: "SAP ECC", en: "SAP ECC" },
         erpSub: { th: "ต้นทาง print-image", en: "print-image source" },
         partner: { th: "ระบบรับบิลคู่ค้า", en: "Partner billing" },
         partnerSub: { th: "ล้มเหลว → แจ้งเตือน", en: "failure raises alert" },
