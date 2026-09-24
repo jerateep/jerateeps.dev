@@ -16,6 +16,7 @@ export const ui = {
     experience: { th: "ประสบการณ์ทำงาน", en: "Experience" },
     projects: { th: "ผลงานที่ผ่านมา", en: "Selected work" },
     domains: { th: "ขอบเขตระบบที่เคยดูแล", en: "Systems I've worked on" },
+    background: { th: "การศึกษาและคุณวุฒิ", en: "Education & credentials" },
     ai: { th: "AI ในกระบวนการทำงาน", en: "How I work with AI" },
     skills: { th: "ทักษะและเครื่องมือ", en: "Skills & tools" },
     contact: { th: "ติดต่อ", en: "Get in touch" },
@@ -26,9 +27,12 @@ export const ui = {
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   projectsLead: {
-    th: "เกือบทั้งหมดเป็นระบบภายในองค์กร — ชื่อจริงและภาพหน้าจอเปิดเผยไม่ได้ จึงเรียกตามหน้าที่และเล่าเฉพาะสิ่งที่อธิบายได้",
-    en: "Almost all of these are internal systems — the real names and screenshots can't be shown, so each is named by what it does and described only as far as I can defend it.",
+    th: "เกือบทั้งหมดเป็นระบบภายในของนายจ้าง — ชื่อระบบและภาพหน้าจอเปิดเผยไม่ได้ จึงเรียกตามหน้าที่และเล่าเฉพาะสิ่งที่อธิบายได้ในห้องสัมภาษณ์",
+    en: "Almost all of these are my employer's internal systems — the system names and screenshots can't be shown, so each is named by what it does and described only as far as I can defend it in an interview.",
   },
+  education: { th: "การศึกษา", en: "Education" },
+  certifications: { th: "ใบรับรอง", en: "Certifications" },
+  languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
     th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",
     en: "20+ systems inside one organisation. The names are confidential, so they are listed by what they do.",
@@ -41,10 +45,6 @@ export const ui = {
   contactLead: {
     th: "มีงานที่อยากคุย หรือแค่อยากทักมาถาม — ยินดีเสมอครับ",
     en: "Got a project in mind, or just want to say hi? Always happy to talk.",
-  },
-  confidential: {
-    th: "ระบบภายในองค์กร — ชื่อจริงปกปิด",
-    en: "Internal system — name withheld",
   },
   viewProject: { th: "ดูผลงาน", en: "View" },
   builtWith: {

@@ -33,14 +33,6 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ConfidentialBadge({ lang }: { lang: Locale }) {
-  return (
-    <span className="rounded-sm bg-accent-soft px-2 py-0.5 font-mono text-[11px] text-accent">
-      {ui.confidential[lang]}
-    </span>
-  );
-}
-
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
@@ -110,7 +102,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h3 className="text-lg font-medium">{job.role[lang]}</h3>
                 <span className="text-muted">— {job.company[lang]}</span>
-                {job.confidential && <ConfidentialBadge lang={lang} />}
               </div>
               <p className="mt-1 font-mono text-xs text-muted">
                 {job.period[lang]}
@@ -238,6 +229,60 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </article>
           ))}
         </div>
+      </Section>
+
+      {/* การศึกษาและคุณวุฒิ */}
+      <Section id="background" title={ui.sections.background[lang]}>
+        <dl className="space-y-6">
+          <div className="sm:flex sm:gap-6">
+            <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
+              {ui.education[lang]}
+            </dt>
+            <dd className="flex-1 space-y-3">
+              {profile.education.map((item, i) => (
+                <div key={i}>
+                  <p className="text-sm font-medium">{item.school[lang]}</p>
+                  <p className="text-sm text-muted">
+                    {item.degree[lang]}{" "}
+                    <span className="font-mono text-xs">· {item.period}</span>
+                  </p>
+                </div>
+              ))}
+            </dd>
+          </div>
+
+          <div className="sm:flex sm:gap-6">
+            <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
+              {ui.certifications[lang]}
+            </dt>
+            <dd className="flex-1">
+              <ul className="space-y-1.5 text-sm text-muted">
+                {profile.certifications.map((cert) => (
+                  <li key={cert} className="flex gap-2">
+                    <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-border" />
+                    <span>{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+
+          <div className="sm:flex sm:gap-6">
+            <dt className="mb-2 shrink-0 text-sm text-muted sm:mb-0 sm:w-44">
+              {ui.languages[lang]}
+            </dt>
+            <dd className="flex-1">
+              <ul className="space-y-1.5 text-sm text-muted">
+                {profile.languages.map((item, i) => (
+                  <li key={i}>
+                    <span className="text-fg">{item.name[lang]}</span> —{" "}
+                    {item.level[lang]}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
       </Section>
 
       {/* Contact */}
