@@ -61,7 +61,7 @@ function Node({
   accent?: boolean;
 }) {
   const path = icon ? ICONS[icon] : undefined;
-  const textX = path ? x + 44 : x + 14;
+  const textX = path ? x + 40 : x + 14;
   return (
     <g>
       <rect
@@ -98,6 +98,11 @@ function Node({
       >
         {title}
       </text>
+      {/*
+        งบความกว้างของบรรทัดย่อย = w − 58 หน่วย (ราว 17 ตัวอักษรไทยที่ 13px)
+        ยาวกว่านี้จะล้นออกนอกกล่องเงียบ ๆ เพราะ SVG ไม่ตัดบรรทัดให้
+        แก้ข้อความแล้วให้รัน npm run check:diagram
+      */}
       {sub && (
         <text
           x={textX}

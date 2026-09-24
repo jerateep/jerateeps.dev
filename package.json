@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:content": "node scripts/check-content.mjs",
-    "prebuild": "node scripts/check-content.mjs"
+    "prebuild": "node scripts/check-content.mjs && node scripts/check-diagram.mjs",
+    "check:diagram": "node scripts/check-diagram.mjs"
   },
   "dependencies": {
     "next": "16.3.5",
