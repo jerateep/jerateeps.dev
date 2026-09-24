@@ -29,7 +29,28 @@
 
 ### ตัวกันข้อมูลภายในหลุด
 
-[scripts/check-content.mjs](scripts/check-content.mjs) สแกน `content/`, `app/`, `components/` แล้ว **ทำให้ build ล้ม** ถ้าเจอ IP ภายใน, hostname บริษัท/GitLab, ชื่อ DB, ชื่อตารางแบบ `prefix_Name`, ชื่อ object ของ SAP, GUID ของ environment, path เครื่อง หรืออะไรที่หน้าตาเหมือน credential
+[scripts/check-content.mjs](scripts/check-content.mjs) สแกน `content/`, `app/`, `components/`, `scripts/`, `.github/` และไฟล์ระดับราก แล้ว **ทำให้ build ล้ม** ถ้าเจอข้อมูลที่ไม่ควรขึ้นเว็บ
+
+กฎแบ่งเป็นสองชั้น:
+
+| ชั้น | อยู่ที่ไหน | ตรวจอะไร |
+| --- | --- | --- |
+| เชิงโครงสร้าง | ในสคริปต์ (commit ขึ้น repo) | IP ภายใน, GUID, path เครื่อง, อะไรที่หน้าตาเหมือน credential, อีเมลที่ไม่ใช่โดเมนสาธารณะ |
+| ชื่อจริง | `scripts/deny-list.local.json` (**gitignore ไว้**) | โดเมนบริษัท, ชื่อ DB, ชื่อตาราง, ชื่อ object ของ SAP, ชื่อเล่นของเครื่อง |
+
+**ทำไมต้องแยก:** repo นี้เป็น public ถ้า commit รายชื่อภายในขึ้นไป ตัวรายชื่อเองก็คือข้อมูลที่รั่ว — สคริปต์จะกลายเป็นสารบัญให้คนอื่นไปไล่หาต่อ
+
+เครื่องใหม่ที่จะมาแก้เนื้อหาต้องสร้าง `scripts/deny-list.local.json` เองในรูปแบบนี้ (ถ้าไม่มี สคริปต์จะเตือนแล้วตรวจเฉพาะกฎเชิงโครงสร้าง):
+
+```json
+{
+  "rules": [
+    { "id": "internal-host", "why": "โดเมนภายใน", "re": "example[.]internal", "flags": "gi" }
+  ]
+}
+```
+
+สคริปต์ข้ามเฉพาะไฟล์ที่ `git check-ignore` บอกว่าถูก ignore (ขึ้น repo ไม่ได้อยู่แล้ว) — ไม่มีการยกเว้นตัวเองแบบเหมารวม เพราะนั่นคือช่องที่เคยทำให้ deny list หลุดมาแล้วครั้งหนึ่ง
 
 ```bash
 npm run check:content   # รันเอง

@@ -45,3 +45,10 @@ next-env.d.ts
 
 # Claude Code local config — ไม่ขึ้น GitHub
 .claude/
+
+# deny list ของตัวตรวจ content — มีชื่อจริงขององค์กร ห้ามขึ้น repo สาธารณะ
+scripts/deny-list.local.json
+
+# ภาพที่ถ่ายระหว่างตรวจงาน — ไม่ใช่ส่วนหนึ่งของเว็บ
+/*.png
+/*.jpg

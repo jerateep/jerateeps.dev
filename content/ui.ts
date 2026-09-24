@@ -22,30 +22,38 @@ export const ui = {
     contact: { th: "ติดต่อ", en: "Get in touch" },
   },
   aiLead: {
-    th: "ผมไม่ได้ใช้ AI แค่เติมโค้ดให้จบบรรทัด แต่วางมันเป็นส่วนหนึ่งของกระบวนการ — มีคลังความรู้ให้มันอ่าน มีกฎของแต่ละระบบให้มันรู้ และมีด่านตรวจที่รันเองก่อนงานจะขึ้น",
-    en: "I don't use AI just to finish lines of code. It's wired into the process: a knowledge base it reads from, per-system rules it knows, and automated gates that run before anything ships.",
+    th: "ประยุกต์ใช้ AI เป็นส่วนหนึ่งของกระบวนการพัฒนา ไม่ใช่เพียงเครื่องมือเติมโค้ด ประกอบด้วยคลังความรู้ที่เครื่องมือเรียกใช้ได้ คู่มืออ้างอิงเฉพาะระบบ และด่านตรวจอัตโนมัติก่อนส่งมอบ",
+    en: "AI is applied as part of the development process rather than as a code-completion tool: a knowledge base the tooling reads from, documented per-system rules, and automated gates that run before delivery.",
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
+  graphCaption: {
+    th: "โครงสร้างคลังความรู้จริงที่ใช้งานอยู่ — 229 บันทึก เชื่อมถึงกัน 503 เส้น แบ่งเป็น 28 กลุ่มระบบ · ไม่แสดงชื่อบันทึกเพราะเป็นชื่อระบบภายใน",
+    en: "The live structure of the knowledge base — 229 notes, 503 links between them, clustered into 28 systems. Note titles are omitted because they are internal system names.",
+  },
+  graphLabel: {
+    th: "แผนภาพจุดและเส้นแสดงความเชื่อมโยงของบันทึกในคลังความรู้",
+    en: "A node-and-link diagram showing how notes in the knowledge base connect.",
+  },
   projectsLead: {
-    th: "เกือบทั้งหมดเป็นระบบภายในของนายจ้าง — ชื่อระบบและภาพหน้าจอเปิดเผยไม่ได้ จึงเรียกตามหน้าที่และเล่าเฉพาะสิ่งที่อธิบายได้ในห้องสัมภาษณ์",
-    en: "Almost all of these are my employer's internal systems — the system names and screenshots can't be shown, so each is named by what it does and described only as far as I can defend it in an interview.",
+    th: "ผลงานส่วนใหญ่เป็นระบบภายในขององค์กรที่สังกัด ชื่อระบบและภาพหน้าจอไม่สามารถเปิดเผยได้ จึงระบุตามลักษณะงานและให้รายละเอียดเท่าที่อธิบายได้ในการสัมภาษณ์",
+    en: "Most of these are internal systems belonging to my employer. System names and screenshots cannot be disclosed, so each is described by function and in the level of detail that can be substantiated in an interview.",
   },
   education: { th: "การศึกษา", en: "Education" },
   certifications: { th: "ใบรับรอง", en: "Certifications" },
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
-    th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",
-    en: "20+ systems inside one organisation. The names are confidential, so they are listed by what they do.",
+    th: "ระบบมากกว่า 20 ระบบภายในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงานที่รับผิดชอบ",
+    en: "More than 20 systems within a single organisation. The system names are confidential and are therefore listed by function.",
   },
   diagramCaption: {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
     en: "Conceptual overview, not the actual system topology.",
   },
-  scrollHint: { th: "เลื่อนดูแนวนอนได้", en: "Scroll sideways to see it all." },
+  scrollHint: { th: "เลื่อนแนวนอนเพื่อดูภาพทั้งหมด", en: "Scroll horizontally to view the full diagram." },
   contactLead: {
-    th: "มีงานที่อยากคุย หรือแค่อยากทักมาถาม — ยินดีเสมอครับ",
-    en: "Got a project in mind, or just want to say hi? Always happy to talk.",
+    th: "หากสนใจร่วมงานหรือต้องการสอบถามรายละเอียดเพิ่มเติม ยินดีรับการติดต่อ",
+    en: "For project enquiries or further details, please feel free to get in touch.",
   },
   viewProject: { th: "ดูผลงาน", en: "View" },
   builtWith: {
