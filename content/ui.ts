@@ -32,6 +32,7 @@ export const ui = {
   },
   education: { th: "การศึกษา", en: "Education" },
   certifications: { th: "ใบรับรอง", en: "Certifications" },
+  verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
     th: "กว่า 20 ระบบในองค์กรเดียว — ชื่อระบบเป็นความลับ จึงเรียกตามหน้าที่ที่ทำ",

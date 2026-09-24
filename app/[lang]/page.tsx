@@ -256,7 +256,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {ui.certifications[lang]}
             </dt>
             <dd className="flex-1">
-              <ul className="space-y-1.5 text-sm text-muted">
+              <ul className="grid gap-1.5 text-sm text-muted sm:grid-cols-2">
                 {profile.certifications.map((cert) => (
                   <li key={cert} className="flex gap-2">
                     <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-border" />
@@ -264,6 +264,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   </li>
                 ))}
               </ul>
+              <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                <span className="text-muted">{ui.verifyAt[lang]}</span>
+                {profile.credentialProfiles.map((p) => (
+                  <a
+                    key={p.label}
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-accent hover:underline"
+                  >
+                    {p.label} ↗
+                  </a>
+                ))}
+              </p>
             </dd>
           </div>
 

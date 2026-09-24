@@ -67,6 +67,8 @@ const RULES = [
 /** ข้อความที่ปลอดภัยแต่ไปชนกฎข้างบน — เติมได้ พร้อมเหตุผล */
 const ALLOW = [
   "ams_", // ไม่มีจริงในเนื้อหา แต่กันไว้เผื่อคำภาษาอังกฤษปกติ
+  // id ของหน้าโปรไฟล์สาธารณะ Google Cloud Skills Boost — ตั้งใจให้แชร์ ไม่ใช่ id ของ environment
+  "ff0df1b5-da13-4301-9cdc-ee3c838afa30",
 ];
 
 function walk(dir) {

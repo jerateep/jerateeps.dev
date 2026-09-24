@@ -582,13 +582,39 @@ export const profile = {
     },
   ] satisfies Education[],
 
-  /** ใบรับรอง — ใช้ชื่อทางการตามที่ผู้ออกให้เรียก */
+  /**
+   * ใบรับรอง — ใช้ชื่อทางการตามที่ผู้ออกให้เรียก เรียงจากใหม่ → เก่า
+   * ตรวจสอบได้จาก credentialProfiles ด้านล่าง อย่าใส่ใบที่ลิงก์ยืนยันไม่ได้
+   */
   certifications: [
-    "Build a Website on Google Cloud",
+    "Introduction to Security in the World of AI",
+    "Create Embeddings, Vector Search, and RAG with BigQuery",
+    "Deploy Multi-Agent Architectures",
+    "Develop Gen AI Apps with Gemini and Streamlit",
+    "Gemini for Cloud Architects",
+    "Gemini for DevOps Engineers",
+    "Gemini for Security Engineers",
+    "Gemini for Network Engineers",
+    "AI Boost Bites: Automate tasks with Gemini and Apps Script",
     "Automate Data Capture at Scale with Document AI",
-    "Use APIs to Work with Cloud Storage",
     "Manage Kubernetes in Google Cloud",
+    "Deploy Kubernetes Applications on Google Cloud",
     "Monitoring in Google Cloud",
+    "Use APIs to Work with Cloud Storage",
+    "The Basics of Google Cloud Compute",
+    "Build a Website on Google Cloud",
+  ],
+
+  /** หน้าโปรไฟล์ที่ recruiter กดตรวจใบรับรองเองได้ */
+  credentialProfiles: [
+    {
+      label: "Google Cloud Skills Boost",
+      href: "https://www.skills.google/public_profiles/ff0df1b5-da13-4301-9cdc-ee3c838afa30",
+    },
+    {
+      label: "Microsoft Learn",
+      href: "https://learn.microsoft.com/en-us/users/jerateepsaelee-4053",
+    },
   ],
 
   languages: [
