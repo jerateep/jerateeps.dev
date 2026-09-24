@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
+import { KnowledgeGraph } from "@/components/KnowledgeGraph";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -211,6 +212,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* AI ในกระบวนการทำงาน */}
       <Section id="ai" title={ui.sections.ai[lang]}>
         <p className="max-w-2xl text-muted">{ui.aiLead[lang]}</p>
+        <KnowledgeGraph
+          caption={ui.graphCaption[lang]}
+          label={ui.graphLabel[lang]}
+        />
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {profile.aiPractice.map((item, i) => (
             <article

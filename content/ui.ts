@@ -26,6 +26,14 @@ export const ui = {
     en: "AI is applied as part of the development process rather than as a code-completion tool: a knowledge base the tooling reads from, documented per-system rules, and automated gates that run before delivery.",
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
+  graphCaption: {
+    th: "โครงสร้างคลังความรู้จริงที่ใช้งานอยู่ — 229 บันทึก เชื่อมถึงกัน 503 เส้น แบ่งเป็น 28 กลุ่มระบบ · ไม่แสดงชื่อบันทึกเพราะเป็นชื่อระบบภายใน",
+    en: "The live structure of the knowledge base — 229 notes, 503 links between them, clustered into 28 systems. Note titles are omitted because they are internal system names.",
+  },
+  graphLabel: {
+    th: "แผนภาพจุดและเส้นแสดงความเชื่อมโยงของบันทึกในคลังความรู้",
+    en: "A node-and-link diagram showing how notes in the knowledge base connect.",
+  },
   projectsLead: {
     th: "ผลงานส่วนใหญ่เป็นระบบภายในขององค์กรที่สังกัด ชื่อระบบและภาพหน้าจอไม่สามารถเปิดเผยได้ จึงระบุตามลักษณะงานและให้รายละเอียดเท่าที่อธิบายได้ในการสัมภาษณ์",
     en: "Most of these are internal systems belonging to my employer. System names and screenshots cannot be disclosed, so each is described by function and in the level of detail that can be substantiated in an interview.",
