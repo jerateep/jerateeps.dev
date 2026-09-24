@@ -770,6 +770,19 @@ export const profile = {
     },
   ] satisfies Practice[],
 
+  /**
+   * ทักษะแกนหลัก — หน้าเว็บจะเน้นให้เด่นกว่าตัวอื่น
+   * มี 40+ chip ถ้าน้ำหนักเท่ากันหมด คนกวาดตาแล้วจับไม่ได้ว่าถนัดอะไรจริง
+   */
+  coreSkills: [
+    "C#",
+    ".NET 8",
+    "ASP.NET Core",
+    "TypeScript",
+    "Next.js",
+    "SQL Server",
+  ],
+
   skills: [
     {
       title: { th: "หลัก", en: "Core" },

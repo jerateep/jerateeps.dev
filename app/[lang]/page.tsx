@@ -26,9 +26,17 @@ function Section({
   );
 }
 
-function Tag({ children }: { children: React.ReactNode }) {
+const CORE = new Set<string>(profile.coreSkills);
+
+function Tag({ children }: { children: string }) {
+  // แกนหลักเด่นกว่าตัวอื่น ไม่งั้น 40+ chip น้ำหนักเท่ากันหมด จนกวาดตาแล้วจับไม่ได้ว่าถนัดอะไร
+  const core = CORE.has(children);
   return (
-    <li className="rounded-full border border-border px-2.5 py-0.5 font-mono text-xs text-muted">
+    <li
+      className={`rounded-full border px-2.5 py-0.5 font-mono text-xs ${
+        core ? "border-accent/60 text-fg" : "border-border text-muted"
+      }`}
+    >
       {children}
     </li>
   );
