@@ -112,8 +112,10 @@ export const profile = {
   experience: [
     {
       company: {
-        th: "ไทยคม (มหาชน)",
-        en: "Thaicom Public Company Limited",
+        // ใส่ทั้งชื่อใหม่และชื่อเดิม เพราะ recruiter ค้นด้วยชื่อเดิมเป็นหลัก
+        // และโปรไฟล์ LinkedIn/JobsDB ยังขึ้นชื่อเดิมอยู่
+        th: "Gulf Space Technology (เดิมชื่อ บมจ. ไทยคม)",
+        en: "Gulf Space Technology (formerly Thaicom PCL)",
       },
       role: { th: "Full Stack Developer", en: "Full Stack Developer" },
       period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
@@ -776,11 +778,11 @@ export const profile = {
    */
   coreSkills: [
     "C#",
-    ".NET 8",
     "ASP.NET Core",
-    "TypeScript",
-    "Next.js",
+    "ASP.NET WebForms",
+    ".NET 8",
     "SQL Server",
+    "Power Automate",
   ],
 
   skills: [
