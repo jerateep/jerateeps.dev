@@ -399,10 +399,10 @@ export const profile = {
       stack: ["ASP.NET Core", "Hangfire", "SOAP", "SQL Server", "SAP"],
     },
     {
-      slug: "money-request",
+      slug: "budget-request",
       name: {
-        th: "ระบบขออนุมัติใช้เงิน",
-        en: "Money request & approval system",
+        th: "ระบบขออนุมัติงบประมาณ",
+        en: "Budget request & approval system",
       },
       summary: {
         th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ สร้างสายอนุมัติอัตโนมัติจากโครงสร้างองค์กรและวงเงิน พร้อมยกระดับผู้อนุมัติเองเมื่อเกินงบ",
@@ -422,31 +422,6 @@ export const profile = {
         },
       ],
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
-    },
-    {
-      slug: "expense-system",
-      name: {
-        th: "ระบบเบิกค่าใช้จ่ายพนักงาน",
-        en: "Employee expense system",
-      },
-      summary: {
-        th: "ระบบเบิกและเคลียร์ค่าใช้จ่าย — เบิกคืน เงินยืม ค่าเดินทาง ผูกกับงบประมาณและสายอนุมัติ แล้วส่งรายการเข้า SAP ให้อัตโนมัติ",
-        en: "Expense claims and clearing — reimbursement, cash advances, and travel — tied to budgets and approval lines, then posted into SAP automatically.",
-      },
-      role: { th: "พัฒนาและดูแลระบบ", en: "Development and maintenance" },
-      confidential: true,
-      year: "2024–2025",
-      impact: [
-        {
-          th: "รายการที่ได้รับอนุมัติถูกบันทึกเข้า SAP อัตโนมัติ โดยไม่ต้องคีย์ข้อมูลซ้ำ",
-          en: "Approved items are posted to SAP automatically, without re-keying.",
-        },
-        {
-          th: "แยกโมดูลตั๋วเครื่องบินและอัตราแลกเปลี่ยนออกเป็นส่วนอิสระ ทำให้ปรับปรุงแต่ละส่วนได้โดยไม่กระทบระบบหลัก",
-          en: "Split the air-ticket and exchange-rate modules out so each can change without touching the core.",
-        },
-      ],
-      stack: ["ASP.NET WebForms", "SQL Server", "SAP"],
     },
     {
       slug: "ad-provisioning",
@@ -603,7 +578,7 @@ export const profile = {
     {
       title: { th: "การเงินและอนุมัติ", en: "Finance & approvals" },
       items: [
-        { th: "ระบบขออนุมัติใช้เงิน ทั้งแบบมีงบประมาณ ไม่มีงบประมาณ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
+        { th: "ระบบขออนุมัติงบประมาณ ทั้งแบบมีงบ ไม่มีงบ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
         { th: "ระบบเบิกค่าใช้จ่ายและเงินยืมทดรองของพนักงาน", en: "Employee expenses and cash advances" },
         { th: "การวิเคราะห์อายุลูกหนี้และสถานะความเสี่ยงของลูกหนี้", en: "Receivable ageing and risk-status analysis" },
         { th: "พอร์ทัลอนุมัติกลางที่เชื่อมต่อจากทุกระบบ", en: "Central approval portal integrated with every system" },
