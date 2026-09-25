@@ -4,6 +4,7 @@ import { ui } from "@/content/ui";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
 import { KnowledgeGraph } from "@/components/KnowledgeGraph";
 import { MiniFlow } from "@/components/MiniFlow";
+import learn from "@/content/learn.json";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -280,7 +281,28 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {ui.certifications[lang]}
             </dt>
             <dd className="flex-1">
-              <ul className="space-y-1.5 text-sm text-muted sm:columns-2 sm:gap-x-8">
+              {/* Microsoft Learn มี 185 รายการ ลิสต์หมดคือ noise — โชว์หลักสูตรตามแนวข้อสอบ
+                  ซึ่งเป็นชั้นที่มีน้ำหนักจริง แล้วสรุปที่เหลือเป็นตัวเลข */}
+              <p className="text-sm font-medium">{ui.microsoftLearn[lang]}</p>
+              <p className="mt-1 text-sm text-muted">
+                {learn.total} {ui.learnTotal[lang]} · {learn.counts.learningPaths}{" "}
+                {ui.learnPaths[lang]} · {learn.counts.modules}{" "}
+                {ui.learnModules[lang]}
+              </p>
+              <p className="mt-3 text-sm text-muted">
+                {ui.learnCourses[lang]}
+              </p>
+              <ul className="mt-1.5 space-y-1.5 text-sm text-muted">
+                {learn.courses.map((course) => (
+                  <li key={course} className="flex gap-2">
+                    <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-muted/50" />
+                    <span>{course}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-5 text-sm font-medium">{ui.googleCloud[lang]}</p>
+              <ul className="mt-1.5 space-y-1.5 text-sm text-muted sm:columns-2 sm:gap-x-8">
                 {profile.certifications.map((cert) => (
                   <li key={cert} className="flex gap-2">
                     <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-muted/50" />

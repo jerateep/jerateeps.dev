@@ -40,6 +40,15 @@ export const ui = {
   },
   education: { th: "การศึกษา", en: "Education" },
   certifications: { th: "ใบรับรอง", en: "Certifications" },
+  googleCloud: { th: "Google Cloud", en: "Google Cloud" },
+  microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
+  learnTotal: { th: "รายการ", en: "achievements" },
+  learnPaths: { th: "เส้นทางการเรียน", en: "learning paths" },
+  learnModules: { th: "โมดูล", en: "modules" },
+  learnCourses: {
+    th: "หลักสูตรตามแนวข้อสอบที่เรียนจบ",
+    en: "Completed exam-track courses",
+  },
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
