@@ -876,8 +876,8 @@ export const profile = {
     {
       school: { th: "วิทยาลัยเทคนิคตรัง", en: "Trang Technical College" },
       degree: {
-        th: "บริหารธุรกิจบัณฑิต (บธ.บ.) คอมพิวเตอร์ธุรกิจ",
-        en: "B.B.A. Business Computer",
+        th: "ปวช. และ ปวส. สาขาคอมพิวเตอร์ธุรกิจ",
+        en: "Vocational Certificate and Higher Vocational Certificate, Business Computer",
       },
       period: "2004 – 2009",
     },
