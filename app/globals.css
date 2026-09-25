@@ -32,7 +32,12 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-sans-thai), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /*
+   * Geist Mono ไม่มี glyph ไทย ถ้าไม่ต่อฟอนต์ไทยไว้ ไทยจะตกไปใช้ฟอนต์ระบบ
+   * (Tahoma บน Windows, Thonburi บน macOS) latin ยังได้ Geist Mono เพราะมาก่อน
+   */
+  --font-mono: var(--font-geist-mono), var(--font-sans-thai), ui-monospace,
+    monospace;
 }
 
 @layer base {
@@ -53,15 +58,38 @@
     line-height: 1.8;
   }
 
-  /* หัวข้อไม่ต้องการระยะบรรทัดของเนื้อความ */
-  :lang(th) :is(h1, h2, h3, h4) {
-    line-height: 1.25;
-  }
-
   /* focus ring ที่คุมเองแทนของเบราว์เซอร์ ซึ่งสีไม่คงที่ข้ามโหมด */
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+  }
+}
+
+/*
+ * กฎระยะบรรทัดภาษาไทยต้องอยู่ layer เดียวกับ utility ของ Tailwind
+ * ถ้าอยู่ใน @layer base จะแพ้ text-sm / text-xs เสมอไม่ว่า specificity เท่าไหร่
+ * เพราะลำดับ layer ถูกตัดสินก่อน specificity — พอย้ายมาอยู่ layer เดียวกันแล้ว
+ * :lang(th) :is(p) จึงชนะ .text-sm ได้ตามปกติ
+ */
+@layer utilities {
+
+  /*
+   * utility อย่าง text-sm / text-xs ใส่ line-height มาบนตัว element เอง
+   * จึงชนะกฎ :lang(th) ข้างบนซึ่งทำงานผ่านการสืบทอด ต้องระบุซ้ำให้ชนะกลับ
+   * ไม่งั้นข้อความไทยในการ์ดใบเดียวกันได้ระยะบรรทัดคนละค่า (1.43 กับ 1.8)
+   */
+  :lang(th) :is(p, li, dd, dt, span, a, figcaption) {
+    line-height: 1.75;
+  }
+
+  /* หัวข้อใหญ่ที่ไม่ตัดบรรทัดใช้ 1.25 ได้ */
+  :lang(th) :is(h1, h2) {
+    line-height: 1.25;
+  }
+
+  /* หัวข้อเล็กที่ตัดสองบรรทัด 1.25 ทำให้สระบน-ล่างเบียดกัน */
+  :lang(th) :is(h3, h4) {
+    line-height: 1.45;
   }
 }
 

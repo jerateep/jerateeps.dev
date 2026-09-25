@@ -18,7 +18,7 @@
 
 export const locales = ["th", "en"] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "th";
+export const defaultLocale: Locale = "en";
 
 /** ข้อความสองภาษา */
 export type L = Record<Locale, string>;
@@ -39,6 +39,7 @@ export type Project = {
   role: L;
   impact: L[];
   stack: string[];
+  /** ใช้จัดลำดับและอ้างอิงตอนแก้เนื้อหา ไม่ได้แสดงบนหน้าเว็บ */
   year: string;
   /** ลิงก์สาธารณะเท่านั้น — ระบบภายในไม่ต้องใส่ */
   link?: string;
@@ -92,12 +93,6 @@ export const profile = {
     en: "Developing and maintaining enterprise back-office systems with .NET, Next.js and SQL Server, alongside automation and the applied use of AI within the development process.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
-  /** TODO: ยืนยันว่ารับงานแบบไหนบ้าง และพร้อมเริ่มเมื่อไหร่ */
-  available: {
-    th: "เปิดรับงานประจำและงานฟรีแลนซ์",
-    en: "Open to full-time roles and freelance work",
-  } satisfies L,
-
   about: [
     {
       th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office หลักราวสิบระบบ ครอบคลุมงานเอกสารและสายอนุมัติงบประมาณ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation และให้การสนับสนุนระบบ back-office อื่นอีกกว่า 20 ระบบในองค์กรเดียวกัน",
@@ -780,8 +775,8 @@ export const profile = {
           en: "Rebuilt a full map of the site after the standard tooling failed to download its structure, giving the team a reference to work from next time.",
         },
         {
-          th: "ตรวจพบว่าสิทธิ์การเข้าถึงข้อมูลถูกตั้งเป็นเปิดสาธารณะทั้งหมด และเป็นประเด็นที่ยกขึ้นให้แก้",
-          en: "Found that the data-access permissions were set to public across the board, and raised it to be corrected.",
+          th: "หลังบ้านเดิมเป็น model-driven app ที่ทีมสื่อสารใช้งานไม่คล่อง จึงเริ่มเขียนใหม่เป็นเว็บแอปที่ออกแบบตามลำดับงานจริงของทีม",
+          en: "The original back office was a model-driven app the communications team found awkward, so it is being rewritten as a web app shaped around how the team actually works.",
         },
         {
           th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",

@@ -198,7 +198,9 @@ export function PipelineDiagram({
   const s = (key: string) => t[key]?.[lang] ?? "";
 
   return (
-    <figure className="mt-6">
+    // ดึงกลับไปกินความกว้างเต็มการ์ด หักล้าง padding ที่การ์ดใบเด่นดันเข้ามา
+    // เพื่อให้ข้อความยังอยู่บนเส้นซ้ายเดียวกับทั้งหน้า
+    <figure className="mt-6 lg:-mx-10 xl:-mx-28">
       {/* fade ขอบขวาบอกว่ายังมีต่อ — scrollbar บน macOS เป็น overlay จึงไม่เห็น affordance */}
       <div className="overflow-x-auto rounded-lg border border-border bg-bg [mask-image:linear-gradient(to_right,#000_92%,transparent)] xl:[mask-image:none]">
         <svg
