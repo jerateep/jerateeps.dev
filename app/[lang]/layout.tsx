@@ -37,7 +37,7 @@ export async function generateMetadata({
   const description = `${profile.role[lang]} · ${profile.tagline[lang]}`;
 
   return {
-    metadataBase: new URL("https://jerateeps.dev"),
+    metadataBase: new URL("https://jerateeps-dev.vercel.app"),
     title,
     description,
     alternates: {
