@@ -558,8 +558,8 @@ export const profile = {
           en: "Defined a clear state machine for the dates along a shipment, after finding that saving one stage could overwrite and lose another.",
         },
         {
-          th: "ย้ายชุดตารางวิเคราะห์ข้อมูลออกจากฐานข้อมูลรุ่นเก่ามาก และกู้คีย์หลักที่หายระหว่างการย้าย",
-          en: "Migrated the analytical tables off a very old database engine and restored the primary keys lost in transit.",
+          th: "ย้ายชุดตารางวิเคราะห์ข้อมูลมาไว้บนฐานข้อมูลปัจจุบัน และกู้คีย์หลักที่หายระหว่างการย้าย",
+          en: "Consolidated the analytical tables onto the current database platform and restored the primary keys lost in transit.",
         },
       ],
       stack: ["ASP.NET", "SQL Server", "Oracle", "SAP"],
