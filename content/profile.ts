@@ -44,6 +44,11 @@ export type Project = {
   link?: string;
   confidential?: boolean;
   /**
+   * visual ย่อประจำการ์ด — 3–5 ขั้น บอกรูปร่างของระบบ
+   * กฎเดียวกับแผนภาพใหญ่: ชื่อเชิงหน้าที่เท่านั้น
+   */
+  flow?: { label: L; icon: string }[];
+  /**
    * ป้ายในแผนภาพสถาปัตยกรรม (ตำแหน่งอยู่ในคอมโพเนนต์)
    * เรียกทุกอย่างตามหน้าที่ ห้ามชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อคู่ค้า
    */
@@ -95,8 +100,8 @@ export const profile = {
 
   about: [
     {
-      th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office ขององค์กรมากกว่า 20 ระบบ ครอบคลุมงานเอกสารและสายอนุมัติ ระบบเบิกจ่าย ระบบสิทธิ์การเข้าถึง และงาน automation ที่เชื่อมต่อ SAP, Active Directory และ Microsoft 365 เข้าด้วยกัน",
-      en: "A Full Stack Developer with over 10 years of experience, responsible for more than 20 enterprise back-office systems covering document and approval workflows, expense processing, access management, and automation integrating SAP, Active Directory and Microsoft 365.",
+      th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office หลักราวสิบระบบ ครอบคลุมงานเอกสารและสายอนุมัติงบประมาณ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation และให้การสนับสนุนระบบ back-office อื่นอีกกว่า 20 ระบบในองค์กรเดียวกัน",
+      en: "A Full Stack Developer with over 10 years of experience, owning around ten core back-office systems — document and budget-approval workflows, access management, SAP integration and automation — and supporting more than twenty further back-office systems across the same organisation.",
     },
     {
       th: "มีความเชี่ยวชาญเฉพาะด้านระบบ legacy ที่ไม่มีเอกสารประกอบ โดยใช้วิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
@@ -353,6 +358,12 @@ export const profile = {
       role: { th: "Full-stack · ออกแบบและพัฒนา", en: "Full-stack · design + build" },
       confidential: true,
       year: "2025",
+      flow: [
+        { label: { th: "กฎตามโครงสร้างองค์กร", en: "Org-structure rules" }, icon: "rules" },
+        { label: { th: "ชุดสิทธิ์และเมนู", en: "Permission sets" }, icon: "queue" },
+        { label: { th: "ทุกแอปที่ผ่าน SSO", en: "Every app behind SSO" }, icon: "browser" },
+        { label: { th: "รายงานตรวจสอบตาม ISO", en: "ISO audit reports" }, icon: "report" },
+      ],
       impact: [
         {
           th: "การเพิ่มพนักงานใหม่ไม่ต้องกำหนดสิทธิ์รายบุคคลอีกต่อไป ผู้ใช้ที่เข้าเงื่อนไขของกฎใดจะได้รับชุดเมนูของกฎนั้นทันที",
@@ -370,6 +381,44 @@ export const profile = {
       stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
     },
     {
+      slug: "sso-platform",
+      name: {
+        th: "ระบบยืนยันตัวตนกลางและการมอบอำนาจอนุมัติ",
+        en: "Central authentication and approval delegation",
+      },
+      summary: {
+        th: "บริการยืนยันตัวตนที่ทุกระบบ back-office เรียกใช้ร่วมกัน ล็อกอินครั้งเดียวแล้วคืนทั้งตัวตน เมนูที่มีสิทธิ์ และสายการมอบอำนาจอนุมัติกลับไปให้แอป ทำให้แต่ละแอปไม่ต้องอ่านตารางสิทธิ์เอง",
+        en: "The authentication service every back-office system shares. One sign-in returns the user's identity, the menus they may use, and their approval-delegation chain — so no application has to read the permission tables itself.",
+      },
+      role: {
+        th: "ดูแลต่อเนื่องและต่อระบบใหม่เข้ากับบริการนี้",
+        en: "Ongoing maintenance, and integrating new systems onto it",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ผู้ใช้ล็อกอินครั้งเดียว", en: "One sign-in" }, icon: "person" },
+        { label: { th: "บริการกลางตรวจสิทธิ์", en: "Central service resolves" }, icon: "shield" },
+        { label: { th: "คืนเมนูและกลุ่มสิทธิ์", en: "Menus and groups returned" }, icon: "queue" },
+        { label: { th: "ทุกแอปใช้ผลเดียวกัน", en: "Every app uses the same result" }, icon: "browser" },
+      ],
+      impact: [
+        {
+          th: "แอปที่ต่อเข้ามาไม่ต้องเข้าถึงฐานข้อมูลสิทธิ์โดยตรง ลดทั้งสิทธิ์ที่ต้องขอและจุดที่ตรรกะสิทธิ์จะแตกต่างกันเอง",
+          en: "Connected applications never touch the permission database directly, which cuts both the access they must be granted and the places where permission logic can drift apart.",
+        },
+        {
+          th: "รองรับการมอบอำนาจอนุมัติหลายรูปแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และการมอบเฉพาะกิจ ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
+          en: "Carries several kinds of approval delegation — to an assistant, by org line, and ad hoc — the conditions every approval system in the organisation depends on.",
+        },
+        {
+          th: "ปรับให้รองรับโดเมนใหม่ตอนองค์กรเปลี่ยนชื่อ โดยย้ายค่าที่เคยตายตัวในโค้ดไปเป็นค่าตั้งที่แยกตามสภาพแวดล้อม",
+          en: "Extended to accept a new domain during the corporate rename, moving values that had been fixed in code into per-environment configuration.",
+        },
+      ],
+      stack: ["ASP.NET", "SOAP", "OAuth 2.0", "SQL Server", "Active Directory"],
+    },
+    {
       slug: "sap-middleware",
       name: {
         th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
@@ -382,6 +431,12 @@ export const profile = {
       role: { th: "Backend · ออกแบบและพัฒนา", en: "Backend · design + build" },
       confidential: true,
       year: "2025",
+      flow: [
+        { label: { th: "SAP", en: "SAP" }, icon: "erp" },
+        { label: { th: "REST API ตัวกลาง", en: "REST middleware" }, icon: "browser" },
+        { label: { th: "งานตามเวลา", en: "Scheduled jobs" }, icon: "gear" },
+        { label: { th: "ระบบปลายทาง", en: "Downstream systems" }, icon: "worker" },
+      ],
       impact: [
         {
           th: "ระบบปลายทางไม่ต้องเชื่อมต่อ SAP แยกกันอีกต่อไป เหลือจุดดูแลรักษาเพียงจุดเดียว",
@@ -399,10 +454,10 @@ export const profile = {
       stack: ["ASP.NET Core", "Hangfire", "SOAP", "SQL Server", "SAP"],
     },
     {
-      slug: "money-request",
+      slug: "budget-request",
       name: {
-        th: "ระบบขออนุมัติใช้เงิน",
-        en: "Money request & approval system",
+        th: "ระบบขออนุมัติงบประมาณ",
+        en: "Budget request & approval system",
       },
       summary: {
         th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ สร้างสายอนุมัติอัตโนมัติจากโครงสร้างองค์กรและวงเงิน พร้อมยกระดับผู้อนุมัติเองเมื่อเกินงบ",
@@ -411,6 +466,12 @@ export const profile = {
       role: { th: "Full-stack · พัฒนาและบำรุงรักษา", en: "Full-stack · ongoing development" },
       confidential: true,
       year: "2024–2025",
+      flow: [
+        { label: { th: "ยื่นคำขอ", en: "Submit request" }, icon: "form" },
+        { label: { th: "ตรวจงบคงเหลือกับ SAP", en: "Check budget in SAP" }, icon: "erp" },
+        { label: { th: "สายอนุมัติอัตโนมัติ", en: "Approver line" }, icon: "rules" },
+        { label: { th: "อนุมัติในพอร์ทัลกลาง", en: "Approve in portal" }, icon: "shield" },
+      ],
       impact: [
         {
           th: "ยกเลิกขั้นตอนเดินเอกสารกระดาษทั้งหมด ผู้อนุมัติดำเนินการผ่านพอร์ทัลกลางได้โดยตรง",
@@ -424,79 +485,230 @@ export const profile = {
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
     },
     {
-      slug: "expense-system",
+      slug: "asset-management",
       name: {
-        th: "ระบบเบิกค่าใช้จ่ายพนักงาน",
-        en: "Employee expense system",
+        th: "ระบบจัดการทรัพย์สินองค์กร",
+        en: "Corporate asset management",
       },
       summary: {
-        th: "ระบบเบิกและเคลียร์ค่าใช้จ่าย — เบิกคืน เงินยืม ค่าเดินทาง ผูกกับงบประมาณและสายอนุมัติ แล้วส่งรายการเข้า SAP ให้อัตโนมัติ",
-        en: "Expense claims and clearing — reimbursement, cash advances, and travel — tied to budgets and approval lines, then posted into SAP automatically.",
+        th: "ระบบติดตามทรัพย์สินตลอดอายุการใช้งาน ครอบคลุมเอกสารเจ็ดประเภท ตั้งแต่การย้ายทรัพย์สินเข้า-ออกอาคาร การโอนผู้ถือครองและศูนย์ต้นทุน ไปจนถึงการยืม คืน และต่ออายุ ทุกใบวิ่งผ่านสายอนุมัติและบันทึกกลับเข้าระบบบัญชี",
+        en: "Tracks assets across their working life through seven document types — moving assets in and out of the building, transferring holder and cost centre, and borrowing, returning and extending. Every document runs an approval line and posts back to the accounting system.",
       },
-      role: { th: "พัฒนาและดูแลระบบ", en: "Development and maintenance" },
+      role: {
+        th: "พัฒนาและดูแล รวมถึง reverse-engineer กระบวนการเดิม",
+        en: "Development and maintenance, including reverse-engineering the original process",
+      },
       confidential: true,
-      year: "2024–2025",
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ยื่นเอกสารทรัพย์สิน", en: "Raise an asset document" }, icon: "form" },
+        { label: { th: "สายอนุมัติตามประเภท", en: "Approval line per type" }, icon: "rules" },
+        { label: { th: "บันทึกกลับระบบบัญชี", en: "Post to accounting" }, icon: "erp" },
+        { label: { th: "ติดตามสถานะทรัพย์สิน", en: "Track asset status" }, icon: "database" },
+      ],
       impact: [
         {
-          th: "รายการที่ได้รับอนุมัติถูกบันทึกเข้า SAP อัตโนมัติ โดยไม่ต้องคีย์ข้อมูลซ้ำ",
-          en: "Approved items are posted to SAP automatically, without re-keying.",
+          th: "จัดทำเอกสารอ้างอิงของ workflow ทั้งหมดขึ้นใหม่จากโค้ดและฐานข้อมูลจริง เพราะเอกสารเดิมระบุไว้เพียงสามประเภทจากเจ็ดประเภทที่ระบบทำงานอยู่",
+          en: "Rebuilt the workflow reference from the code and the live database, because the existing documentation described three of the seven document types the system actually runs.",
         },
         {
-          th: "แยกโมดูลตั๋วเครื่องบินและอัตราแลกเปลี่ยนออกเป็นส่วนอิสระ ทำให้ปรับปรุงแต่ละส่วนได้โดยไม่กระทบระบบหลัก",
-          en: "Split the air-ticket and exchange-rate modules out so each can change without touching the core.",
+          th: "ข้อมูลหลักของทรัพย์สินรับมาจากระบบบัญชีตามเวลาโดยอัตโนมัติ แทนการคีย์ซ้ำในสองระบบ",
+          en: "Asset master data arrives from the accounting system on a schedule, instead of being keyed into two systems.",
+        },
+        {
+          th: "แก้กรณีที่หน้าจอโอนผู้ถือครองยอมรับทรัพย์สินซ้ำและแจ้ง error ที่ไม่ตรงกับสาเหตุจริง",
+          en: "Fixed a transfer screen that accepted duplicate assets and reported errors that did not match the real cause.",
         },
       ],
-      stack: ["ASP.NET WebForms", "SQL Server", "SAP"],
+      stack: ["ASP.NET WebForms", "SQL Server", "SAP", "SOAP"],
     },
     {
-      slug: "ad-provisioning",
+      slug: "logistics-inventory",
       name: {
-        th: "ระบบจัดการบัญชีผู้ใช้อัตโนมัติ",
-        en: "Automated account provisioning",
+        th: "ระบบคลังสินค้าและงานขนส่ง",
+        en: "Inventory and logistics",
       },
       summary: {
-        th: "Web API ที่ดูแลวงจรชีวิตบัญชีผู้ใช้ — สร้าง แก้ ปิด และ sync ข้อมูลพนักงานจากระบบ HR เข้า directory ขององค์กร รวมถึงจัดการ mail contact และการส่งต่อเมล",
-        en: "A Web API that owns the account lifecycle — create, update, disable — and syncs employee attributes from HR into the corporate directory, including mail contacts and forwarding.",
+        th: "ระบบที่ดูแลการเบิกจ่ายและเคลื่อนย้ายสินค้าคงคลัง ต่อเนื่องไปถึงงานขนส่ง การคิดต้นทุนรายงาน และการวางบิลผู้ให้บริการขนส่ง พร้อมงานปิดรอบสิ้นเดือนที่ต้องกระทบยอดกับระบบบัญชี",
+        en: "Covers stock issue and movement through to freight jobs, per-job costing, forwarder billing, and the month-end close that has to reconcile against the accounting system.",
       },
-      role: { th: "Backend · พัฒนาและแก้ไขปัญหาการใช้งาน", en: "Backend · development and troubleshooting" },
+      role: {
+        th: "พัฒนาและแก้ปัญหาความถูกต้องของข้อมูล",
+        en: "Development, with a focus on data-integrity defects",
+      },
       confidential: true,
-      year: "2025",
+      year: "2024–2026",
+      flow: [
+        { label: { th: "เบิกจ่ายและเคลื่อนย้าย", en: "Issue and movement" }, icon: "folder" },
+        { label: { th: "งานขนส่งและต้นทุน", en: "Freight jobs and costing" }, icon: "worker" },
+        { label: { th: "วางบิลผู้ให้บริการ", en: "Forwarder billing" }, icon: "report" },
+        { label: { th: "ปิดรอบกระทบยอด", en: "Month-end reconciliation" }, icon: "erp" },
+      ],
       impact: [
         {
-          th: "เปลี่ยนงาน onboarding และ offboarding จากการดำเนินการด้วยมือทีละบัญชี เป็นกระบวนการอัตโนมัติที่ทำงานตามข้อมูลจากระบบ HR",
-          en: "Onboarding and offboarding moved from per-account manual work to an automated job driven by HR data.",
+          th: "ไล่แก้ชุดข้อบกพร่องที่ทำให้ข้อมูลเสียหายเงียบ ๆ เช่น เงื่อนไขค้นหาที่กว้างเกินจนแก้ข้อมูลผิดรายการ และการลบแล้วเพิ่มใหม่ทุกครั้งที่แก้ไข ซึ่งทำให้ความเชื่อมโยงระหว่างเอกสารขาด",
+          en: "Worked through a set of defects that corrupted data quietly — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
         },
         {
-          th: "แก้ไขกรณีที่งานรายงานผลสำเร็จทั้งที่ directory ปฏิเสธคำสั่ง อันเกิดจากการอ่านผลลัพธ์ไม่ครบทุกช่องทาง",
-          en: "Fixed a case where the job reported success while the directory had rejected the command, because only one of the two output streams was being read.",
+          th: "วาง state machine ของวันที่ในเส้นทางขนส่งให้ชัดเจน หลังพบว่าการบันทึกวันที่บางขั้นถูกเขียนทับจนหายไป",
+          en: "Defined a clear state machine for the dates along a shipment, after finding that saving one stage could overwrite and lose another.",
+        },
+        {
+          th: "ย้ายชุดตารางวิเคราะห์ข้อมูลออกจากฐานข้อมูลรุ่นเก่ามาก และกู้คีย์หลักที่หายระหว่างการย้าย",
+          en: "Migrated the analytical tables off a very old database engine and restored the primary keys lost in transit.",
         },
       ],
-      stack: ["ASP.NET Core", "PowerShell", "SSH", "Active Directory", "Docker"],
+      stack: ["ASP.NET", "SQL Server", "Oracle", "SAP"],
     },
     {
-      slug: "dashboard-platform",
+      slug: "identity-automation",
       name: {
-        th: "แพลตฟอร์ม dashboard ภายในองค์กร",
-        en: "In-house dashboard platform",
+        th: "ระบบอัตโนมัติของวงจรชีวิตบัญชีพนักงาน",
+        en: "Employee identity lifecycle automation",
       },
       summary: {
-        th: "แพลตฟอร์มรายงานและ dashboard สำหรับงาน back-office ที่พัฒนาขึ้นเองแทนการจัดซื้อ license Power BI ออกแบบโครงสร้างให้เพิ่มรายงานใหม่ได้โดยไม่ต้องตั้งโปรเจกต์ใหม่",
-        en: "An in-house reporting and dashboard platform for back-office, built instead of buying Power BI licences — structured so a new report drops in without standing up a new project each time.",
+        th: "ยกงานเปิด แก้ และปิดบัญชีพนักงานทั้งวงจรให้เป็นอัตโนมัติ ตั้งแต่รับพนักงานใหม่ไปจนถึงวันลาออก ประกอบด้วย Web API ที่สั่งงาน directory ขององค์กร และชุด cloud flow กว่า 30 ตัวที่ครอบคลุมทั้งพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก",
+        en: "Automates the full employee account lifecycle from joining to leaving: a Web API that drives the corporate directory, plus more than thirty cloud flows covering staff in the HR system, staff outside it, and external people.",
       },
-      role: { th: "Full-stack · ออกแบบโครงสร้างแพลตฟอร์ม", en: "Full-stack · platform foundation" },
+      role: {
+        th: "ออกแบบและพัฒนา ทั้งฝั่ง API และฝั่ง flow",
+        en: "Design and implementation, both the API and the flows",
+      },
       confidential: true,
-      year: "2025",
+      year: "2025–2026",
+      flow: [
+        { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" }, icon: "database" },
+        { label: { th: "flow แยกตามประเภทบุคคล", en: "Flows per person type" }, icon: "rules" },
+        { label: { th: "สั่งงาน directory และเมล", en: "Directory and mail actions" }, icon: "shield" },
+        { label: { th: "บัญชี สิทธิ์ และกลุ่มเมล", en: "Accounts, licences, groups" }, icon: "contact" },
+      ],
       impact: [
         {
-          th: "รายงานชุดแรกคือ dashboard ผลการทดสอบพนักงานทั้งองค์กร รับข้อมูลจากแบบฟอร์มออนไลน์ผ่าน flow ที่ตรวจคะแนนและส่งอีเมลอัตโนมัติ",
-          en: "The first report is an org-wide assessment dashboard, fed by an online form through a flow that scores submissions and sends the mail itself.",
+          th: "งานวันลาออกรวมเป็นชุดเดียวที่ทำงานตามกำหนดเวลา ทั้งปิดบัญชี ถอนสิทธิ์ใช้งาน ถอดออกจากกลุ่มเมล และตั้งการส่งต่อเมล จากเดิมที่ต้องไล่ทำทีละระบบด้วยมือ",
+          en: "Leaving-day work runs as one scheduled set — disabling the account, reclaiming licences, removing group memberships and setting mail forwarding — instead of being worked through system by system by hand.",
         },
         {
-          th: "แยกเป็นสองส่วนที่ deploy อิสระ (API และหน้าเว็บ) โดยใช้ origin เดียวกันทั้งสภาพแวดล้อม dev และ production เพื่อลดปัญหา CORS และ cookie",
-          en: "Two deployables (API and web) served from one origin in both dev and prod, which keeps CORS and cookie issues off the table.",
+          th: "แยกเส้นทางของพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก ออกจากกัน เพราะสามกลุ่มนี้มีต้นทางข้อมูลและเงื่อนไขการหมดอายุต่างกัน",
+          en: "Splits the path for HR-registered staff, staff outside the HR system, and external people, because the three differ in where their data comes from and when their access should expire.",
+        },
+        {
+          th: "งานชุดใหญ่ที่สุดมีกว่าร้อยขั้นตอนในหนึ่ง flow — จัดการกลุ่มเมลและสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
+          en: "The largest single flow runs well over a hundred steps, maintaining organisation-wide mail groups and their members — work that previously recurred every month by hand.",
+        },
+        {
+          th: "มี flow ตรวจสถานะการเชื่อมต่อของตัวเองตามเวลา เพราะ connector ที่หมดอายุเงียบ ๆ ทำให้ทั้งชุดหยุดทำงานโดยไม่มีใครรู้",
+          en: "A scheduled flow checks the health of its own connections, because a connector that expires quietly stops the whole set without anyone noticing.",
         },
       ],
-      stack: [".NET", "Next.js", "Power Automate", "SQL Server", "Docker"],
+      stack: [
+        "Power Automate",
+        "ASP.NET Core",
+        "Microsoft Graph",
+        "Active Directory",
+        "PowerShell",
+        "Power Apps",
+        "SQL Server",
+      ],
+    },
+    {
+      slug: "enterprise-automation",
+      name: {
+        th: "งาน automation กลางขององค์กร",
+        en: "Organisation-wide automation",
+      },
+      summary: {
+        th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็นกาวเชื่อมระหว่างระบบภายใน ครอบคลุมงานซิงก์ข้อมูลตามเวลา งานแจ้งเตือน งานเปิด API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
+        en: "A set of production cloud flows acting as glue between internal systems — scheduled synchronisation, alerting, APIs other systems call, and document handling — more than sixty in total.",
+      },
+      role: {
+        th: "ออกแบบ พัฒนา และดูแลต่อเนื่อง",
+        en: "Design, implementation and ongoing maintenance",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ตัวกระตุ้นตามเวลาและ HTTP", en: "Schedules and HTTP triggers" }, icon: "gear" },
+        { label: { th: "ซิงก์ข้อมูลข้ามระบบ", en: "Cross-system sync" }, icon: "database" },
+        { label: { th: "แจ้งเตือนไปยังผู้ดูแล", en: "Alerts to the right people" }, icon: "mail" },
+        { label: { th: "เอกสารและรายงาน", en: "Documents and reports" }, icon: "report" },
+      ],
+      impact: [
+        {
+          th: "ซิงก์ข้อมูลพนักงานลง directory ภายในองค์กรตามเวลา ทำให้ระบบที่อ่าน directory ได้ข้อมูลตรงกันโดยไม่ต้องต่อ HR เอง",
+          en: "Synchronises employee data into the on-premise directory on a schedule, so every system reading from it stays consistent without integrating with HR directly.",
+        },
+        {
+          th: "ซิงก์การจองห้องและทรัพยากรเข้าปฏิทินกลาง พร้อม flow แยกต่อห้องสำหรับรับการเปลี่ยนแปลงแบบทันที",
+          en: "Synchronises room and resource bookings into the shared calendar, with a per-room flow to pick up changes as they happen.",
+        },
+        {
+          th: "ทำช่องทางแจ้งเตือนกลางที่ระบบอื่นยิงเข้ามาได้ ทั้งแจ้งเตือนอุปกรณ์เครือข่าย สถานะงานประมวลผลเอกสาร และคิวส่งเมลที่ค้าง ส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
+          en: "Provides a shared alerting endpoint other systems post to — network-device alerts, document-processing status, stalled mail queues — routed into the responsible team's chat.",
+        },
+        {
+          th: "ห่อข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น ผังองค์กร และข้อมูลอ้างอิงของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
+          en: "Wraps internal data as APIs other systems can call — the org chart, and reference data from the resource-allocation system — without exposing databases to each other.",
+        },
+        {
+          th: "งานตามเวลาที่ดึงข้อมูลอัตราแลกเปลี่ยนและรันงานฝั่ง ERP แล้วนำผลเข้าระบบปลายทาง ลดงานที่เคยต้องมีคนกดเองทุกวัน",
+          en: "Scheduled jobs pull exchange rates and run ERP-side batches, feeding the results downstream and removing work that previously needed a person to trigger it daily.",
+        },
+      ],
+      stack: [
+        "Power Automate",
+        "Microsoft Graph",
+        "Exchange Online",
+        "SharePoint",
+        "SQL Server",
+        "SAP",
+        "REST",
+      ],
+    },
+    {
+      slug: "e-name-card",
+      name: {
+        th: "ระบบนามบัตรอิเล็กทรอนิกส์ขององค์กร",
+        en: "Corporate digital name card",
+      },
+      summary: {
+        th: "เว็บแอปที่ให้พนักงานเปิดนามบัตรดิจิทัลของตัวเองและให้คนอื่นบันทึกลงสมุดโทรศัพท์ได้ในขั้นตอนเดียว ล็อกอินด้วยบัญชีองค์กร สร้าง QR code ให้รายบุคคล และแปลงข้อมูลเป็นไฟล์รายชื่อมาตรฐานที่โทรศัพท์ทุกเครื่องอ่านได้",
+        en: "A web app where staff open their own digital name card and anyone can save it to their contacts in a single step. Sign-in uses the corporate account, each person gets a QR code, and the data is served as the standard contact-file format that every phone understands.",
+      },
+      role: {
+        th: "Full-stack · ออกแบบ พัฒนา และวาง deployment",
+        en: "Full-stack · design, implementation and deployment",
+      },
+      confidential: true,
+      year: "2026",
+      flow: [
+        { label: { th: "ล็อกอินบัญชีองค์กร", en: "Corporate sign-in" }, icon: "shield" },
+        { label: { th: "นามบัตรของตัวเอง", en: "Your own card" }, icon: "contact" },
+        { label: { th: "QR code รายบุคคล", en: "Personal QR code" }, icon: "qr" },
+        { label: { th: "บันทึกลงสมุดโทรศัพท์", en: "Save to contacts" }, icon: "folder" },
+      ],
+      impact: [
+        {
+          th: "ยืนยันตัวตนผ่าน Microsoft Entra ID ทำให้พนักงานเห็นและแก้ได้เฉพาะนามบัตรของตัวเอง โดยไม่ต้องสร้างระบบผู้ใช้ขึ้นมาใหม่",
+          en: "Authentication through Microsoft Entra ID means each person sees and edits only their own card, without standing up a separate user system.",
+        },
+        {
+          th: "เก็บ secret ทั้งหมดไว้ใน Azure Key Vault และดึงตอนรัน ไม่มีค่าอ่อนไหวฝังอยู่ในโค้ดหรือไฟล์ตั้งค่า",
+          en: "All secrets live in Azure Key Vault and are fetched at run time; none are embedded in source or configuration files.",
+        },
+        {
+          th: "ส่งขึ้นใช้งานเป็น container บน Kubernetes พร้อม CI/CD ที่ต้องมีผู้อนุมัติก่อน deploy ขึ้น production",
+          en: "Ships as a container on Kubernetes, with a CI/CD pipeline that requires an approver before a production deploy.",
+        },
+      ],
+      stack: [
+        "ASP.NET Core MVC",
+        ".NET 9",
+        "Microsoft Entra ID",
+        "Azure Key Vault",
+        "Azure Blob Storage",
+        "Docker",
+        "Kubernetes",
+      ],
     },
     {
       slug: "corporate-website",
@@ -514,6 +726,12 @@ export const profile = {
       },
       confidential: true,
       year: "2025–2026",
+      flow: [
+        { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" }, icon: "wordpress" },
+        { label: { th: "ดึงเนื้อหาออกมา", en: "Extract content" }, icon: "parse" },
+        { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" }, icon: "database" },
+        { label: { th: "เว็บสองภาษา", en: "Bilingual site" }, icon: "globe" },
+      ],
       impact: [
         {
           th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของปลั๊กอิน จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
@@ -535,44 +753,42 @@ export const profile = {
       stack: ["Webflow", "Webflow CMS", "JavaScript", "CSS", "Cloudflare"],
     },
     {
-      slug: "power-platform-automation",
+      slug: "employee-intranet",
       name: {
-        th: "งาน automation บน Power Platform",
-        en: "Automation on the Power Platform",
+        th: "อินทราเน็ตพนักงานบน Power Pages",
+        en: "Employee intranet on Power Pages",
       },
       summary: {
-        th: "ออกแบบและพัฒนา cloud flow ที่เชื่อม Microsoft Forms, SQL Server, Exchange Online และ Active Directory เข้าด้วยกัน ครอบคลุมทั้งงานประมวลผลแบบทดสอบพนักงาน งานแจ้งเตือน และงานอ่านข้อมูลจากเอกสารด้วย AI Builder",
-        en: "Designed and built cloud flows connecting Microsoft Forms, SQL Server, Exchange Online and Active Directory, covering employee assessment processing, notifications, and document data capture with AI Builder.",
+        th: "เว็บภายในสำหรับพนักงานที่สร้างบน Power Pages โดยเก็บเนื้อหาทั้งหมดไว้ใน Dataverse และมีแอปหลังบ้านให้ทีมสื่อสารองค์กรจัดการเองได้ ครอบคลุมข่าวสาร เอกสาร และลิงก์ระบบภายใน",
+        en: "The staff-facing internal site, built on Power Pages with all content held in Dataverse and a back-office app the communications team runs themselves — news, documents and links into internal systems.",
       },
-      role: { th: "ออกแบบและพัฒนา flow", en: "Flow design and implementation" },
+      role: {
+        th: "พัฒนา ดูแล และ reverse-engineer โครงสร้างเดิม",
+        en: "Development, maintenance, and reverse-engineering the existing structure",
+      },
       confidential: true,
       year: "2025–2026",
+      flow: [
+        { label: { th: "ทีมสื่อสารจัดการเนื้อหา", en: "Comms team edits content" }, icon: "form" },
+        { label: { th: "เก็บใน Dataverse", en: "Stored in Dataverse" }, icon: "database" },
+        { label: { th: "แสดงผลบน Power Pages", en: "Rendered by Power Pages" }, icon: "browser" },
+        { label: { th: "พนักงานเข้าถึงได้ทั่วองค์กร", en: "Reaches all staff" }, icon: "person" },
+      ],
       impact: [
         {
-          th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลง SQL Server และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
-          en: "A flow scores employee code-of-conduct assessments against the answer key, records results in SQL Server, and emails the outcome to each respondent automatically, in both Thai and English editions.",
+          th: "จัดทำแผนผังของไซต์ขึ้นใหม่ทั้งชุด หลังพบว่าเครื่องมือมาตรฐานดึงโครงสร้างลงมาไม่ได้ ทำให้ทีมมีเอกสารอ้างอิงสำหรับแก้ไขครั้งต่อไป",
+          en: "Rebuilt a full map of the site after the standard tooling failed to download its structure, giving the team a reference to work from next time.",
         },
         {
-          th: "ผลที่บันทึกไว้ถูกนำไปใช้ในรายงานติดตามความคืบหน้ารายหน่วยงาน สำหรับรายงานต่อคณะกรรมการ",
-          en: "The recorded results feed a completion-tracking report broken down by business unit for reporting to the governing committee.",
+          th: "ตรวจพบว่าสิทธิ์การเข้าถึงข้อมูลถูกตั้งเป็นเปิดสาธารณะทั้งหมด และเป็นประเด็นที่ยกขึ้นให้แก้",
+          en: "Found that the data-access permissions were set to public across the board, and raised it to be corrected.",
         },
         {
-          th: "ย้ายการส่งอีเมลของระบบคิวเมลกลางมาใช้ cloud flow และเพิ่มการอ้างอิงข้ามระบบ เพื่อให้ติดตามอีเมลที่ส่งไม่สำเร็จกลับไปยังรายการต้นทางได้",
-          en: "Moved the central mail queue's delivery onto a cloud flow and added cross-system references so bounced mail can be traced back to the originating record.",
-        },
-        {
-          th: "ใช้ AI Builder อ่านข้อมูลจากเอกสารเพื่อลดงานคีย์ข้อมูลด้วยมือ และใช้ร่วมกับ UiPath ในงานที่ระบบ ERP ไม่เปิดช่องทางให้เชื่อมต่อโดยตรง",
-          en: "Applied AI Builder to extract data from documents, reducing manual entry, and combined it with UiPath where the ERP offered no direct integration path.",
+          th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",
+          en: "Applied the corporate rebrand across the site — colour system, logo, and the name embedded in components throughout it.",
         },
       ],
-      stack: [
-        "Power Automate",
-        "AI Builder",
-        "Microsoft Forms",
-        "SQL Server",
-        "Microsoft Graph",
-        "UiPath",
-      ],
+      stack: ["Power Pages", "Dataverse", "Power Platform", "JavaScript", "CSS"],
     },
     {
       slug: "freelance",
@@ -603,7 +819,7 @@ export const profile = {
     {
       title: { th: "การเงินและอนุมัติ", en: "Finance & approvals" },
       items: [
-        { th: "ระบบขออนุมัติใช้เงิน ทั้งแบบมีงบประมาณ ไม่มีงบประมาณ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
+        { th: "ระบบขออนุมัติงบประมาณ ทั้งแบบมีงบ ไม่มีงบ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
         { th: "ระบบเบิกค่าใช้จ่ายและเงินยืมทดรองของพนักงาน", en: "Employee expenses and cash advances" },
         { th: "การวิเคราะห์อายุลูกหนี้และสถานะความเสี่ยงของลูกหนี้", en: "Receivable ageing and risk-status analysis" },
         { th: "พอร์ทัลอนุมัติกลางที่เชื่อมต่อจากทุกระบบ", en: "Central approval portal integrated with every system" },
@@ -770,6 +986,20 @@ export const profile = {
         en: "Reverse-engineering that previously took days is completed within a single working session, with a person remaining accountable for the result.",
       },
     },
+    {
+      title: {
+        th: "ต่อ AI เข้ากับระบบงานจริง ไม่ใช่แค่ในเอดิเตอร์",
+        en: "Wiring AI into the systems of record, not just the editor",
+      },
+      body: {
+        th: "งานส่งมอบขึ้น production ต้องเปิดเอกสาร change ในระบบ ITSM ทุกครั้ง ซึ่งเดิมเป็นงานเขียนซ้ำ ๆ จึงต่อ API ของระบบนั้นเข้ากับกระบวนการ แล้วให้ AI ประกอบเนื้อหาจากสิ่งที่แก้จริง ทั้งรายการไฟล์ คำสั่งฐานข้อมูล แผนติดตั้ง แผนถอยกลับ และแผนทดสอบ ก่อนเปิดเป็นฉบับร่างรอคนตรวจ",
+        en: "Every production release requires a change record in the ITSM system, which was repetitive writing. The system API is now wired into the process and AI assembles the content from what actually changed — file list, database steps, implementation, backout and test plans — opening it as a draft for a person to review.",
+      },
+      result: {
+        th: "เอกสาร change ตรงกับสิ่งที่แก้จริงเสมอ เพราะสร้างจาก diff ไม่ใช่จากความจำ และคนยังเป็นผู้ตรวจและกดส่งเองทุกฉบับ",
+        en: "The change record always matches what was actually changed, because it is generated from the diff rather than from memory — and a person still reviews and submits every one.",
+      },
+    },
   ] satisfies Practice[],
 
   /**
@@ -823,6 +1053,7 @@ export const profile = {
         "Active Directory",
         "Microsoft Entra ID",
         "Microsoft Graph",
+        "ServiceNow API",
         "Power Automate",
         "Power Apps",
         "Power Pages",
