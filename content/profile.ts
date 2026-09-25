@@ -104,8 +104,8 @@ export const profile = {
       en: "A Full Stack Developer with over 10 years of experience, owning around ten core back-office systems — document and budget-approval workflows, access management, SAP integration and automation — and supporting more than twenty further back-office systems across the same organisation.",
     },
     {
-      th: "มีความเชี่ยวชาญเฉพาะด้านระบบ legacy ที่ไม่มีเอกสารประกอบ โดยใช้วิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
-      en: "Specialised in undocumented legacy systems, verifying actual system behaviour against the database before any modification so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where correctness is non-negotiable.",
+      th: "มีความเชี่ยวชาญด้านระบบ legacy ที่ใช้งานต่อเนื่องมานาน โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
+      en: "Specialised in long-running legacy systems, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where correctness is non-negotiable.",
     },
     {
       th: "ให้ความสำคัญกับการจัดทำเอกสารควบคู่กับการพัฒนา ทั้งการ reverse-engineer ระบบเดิมให้เป็นเอกสารอ้างอิง และการกำหนดมาตรฐานการทำงานร่วมกันของทีม เพื่อลดเวลาที่ต้องใช้ในการทำความเข้าใจระบบสำหรับผู้ที่รับช่วงงานต่อ",
@@ -449,8 +449,8 @@ export const profile = {
           en: "Added a direct table-read path for data the existing services couldn't see, removing the wait on the ABAP team for new endpoints.",
         },
         {
-          th: "แก้ไขจุดตรวจสอบที่ทำให้การ sync ข้อมูลหยุดทำงานโดยไม่มีการแจ้งเตือน ซึ่งเดิมทำให้ไม่ทราบว่าข้อมูลไม่ถูกส่งมา",
-          en: "Closed a failure gate that allowed synchronisation to stall without notification, a condition that previously went undetected.",
+          th: "เพิ่มการแจ้งเตือนเมื่อการ sync ข้อมูลไม่สำเร็จ ทำให้รู้ได้ทันทีว่าข้อมูลปลายทางยังไม่อัปเดต",
+          en: "Added alerting on failed synchronisation, so a stale downstream dataset is now visible immediately.",
         },
       ],
       stack: ["ASP.NET Core", "Hangfire", "SOAP", "SQL Server", "SAP"],
@@ -511,8 +511,8 @@ export const profile = {
       ],
       impact: [
         {
-          th: "จัดทำเอกสารอ้างอิงของ workflow ทั้งหมดขึ้นใหม่จากโค้ดและฐานข้อมูลจริง เพราะเอกสารเดิมระบุไว้เพียงสามประเภทจากเจ็ดประเภทที่ระบบทำงานอยู่",
-          en: "Rebuilt the workflow reference from the code and the live database, because the existing documentation described three of the seven document types the system actually runs.",
+          th: "จัดทำเอกสารอ้างอิงของ workflow ครบทั้งเจ็ดประเภทจากโค้ดและฐานข้อมูลจริง พร้อม flowchart และตารางผู้รับผิดชอบราย step ให้ทีมใช้ต่อได้",
+          en: "Produced a workflow reference covering all seven document types, derived from the code and the live database, with flowcharts and per-step ownership for the team to work from.",
         },
         {
           th: "ข้อมูลหลักของทรัพย์สินรับมาจากระบบบัญชีตามเวลาโดยอัตโนมัติ แทนการคีย์ซ้ำในสองระบบ",
@@ -550,8 +550,8 @@ export const profile = {
       ],
       impact: [
         {
-          th: "ไล่แก้ชุดข้อบกพร่องที่ทำให้ข้อมูลเสียหายเงียบ ๆ เช่น เงื่อนไขค้นหาที่กว้างเกินจนแก้ข้อมูลผิดรายการ และการลบแล้วเพิ่มใหม่ทุกครั้งที่แก้ไข ซึ่งทำให้ความเชื่อมโยงระหว่างเอกสารขาด",
-          en: "Worked through a set of defects that corrupted data quietly — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
+          th: "แก้ชุดข้อบกพร่องด้านความถูกต้องของข้อมูล เช่น เงื่อนไขค้นหาที่กว้างเกินจนแก้ข้อมูลผิดรายการ และการลบแล้วเพิ่มใหม่ทุกครั้งที่แก้ไข ซึ่งทำให้ความเชื่อมโยงระหว่างเอกสารขาด",
+          en: "Worked through a set of data-integrity defects — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
         },
         {
           th: "วาง state machine ของวันที่ในเส้นทางขนส่งให้ชัดเจน หลังพบว่าการบันทึกวันที่บางขั้นถูกเขียนทับจนหายไป",
@@ -600,8 +600,8 @@ export const profile = {
           en: "The largest single flow runs well over a hundred steps, maintaining organisation-wide mail groups and their members — work that previously recurred every month by hand.",
         },
         {
-          th: "มี flow ตรวจสถานะการเชื่อมต่อของตัวเองตามเวลา เพราะ connector ที่หมดอายุเงียบ ๆ ทำให้ทั้งชุดหยุดทำงานโดยไม่มีใครรู้",
-          en: "A scheduled flow checks the health of its own connections, because a connector that expires quietly stops the whole set without anyone noticing.",
+          th: "มี flow ตรวจสถานะการเชื่อมต่อของตัวเองตามเวลา ทำให้รู้ก่อนที่ connector หมดอายุจะทำให้ทั้งชุดหยุดทำงาน",
+          en: "A scheduled flow checks the health of its own connections, so an expiring connector is caught before it can stop the whole set.",
         },
       ],
       stack: [
@@ -747,8 +747,8 @@ export const profile = {
           en: "Bound the key homepage elements — background video, headline and its colour treatment — to the CMS so content owners can adjust them directly.",
         },
         {
-          th: "แก้กรณีหน้ารายการแสดงข้อมูลไม่ครบ เนื่องจากข้อจำกัดจำนวนรายการต่อ Collection List ของแพลตฟอร์ม ซึ่งไม่มีการแจ้งเตือนใด ๆ",
-          en: "Resolved a case where a listing page showed incomplete data due to a platform cap on items per Collection List, a limit that surfaces no warning.",
+          th: "ทำให้หน้ารายการแสดงข้อมูลได้ครบทุกรายการ โดยออกแบบรอบข้อจำกัดจำนวนรายการต่อ Collection List ของแพลตฟอร์ม",
+          en: "Made a listing page show its full dataset by designing around the platform cap on items per Collection List.",
         },
         {
           th: "รองรับงานเปลี่ยนอัตลักษณ์องค์กร ทั้งชุดสี โลโก้ และหน้าแจ้งปิดปรับปรุงระหว่างเปลี่ยนผ่าน",
@@ -782,12 +782,12 @@ export const profile = {
       ],
       impact: [
         {
-          th: "จัดทำแผนผังของไซต์ขึ้นใหม่ทั้งชุด หลังพบว่าเครื่องมือมาตรฐานดึงโครงสร้างลงมาไม่ได้ ทำให้ทีมมีเอกสารอ้างอิงสำหรับแก้ไขครั้งต่อไป",
-          en: "Rebuilt a full map of the site after the standard tooling failed to download its structure, giving the team a reference to work from next time.",
+          th: "จัดทำแผนผังของไซต์ทั้งชุดจากตัวไซต์โดยตรง ทำให้ทีมมีเอกสารอ้างอิงสำหรับแก้ไขครั้งต่อไป",
+          en: "Mapped the site in full, working directly from the live site, giving the team a reference to work from next time.",
         },
         {
-          th: "หลังบ้านเดิมเป็น model-driven app ที่ทีมสื่อสารใช้งานไม่คล่อง จึงเริ่มเขียนใหม่เป็นเว็บแอปที่ออกแบบตามลำดับงานจริงของทีม",
-          en: "The original back office was a model-driven app the communications team found awkward, so it is being rewritten as a web app shaped around how the team actually works.",
+          th: "เริ่มเขียนหลังบ้านใหม่เป็นเว็บแอปที่ออกแบบตามลำดับงานจริงของทีมสื่อสาร แทน model-driven app เดิม",
+          en: "The back office is being rewritten as a web app shaped around how the communications team actually works, replacing the original model-driven app.",
         },
         {
           th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",
