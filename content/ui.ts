@@ -41,6 +41,10 @@ export const ui = {
   education: { th: "การศึกษา", en: "Education" },
   certifications: { th: "ใบรับรอง", en: "Certifications" },
   googleCloud: { th: "Google Cloud", en: "Google Cloud" },
+  googleCloudSummary: {
+    th: "skill badge — Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
+    en: "skill badges — Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
+  },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
   learnTotal: { th: "รายการ", en: "achievements" },
   learnPaths: { th: "เส้นทางการเรียน", en: "learning paths" },
@@ -65,6 +69,8 @@ export const ui = {
     en: "For project enquiries or further details, please feel free to get in touch.",
   },
   viewProject: { th: "ดูผลงาน", en: "View" },
+  moreProjects: { th: "ระบบอื่นที่รับผิดชอบ", en: "Other systems I owned" },
+  contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   builtWith: {
     th: "เขียนด้วย Next.js และ Tailwind CSS · deploy บน Vercel",
     en: "Built with Next.js and Tailwind CSS · deployed on Vercel",
