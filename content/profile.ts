@@ -780,8 +780,8 @@ export const profile = {
           en: "Rebuilt a full map of the site after the standard tooling failed to download its structure, giving the team a reference to work from next time.",
         },
         {
-          th: "ตรวจพบว่าสิทธิ์การเข้าถึงข้อมูลถูกตั้งเป็นเปิดสาธารณะทั้งหมด และเป็นประเด็นที่ยกขึ้นให้แก้",
-          en: "Found that the data-access permissions were set to public across the board, and raised it to be corrected.",
+          th: "หลังบ้านเดิมเป็น model-driven app ที่ทีมสื่อสารใช้งานไม่คล่อง จึงเริ่มเขียนใหม่เป็นเว็บแอปที่ออกแบบตามลำดับงานจริงของทีม",
+          en: "The original back office was a model-driven app the communications team found awkward, so it is being rewritten as a web app shaped around how the team actually works.",
         },
         {
           th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",
