@@ -137,7 +137,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 // การ์ดที่มีแผนภาพกว้างกว่าคอลัมน์ปกติ โดยขยายทั้งใบพร้อมเส้นขอบ
                 // ถ้าให้เฉพาะแผนภาพทะลุออก มันจะยื่นเลยขอบการ์ดจนดูเหมือนหลุดกรอบ
                 // ความยาวบรรทัดข้างในคุมแยกด้วย max-w
-                project.featured ? "sm:col-span-2 lg:-mx-12 xl:-mx-32" : ""
+                project.featured
+                  ? "sm:col-span-2 lg:-mx-12 lg:px-12 xl:-mx-32 xl:px-32"
+                  : ""
               }`}
             >
               <h3 className="font-medium">{project.name[lang]}</h3>

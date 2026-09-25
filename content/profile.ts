@@ -18,7 +18,7 @@
 
 export const locales = ["th", "en"] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "th";
+export const defaultLocale: Locale = "en";
 
 /** ข้อความสองภาษา */
 export type L = Record<Locale, string>;

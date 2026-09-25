@@ -80,11 +80,14 @@ export default async function RootLayout({
 
         <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/80 backdrop-blur">
           <nav className="mx-auto flex max-w-3xl items-center gap-6 px-6 py-4 text-sm">
-            <Link href={`/${lang}`} className="font-mono text-accent">
+            <Link
+              href={`/${lang}`}
+              className="shrink-0 font-mono text-xs text-accent sm:text-sm"
+            >
               jerateeps.dev
             </Link>
             {/* จอแคบเลื่อนแถวเมนูแทนการซ่อน — หน้ายาวหลายพัน px ถ้าไม่มีทางกระโดดคือต้องสกรอลล์ทั้งหน้า */}
-            <ul className="-mx-1 flex flex-1 items-center gap-4 overflow-x-auto px-1 text-muted [scrollbar-width:none] sm:ml-auto sm:flex-none sm:gap-5 sm:overflow-visible">
+            <ul className="-mx-1 flex flex-1 items-center gap-4 overflow-x-auto px-1 text-muted [mask-image:linear-gradient(to_right,#000_calc(100%-20px),transparent)] [scrollbar-width:none] sm:ml-auto sm:flex-none sm:gap-5 sm:overflow-visible sm:[mask-image:none]">
               {(
                 ["about", "experience", "projects", "ai", "contact"] as const
               ).map(
