@@ -447,35 +447,108 @@ export const profile = {
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
     },
     {
-      slug: "ad-provisioning",
+      slug: "identity-automation",
       name: {
-        th: "ระบบจัดการบัญชีผู้ใช้อัตโนมัติ",
-        en: "Automated account provisioning",
+        th: "ระบบอัตโนมัติของวงจรชีวิตบัญชีพนักงาน",
+        en: "Employee identity lifecycle automation",
       },
       summary: {
-        th: "Web API ที่ดูแลวงจรชีวิตบัญชีผู้ใช้ — สร้าง แก้ ปิด และ sync ข้อมูลพนักงานจากระบบ HR เข้า directory ขององค์กร รวมถึงจัดการ mail contact และการส่งต่อเมล",
-        en: "A Web API that owns the account lifecycle — create, update, disable — and syncs employee attributes from HR into the corporate directory, including mail contacts and forwarding.",
+        th: "ยกงานเปิด แก้ และปิดบัญชีพนักงานทั้งวงจรให้เป็นอัตโนมัติ ตั้งแต่รับพนักงานใหม่ไปจนถึงวันลาออก ประกอบด้วย Web API ที่สั่งงาน directory ขององค์กร และชุด cloud flow กว่า 30 ตัวที่ครอบคลุมทั้งพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก",
+        en: "Automates the full employee account lifecycle from joining to leaving: a Web API that drives the corporate directory, plus more than thirty cloud flows covering staff in the HR system, staff outside it, and external people.",
       },
-      role: { th: "Backend · พัฒนาและแก้ไขปัญหาการใช้งาน", en: "Backend · development and troubleshooting" },
+      role: {
+        th: "ออกแบบและพัฒนา ทั้งฝั่ง API และฝั่ง flow",
+        en: "Design and implementation, both the API and the flows",
+      },
       confidential: true,
-      year: "2025",
+      year: "2025–2026",
       flow: [
         { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" }, icon: "database" },
-        { label: { th: "Web service", en: "Web service" }, icon: "browser" },
-        { label: { th: "คำสั่งจัดการบัญชี", en: "Account commands" }, icon: "parse" },
-        { label: { th: "Active Directory", en: "Active Directory" }, icon: "shield" },
+        { label: { th: "flow แยกตามประเภทบุคคล", en: "Flows per person type" }, icon: "rules" },
+        { label: { th: "สั่งงาน directory และเมล", en: "Directory and mail actions" }, icon: "shield" },
+        { label: { th: "บัญชี สิทธิ์ และกลุ่มเมล", en: "Accounts, licences, groups" }, icon: "contact" },
       ],
       impact: [
         {
-          th: "เปลี่ยนงาน onboarding และ offboarding จากการดำเนินการด้วยมือทีละบัญชี เป็นกระบวนการอัตโนมัติที่ทำงานตามข้อมูลจากระบบ HR",
-          en: "Onboarding and offboarding moved from per-account manual work to an automated job driven by HR data.",
+          th: "งานวันลาออกรวมเป็นชุดเดียวที่ทำงานตามกำหนดเวลา ทั้งปิดบัญชี ถอนสิทธิ์ใช้งาน ถอดออกจากกลุ่มเมล และตั้งการส่งต่อเมล จากเดิมที่ต้องไล่ทำทีละระบบด้วยมือ",
+          en: "Leaving-day work runs as one scheduled set — disabling the account, reclaiming licences, removing group memberships and setting mail forwarding — instead of being worked through system by system by hand.",
         },
         {
-          th: "แก้ไขกรณีที่งานรายงานผลสำเร็จทั้งที่ directory ปฏิเสธคำสั่ง อันเกิดจากการอ่านผลลัพธ์ไม่ครบทุกช่องทาง",
-          en: "Fixed a case where the job reported success while the directory had rejected the command, because only one of the two output streams was being read.",
+          th: "แยกเส้นทางของพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก ออกจากกัน เพราะสามกลุ่มนี้มีต้นทางข้อมูลและเงื่อนไขการหมดอายุต่างกัน",
+          en: "Splits the path for HR-registered staff, staff outside the HR system, and external people, because the three differ in where their data comes from and when their access should expire.",
+        },
+        {
+          th: "งานชุดใหญ่ที่สุดมีกว่าร้อยขั้นตอนในหนึ่ง flow — จัดการกลุ่มเมลและสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
+          en: "The largest single flow runs well over a hundred steps, maintaining organisation-wide mail groups and their members — work that previously recurred every month by hand.",
+        },
+        {
+          th: "มี flow ตรวจสถานะการเชื่อมต่อของตัวเองตามเวลา เพราะ connector ที่หมดอายุเงียบ ๆ ทำให้ทั้งชุดหยุดทำงานโดยไม่มีใครรู้",
+          en: "A scheduled flow checks the health of its own connections, because a connector that expires quietly stops the whole set without anyone noticing.",
         },
       ],
-      stack: ["ASP.NET Core", "PowerShell", "SSH", "Active Directory", "Docker"],
+      stack: [
+        "Power Automate",
+        "ASP.NET Core",
+        "Microsoft Graph",
+        "Active Directory",
+        "PowerShell",
+        "Power Apps",
+        "SQL Server",
+      ],
+    },
+    {
+      slug: "enterprise-automation",
+      name: {
+        th: "งาน automation กลางขององค์กร",
+        en: "Organisation-wide automation",
+      },
+      summary: {
+        th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็นกาวเชื่อมระหว่างระบบภายใน ครอบคลุมงานซิงก์ข้อมูลตามเวลา งานแจ้งเตือน งานเปิด API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
+        en: "A set of production cloud flows acting as glue between internal systems — scheduled synchronisation, alerting, APIs other systems call, and document handling — more than sixty in total.",
+      },
+      role: {
+        th: "ออกแบบ พัฒนา และดูแลต่อเนื่อง",
+        en: "Design, implementation and ongoing maintenance",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ตัวกระตุ้นตามเวลาและ HTTP", en: "Schedules and HTTP triggers" }, icon: "gear" },
+        { label: { th: "ซิงก์ข้อมูลข้ามระบบ", en: "Cross-system sync" }, icon: "database" },
+        { label: { th: "แจ้งเตือนไปยังผู้ดูแล", en: "Alerts to the right people" }, icon: "mail" },
+        { label: { th: "เอกสารและรายงาน", en: "Documents and reports" }, icon: "report" },
+      ],
+      impact: [
+        {
+          th: "ซิงก์ข้อมูลพนักงานลง directory ภายในองค์กรตามเวลา ทำให้ระบบที่อ่าน directory ได้ข้อมูลตรงกันโดยไม่ต้องต่อ HR เอง",
+          en: "Synchronises employee data into the on-premise directory on a schedule, so every system reading from it stays consistent without integrating with HR directly.",
+        },
+        {
+          th: "ซิงก์การจองห้องและทรัพยากรเข้าปฏิทินกลาง พร้อม flow แยกต่อห้องสำหรับรับการเปลี่ยนแปลงแบบทันที",
+          en: "Synchronises room and resource bookings into the shared calendar, with a per-room flow to pick up changes as they happen.",
+        },
+        {
+          th: "ทำช่องทางแจ้งเตือนกลางที่ระบบอื่นยิงเข้ามาได้ ทั้งแจ้งเตือนอุปกรณ์เครือข่าย สถานะงานประมวลผลเอกสาร และคิวส่งเมลที่ค้าง ส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
+          en: "Provides a shared alerting endpoint other systems post to — network-device alerts, document-processing status, stalled mail queues — routed into the responsible team's chat.",
+        },
+        {
+          th: "ห่อข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น ผังองค์กร และข้อมูลอ้างอิงของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
+          en: "Wraps internal data as APIs other systems can call — the org chart, and reference data from the resource-allocation system — without exposing databases to each other.",
+        },
+        {
+          th: "งานตามเวลาที่ดึงข้อมูลอัตราแลกเปลี่ยนและรันงานฝั่ง ERP แล้วนำผลเข้าระบบปลายทาง ลดงานที่เคยต้องมีคนกดเองทุกวัน",
+          en: "Scheduled jobs pull exchange rates and run ERP-side batches, feeding the results downstream and removing work that previously needed a person to trigger it daily.",
+        },
+      ],
+      stack: [
+        "Power Automate",
+        "Microsoft Graph",
+        "Exchange Online",
+        "SharePoint",
+        "SQL Server",
+        "SAP",
+        "REST",
+      ],
     },
     {
       slug: "e-name-card",
@@ -564,52 +637,6 @@ export const profile = {
         },
       ],
       stack: ["Webflow", "Webflow CMS", "JavaScript", "CSS", "Cloudflare"],
-    },
-    {
-      slug: "power-platform-automation",
-      name: {
-        th: "งาน automation บน Power Platform",
-        en: "Automation on the Power Platform",
-      },
-      summary: {
-        th: "ออกแบบและพัฒนา cloud flow ที่เชื่อม Microsoft Forms, SQL Server, Exchange Online และ Active Directory เข้าด้วยกัน ครอบคลุมทั้งงานประมวลผลแบบทดสอบพนักงาน งานแจ้งเตือน และงานอ่านข้อมูลจากเอกสารด้วย AI Builder",
-        en: "Designed and built cloud flows connecting Microsoft Forms, SQL Server, Exchange Online and Active Directory, covering employee assessment processing, notifications, and document data capture with AI Builder.",
-      },
-      role: { th: "ออกแบบและพัฒนา flow", en: "Flow design and implementation" },
-      confidential: true,
-      year: "2025–2026",
-      flow: [
-        { label: { th: "แบบฟอร์มออนไลน์", en: "Online form" }, icon: "form" },
-        { label: { th: "Cloud flow ประมวลผล", en: "Cloud flow" }, icon: "gear" },
-        { label: { th: "บันทึกลงฐานข้อมูล", en: "Store in database" }, icon: "database" },
-        { label: { th: "แจ้งผลและรายงาน", en: "Notify and report" }, icon: "mail" },
-      ],
-      impact: [
-        {
-          th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลง SQL Server และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
-          en: "A flow scores employee code-of-conduct assessments against the answer key, records results in SQL Server, and emails the outcome to each respondent automatically, in both Thai and English editions.",
-        },
-        {
-          th: "ผลที่บันทึกไว้ถูกนำไปใช้ในรายงานติดตามความคืบหน้ารายหน่วยงาน สำหรับรายงานต่อคณะกรรมการ",
-          en: "The recorded results feed a completion-tracking report broken down by business unit for reporting to the governing committee.",
-        },
-        {
-          th: "ย้ายการส่งอีเมลของระบบคิวเมลกลางมาใช้ cloud flow และเพิ่มการอ้างอิงข้ามระบบ เพื่อให้ติดตามอีเมลที่ส่งไม่สำเร็จกลับไปยังรายการต้นทางได้",
-          en: "Moved the central mail queue's delivery onto a cloud flow and added cross-system references so bounced mail can be traced back to the originating record.",
-        },
-        {
-          th: "ใช้ AI Builder อ่านข้อมูลจากเอกสารเพื่อลดงานคีย์ข้อมูลด้วยมือ และใช้ร่วมกับ UiPath ในงานที่ระบบ ERP ไม่เปิดช่องทางให้เชื่อมต่อโดยตรง",
-          en: "Applied AI Builder to extract data from documents, reducing manual entry, and combined it with UiPath where the ERP offered no direct integration path.",
-        },
-      ],
-      stack: [
-        "Power Automate",
-        "AI Builder",
-        "Microsoft Forms",
-        "SQL Server",
-        "Microsoft Graph",
-        "UiPath",
-      ],
     },
     {
       slug: "freelance",
