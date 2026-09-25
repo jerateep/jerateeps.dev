@@ -145,9 +145,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               // min-w-0 จำเป็น: grid item ไม่ยอมหดต่ำกว่าความกว้างเนื้อหา
               // ทำให้ svg ใน overflow-x-auto ดันทั้งหน้าให้เลื่อนแนวนอนแทน
               className={`flex min-w-0 flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent/50 ${
-                // การ์ดอยู่ในคอลัมน์เสมอ ส่วนที่ทะลุออกคือแผนภาพอย่างเดียว
-                // (เดิมทั้งการ์ดทะลุออก ทำให้บรรทัดข้อความยาวถึง 173 ตัวอักษร)
-                project.featured ? "sm:col-span-2" : ""
+                // การ์ดที่มีแผนภาพกว้างกว่าคอลัมน์ปกติ โดยขยายทั้งใบพร้อมเส้นขอบ
+                // ถ้าให้เฉพาะแผนภาพทะลุออก มันจะยื่นเลยขอบการ์ดจนดูเหมือนหลุดกรอบ
+                // ความยาวบรรทัดข้างในคุมแยกด้วย max-w
+                project.featured ? "sm:col-span-2 lg:-mx-12 xl:-mx-32" : ""
               }`}
             >
               <div className="flex items-baseline justify-between gap-3">
@@ -158,7 +159,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </div>
               {/* badge รายการ์ดถูกถอดออก — ประกาศครั้งเดียวที่หัว section แทน
                   เพราะ 8 ใน 9 ใบเป็นระบบภายใน ซ้ำทุกใบแล้วอ่านเหมือนกำแพงปิดบัง */}
-              <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
+              <p className={`mt-3 text-sm text-muted ${project.featured ? "max-w-[68ch]" : ""}`}>
+                {project.summary[lang]}
+              </p>
               {project.flow && <MiniFlow steps={project.flow} lang={lang} />}
               {project.diagram && (
                 <PipelineDiagram
@@ -168,7 +171,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   scrollHint={ui.scrollHint[lang]}
                 />
               )}
-              <ul className="mt-4 space-y-1.5 text-sm text-muted">
+              <ul
+                className={`mt-4 space-y-1.5 text-sm text-muted ${
+                  project.featured ? "max-w-[68ch]" : ""
+                }`}
+              >
                 {project.impact.map((item, i) => (
                   <li key={i} className="flex gap-2">
                     <span aria-hidden className="text-accent">

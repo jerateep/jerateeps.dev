@@ -198,8 +198,7 @@ export function PipelineDiagram({
   const s = (key: string) => t[key]?.[lang] ?? "";
 
   return (
-    // เฉพาะแผนภาพที่ทะลุออกนอกคอลัมน์ข้อความ ตัวการ์ดและข้อความยังอยู่ในกริด
-    <figure className="mt-6 lg:-mx-16 xl:-mx-40">
+    <figure className="mt-6">
       {/* fade ขอบขวาบอกว่ายังมีต่อ — scrollbar บน macOS เป็น overlay จึงไม่เห็น affordance */}
       <div className="overflow-x-auto rounded-lg border border-border bg-bg [mask-image:linear-gradient(to_right,#000_92%,transparent)] xl:[mask-image:none]">
         <svg
