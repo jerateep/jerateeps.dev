@@ -39,6 +39,7 @@ export type Project = {
   role: L;
   impact: L[];
   stack: string[];
+  /** ใช้จัดลำดับและอ้างอิงตอนแก้เนื้อหา ไม่ได้แสดงบนหน้าเว็บ */
   year: string;
   /** ลิงก์สาธารณะเท่านั้น — ระบบภายในไม่ต้องใส่ */
   link?: string;
@@ -92,12 +93,6 @@ export const profile = {
     en: "Developing and maintaining enterprise back-office systems with .NET, Next.js and SQL Server, alongside automation and the applied use of AI within the development process.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
-  /** TODO: ยืนยันว่ารับงานแบบไหนบ้าง และพร้อมเริ่มเมื่อไหร่ */
-  available: {
-    th: "เปิดรับงานประจำและงานฟรีแลนซ์",
-    en: "Open to full-time roles and freelance work",
-  } satisfies L,
-
   about: [
     {
       th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office หลักราวสิบระบบ ครอบคลุมงานเอกสารและสายอนุมัติงบประมาณ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation และให้การสนับสนุนระบบ back-office อื่นอีกกว่า 20 ระบบในองค์กรเดียวกัน",

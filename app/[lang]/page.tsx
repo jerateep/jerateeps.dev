@@ -61,19 +61,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <p className="mt-6 max-w-2xl text-lg text-muted">
           {profile.tagline[lang]}
         </p>
-        <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
-          <span>{profile.location[lang]}</span>
-          <span aria-hidden className="text-border">
-            ·
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <span
-              aria-hidden
-              className="size-1.5 rounded-full bg-accent"
-            />
-            {profile.available[lang]}
-          </span>
-        </p>
+        <p className="mt-6 text-sm text-muted">{profile.location[lang]}</p>
       </section>
 
       {/* About */}
@@ -152,12 +140,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 project.featured ? "sm:col-span-2 lg:-mx-12 xl:-mx-32" : ""
               }`}
             >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-medium">{project.name[lang]}</h3>
-                <span className="shrink-0 font-mono text-xs text-muted">
-                  {project.year}
-                </span>
-              </div>
+              <h3 className="font-medium">{project.name[lang]}</h3>
               {/* badge รายการ์ดถูกถอดออก — ประกาศครั้งเดียวที่หัว section แทน
                   เพราะ 8 ใน 9 ใบเป็นระบบภายใน ซ้ำทุกใบแล้วอ่านเหมือนกำแพงปิดบัง */}
               <p className={`mt-3 text-sm text-muted ${project.featured ? "max-w-[68ch]" : ""}`}>
