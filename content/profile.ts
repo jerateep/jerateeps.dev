@@ -95,8 +95,8 @@ export const profile = {
 
   about: [
     {
-      th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office ขององค์กรมากกว่า 20 ระบบ ครอบคลุมงานเอกสารและสายอนุมัติ ระบบเบิกจ่าย ระบบสิทธิ์การเข้าถึง และงาน automation ที่เชื่อมต่อ SAP, Active Directory และ Microsoft 365 เข้าด้วยกัน",
-      en: "A Full Stack Developer with over 10 years of experience, responsible for more than 20 enterprise back-office systems covering document and approval workflows, expense processing, access management, and automation integrating SAP, Active Directory and Microsoft 365.",
+      th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office หลักราวสิบระบบ ครอบคลุมงานเอกสารและสายอนุมัติงบประมาณ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation และให้การสนับสนุนระบบ back-office อื่นอีกกว่า 20 ระบบในองค์กรเดียวกัน",
+      en: "A Full Stack Developer with over 10 years of experience, owning around ten core back-office systems — document and budget-approval workflows, access management, SAP integration and automation — and supporting more than twenty further back-office systems across the same organisation.",
     },
     {
       th: "มีความเชี่ยวชาญเฉพาะด้านระบบ legacy ที่ไม่มีเอกสารประกอบ โดยใช้วิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
@@ -449,31 +449,6 @@ export const profile = {
       stack: ["ASP.NET Core", "PowerShell", "SSH", "Active Directory", "Docker"],
     },
     {
-      slug: "dashboard-platform",
-      name: {
-        th: "แพลตฟอร์ม dashboard ภายในองค์กร",
-        en: "In-house dashboard platform",
-      },
-      summary: {
-        th: "แพลตฟอร์มรายงานและ dashboard สำหรับงาน back-office ที่พัฒนาขึ้นเองแทนการจัดซื้อ license Power BI ออกแบบโครงสร้างให้เพิ่มรายงานใหม่ได้โดยไม่ต้องตั้งโปรเจกต์ใหม่",
-        en: "An in-house reporting and dashboard platform for back-office, built instead of buying Power BI licences — structured so a new report drops in without standing up a new project each time.",
-      },
-      role: { th: "Full-stack · ออกแบบโครงสร้างแพลตฟอร์ม", en: "Full-stack · platform foundation" },
-      confidential: true,
-      year: "2025",
-      impact: [
-        {
-          th: "รายงานชุดแรกคือ dashboard ผลการทดสอบพนักงานทั้งองค์กร รับข้อมูลจากแบบฟอร์มออนไลน์ผ่าน flow ที่ตรวจคะแนนและส่งอีเมลอัตโนมัติ",
-          en: "The first report is an org-wide assessment dashboard, fed by an online form through a flow that scores submissions and sends the mail itself.",
-        },
-        {
-          th: "แยกเป็นสองส่วนที่ deploy อิสระ (API และหน้าเว็บ) โดยใช้ origin เดียวกันทั้งสภาพแวดล้อม dev และ production เพื่อลดปัญหา CORS และ cookie",
-          en: "Two deployables (API and web) served from one origin in both dev and prod, which keeps CORS and cookie issues off the table.",
-        },
-      ],
-      stack: [".NET", "Next.js", "Power Automate", "SQL Server", "Docker"],
-    },
-    {
       slug: "corporate-website",
       name: {
         th: "เว็บไซต์องค์กรสองภาษาบน Webflow",
@@ -745,6 +720,20 @@ export const profile = {
         en: "Reverse-engineering that previously took days is completed within a single working session, with a person remaining accountable for the result.",
       },
     },
+    {
+      title: {
+        th: "ต่อ AI เข้ากับระบบงานจริง ไม่ใช่แค่ในเอดิเตอร์",
+        en: "Wiring AI into the systems of record, not just the editor",
+      },
+      body: {
+        th: "งานส่งมอบขึ้น production ต้องเปิดเอกสาร change ในระบบ ITSM ทุกครั้ง ซึ่งเดิมเป็นงานเขียนซ้ำ ๆ จึงต่อ API ของระบบนั้นเข้ากับกระบวนการ แล้วให้ AI ประกอบเนื้อหาจากสิ่งที่แก้จริง ทั้งรายการไฟล์ คำสั่งฐานข้อมูล แผนติดตั้ง แผนถอยกลับ และแผนทดสอบ ก่อนเปิดเป็นฉบับร่างรอคนตรวจ",
+        en: "Every production release requires a change record in the ITSM system, which was repetitive writing. The system API is now wired into the process and AI assembles the content from what actually changed — file list, database steps, implementation, backout and test plans — opening it as a draft for a person to review.",
+      },
+      result: {
+        th: "เอกสาร change ตรงกับสิ่งที่แก้จริงเสมอ เพราะสร้างจาก diff ไม่ใช่จากความจำ และคนยังเป็นผู้ตรวจและกดส่งเองทุกฉบับ",
+        en: "The change record always matches what was actually changed, because it is generated from the diff rather than from memory — and a person still reviews and submits every one.",
+      },
+    },
   ] satisfies Practice[],
 
   /**
@@ -798,6 +787,7 @@ export const profile = {
         "Active Directory",
         "Microsoft Entra ID",
         "Microsoft Graph",
+        "ServiceNow API",
         "Power Automate",
         "Power Apps",
         "Power Pages",

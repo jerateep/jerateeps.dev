@@ -15,7 +15,7 @@ export const ui = {
     about: { th: "เกี่ยวกับผม", en: "About" },
     experience: { th: "ประสบการณ์ทำงาน", en: "Experience" },
     projects: { th: "ผลงานที่ผ่านมา", en: "Selected work" },
-    domains: { th: "ขอบเขตระบบที่เคยดูแล", en: "Systems I've worked on" },
+    domains: { th: "ขอบเขตระบบที่เคยทำงานด้วย", en: "Systems I have worked with" },
     background: { th: "การศึกษาและคุณวุฒิ", en: "Education & credentials" },
     ai: { th: "AI ในกระบวนการทำงาน", en: "How I work with AI" },
     skills: { th: "ทักษะและเครื่องมือ", en: "Skills & tools" },
@@ -43,8 +43,8 @@ export const ui = {
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
-    th: "ระบบมากกว่า 20 ระบบภายในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงานที่รับผิดชอบ",
-    en: "More than 20 systems within a single organisation. The system names are confidential and are therefore listed by function.",
+    th: "รวมทั้งระบบที่รับผิดชอบโดยตรงและระบบที่เข้าไปสนับสนุน มากกว่า 20 ระบบในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงาน",
+    en: "More than 20 systems within a single organisation, covering both those I owned and those I supported. The system names are confidential and are therefore listed by function.",
   },
   diagramCaption: {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
