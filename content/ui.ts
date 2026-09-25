@@ -41,6 +41,10 @@ export const ui = {
   education: { th: "การศึกษา", en: "Education" },
   certifications: { th: "ใบรับรอง", en: "Certifications" },
   googleCloud: { th: "Google Cloud", en: "Google Cloud" },
+  googleCloudSummary: {
+    th: "skill badge — Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
+    en: "skill badges — Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
+  },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
   learnTotal: { th: "รายการ", en: "achievements" },
   learnPaths: { th: "เส้นทางการเรียน", en: "learning paths" },

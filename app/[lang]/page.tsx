@@ -287,14 +287,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </ul>
 
               <p className="mt-5 text-sm font-medium">{ui.googleCloud[lang]}</p>
-              <ul className="mt-1.5 space-y-1.5 text-sm text-muted sm:columns-2 sm:gap-x-8">
-                {profile.certifications.map((cert) => (
-                  <li key={cert} className="flex gap-2">
-                    <span aria-hidden className="mt-[0.62em] size-1 shrink-0 rounded-full bg-muted/50" />
-                    <span>{cert}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* 16 รายการเรียงเต็มกินพื้นที่มากกว่าน้ำหนักที่ควรมี — สรุปเป็นบรรทัดเดียว
+                  รายการเต็มยังตรวจได้จากลิงก์ verify ด้านล่าง */}
+              <p className="mt-1 text-sm text-muted">
+                {ui.googleCloudSummary[lang]}
+              </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                 <span className="text-muted">{ui.verifyAt[lang]}</span>
                 {profile.credentialProfiles.map((p) => (
