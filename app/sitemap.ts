@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/content/profile";
 
-const SITE = "https://jerateeps.dev";
+const SITE = "https://jerateeps-dev.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.map((lang) => ({
