@@ -381,6 +381,44 @@ export const profile = {
       stack: [".NET 8", "Dapper", "Next.js", "HeroUI", "SQL Server"],
     },
     {
+      slug: "sso-platform",
+      name: {
+        th: "ระบบยืนยันตัวตนกลางและการมอบอำนาจอนุมัติ",
+        en: "Central authentication and approval delegation",
+      },
+      summary: {
+        th: "บริการยืนยันตัวตนที่ทุกระบบ back-office เรียกใช้ร่วมกัน ล็อกอินครั้งเดียวแล้วคืนทั้งตัวตน เมนูที่มีสิทธิ์ และสายการมอบอำนาจอนุมัติกลับไปให้แอป ทำให้แต่ละแอปไม่ต้องอ่านตารางสิทธิ์เอง",
+        en: "The authentication service every back-office system shares. One sign-in returns the user's identity, the menus they may use, and their approval-delegation chain — so no application has to read the permission tables itself.",
+      },
+      role: {
+        th: "ดูแลต่อเนื่องและต่อระบบใหม่เข้ากับบริการนี้",
+        en: "Ongoing maintenance, and integrating new systems onto it",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ผู้ใช้ล็อกอินครั้งเดียว", en: "One sign-in" }, icon: "person" },
+        { label: { th: "บริการกลางตรวจสิทธิ์", en: "Central service resolves" }, icon: "shield" },
+        { label: { th: "คืนเมนูและกลุ่มสิทธิ์", en: "Menus and groups returned" }, icon: "queue" },
+        { label: { th: "ทุกแอปใช้ผลเดียวกัน", en: "Every app uses the same result" }, icon: "browser" },
+      ],
+      impact: [
+        {
+          th: "แอปที่ต่อเข้ามาไม่ต้องเข้าถึงฐานข้อมูลสิทธิ์โดยตรง ลดทั้งสิทธิ์ที่ต้องขอและจุดที่ตรรกะสิทธิ์จะแตกต่างกันเอง",
+          en: "Connected applications never touch the permission database directly, which cuts both the access they must be granted and the places where permission logic can drift apart.",
+        },
+        {
+          th: "รองรับการมอบอำนาจอนุมัติหลายรูปแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และการมอบเฉพาะกิจ ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
+          en: "Carries several kinds of approval delegation — to an assistant, by org line, and ad hoc — the conditions every approval system in the organisation depends on.",
+        },
+        {
+          th: "ปรับให้รองรับโดเมนใหม่ตอนองค์กรเปลี่ยนชื่อ โดยย้ายค่าที่เคยตายตัวในโค้ดไปเป็นค่าตั้งที่แยกตามสภาพแวดล้อม",
+          en: "Extended to accept a new domain during the corporate rename, moving values that had been fixed in code into per-environment configuration.",
+        },
+      ],
+      stack: ["ASP.NET", "SOAP", "OAuth 2.0", "SQL Server", "Active Directory"],
+    },
+    {
       slug: "sap-middleware",
       name: {
         th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
@@ -445,6 +483,82 @@ export const profile = {
         },
       ],
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
+    },
+    {
+      slug: "asset-management",
+      name: {
+        th: "ระบบจัดการทรัพย์สินองค์กร",
+        en: "Corporate asset management",
+      },
+      summary: {
+        th: "ระบบติดตามทรัพย์สินตลอดอายุการใช้งาน ครอบคลุมเอกสารเจ็ดประเภท ตั้งแต่การย้ายทรัพย์สินเข้า-ออกอาคาร การโอนผู้ถือครองและศูนย์ต้นทุน ไปจนถึงการยืม คืน และต่ออายุ ทุกใบวิ่งผ่านสายอนุมัติและบันทึกกลับเข้าระบบบัญชี",
+        en: "Tracks assets across their working life through seven document types — moving assets in and out of the building, transferring holder and cost centre, and borrowing, returning and extending. Every document runs an approval line and posts back to the accounting system.",
+      },
+      role: {
+        th: "พัฒนาและดูแล รวมถึง reverse-engineer กระบวนการเดิม",
+        en: "Development and maintenance, including reverse-engineering the original process",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "ยื่นเอกสารทรัพย์สิน", en: "Raise an asset document" }, icon: "form" },
+        { label: { th: "สายอนุมัติตามประเภท", en: "Approval line per type" }, icon: "rules" },
+        { label: { th: "บันทึกกลับระบบบัญชี", en: "Post to accounting" }, icon: "erp" },
+        { label: { th: "ติดตามสถานะทรัพย์สิน", en: "Track asset status" }, icon: "database" },
+      ],
+      impact: [
+        {
+          th: "จัดทำเอกสารอ้างอิงของ workflow ทั้งหมดขึ้นใหม่จากโค้ดและฐานข้อมูลจริง เพราะเอกสารเดิมระบุไว้เพียงสามประเภทจากเจ็ดประเภทที่ระบบทำงานอยู่",
+          en: "Rebuilt the workflow reference from the code and the live database, because the existing documentation described three of the seven document types the system actually runs.",
+        },
+        {
+          th: "ข้อมูลหลักของทรัพย์สินรับมาจากระบบบัญชีตามเวลาโดยอัตโนมัติ แทนการคีย์ซ้ำในสองระบบ",
+          en: "Asset master data arrives from the accounting system on a schedule, instead of being keyed into two systems.",
+        },
+        {
+          th: "แก้กรณีที่หน้าจอโอนผู้ถือครองยอมรับทรัพย์สินซ้ำและแจ้ง error ที่ไม่ตรงกับสาเหตุจริง",
+          en: "Fixed a transfer screen that accepted duplicate assets and reported errors that did not match the real cause.",
+        },
+      ],
+      stack: ["ASP.NET WebForms", "SQL Server", "SAP", "SOAP"],
+    },
+    {
+      slug: "logistics-inventory",
+      name: {
+        th: "ระบบคลังสินค้าและงานขนส่ง",
+        en: "Inventory and logistics",
+      },
+      summary: {
+        th: "ระบบที่ดูแลการเบิกจ่ายและเคลื่อนย้ายสินค้าคงคลัง ต่อเนื่องไปถึงงานขนส่ง การคิดต้นทุนรายงาน และการวางบิลผู้ให้บริการขนส่ง พร้อมงานปิดรอบสิ้นเดือนที่ต้องกระทบยอดกับระบบบัญชี",
+        en: "Covers stock issue and movement through to freight jobs, per-job costing, forwarder billing, and the month-end close that has to reconcile against the accounting system.",
+      },
+      role: {
+        th: "พัฒนาและแก้ปัญหาความถูกต้องของข้อมูล",
+        en: "Development, with a focus on data-integrity defects",
+      },
+      confidential: true,
+      year: "2024–2026",
+      flow: [
+        { label: { th: "เบิกจ่ายและเคลื่อนย้าย", en: "Issue and movement" }, icon: "folder" },
+        { label: { th: "งานขนส่งและต้นทุน", en: "Freight jobs and costing" }, icon: "worker" },
+        { label: { th: "วางบิลผู้ให้บริการ", en: "Forwarder billing" }, icon: "report" },
+        { label: { th: "ปิดรอบกระทบยอด", en: "Month-end reconciliation" }, icon: "erp" },
+      ],
+      impact: [
+        {
+          th: "ไล่แก้ชุดข้อบกพร่องที่ทำให้ข้อมูลเสียหายเงียบ ๆ เช่น เงื่อนไขค้นหาที่กว้างเกินจนแก้ข้อมูลผิดรายการ และการลบแล้วเพิ่มใหม่ทุกครั้งที่แก้ไข ซึ่งทำให้ความเชื่อมโยงระหว่างเอกสารขาด",
+          en: "Worked through a set of defects that corrupted data quietly — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
+        },
+        {
+          th: "วาง state machine ของวันที่ในเส้นทางขนส่งให้ชัดเจน หลังพบว่าการบันทึกวันที่บางขั้นถูกเขียนทับจนหายไป",
+          en: "Defined a clear state machine for the dates along a shipment, after finding that saving one stage could overwrite and lose another.",
+        },
+        {
+          th: "ย้ายชุดตารางวิเคราะห์ข้อมูลออกจากฐานข้อมูลรุ่นเก่ามาก และกู้คีย์หลักที่หายระหว่างการย้าย",
+          en: "Migrated the analytical tables off a very old database engine and restored the primary keys lost in transit.",
+        },
+      ],
+      stack: ["ASP.NET", "SQL Server", "Oracle", "SAP"],
     },
     {
       slug: "identity-automation",
@@ -637,6 +751,44 @@ export const profile = {
         },
       ],
       stack: ["Webflow", "Webflow CMS", "JavaScript", "CSS", "Cloudflare"],
+    },
+    {
+      slug: "employee-intranet",
+      name: {
+        th: "อินทราเน็ตพนักงานบน Power Pages",
+        en: "Employee intranet on Power Pages",
+      },
+      summary: {
+        th: "เว็บภายในสำหรับพนักงานที่สร้างบน Power Pages โดยเก็บเนื้อหาทั้งหมดไว้ใน Dataverse และมีแอปหลังบ้านให้ทีมสื่อสารองค์กรจัดการเองได้ ครอบคลุมข่าวสาร เอกสาร และลิงก์ระบบภายใน",
+        en: "The staff-facing internal site, built on Power Pages with all content held in Dataverse and a back-office app the communications team runs themselves — news, documents and links into internal systems.",
+      },
+      role: {
+        th: "พัฒนา ดูแล และ reverse-engineer โครงสร้างเดิม",
+        en: "Development, maintenance, and reverse-engineering the existing structure",
+      },
+      confidential: true,
+      year: "2025–2026",
+      flow: [
+        { label: { th: "ทีมสื่อสารจัดการเนื้อหา", en: "Comms team edits content" }, icon: "form" },
+        { label: { th: "เก็บใน Dataverse", en: "Stored in Dataverse" }, icon: "database" },
+        { label: { th: "แสดงผลบน Power Pages", en: "Rendered by Power Pages" }, icon: "browser" },
+        { label: { th: "พนักงานเข้าถึงได้ทั่วองค์กร", en: "Reaches all staff" }, icon: "person" },
+      ],
+      impact: [
+        {
+          th: "จัดทำแผนผังของไซต์ขึ้นใหม่ทั้งชุด หลังพบว่าเครื่องมือมาตรฐานดึงโครงสร้างลงมาไม่ได้ ทำให้ทีมมีเอกสารอ้างอิงสำหรับแก้ไขครั้งต่อไป",
+          en: "Rebuilt a full map of the site after the standard tooling failed to download its structure, giving the team a reference to work from next time.",
+        },
+        {
+          th: "ตรวจพบว่าสิทธิ์การเข้าถึงข้อมูลถูกตั้งเป็นเปิดสาธารณะทั้งหมด และเป็นประเด็นที่ยกขึ้นให้แก้",
+          en: "Found that the data-access permissions were set to public across the board, and raised it to be corrected.",
+        },
+        {
+          th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",
+          en: "Applied the corporate rebrand across the site — colour system, logo, and the name embedded in components throughout it.",
+        },
+      ],
+      stack: ["Power Pages", "Dataverse", "Power Platform", "JavaScript", "CSS"],
     },
     {
       slug: "freelance",
