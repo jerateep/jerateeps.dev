@@ -3,6 +3,7 @@ import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
 import { KnowledgeGraph } from "@/components/KnowledgeGraph";
+import { MiniFlow } from "@/components/MiniFlow";
 
 const isLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
@@ -158,6 +159,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {/* badge รายการ์ดถูกถอดออก — ประกาศครั้งเดียวที่หัว section แทน
                   เพราะ 8 ใน 9 ใบเป็นระบบภายใน ซ้ำทุกใบแล้วอ่านเหมือนกำแพงปิดบัง */}
               <p className="mt-3 text-sm text-muted">{project.summary[lang]}</p>
+              {project.flow && <MiniFlow steps={project.flow} lang={lang} />}
               {project.diagram && (
                 <PipelineDiagram
                   t={project.diagram}

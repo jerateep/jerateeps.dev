@@ -1,4 +1,5 @@
 import type { L, Locale } from "@/content/profile";
+import { ICONS } from "./icons";
 
 /**
  * แผนภาพสถาปัตยกรรมแบบกราฟ — SVG เขียนเอง ไม่ใช่ mermaid
@@ -18,27 +19,6 @@ type Dict = Record<string, L>;
 
 /** กรอบพอดีเนื้อหาจริง (กล่องอยู่ x 20–1280, y 60–490) ไม่เผื่อที่ว่างตาย */
 const VIEW = { x: 8, y: 48, w: 1284, h: 456 };
-
-/**
- * ไอคอน 20x20 วาดเองทั้งหมด — ไม่ดึง icon library เข้ามาเพื่อใช้แค่แปดรูป
- * เส้นทางวาดในกรอบ 0 0 24 24 แล้วย่อตอนใช้
- */
-const ICONS: Record<string, string> = {
-  person: "M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0",
-  browser: "M3 5h18v14H3zM3 9h18",
-  queue: "M4 7h16M4 12h16M4 17h10",
-  worker: "M3 5h18v6H3zM3 13h18v6H3zM7 8h.01M7 16h.01",
-  robot: "M12 3v3M6 6h12v12H6zM9 11h.01M15 11h.01M9 15h6",
-  parse: "M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h2M16 4h2a2 2 0 012 2v12a2 2 0 01-2 2h-2M10 9l4 6",
-  render: "M4 4h16v12H4zM9 20h6M12 16v4",
-  report: "M6 3h9l3 3v15H6zM9 12h6M9 16h6",
-  sheet: "M4 4h16v16H4zM4 10h16M10 4v16",
-  database: "M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6",
-  gear: "M12 15a3 3 0 100-6 3 3 0 000 6zM12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1",
-  erp: "M4 20h16M6 20V9l6-5 6 5v11M10 20v-5h4v5",
-  cloud: "M7 18a4 4 0 010-8 5 5 0 019.6-1.4A3.5 3.5 0 0117 18z",
-  folder: "M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z",
-};
 
 /** กล่อง 1 ใบ */
 function Node({

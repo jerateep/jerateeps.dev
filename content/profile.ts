@@ -44,6 +44,11 @@ export type Project = {
   link?: string;
   confidential?: boolean;
   /**
+   * visual ย่อประจำการ์ด — 3–5 ขั้น บอกรูปร่างของระบบ
+   * กฎเดียวกับแผนภาพใหญ่: ชื่อเชิงหน้าที่เท่านั้น
+   */
+  flow?: { label: L; icon: string }[];
+  /**
    * ป้ายในแผนภาพสถาปัตยกรรม (ตำแหน่งอยู่ในคอมโพเนนต์)
    * เรียกทุกอย่างตามหน้าที่ ห้ามชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อคู่ค้า
    */
@@ -353,6 +358,12 @@ export const profile = {
       role: { th: "Full-stack · ออกแบบและพัฒนา", en: "Full-stack · design + build" },
       confidential: true,
       year: "2025",
+      flow: [
+        { label: { th: "กฎตามโครงสร้างองค์กร", en: "Org-structure rules" }, icon: "rules" },
+        { label: { th: "ชุดสิทธิ์และเมนู", en: "Permission sets" }, icon: "queue" },
+        { label: { th: "ทุกแอปที่ผ่าน SSO", en: "Every app behind SSO" }, icon: "browser" },
+        { label: { th: "รายงานตรวจสอบตาม ISO", en: "ISO audit reports" }, icon: "report" },
+      ],
       impact: [
         {
           th: "การเพิ่มพนักงานใหม่ไม่ต้องกำหนดสิทธิ์รายบุคคลอีกต่อไป ผู้ใช้ที่เข้าเงื่อนไขของกฎใดจะได้รับชุดเมนูของกฎนั้นทันที",
@@ -382,6 +393,12 @@ export const profile = {
       role: { th: "Backend · ออกแบบและพัฒนา", en: "Backend · design + build" },
       confidential: true,
       year: "2025",
+      flow: [
+        { label: { th: "SAP", en: "SAP" }, icon: "erp" },
+        { label: { th: "REST API ตัวกลาง", en: "REST middleware" }, icon: "browser" },
+        { label: { th: "งานตามเวลา", en: "Scheduled jobs" }, icon: "gear" },
+        { label: { th: "ระบบปลายทาง", en: "Downstream systems" }, icon: "worker" },
+      ],
       impact: [
         {
           th: "ระบบปลายทางไม่ต้องเชื่อมต่อ SAP แยกกันอีกต่อไป เหลือจุดดูแลรักษาเพียงจุดเดียว",
@@ -411,6 +428,12 @@ export const profile = {
       role: { th: "Full-stack · พัฒนาและบำรุงรักษา", en: "Full-stack · ongoing development" },
       confidential: true,
       year: "2024–2025",
+      flow: [
+        { label: { th: "ยื่นคำขอ", en: "Submit request" }, icon: "form" },
+        { label: { th: "ตรวจงบคงเหลือกับ SAP", en: "Check budget in SAP" }, icon: "erp" },
+        { label: { th: "สายอนุมัติอัตโนมัติ", en: "Approver line" }, icon: "rules" },
+        { label: { th: "อนุมัติในพอร์ทัลกลาง", en: "Approve in portal" }, icon: "shield" },
+      ],
       impact: [
         {
           th: "ยกเลิกขั้นตอนเดินเอกสารกระดาษทั้งหมด ผู้อนุมัติดำเนินการผ่านพอร์ทัลกลางได้โดยตรง",
@@ -436,6 +459,12 @@ export const profile = {
       role: { th: "Backend · พัฒนาและแก้ไขปัญหาการใช้งาน", en: "Backend · development and troubleshooting" },
       confidential: true,
       year: "2025",
+      flow: [
+        { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" }, icon: "database" },
+        { label: { th: "Web service", en: "Web service" }, icon: "browser" },
+        { label: { th: "คำสั่งจัดการบัญชี", en: "Account commands" }, icon: "parse" },
+        { label: { th: "Active Directory", en: "Active Directory" }, icon: "shield" },
+      ],
       impact: [
         {
           th: "เปลี่ยนงาน onboarding และ offboarding จากการดำเนินการด้วยมือทีละบัญชี เป็นกระบวนการอัตโนมัติที่ทำงานตามข้อมูลจากระบบ HR",
@@ -464,6 +493,12 @@ export const profile = {
       },
       confidential: true,
       year: "2026",
+      flow: [
+        { label: { th: "ล็อกอินบัญชีองค์กร", en: "Corporate sign-in" }, icon: "shield" },
+        { label: { th: "นามบัตรของตัวเอง", en: "Your own card" }, icon: "contact" },
+        { label: { th: "QR code รายบุคคล", en: "Personal QR code" }, icon: "qr" },
+        { label: { th: "บันทึกลงสมุดโทรศัพท์", en: "Save to contacts" }, icon: "folder" },
+      ],
       impact: [
         {
           th: "ยืนยันตัวตนผ่าน Microsoft Entra ID ทำให้พนักงานเห็นและแก้ได้เฉพาะนามบัตรของตัวเอง โดยไม่ต้องสร้างระบบผู้ใช้ขึ้นมาใหม่",
@@ -504,6 +539,12 @@ export const profile = {
       },
       confidential: true,
       year: "2025–2026",
+      flow: [
+        { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" }, icon: "wordpress" },
+        { label: { th: "ดึงเนื้อหาออกมา", en: "Extract content" }, icon: "parse" },
+        { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" }, icon: "database" },
+        { label: { th: "เว็บสองภาษา", en: "Bilingual site" }, icon: "globe" },
+      ],
       impact: [
         {
           th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของปลั๊กอิน จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
@@ -537,6 +578,12 @@ export const profile = {
       role: { th: "ออกแบบและพัฒนา flow", en: "Flow design and implementation" },
       confidential: true,
       year: "2025–2026",
+      flow: [
+        { label: { th: "แบบฟอร์มออนไลน์", en: "Online form" }, icon: "form" },
+        { label: { th: "Cloud flow ประมวลผล", en: "Cloud flow" }, icon: "gear" },
+        { label: { th: "บันทึกลงฐานข้อมูล", en: "Store in database" }, icon: "database" },
+        { label: { th: "แจ้งผลและรายงาน", en: "Notify and report" }, icon: "mail" },
+      ],
       impact: [
         {
           th: "flow ตรวจคะแนนแบบทดสอบจรรยาบรรณพนักงานเทียบกับเฉลย บันทึกผลลง SQL Server และส่งอีเมลแจ้งผลให้ผู้ทำแบบทดสอบโดยอัตโนมัติ รองรับทั้งฉบับภาษาไทยและภาษาอังกฤษ",
