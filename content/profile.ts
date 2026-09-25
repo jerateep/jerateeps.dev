@@ -56,6 +56,11 @@ export type Project = {
   diagram?: Record<string, L>;
   /** การ์ดกินความกว้าง 2 คอลัมน์ (ใช้กับการ์ดที่มีแผนภาพ) */
   featured?: boolean;
+  /**
+   * แสดงแบบย่อในลิสต์ท้าย section — ชื่อ สรุปหนึ่งบรรทัด และ stack
+   * การ์ดเต็มสิบสามใบทำให้ใบเด่นถูกกลบ และดันปุ่มติดต่อไปไกลจนไม่มีใครเลื่อนถึง
+   */
+  compact?: boolean;
 };
 
 export type Group = {
@@ -377,6 +382,7 @@ export const profile = {
     },
     {
       slug: "sso-platform",
+      compact: true,
       name: {
         th: "ระบบยืนยันตัวตนกลางและการมอบอำนาจอนุมัติ",
         en: "Central authentication and approval delegation",
@@ -415,6 +421,7 @@ export const profile = {
     },
     {
       slug: "sap-middleware",
+      compact: true,
       name: {
         th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
         en: "SAP integration middleware",
@@ -481,6 +488,7 @@ export const profile = {
     },
     {
       slug: "asset-management",
+      compact: true,
       name: {
         th: "ระบบจัดการทรัพย์สินองค์กร",
         en: "Corporate asset management",
@@ -519,6 +527,7 @@ export const profile = {
     },
     {
       slug: "logistics-inventory",
+      compact: true,
       name: {
         th: "ระบบคลังสินค้าและงานขนส่ง",
         en: "Inventory and logistics",
@@ -707,6 +716,7 @@ export const profile = {
     },
     {
       slug: "corporate-website",
+      compact: true,
       name: {
         th: "เว็บไซต์องค์กรสองภาษาบน Webflow",
         en: "Bilingual corporate website on Webflow",
@@ -749,6 +759,7 @@ export const profile = {
     },
     {
       slug: "employee-intranet",
+      compact: true,
       name: {
         th: "อินทราเน็ตพนักงานบน Power Pages",
         en: "Employee intranet on Power Pages",
@@ -787,6 +798,7 @@ export const profile = {
     },
     {
       slug: "freelance",
+      compact: true,
       name: {
         th: "งานฟรีแลนซ์ผ่าน Fastwork",
         en: "Freelance work via Fastwork",

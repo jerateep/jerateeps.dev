@@ -69,6 +69,8 @@ export const ui = {
     en: "For project enquiries or further details, please feel free to get in touch.",
   },
   viewProject: { th: "ดูผลงาน", en: "View" },
+  moreProjects: { th: "ระบบอื่นที่รับผิดชอบ", en: "Other systems I owned" },
+  contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   builtWith: {
     th: "เขียนด้วย Next.js และ Tailwind CSS · deploy บน Vercel",
     en: "Built with Next.js and Tailwind CSS · deployed on Vercel",

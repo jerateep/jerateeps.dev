@@ -62,6 +62,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           {profile.tagline[lang]}
         </p>
         <p className="mt-6 text-sm text-muted">{profile.location[lang]}</p>
+        <a
+          href={profile.links.find((l) => l.href.startsWith("mailto:"))?.href}
+          className="mt-6 inline-block rounded-lg bg-accent px-4 py-2 text-sm text-bg transition-opacity hover:opacity-90"
+        >
+          {ui.contactCta[lang]}
+        </a>
       </section>
 
       {/* About */}
@@ -128,7 +134,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Section id="projects" title={ui.sections.projects[lang]}>
         <p className="mb-8 max-w-2xl text-muted">{ui.projectsLead[lang]}</p>
         <div className="grid gap-4 sm:grid-cols-2">
-          {profile.projects.map((project) => (
+          {profile.projects
+            .filter((project) => !project.compact)
+            .map((project) => (
             <article
               key={project.slug}
               // min-w-0 จำเป็น: grid item ไม่ยอมหดต่ำกว่าความกว้างเนื้อหา
@@ -190,6 +198,39 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </article>
           ))}
         </div>
+
+        {/* ใบที่เหลือแสดงแบบย่อ — ชื่อ สรุปหนึ่งบรรทัด และ stack
+            การ์ดเต็มสิบสามใบทำให้ใบเด่นถูกกลบ และดันปุ่มติดต่อไปไกลจนไม่มีใครเลื่อนถึง */}
+        <p className="section-label mt-12 mb-4 text-muted">
+          {ui.moreProjects[lang]}
+        </p>
+        <ul className="divide-y divide-border border-y border-border">
+          {profile.projects
+            .filter((project) => project.compact)
+            .map((project) => (
+              <li key={project.slug} className="py-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h3 className="font-medium">{project.name[lang]}</h3>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="font-mono text-xs text-accent hover:underline"
+                    >
+                      {ui.viewProject[lang]} ↗
+                    </a>
+                  )}
+                </div>
+                <p className="mt-1 max-w-[68ch] text-sm text-muted">
+                  {project.summary[lang]}
+                </p>
+                <p className="mt-1.5 font-mono text-xs text-muted">
+                  {project.stack.join(" · ")}
+                </p>
+              </li>
+            ))}
+        </ul>
       </Section>
 
       {/* Coverage — ความกว้างของงาน */}
