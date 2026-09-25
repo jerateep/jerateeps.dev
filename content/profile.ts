@@ -449,6 +449,46 @@ export const profile = {
       stack: ["ASP.NET Core", "PowerShell", "SSH", "Active Directory", "Docker"],
     },
     {
+      slug: "e-name-card",
+      name: {
+        th: "ระบบนามบัตรอิเล็กทรอนิกส์ขององค์กร",
+        en: "Corporate digital name card",
+      },
+      summary: {
+        th: "เว็บแอปที่ให้พนักงานเปิดนามบัตรดิจิทัลของตัวเองและให้คนอื่นบันทึกลงสมุดโทรศัพท์ได้ในขั้นตอนเดียว ล็อกอินด้วยบัญชีองค์กร สร้าง QR code ให้รายบุคคล และแปลงข้อมูลเป็นไฟล์รายชื่อมาตรฐานที่โทรศัพท์ทุกเครื่องอ่านได้",
+        en: "A web app where staff open their own digital name card and anyone can save it to their contacts in a single step. Sign-in uses the corporate account, each person gets a QR code, and the data is served as the standard contact-file format that every phone understands.",
+      },
+      role: {
+        th: "Full-stack · ออกแบบ พัฒนา และวาง deployment",
+        en: "Full-stack · design, implementation and deployment",
+      },
+      confidential: true,
+      year: "2026",
+      impact: [
+        {
+          th: "ยืนยันตัวตนผ่าน Microsoft Entra ID ทำให้พนักงานเห็นและแก้ได้เฉพาะนามบัตรของตัวเอง โดยไม่ต้องสร้างระบบผู้ใช้ขึ้นมาใหม่",
+          en: "Authentication through Microsoft Entra ID means each person sees and edits only their own card, without standing up a separate user system.",
+        },
+        {
+          th: "เก็บ secret ทั้งหมดไว้ใน Azure Key Vault และดึงตอนรัน ไม่มีค่าอ่อนไหวฝังอยู่ในโค้ดหรือไฟล์ตั้งค่า",
+          en: "All secrets live in Azure Key Vault and are fetched at run time; none are embedded in source or configuration files.",
+        },
+        {
+          th: "ส่งขึ้นใช้งานเป็น container บน Kubernetes พร้อม CI/CD ที่ต้องมีผู้อนุมัติก่อน deploy ขึ้น production",
+          en: "Ships as a container on Kubernetes, with a CI/CD pipeline that requires an approver before a production deploy.",
+        },
+      ],
+      stack: [
+        "ASP.NET Core MVC",
+        ".NET 9",
+        "Microsoft Entra ID",
+        "Azure Key Vault",
+        "Azure Blob Storage",
+        "Docker",
+        "Kubernetes",
+      ],
+    },
+    {
       slug: "corporate-website",
       name: {
         th: "เว็บไซต์องค์กรสองภาษาบน Webflow",
