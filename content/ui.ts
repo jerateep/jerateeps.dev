@@ -15,7 +15,7 @@ export const ui = {
     about: { th: "เกี่ยวกับผม", en: "About" },
     experience: { th: "ประสบการณ์ทำงาน", en: "Experience" },
     projects: { th: "ผลงานที่ผ่านมา", en: "Selected work" },
-    domains: { th: "ขอบเขตระบบที่เคยทำงานด้วย", en: "Systems I have worked with" },
+    domains: { th: "ระบบที่รับผิดชอบและสนับสนุน", en: "Systems owned and supported" },
     background: { th: "การศึกษาและคุณวุฒิ", en: "Education & credentials" },
     ai: { th: "AI ในกระบวนการทำงาน", en: "How I work with AI" },
     skills: { th: "ทักษะและเครื่องมือ", en: "Skills & tools" },
@@ -35,20 +35,18 @@ export const ui = {
     en: "A node-and-link diagram showing how notes in the knowledge base connect.",
   },
   projectsLead: {
-    th: "ผลงานส่วนใหญ่เป็นระบบภายในขององค์กรที่สังกัด ชื่อระบบและภาพหน้าจอไม่สามารถเปิดเผยได้ จึงระบุตามลักษณะงานและให้รายละเอียดเท่าที่อธิบายได้ในการสัมภาษณ์",
-    en: "Most of these are internal systems belonging to my employer. System names and screenshots cannot be disclosed, so each is described by function and in the level of detail that can be substantiated in an interview.",
+    th: "ผลงานส่วนใหญ่เป็นระบบภายใน จึงไม่เปิดเผยชื่อและภาพหน้าจอ แต่อธิบายตามหน้าที่ของระบบ และยินดีลงรายละเอียดในการสัมภาษณ์",
+    en: "Most are internal systems, so names and screenshots are withheld. Each is described by what it does, and I'm glad to go deeper in interview.",
   },
   education: { th: "การศึกษา", en: "Education" },
-  certifications: { th: "ใบรับรอง", en: "Certifications" },
+  // เป็นคอร์สและ badge ที่เรียนเพื่อประเมินว่าเอามาใช้กับงานได้ไหม ไม่ใช่ certification ที่สอบ — ห้ามเรียกว่าใบรับรอง
+  certifications: { th: "การอบรมและ badge", en: "Training & badges" },
   googleCloud: { th: "Google Cloud", en: "Google Cloud" },
   googleCloudSummary: {
     th: "skill badge — Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
     en: "skill badges — Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
   },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
-  learnTotal: { th: "รายการ", en: "achievements" },
-  learnPaths: { th: "เส้นทางการเรียน", en: "learning paths" },
-  learnModules: { th: "โมดูล", en: "modules" },
   learnCourses: {
     th: "หลักสูตรตามแนวข้อสอบที่เรียนจบ",
     en: "Completed exam-track courses",
@@ -56,8 +54,8 @@ export const ui = {
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
-    th: "รวมทั้งระบบที่รับผิดชอบโดยตรงและระบบที่เข้าไปสนับสนุน มากกว่า 20 ระบบในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงาน",
-    en: "More than 20 systems within a single organisation, covering both those I owned and those I supported. The system names are confidential and are therefore listed by function.",
+    th: "ทั้งระบบที่รับผิดชอบโดยตรงและระบบที่สนับสนุนในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงาน",
+    en: "Systems I own and systems I support, all within one organisation. The names are confidential, so they are listed by function.",
   },
   diagramCaption: {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
@@ -65,11 +63,10 @@ export const ui = {
   },
   scrollHint: { th: "เลื่อนแนวนอนเพื่อดูภาพทั้งหมด", en: "Scroll horizontally to view the full diagram." },
   contactLead: {
-    th: "หากสนใจร่วมงานหรือต้องการสอบถามรายละเอียดเพิ่มเติม ยินดีรับการติดต่อ",
-    en: "For project enquiries or further details, please feel free to get in touch.",
+    th: "เปิดรับโอกาสร่วมงานด้านระบบองค์กร การเชื่อมต่อระบบ และ automation ติดต่อทางอีเมลหรือ LinkedIn ได้เลย",
+    en: "Open to roles in enterprise systems, integration and automation. Email or LinkedIn is the best way to reach me.",
   },
-  viewProject: { th: "ดูผลงาน", en: "View" },
-  moreProjects: { th: "ระบบอื่นที่รับผิดชอบ", en: "Other systems I owned" },
+  moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },
   contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   builtWith: {
     th: "เขียนด้วย Next.js และ Tailwind CSS · deploy บน Vercel",

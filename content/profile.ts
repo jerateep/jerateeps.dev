@@ -90,26 +90,26 @@ export type Education = {
 export const profile = {
   name: { th: "Jerateep Saelee", en: "Jerateep Saelee" } satisfies L,
   role: {
-    th: "Full-stack Developer · ประสบการณ์ 10+ ปี · Back-office & Automation",
-    en: "Full-stack Developer · 10+ years · Back-office & Automation",
+    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบการเงินและการเชื่อมต่อระบบองค์กร",
+    en: "Full-stack Developer (.NET) · 10+ years · Enterprise Finance & Integration Systems",
   } satisfies L,
   tagline: {
-    th: "พัฒนาและดูแลระบบ back-office ระดับองค์กรด้วย .NET, Next.js และ SQL Server ควบคู่กับงาน automation และการประยุกต์ใช้ AI ในกระบวนการพัฒนา",
-    en: "Developing and maintaining enterprise back-office systems with .NET, Next.js and SQL Server, alongside automation and the applied use of AI within the development process.",
+    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้งสายอนุมัติงบประมาณ การเชื่อมต่อ SAP และระบบยืนยันตัวตนกลาง พร้อมสนับสนุนระบบอื่นในองค์กร งานช่วงหลังรวมถึงการย้ายระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่หยุดให้บริการ",
+    en: "Building and looking after core back-office systems at a satellite operator (finance approvals, SAP integration, central sign-in) and supporting others across the organisation. Recent work includes moving decade-old platforms to .NET 8 without service interruption.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "Full Stack Developer ประสบการณ์กว่า 10 ปี รับผิดชอบระบบ back-office หลักราวสิบระบบ ครอบคลุมงานเอกสารและสายอนุมัติงบประมาณ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation และให้การสนับสนุนระบบ back-office อื่นอีกกว่า 20 ระบบในองค์กรเดียวกัน",
-      en: "A Full Stack Developer with over 10 years of experience, owning around ten core back-office systems — document and budget-approval workflows, access management, SAP integration and automation — and supporting more than twenty further back-office systems across the same organisation.",
+      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้งสายอนุมัติงบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และการกำหนดว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกหลายระบบพึ่งพาอยู่",
+      en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
     },
     {
-      th: "มีความเชี่ยวชาญด้านระบบ legacy ที่ใช้งานต่อเนื่องมานาน โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
-      en: "Specialised in long-running legacy systems, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where correctness is non-negotiable.",
+      th: "งานส่วนใหญ่คือการยกระดับระบบที่ใช้งานมานานอย่างระมัดระวัง โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
+      en: "Much of my work is modernising long-running systems carefully, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where getting it right matters most.",
     },
     {
-      th: "ให้ความสำคัญกับการจัดทำเอกสารควบคู่กับการพัฒนา ทั้งการ reverse-engineer ระบบเดิมให้เป็นเอกสารอ้างอิง และการกำหนดมาตรฐานการทำงานร่วมกันของทีม เพื่อลดเวลาที่ต้องใช้ในการทำความเข้าใจระบบสำหรับผู้ที่รับช่วงงานต่อ",
-      en: "Places equal weight on documentation: reverse-engineering existing systems into reference material and establishing team conventions, reducing the time required for others to take the work forward.",
+      th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และคลังความรู้ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่เขียนใหม่ ควบคู่กับการเปลี่ยนระบบที่ไม่มีเอกสารให้เป็นเอกสารอ้างอิงที่ทีมใช้งานจริง",
+      en: "Likes trying tools that might help the team and sharing the ones that work — Claude Code with shared skills and a knowledge base the team now uses, and a clean-architecture split of back end and front end for rewrites — alongside turning undocumented systems into references the team works from.",
     },
   ] satisfies L[],
 
@@ -125,8 +125,8 @@ export const profile = {
       role: { th: "Full Stack Developer", en: "Full Stack Developer" },
       period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
       summary: {
-        th: "รับผิดชอบการพัฒนาและบำรุงรักษาระบบ back-office ที่ใช้งานทั่วทั้งองค์กร ครอบคลุมทั้งการดูแลระบบเดิมบน ASP.NET Web Forms และการพัฒนาระบบใหม่บน ASP.NET Core ในส่วนของงานเอกสารและสายอนุมัติ ระบบสิทธิ์การเข้าถึง ระบบเชื่อมต่อ SAP และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
-        en: "Responsible for developing and maintaining the back-office systems used across the organisation, covering both legacy ASP.NET Web Forms support and new development on ASP.NET Core: document and approval workflows, access management, SAP integration middleware, and automation on both the server and RPA side.",
+        th: "รับผิดชอบระบบ back-office หลัก และสนับสนุนระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน สายอนุมัติ ระบบสิทธิ์ และการเชื่อมต่อ SAP ทั้งการดูแลระบบเดิมบน Web Forms การพัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
+        en: "Own the core back-office systems and support many others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
       },
       highlights: [
         {
@@ -134,28 +134,32 @@ export const profile = {
           en: "Migrated decade-old ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, without service interruption.",
         },
         {
+          th: "กำกับงานผู้รับเหมาและนักพัฒนาภายนอก ทั้งการมอบหมายงาน การตรวจรับโค้ด และการติดตามปัญหากับผู้ขายระบบ SAP",
+          en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
+        },
+        {
+          th: "ทดลองและแบ่งปันเครื่องมือที่ใช้ได้ผลให้ทีม ได้แก่ Claude Code พร้อม skill และคลังความรู้ที่ทีมใช้ร่วมกัน, RabbitMQ สำหรับจัดคิวงาน RPA และการแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม",
+          en: "Tried out and shared tooling that proved useful to the team: Claude Code with shared skills and a knowledge base colleagues now use, RabbitMQ to queue RPA workloads, and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths.",
+        },
+        {
           th: "ออกแบบชั้นการจัดการสิทธิ์ที่กำหนดสิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการผูกสิทธิ์รายบุคคล การแก้ไขกฎเพียงจุดเดียวมีผลกับทุกแอปพลิเคชันที่ใช้ SSO",
           en: "Designed a permission layer granting access by organisational attributes (business unit, department, position) rather than per-user assignment; a single rule change propagates to every application behind SSO.",
         },
         {
           th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงานประมวลผลเอกสาร และเพื่อรองรับข้อจำกัดของระบบ SAP ECC6",
-          en: "Architected automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
+          en: "Designed automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
         },
         {
-          th: "ปรับปรุงระบบยืนยันตัวตนของแอปพลิเคชันเดิมให้รองรับ Microsoft Entra ID (OAuth 2.0) รองรับการล็อกอินครั้งเดียวใช้งานได้ทุกระบบ และยกระดับความปลอดภัย",
-          en: "Modernised legacy application authentication onto Microsoft Entra ID (OAuth 2.0), enabling single sign-on and tightening security.",
+          th: "ต่อยอดข้อเสนอของทีม DevOps โดยพัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) แล้วค่อย ๆ ย้ายระบบอื่นมาเชื่อมต่อ แทนการล็อกอินแยกของแต่ละแอป",
+          en: "Following a proposal from the DevOps team, developed the central SSO on Microsoft Entra ID (OAuth 2.0) and worked through moving other applications onto it, replacing each app's separate login.",
         },
         {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อให้การเปิดและปิดบัญชีผู้ใช้เป็นไปโดยอัตโนมัติ",
           en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
         },
         {
-          th: "ประสานงานกับผู้รับเหมาและผู้ขายภายนอก ครอบคลุมการมอบหมายงาน การตรวจทานโค้ด และการติดตามการแก้ไขปัญหากับผู้ขายระบบ SAP",
-          en: "Coordinated with external vendors and outsourced teams, covering task assignment, code review, and issue-resolution tracking with the SAP system vendor.",
-        },
-        {
-          th: "ประยุกต์ใช้เครื่องมือ AI ในกระบวนการพัฒนาซอฟต์แวร์เพื่อช่วยตรวจหาและวิเคราะห์ข้อผิดพลาด ส่งผลให้ส่งมอบงานได้เร็วขึ้น",
-          en: "Applied AI tooling within the software development lifecycle to assist with debugging and troubleshooting, reducing delivery time.",
+          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ทั้งวิเคราะห์ข้อผิดพลาดและ reverse-engineer ระบบเดิม ลดงานที่เคยใช้หลายวันเหลือภายในรอบการทำงานเดียว",
+          en: "Brought AI tooling into the development process for debugging and reverse-engineering legacy systems, cutting work that took days down to a single session.",
         },
       ],
       stack: [
@@ -249,8 +253,8 @@ export const profile = {
         en: "End-to-end SAP document production pipeline",
       },
       summary: {
-        th: "ระบบขนาดใหญ่ที่สุดที่รับผิดชอบ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบครบวงจร ตั้งแต่การดึงข้อมูลด้วย robot การแปลง print-image เป็นข้อมูลเชิงโครงสร้าง การเรนเดอร์เอกสาร จนถึงการส่งต่อให้ระบบรับบิลของคู่ค้า",
-        en: "The largest system under my responsibility. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
+        th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบครบวงจร ตั้งแต่การดึงข้อมูลด้วย robot การแปลง print-image เป็นข้อมูลเชิงโครงสร้าง การเรนเดอร์เอกสาร จนถึงการส่งต่อให้ระบบรับบิลของคู่ค้า",
+        en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
       },
       role: {
         th: "ออกแบบสถาปัตยกรรม พัฒนาทั้งสามภาษา และกำหนดวิธีตรวจสอบความถูกต้อง",
@@ -421,7 +425,6 @@ export const profile = {
     },
     {
       slug: "sap-middleware",
-      compact: true,
       name: {
         th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
         en: "SAP integration middleware",
@@ -657,6 +660,10 @@ export const profile = {
           th: "งานตามเวลาที่ดึงข้อมูลอัตราแลกเปลี่ยนและรันงานฝั่ง ERP แล้วนำผลเข้าระบบปลายทาง ลดงานที่เคยต้องมีคนกดเองทุกวัน",
           en: "Scheduled jobs pull exchange rates and run ERP-side batches, feeding the results downstream and removing work that previously needed a person to trigger it daily.",
         },
+        {
+          th: "flow ส่วนใหญ่พัฒนาและดูแลเอง ภายหลังต่อเข้ากับเครื่องมือ AI ผ่าน MCP ทำให้ตรวจและแก้ไขได้สะดวกขึ้น",
+          en: "Most of these flows I build and maintain myself; connecting the platform to AI tooling over MCP has made them easier to inspect and change.",
+        },
       ],
       stack: [
         "Power Automate",
@@ -670,9 +677,10 @@ export const profile = {
     },
     {
       slug: "e-name-card",
+      compact: true,
       name: {
-        th: "ระบบนามบัตรอิเล็กทรอนิกส์ขององค์กร",
-        en: "Corporate digital name card",
+        th: "แอปพนักงานแบบ cloud-native บน Kubernetes (นามบัตรดิจิทัล)",
+        en: "Cloud-native staff app on Kubernetes (digital name card)",
       },
       summary: {
         th: "เว็บแอปที่ให้พนักงานเปิดนามบัตรดิจิทัลของตัวเองและให้คนอื่นบันทึกลงสมุดโทรศัพท์ได้ในขั้นตอนเดียว ล็อกอินด้วยบัญชีองค์กร สร้าง QR code ให้รายบุคคล และแปลงข้อมูลเป็นไฟล์รายชื่อมาตรฐานที่โทรศัพท์ทุกเครื่องอ่านได้",
@@ -722,8 +730,8 @@ export const profile = {
         en: "Bilingual corporate website on Webflow",
       },
       summary: {
-        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา",
-        en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement.",
+        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา ดูแลงานพัฒนาเอง และภายหลังต่อผ่าน MCP ช่วยให้แก้ไขได้สะดวกขึ้น",
+        en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement. I handle the build and upkeep, and connecting it over MCP later made changes easier.",
       },
       role: {
         th: "พัฒนาและย้ายข้อมูล ผ่าน API เป็นหลัก",
@@ -795,29 +803,6 @@ export const profile = {
         },
       ],
       stack: ["Power Pages", "Dataverse", "Power Platform", "JavaScript", "CSS"],
-    },
-    {
-      slug: "freelance",
-      compact: true,
-      name: {
-        th: "งานฟรีแลนซ์ผ่าน Fastwork",
-        en: "Freelance work via Fastwork",
-      },
-      summary: {
-        th: "รับพัฒนาเว็บไซต์และระบบภายในให้ลูกค้าองค์กร ครอบคลุมตั้งแต่การเก็บความต้องการ การออกแบบ การพัฒนา จนถึงการส่งมอบและดูแลต่อเนื่อง",
-        en: "Web and internal-system development for business clients — from requirements and design through build, delivery, and ongoing support.",
-      },
-      role: { th: "ฟรีแลนซ์ · รับผิดชอบตลอดโครงการ", en: "Freelance · end to end" },
-      year: "—", // TODO: ใส่ช่วงปีที่รับงาน
-      impact: [
-        // TODO: หยิบงานเด่น 2–3 ชิ้นจาก Fastwork มาเขียนเป็นข้อ ๆ (ห้ามใส่ชื่อลูกค้าถ้าไม่ได้ขออนุญาต)
-        {
-          th: "ตัวอย่างผลงานและความเห็นจากลูกค้าแสดงอยู่บนโปรไฟล์ Fastwork",
-          en: "Sample work and client reviews are on the Fastwork profile.",
-        },
-      ],
-      stack: ["Next.js", "ASP.NET", "SQL Server"], // TODO: ปรับตามงานจริง
-      link: "https://fastwork.co/byob/2KRa1es4ON",
     },
   ] satisfies Project[],
 
@@ -926,8 +911,8 @@ export const profile = {
     {
       name: { th: "อังกฤษ", en: "English" },
       level: {
-        th: "ใช้งานได้ระดับพื้นฐาน",
-        en: "Limited working proficiency",
+        th: "อ่านและเขียนระดับใช้งานจริง (เอกสารเทคนิค อีเมล แชต) · การพูดยังไม่คล่อง",
+        en: "Professional reading and writing (technical documentation, email, chat) · spoken English limited",
       },
     },
   ],
@@ -1016,16 +1001,16 @@ export const profile = {
   coreSkills: [
     "C#",
     "ASP.NET Core",
-    "ASP.NET WebForms",
     ".NET 8",
     "SQL Server",
+    "SAP integration (RFC)",
     "Power Automate",
   ],
 
   skills: [
     {
       title: { th: "หลัก", en: "Core" },
-      items: ["C#", "TypeScript", "SQL", "Python", "JavaScript"],
+      items: ["C#", "TypeScript", "SQL", "Python", "JavaScript", "Java"],
     },
     {
       title: { th: "Backend", en: "Backend" },
@@ -1079,7 +1064,6 @@ export const profile = {
       href: "https://www.linkedin.com/in/jerateep-saelee-2b4b8bb2/",
     },
     { label: "GitHub", href: "https://github.com/jerateep" },
-    { label: "Fastwork", href: "https://fastwork.co/byob/2KRa1es4ON" },
     { label: "Email", href: "mailto:jerateep_@live.com" },
   ],
 } as const;

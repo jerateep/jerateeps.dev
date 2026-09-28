@@ -68,6 +68,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         >
           {ui.contactCta[lang]}
         </a>
+        <a
+          href={profile.links.find((l) => l.label === "LinkedIn")?.href}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-6 ml-3 inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent/50"
+        >
+          LinkedIn ↗
+        </a>
       </section>
 
       {/* About */}
@@ -77,26 +85,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p key={i}>{paragraph[lang]}</p>
           ))}
         </div>
-      </Section>
-
-      {/* Skills */}
-      <Section id="skills" title={ui.sections.skills[lang]}>
-        <dl className="space-y-6">
-          {profile.skills.map((group, i) => (
-            <div key={i} className="sm:flex sm:gap-6">
-              <dt className="mb-2 shrink-0 text-sm font-medium sm:mb-0 sm:w-44">
-                {group.title[lang]}
-              </dt>
-              <dd className="flex-1">
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <Tag key={item}>{item}</Tag>
-                  ))}
-                </ul>
-              </dd>
-            </div>
-          ))}
-        </dl>
       </Section>
 
       {/* Experience */}
@@ -185,16 +173,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <Tag key={tech}>{tech}</Tag>
                 ))}
               </ul>
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="mt-5 font-mono text-sm text-accent hover:underline"
-                >
-                  {ui.viewProject[lang]} ↗
-                </a>
-              )}
             </article>
           ))}
         </div>
@@ -211,16 +189,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <li key={project.slug} className="py-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="font-medium">{project.name[lang]}</h3>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="font-mono text-xs text-accent hover:underline"
-                    >
-                      {ui.viewProject[lang]} ↗
-                    </a>
-                  )}
                 </div>
                 <p className="mt-1 max-w-[68ch] text-sm text-muted">
                   {project.summary[lang]}
@@ -280,6 +248,26 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </Section>
 
+      {/* Skills */}
+      <Section id="skills" title={ui.sections.skills[lang]}>
+        <dl className="space-y-6">
+          {profile.skills.map((group, i) => (
+            <div key={i} className="sm:flex sm:gap-6">
+              <dt className="mb-2 shrink-0 text-sm font-medium sm:mb-0 sm:w-44">
+                {group.title[lang]}
+              </dt>
+              <dd className="flex-1">
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       {/* การศึกษาและคุณวุฒิ */}
       <Section id="background" title={ui.sections.background[lang]}>
         <dl className="space-y-6">
@@ -310,11 +298,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {/* Microsoft Learn มี 185 รายการ ลิสต์หมดคือ noise — โชว์หลักสูตรตามแนวข้อสอบ
                   ซึ่งเป็นชั้นที่มีน้ำหนักจริง แล้วสรุปที่เหลือเป็นตัวเลข */}
               <p className="text-sm font-medium">{ui.microsoftLearn[lang]}</p>
-              <p className="mt-1 text-sm text-muted">
-                {learn.total} {ui.learnTotal[lang]} · {learn.counts.learningPaths}{" "}
-                {ui.learnPaths[lang]} · {learn.counts.modules}{" "}
-                {ui.learnModules[lang]}
-              </p>
               <p className="mt-3 text-sm text-muted">
                 {ui.learnCourses[lang]}
               </p>
