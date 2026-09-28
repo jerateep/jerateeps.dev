@@ -207,7 +207,7 @@ export const profile = {
         th: "System Development and IT Support Officer",
         en: "System Development and IT Support Officer",
       },
-      period: { th: "ก.ค. 2558 – ก.ย. 2560", en: "Jul 2015 – Sep 2017" },
+      period: { th: "ก.ค. 2557 – ก.ย. 2560", en: "Jul 2014 – Sep 2017" },
       summary: {
         th: "รับผิดชอบสองบทบาทควบคู่กัน ได้แก่ การพัฒนาระบบภายใน และการดูแลงาน IT support ของสำนักงาน",
         en: "Held two roles concurrently: developing internal systems and running IT support for the office.",
