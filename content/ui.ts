@@ -54,8 +54,8 @@ export const ui = {
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
   languages: { th: "ภาษา", en: "Languages" },
   domainsLead: {
-    th: "ระบบที่รับผิดชอบโดยตรงราวสิบระบบ และที่สนับสนุนอีกกว่ายี่สิบระบบในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงาน",
-    en: "Around ten systems I own and more than twenty I support, all within one organisation. The names are confidential, so they are listed by function.",
+    th: "ทั้งระบบที่รับผิดชอบโดยตรงและระบบที่สนับสนุนในองค์กรเดียว ชื่อระบบเป็นข้อมูลภายใน จึงระบุตามลักษณะงาน",
+    en: "Systems I own and systems I support, all within one organisation. The names are confidential, so they are listed by function.",
   },
   diagramCaption: {
     th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",

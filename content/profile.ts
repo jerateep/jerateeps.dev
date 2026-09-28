@@ -94,22 +94,22 @@ export const profile = {
     en: "Full-stack Developer (.NET) · 10+ years · Enterprise Finance & Integration Systems",
   } satisfies L,
   tagline: {
-    th: "รับผิดชอบระบบ back-office หลักราว 10 ระบบของผู้ให้บริการดาวเทียม ทั้งสายอนุมัติงบประมาณ การเชื่อมต่อ SAP และระบบยืนยันตัวตนกลาง และสนับสนุนอีกกว่า 20 ระบบ ย้ายระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่หยุดให้บริการ และเป็นผู้นำทดลองเทคโนโลยีใหม่ก่อนวางเป็นแนวทางให้ทั้งแผนก",
-    en: "Owning ~10 core back-office systems at a satellite operator (finance approvals, SAP integration, identity and SSO) and supporting 20+ more. Migrated decade-old platforms to .NET 8 with zero downtime, and the one who trials new technology before it becomes the team's standard.",
+    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้งสายอนุมัติงบประมาณ การเชื่อมต่อ SAP และระบบยืนยันตัวตนกลาง พร้อมสนับสนุนระบบอื่นในองค์กร งานช่วงหลังรวมถึงการย้ายระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่หยุดให้บริการ",
+    en: "Building and looking after core back-office systems at a satellite operator (finance approvals, SAP integration, central sign-in) and supporting others across the organisation. Recent work includes moving decade-old platforms to .NET 8 without service interruption.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้งสายอนุมัติงบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และการกำหนดว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกกว่า 20 ระบบที่พึ่งพาอยู่",
-      en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and more than twenty other back-office systems depend on them.",
+      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้งสายอนุมัติงบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และการกำหนดว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกหลายระบบพึ่งพาอยู่",
+      en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
     },
     {
-      th: "เชี่ยวชาญการยกระดับระบบที่ใช้งานมานานอย่างปลอดภัย โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
-      en: "Specialised in modernising long-running systems safely, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where correctness is non-negotiable.",
+      th: "งานส่วนใหญ่คือการยกระดับระบบที่ใช้งานมานานอย่างระมัดระวัง โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
+      en: "Much of my work is modernising long-running systems carefully, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where getting it right matters most.",
     },
     {
-      th: "มักเป็นคนแรกในแผนกที่ทดลองเทคโนโลยีและเครื่องมือใหม่ แล้ววางเป็นแนวทางให้ทีมใช้ต่อ พร้อมเปลี่ยนระบบที่ไม่มีเอกสารให้เป็นเอกสารอ้างอิงที่ทีมใช้งานจริง และกำหนดมาตรฐานการทำงานร่วมกัน",
-      en: "Usually the first in the department to trial a new technology or tool, then turn it into the team's way of working — alongside turning undocumented systems into references the team now works from, and setting shared conventions.",
+      th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และคลังความรู้ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่เขียนใหม่ ควบคู่กับการเปลี่ยนระบบที่ไม่มีเอกสารให้เป็นเอกสารอ้างอิงที่ทีมใช้งานจริง",
+      en: "Likes trying tools that might help the team and sharing the ones that work — Claude Code with shared skills and a knowledge base the team now uses, and a clean-architecture split of back end and front end for rewrites — alongside turning undocumented systems into references the team works from.",
     },
   ] satisfies L[],
 
@@ -125,8 +125,8 @@ export const profile = {
       role: { th: "Full Stack Developer", en: "Full Stack Developer" },
       period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
       summary: {
-        th: "รับผิดชอบระบบ back-office หลักราวสิบระบบ และสนับสนุนอีกกว่ายี่สิบระบบ ครอบคลุมงานการเงิน สายอนุมัติ ระบบสิทธิ์ และการเชื่อมต่อ SAP ทั้งการดูแลระบบเดิมบน Web Forms การพัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
-        en: "Own around ten core back-office systems and support more than twenty others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
+        th: "รับผิดชอบระบบ back-office หลัก และสนับสนุนระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน สายอนุมัติ ระบบสิทธิ์ และการเชื่อมต่อ SAP ทั้งการดูแลระบบเดิมบน Web Forms การพัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
+        en: "Own the core back-office systems and support many others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
       },
       highlights: [
         {
@@ -138,8 +138,8 @@ export const profile = {
           en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
         },
         {
-          th: "เป็นผู้นำทดลองเทคโนโลยีใหม่ในแผนก ประเมินว่าเหมาะกับงานจริงหรือไม่ แล้ววางแนวทางให้ทีมนำไปใช้ต่อ",
-          en: "Led the department's adoption of new technology: trialling it first, judging whether it fits real work, then setting the approach for the team to follow.",
+          th: "ทดลองและแบ่งปันเครื่องมือที่ใช้ได้ผลให้ทีม ได้แก่ Claude Code พร้อม skill และคลังความรู้ที่ทีมใช้ร่วมกัน, RabbitMQ สำหรับจัดคิวงาน RPA และการแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม",
+          en: "Tried out and shared tooling that proved useful to the team: Claude Code with shared skills and a knowledge base colleagues now use, RabbitMQ to queue RPA workloads, and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths.",
         },
         {
           th: "ออกแบบชั้นการจัดการสิทธิ์ที่กำหนดสิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการผูกสิทธิ์รายบุคคล การแก้ไขกฎเพียงจุดเดียวมีผลกับทุกแอปพลิเคชันที่ใช้ SSO",
@@ -147,11 +147,11 @@ export const profile = {
         },
         {
           th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงานประมวลผลเอกสาร และเพื่อรองรับข้อจำกัดของระบบ SAP ECC6",
-          en: "Architected automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
+          en: "Designed automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
         },
         {
-          th: "ปรับปรุงระบบยืนยันตัวตนของแอปพลิเคชันเดิมให้รองรับ Microsoft Entra ID (OAuth 2.0) รองรับการล็อกอินครั้งเดียวใช้งานได้ทุกระบบ และยกระดับความปลอดภัย",
-          en: "Modernised legacy application authentication onto Microsoft Entra ID (OAuth 2.0), enabling single sign-on and tightening security.",
+          th: "ต่อยอดข้อเสนอของทีม DevOps โดยพัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) แล้วค่อย ๆ ย้ายระบบอื่นมาเชื่อมต่อ แทนการล็อกอินแยกของแต่ละแอป",
+          en: "Following a proposal from the DevOps team, developed the central SSO on Microsoft Entra ID (OAuth 2.0) and worked through moving other applications onto it, replacing each app's separate login.",
         },
         {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อให้การเปิดและปิดบัญชีผู้ใช้เป็นไปโดยอัตโนมัติ",
@@ -253,8 +253,8 @@ export const profile = {
         en: "End-to-end SAP document production pipeline",
       },
       summary: {
-        th: "ระบบขนาดใหญ่ที่สุดที่รับผิดชอบ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบครบวงจร ตั้งแต่การดึงข้อมูลด้วย robot การแปลง print-image เป็นข้อมูลเชิงโครงสร้าง การเรนเดอร์เอกสาร จนถึงการส่งต่อให้ระบบรับบิลของคู่ค้า",
-        en: "The largest system under my responsibility. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
+        th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบครบวงจร ตั้งแต่การดึงข้อมูลด้วย robot การแปลง print-image เป็นข้อมูลเชิงโครงสร้าง การเรนเดอร์เอกสาร จนถึงการส่งต่อให้ระบบรับบิลของคู่ค้า",
+        en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
       },
       role: {
         th: "ออกแบบสถาปัตยกรรม พัฒนาทั้งสามภาษา และกำหนดวิธีตรวจสอบความถูกต้อง",
@@ -660,6 +660,10 @@ export const profile = {
           th: "งานตามเวลาที่ดึงข้อมูลอัตราแลกเปลี่ยนและรันงานฝั่ง ERP แล้วนำผลเข้าระบบปลายทาง ลดงานที่เคยต้องมีคนกดเองทุกวัน",
           en: "Scheduled jobs pull exchange rates and run ERP-side batches, feeding the results downstream and removing work that previously needed a person to trigger it daily.",
         },
+        {
+          th: "flow ส่วนใหญ่พัฒนาและดูแลเอง ภายหลังต่อเข้ากับเครื่องมือ AI ผ่าน MCP ทำให้ตรวจและแก้ไขได้สะดวกขึ้น",
+          en: "Most of these flows I build and maintain myself; connecting the platform to AI tooling over MCP has made them easier to inspect and change.",
+        },
       ],
       stack: [
         "Power Automate",
@@ -726,8 +730,8 @@ export const profile = {
         en: "Bilingual corporate website on Webflow",
       },
       summary: {
-        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา",
-        en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement.",
+        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา ดูแลงานพัฒนาเอง และภายหลังต่อผ่าน MCP ช่วยให้แก้ไขได้สะดวกขึ้น",
+        en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement. I handle the build and upkeep, and connecting it over MCP later made changes easier.",
       },
       role: {
         th: "พัฒนาและย้ายข้อมูล ผ่าน API เป็นหลัก",
