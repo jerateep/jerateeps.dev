@@ -9,10 +9,10 @@ export type MiniStep = { label: L; icon: string };
  * ทำเป็น HTML/flex ไม่ใช่ SVG ด้วยเหตุผลเดียวกับที่เคยเจอมาแล้ว:
  * SVG ไม่ตัดบรรทัดและย่อตัวอักษรตามความกว้าง พอการ์ดแคบลงจะอ่านไม่ออก
  *
- * เรียงต่อกันแบบ flex-wrap ให้แต่ละขั้นกว้างตามข้อความของมันเอง
- * - แนวตั้ง (↓ กินหนึ่งบรรทัด) เคยทำให้ 4 ขั้นกลายเป็น 7 แถว ครึ่งขวาของกล่องว่าง
- * - แนวนอนแบบแบ่งช่องเท่ากันเคยเหลือช่องละ ~48px จนป้ายแตก 4 บรรทัด
- * ลูกศรอยู่ใน li เดียวกับป้ายถัดไป จึงไม่หลุดไปค้างท้ายบรรทัดตอนตัดบรรทัด
+ * แนวตั้งแบบ timeline: เส้นบางเชื่อมไอคอนแทน ↓ ที่กินบรรทัดของตัวเอง
+ * - ↓ แยกบรรทัดทำให้ 4 ขั้นกลายเป็น 7 แถว กล่องสูงโล่ง
+ * - แนวนอนแบบ flex-wrap ตัดบรรทัดไม่แน่นอน อ่านลำดับไม่ออก
+ * - แนวนอนแบบแบ่งช่องเท่ากันเหลือช่องละ ~48px จนป้ายแตก 4 บรรทัด
  *
  * ⚠️ ป้ายต้องเป็นชื่อเชิงหน้าที่เท่านั้น เหมือนแผนภาพใหญ่
  */
@@ -24,28 +24,28 @@ export function MiniFlow({
   lang: Locale;
 }) {
   return (
-    <ol className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 rounded-md border border-border bg-bg p-3">
+    <ol className="mt-4 rounded-md border border-border bg-bg px-3 py-2">
       {steps.map((step, i) => (
-        <li key={i} className="flex items-center gap-2">
-          {i > 0 && (
-            <span aria-hidden className="text-accent">
-              →
-            </span>
-          )}
-          <span className="flex items-center gap-1.5">
-            <svg
-              viewBox="0 0 24 24"
+        <li key={i} className="relative flex items-center gap-2.5 py-1.5">
+          {/* เส้นเชื่อมไปขั้นถัดไป — ลากจากใต้ไอคอนถึงไอคอนถัดไป */}
+          {i < steps.length - 1 && (
+            <span
               aria-hidden
-              className="size-4 shrink-0 stroke-accent"
-              fill="none"
-              strokeWidth={1.7}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d={ICONS[step.icon] ?? ICONS.gear} />
-            </svg>
-            <span className="text-xs text-muted">{step.label[lang]}</span>
-          </span>
+              className="absolute top-[calc(50%+10px)] left-[7.5px] h-[calc(100%-20px)] w-px bg-accent/40"
+            />
+          )}
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden
+            className="size-4 shrink-0 stroke-accent"
+            fill="none"
+            strokeWidth={1.7}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d={ICONS[step.icon] ?? ICONS.gear} />
+          </svg>
+          <span className="text-xs text-muted">{step.label[lang]}</span>
         </li>
       ))}
     </ol>
