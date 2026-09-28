@@ -924,44 +924,58 @@ export const profile = {
   aiPractice: [
     {
       title: {
-        th: "คลังความรู้ที่เครื่องมือ AI เรียกใช้ได้",
-        en: "A knowledge base the tooling reads from",
+        th: "คลังความรู้และคู่มือเฉพาะระบบ",
+        en: "A knowledge base and per-system playbooks",
       },
       body: {
-        th: "เมื่อศึกษาระบบใดจนเข้าใจ จะบันทึกข้อมูลที่ประวัติ git ไม่ได้ระบุไว้ ได้แก่ เหตุผลเบื้องหลังการออกแบบ ข้อควรระวังที่พบ และข้อเท็จจริงเกี่ยวกับฐานข้อมูลและการ deploy จัดเก็บเป็นบันทึกแยกตามระบบและ sync เข้าคลังความรู้กลางโดยอัตโนมัติ",
-        en: "When a system has been studied in depth, the information that version history does not record — design rationale, known pitfalls, and non-obvious facts about the database and deployment — is documented as per-system notes and synchronised into a central knowledge base.",
+        th: "สิ่งที่ประวัติ git ไม่ได้บอก เช่น เหตุผลของการออกแบบ ข้อควรระวัง และข้อเท็จจริงเรื่องฐานข้อมูลและการ deploy จะบันทึกแยกตามระบบลงคลังความรู้กลาง และทำเป็นคู่มือที่เครื่องมือ AI โหลดเองเมื่อเข้าหัวข้อนั้น เช่น สัญญาของ webservice โครงสร้างสิทธิ์ และเงื่อนไขของสายอนุมัติ",
+        en: "What version history doesn't record — design rationale, pitfalls, database and deployment facts — goes into per-system notes in a central knowledge base, and into playbooks the AI tooling loads when a topic comes up: webservice contracts, permission structures, approval-flow rules.",
       },
       result: {
-        th: "ลดเวลาตอบคำถามเชิงโครงสร้างของระบบจากระดับครึ่งวันเหลือระดับนาที และทีมงานอื่นสามารถใช้บันทึกเดียวกันได้",
-        en: "Answering how a system works dropped from half a day of code investigation to minutes, and the same notes serve the rest of the team.",
+        th: "คำถามว่าระบบทำงานอย่างไรตอบได้ในระดับนาทีแทนครึ่งวัน และคำตอบอ้างอิงพฤติกรรมจริงของระบบ ไม่ใช่รูปแบบทั่วไปที่ฟังดูถูกแต่ผิดบริบท",
+        en: "Questions about how a system works take minutes instead of half a day, and answers rest on documented behaviour rather than plausible general patterns.",
       },
     },
     {
       title: {
-        th: "คู่มืออ้างอิงเฉพาะระบบสำหรับเครื่องมือ AI",
-        en: "Documented domain rules available to the tooling",
+        th: "skill สำหรับงานที่ทำซ้ำ แชร์ให้ทีมใช้",
+        en: "Skills for repeatable work, shared with the team",
       },
       body: {
-        th: "จัดทำคู่มืออ้างอิงเฉพาะระบบให้เครื่องมือ AI เรียกใช้เมื่อเข้าสู่หัวข้อนั้น ครอบคลุมสัญญาของ webservice โครงสร้างสิทธิ์ ขั้นตอน deploy และเงื่อนไขของ flow อนุมัติ เพื่อให้คำตอบอ้างอิงจากพฤติกรรมจริงของระบบ",
-        en: "Each system has a reference playbook that the tooling loads when the topic arises — webservice contracts, permission structures, deployment steps and approval-flow rules — so that answers derive from documented system behaviour rather than general patterns.",
+        th: "งานที่ทำบ่อยและพลาดง่ายถูกเขียนเป็น skill ให้ AI ทำตามขั้นตอนเดิมทุกครั้ง เช่น ตั้งชื่อ branch และ commit ตามมาตรฐาน deploy ขึ้นเซิร์ฟเวอร์ผ่าน FTP โดยสำรองไฟล์เดิมก่อน ทดสอบหน้าเว็บผ่านเบราว์เซอร์จริงพร้อมเก็บหลักฐาน และร่างเอกสาร change ตัวที่ลองจนใช้ได้แล้วแชร์ให้คนในทีมใช้ต่อ",
+        en: "Frequent, error-prone work is written up as skills the AI follows the same way every time: branch and commit conventions, FTP deploys that back up the current files first, real-browser tests that capture evidence, and change-record drafting. The ones that prove themselves are shared with the team.",
       },
       result: {
-        th: "ลดข้อเสนอแนะที่ดูสมเหตุสมผลแต่ไม่ถูกต้องตามบริบท ซึ่งเป็นความเสี่ยงสำคัญของการใช้ AI กับระบบที่เกี่ยวข้องกับการเงินและการอนุมัติ",
-        en: "Reduces plausible but incorrect suggestions, which is the principal risk of applying AI to systems involving finance and approvals.",
+        th: "ขั้นตอนประจำทำเหมือนกันทุกครั้งไม่ว่าใครเป็นคนสั่ง และคนในทีมเริ่มงานเหล่านี้ได้โดยไม่ต้องจำขั้นตอนเอง",
+        en: "Routine steps run the same way whoever triggers them, and teammates can pick them up without memorising the procedure.",
       },
     },
     {
       title: {
-        th: "ด่านตรวจอัตโนมัติแทนการอาศัยความจำ",
-        en: "Automated gates instead of remembering",
+        th: "hook เป็นด่านตรวจแทนการอาศัยความจำ",
+        en: "Hooks as gates instead of memory",
       },
       body: {
-        th: "ย้ายกฎการทำงานที่เดิมต้องอาศัยความจำ ไปเป็น hook และ agent ที่ทำงานอัตโนมัติ ณ จุดที่เกี่ยวข้อง ได้แก่ การตรวจช่องโหว่ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push การบังคับรูปแบบการตั้งชื่อ branch และ commit และการแจ้งเตือนเมื่อกำลังจะสรุปพฤติกรรมของระบบเดิมโดยยังไม่ได้ตรวจสอบจากซอร์สโค้ด",
-        en: "Working rules that previously depended on memory now execute automatically at the relevant point: a security scan against the same criteria as the organisation's quality gate before every push, enforced branch and commit conventions, and a prompt when legacy behaviour is about to be assumed rather than verified against the source.",
+        th: "กฎที่เคยต้องจำเองถูกย้ายไปเป็น hook ที่ทำงาน ณ จุดที่เกี่ยวข้อง ได้แก่ ตรวจช่องโหว่ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push บันทึกความรู้ลงคลังทุกครั้งที่ commit และเตือนให้หยุดถามก่อนเมื่องานแตะเงิน สายอนุมัติ หรือกำลังจะสรุปพฤติกรรมระบบเดิมโดยยังไม่ได้อ่านซอร์สโค้ด",
+        en: "Rules that used to rely on memory now run as hooks at the point they matter: a security scan against the organisation's quality-gate criteria before every push, knowledge captured at every commit, and a prompt to stop and ask when work touches money or approvals, or is about to assume legacy behaviour without reading the source.",
       },
       result: {
-        th: "ตรวจพบข้อผิดพลาดก่อนส่งมอบ แทนที่จะพบในขั้นตอน review หรือหลัง deploy",
-        en: "Defects are identified before delivery rather than at review or after deployment.",
+        th: "ข้อผิดพลาดถูกจับได้ก่อนส่งมอบ แทนที่จะไปเจอตอน review หรือหลัง deploy",
+        en: "Defects are caught before delivery rather than at review or after deployment.",
+      },
+    },
+    {
+      title: {
+        th: "ต่อ AI เข้ากับแพลตฟอร์มผ่าน MCP",
+        en: "Connecting AI to the platforms over MCP",
+      },
+      body: {
+        th: "ต่อเครื่องมือ AI เข้ากับแพลตฟอร์มที่ใช้งานจริงผ่าน MCP ทั้ง Power Automate, Webflow, เบราว์เซอร์สำหรับทดสอบ และเอกสารอ้างอิงของ Microsoft ทำให้ตรวจ flow แก้เนื้อหาเว็บ และทดสอบหน้าจอได้จากที่เดียว โดยคนยังเป็นผู้อนุมัติทุกการเปลี่ยนแปลง",
+        en: "The AI tooling is connected over MCP to the platforms in daily use — Power Automate, Webflow, a browser for testing, and Microsoft's documentation — so flows can be inspected, site content changed and screens tested from one place, with a person approving every change.",
+      },
+      result: {
+        th: "งานที่เคยต้องสลับเข้าหลายหน้าจอทำได้ในรอบเดียว และแก้ไขได้สะดวกขึ้นมาก",
+        en: "Work that meant hopping between several consoles now happens in one pass, and changes are far easier to make.",
       },
     },
     {
@@ -1032,6 +1046,7 @@ export const profile = {
       title: { th: "AI ในงานวิศวกรรม", en: "AI engineering" },
       items: [
         "Claude Code",
+        "Skills & hooks",
         "MCP servers",
         "Agent workflows",
         "Prompt/context engineering",
