@@ -22,8 +22,8 @@ export const ui = {
     contact: { th: "ติดต่อ", en: "Get in touch" },
   },
   aiLead: {
-    th: "ประยุกต์ใช้ AI เป็นส่วนหนึ่งของกระบวนการพัฒนา ไม่ใช่เพียงเครื่องมือเติมโค้ด ประกอบด้วยคลังความรู้ที่เครื่องมือเรียกใช้ได้ คู่มืออ้างอิงเฉพาะระบบ และด่านตรวจอัตโนมัติก่อนส่งมอบ",
-    en: "AI is applied as part of the development process rather than as a code-completion tool: a knowledge base the tooling reads from, documented per-system rules, and automated gates that run before delivery.",
+    th: "ใช้ AI เป็นส่วนหนึ่งของกระบวนการทำงาน ไม่ใช่แค่ตัวเติมโค้ด ทั้งคลังความรู้ skill ที่แชร์ในทีม hook ที่ตรวจงานก่อนส่งมอบ และการต่อเข้ากับแพลตฟอร์มผ่าน MCP",
+    en: "AI is part of the working process rather than a code-completion tool: a knowledge base, skills shared across the team, hooks that check work before delivery, and connections to the platforms over MCP.",
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   graphCaption: {

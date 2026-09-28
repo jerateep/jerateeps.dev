@@ -224,10 +224,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* AI ในกระบวนการทำงาน */}
       <Section id="ai" title={ui.sections.ai[lang]}>
         <p className="max-w-2xl text-muted">{ui.aiLead[lang]}</p>
-        <KnowledgeGraph
-          caption={ui.graphCaption[lang]}
-          label={ui.graphLabel[lang]}
-        />
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {profile.aiPractice.map((item, i) => (
             <article
@@ -246,6 +242,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </article>
           ))}
         </div>
+        {/* กราฟเป็นหลักฐานประกอบการ์ดแรก ไม่ใช่ใจความของ section — วางท้าย ให้การ์ดขึ้นก่อน */}
+        <KnowledgeGraph
+          caption={ui.graphCaption[lang]}
+          label={ui.graphLabel[lang]}
+        />
       </Section>
 
       {/* Skills */}
