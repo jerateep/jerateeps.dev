@@ -54,7 +54,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* Hero */}
       <section className="relative py-20 sm:py-28">
         {/* ของตกแต่ง ซ่อนบนจอแคบเพราะจะทับข้อความ */}
-        <OrbitHero className="pointer-events-none absolute top-1/2 -right-40 -z-10 hidden size-[440px] -translate-y-1/2 opacity-60 md:block lg:-right-64" />
+        <OrbitHero className="pointer-events-none absolute top-1/2 -right-44 -z-10 hidden size-[480px] -translate-y-1/2 [mask-image:linear-gradient(to_right,transparent,#000_40%)] md:block lg:-right-64" />
         <p className="mb-4 font-mono text-sm text-accent">
           {profile.role[lang]}
         </p>
