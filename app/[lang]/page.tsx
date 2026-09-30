@@ -3,6 +3,7 @@ import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
 import { PipelineDiagram } from "@/components/PipelineDiagram";
 import { KnowledgeGraph } from "@/components/KnowledgeGraph";
+import { OrbitHero } from "@/components/OrbitHero";
 import { MiniFlow } from "@/components/MiniFlow";
 import learn from "@/content/learn.json";
 
@@ -51,7 +52,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <main id="main" tabIndex={-1} className="mx-auto w-full max-w-3xl px-6">
       {/* Hero */}
-      <section className="py-20 sm:py-28">
+      <section className="relative py-20 sm:py-28">
+        {/* ของตกแต่ง ซ่อนบนจอแคบเพราะจะทับข้อความ */}
+        <OrbitHero className="pointer-events-none absolute top-1/2 -right-40 -z-10 hidden size-[440px] -translate-y-1/2 opacity-60 md:block lg:-right-64" />
         <p className="mb-4 font-mono text-sm text-accent">
           {profile.role[lang]}
         </p>

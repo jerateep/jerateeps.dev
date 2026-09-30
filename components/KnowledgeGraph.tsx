@@ -1,4 +1,5 @@
 import graph from "@/content/graph.json";
+import { Graph3D } from "./Graph3D";
 
 /**
  * ภาพคลังความรู้ — โครงสร้างลิงก์จริงจาก second-brain vault
@@ -19,37 +20,39 @@ export function KnowledgeGraph({
   return (
     <figure className="mt-8">
       <div className="overflow-hidden rounded-lg border border-border bg-bg">
-        <svg
-          viewBox={`0 0 ${graph.width} ${graph.height}`}
-          width="100%"
-          role="img"
-          aria-label={label}
-          className="block"
-        >
-          <g className="stroke-border" strokeWidth={0.9} opacity={0.9}>
-            {graph.edges.map(([a, b], i) => (
-              <line
-                key={i}
-                x1={graph.nodes[a].x}
-                y1={graph.nodes[a].y}
-                x2={graph.nodes[b].x}
-                y2={graph.nodes[b].y}
-              />
-            ))}
-          </g>
-          <g className="fill-accent">
-            {graph.nodes.map((n, i) => (
-              <circle
-                key={i}
-                cx={n.x}
-                cy={n.y}
-                r={n.r}
-                // จุดที่ถูกอ้างถึงบ่อยจะทั้งใหญ่และเข้มกว่า
-                opacity={0.45 + Math.min(n.r / 9, 0.5)}
-              />
-            ))}
-          </g>
-        </svg>
+        <Graph3D>
+          <svg
+            viewBox={`0 0 ${graph.width} ${graph.height}`}
+            width="100%"
+            role="img"
+            aria-label={label}
+            className="block"
+          >
+            <g className="stroke-border" strokeWidth={0.9} opacity={0.9}>
+              {graph.edges.map(([a, b], i) => (
+                <line
+                  key={i}
+                  x1={graph.nodes[a].x}
+                  y1={graph.nodes[a].y}
+                  x2={graph.nodes[b].x}
+                  y2={graph.nodes[b].y}
+                />
+              ))}
+            </g>
+            <g className="fill-accent">
+              {graph.nodes.map((n, i) => (
+                <circle
+                  key={i}
+                  cx={n.x}
+                  cy={n.y}
+                  r={n.r}
+                  // จุดที่ถูกอ้างถึงบ่อยจะทั้งใหญ่และเข้มกว่า
+                  opacity={0.45 + Math.min(n.r / 9, 0.5)}
+                />
+              ))}
+            </g>
+          </svg>
+        </Graph3D>
       </div>
       <figcaption className="mt-2 text-xs text-muted">{caption}</figcaption>
     </figure>
