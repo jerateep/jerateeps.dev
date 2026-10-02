@@ -96,12 +96,12 @@ export function OrbitHero({ className }: { className?: string }) {
       globe.add(
         new THREE.Points(
           nodeGeo,
-          new THREE.PointsMaterial({ size: 0.15, vertexColors: true, fog: false }),
+          new THREE.PointsMaterial({ size: 0.12, vertexColors: true, fog: false }),
         ),
       );
 
       // เส้นเชื่อมระหว่าง node ที่อยู่ใกล้กัน
-      const MAX_LINES = 220;
+      const MAX_LINES = 140;
       const linePos = new Float32Array(MAX_LINES * 6);
       const lineGeo = new THREE.BufferGeometry();
       lineGeo.setAttribute("position", new THREE.BufferAttribute(linePos, 3));
@@ -109,7 +109,7 @@ export function OrbitHero({ className }: { className?: string }) {
         new THREE.LineSegments(
           lineGeo,
           // fog: false — fog ดึงสีเขียวไปทางสีพื้นจนเส้นกลายเป็นเทา ให้ fog ทำงานแค่ที่ผิวโลก
-          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.6, fog: false }),
+          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.16, fog: false }),
         ),
       );
 
@@ -151,7 +151,7 @@ export function OrbitHero({ className }: { className?: string }) {
             const dx = nodePos[i * 3] - nodePos[j * 3];
             const dy = nodePos[i * 3 + 1] - nodePos[j * 3 + 1];
             const dz = nodePos[i * 3 + 2] - nodePos[j * 3 + 2];
-            if (dx * dx + dy * dy + dz * dz > 5) continue;
+            if (dx * dx + dy * dy + dz * dz > 3.2) continue;
             lPos.setXYZ(k * 2, nodePos[i * 3], nodePos[i * 3 + 1], nodePos[i * 3 + 2]);
             lPos.setXYZ(k * 2 + 1, nodePos[j * 3], nodePos[j * 3 + 1], nodePos[j * 3 + 2]);
             k++;
