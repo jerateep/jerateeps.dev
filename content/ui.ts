@@ -27,8 +27,8 @@ export const ui = {
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   graphCaption: {
-    th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่ — 229 note เชื่อมถึงกัน 503 link แบ่งเป็น 28 กลุ่มระบบ",
-    en: "The live structure of the knowledge base — 229 notes, 503 links between them, clustered into 28 systems.",
+    th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่ — 251 note เชื่อมถึงกัน 508 link แบ่งเป็น 28 กลุ่มระบบ",
+    en: "The live structure of the knowledge base — 251 notes, 508 links between them, clustered into 28 systems.",
   },
   graphLabel: {
     th: "แผนภาพ node และ link แสดงความเชื่อมโยงของ note ใน knowledge base",
