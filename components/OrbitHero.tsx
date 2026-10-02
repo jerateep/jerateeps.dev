@@ -11,7 +11,8 @@ import land from "@/content/land.json";
  *   ใช้จุดน้อย จึงคมทั้งโหมดสว่างและมืด และไม่เป็นลายจุดถี่ทั้งลูก
  * - ทรงกลมล่องหน (เขียนแค่ depth) บังซีกหลัง — จุดและดาวเทียมด้านหลังโลกไม่ทะลุมาให้รก
  * - ดาวเทียมวงโคจรต่ำหลายแนวเอียง วิ่งเร็วพร้อมหาง + วง geostationary ที่หมุนไปพร้อมโลก
- * - จุดกรุงเทพฯ ส่งเส้นขึ้นไปหาดาวเทียม geostationary ดวงที่อยู่เหนือภูมิภาค
+ * - จุดกรุงเทพฯ ส่งเส้นขึ้นไปหาดาวเทียม geostationary ดวงที่อยู่เหนือภูมิภาค แล้วดาวเทียมส่งต่อลงอินเดียและออสเตรเลีย
+ *   (ไทยเด่นสุด: จุดใหญ่ มีชีพจร เส้นสว่างกว่า)
  * - three.js โหลดหลังหน้าแรก render; reduced motion → เฟรมเดียว; ไม่มี WebGL หรือจอแคบ → ไม่โหลดเลย
  *
  * ponytail: เปลี่ยนธีมตามการตั้งค่าเครื่องกลางคัน (ไม่ผ่านปุ่ม) ยังไม่สร้างฉากใหม่ — ต้อง reload
@@ -19,6 +20,11 @@ import land from "@/content/land.json";
 
 const DEG = Math.PI / 180;
 const BANGKOK = { lat: 13.75, lon: 100.5 };
+// จุดรองที่ดาวเทียมดวงเดียวกันส่งสัญญาณลงไป — เล็กและจางกว่ากรุงเทพฯ ให้ไทยเด่นสุด
+const DOWNLINKS = [
+  { lat: 28.6, lon: 77.2 }, // นิวเดลี
+  { lat: -33.9, lon: 151.2 }, // ซิดนีย์
+];
 
 export function OrbitHero({ className }: { className?: string }) {
   const box = useRef<HTMLDivElement>(null);
@@ -156,6 +162,28 @@ export function OrbitHero({ className }: { className?: string }) {
       );
       earth.add(packet);
 
+      const downlinks = DOWNLINKS.map(({ lat, lon }) => {
+        const at = toXYZ(lat, lon, R * 1.002);
+        const dot = new THREE.Mesh(
+          new THREE.SphereGeometry(0.055, 10, 8),
+          new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.75 }),
+        );
+        dot.position.copy(at);
+        earth.add(dot);
+        earth.add(
+          new THREE.Line(
+            new THREE.BufferGeometry().setFromPoints([geoSat, at]),
+            new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.25 }),
+          ),
+        );
+        const p = new THREE.Mesh(
+          new THREE.SphereGeometry(0.035, 8, 6),
+          new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.8 }),
+        );
+        earth.add(p);
+        return { at, p };
+      });
+
       // ดาวเทียมวงโคจรต่ำ: แต่ละดวงมีระนาบวงโคจรของตัวเอง (เอียง + หมุนแกน) — seed คงที่
       let seed = 20261002;
       const rand = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
@@ -241,6 +269,8 @@ export function OrbitHero({ className }: { className?: string }) {
         pulse.scale.setScalar(1 + p * 2.5);
         (pulse.material as InstanceType<typeof THREE.MeshBasicMaterial>).opacity = 1 - p;
         packet.position.lerpVectors(bkk, geoSat, (t * 0.35) % 1);
+        // สัญญาณลงจากดาวเทียมไปจุดรอง — ช้ากว่าและเหลื่อมจังหวะกัน
+        downlinks.forEach((d, i) => d.p.position.lerpVectors(geoSat, d.at, (t * 0.22 + i * 0.5) % 1));
 
         renderer.render(scene, camera);
       };
