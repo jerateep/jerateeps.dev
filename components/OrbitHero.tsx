@@ -9,6 +9,7 @@ import type { Material } from "three";
  *
  * - สีมาจากธีมของเว็บ: ผิวโลกใช้ --muted, เส้นกับ node ใช้ --accent ให้เข้าชุดกับปุ่มและหัวข้อ
  * - fog สีพื้น ทำให้ซีกหลังกลืนหาย อ่านเป็นทรงกลม
+ * - โหมดสว่างใช้ค่าความทึบสูงกว่าโหมดมืด ให้คมเท่ากันทั้งสองธีม
  * - ตำแหน่งสุ่มแบบมี seed ภาพจึงเหมือนเดิมทุกครั้งที่โหลด
  * - เอียงตามเมาส์เล็กน้อย (parallax) เฉพาะตอนเมาส์อยู่บนหน้า
  * - three.js โหลดหลังหน้าแรก render; reduced motion → เฟรมเดียว; ไม่มี WebGL หรือจอแคบ → ไม่โหลดเลย
@@ -71,6 +72,7 @@ export function OrbitHero({ className }: { className?: string }) {
       // โหมดมืดจุดกลืนกับพื้นจึงใช้ความหนาแน่นเต็ม
       const light = bg.getHSL({ h: 0, s: 0, l: 0 }).l > 0.5;
       const N = light ? 1400 : 2600;
+      // โหมดสว่างต้องทึบกว่าโหมดมืด: สีเข้มบนพื้นสว่างตัดกันน้อยกว่าสีสว่างบนพื้นดำ ถ้าค่าเท่ากันจะซีด
       const surface = new Float32Array(N * 3);
       const golden = Math.PI * (3 - Math.sqrt(5));
       for (let i = 0; i < N; i++) {
@@ -88,25 +90,10 @@ export function OrbitHero({ className }: { className?: string }) {
             size: light ? 0.04 : 0.045,
             transparent: true,
             // พื้นสว่างจุดเทาเห็นชัดกว่าพื้นมืดมาก จึงจางกว่า
-            opacity: light ? 0.32 : 0.55,
+            opacity: light ? 0.6 : 0.55,
           }),
         ),
       );
-
-      // ขอบวงกลมจาง ๆ ที่หันเข้ากล้องเสมอ ช่วยให้โลกอ่านเป็นทรงกลมแม้จุดผิวโลกบางลง (โหมดสว่าง)
-      const ring = (radius: number, seg = 160) =>
-        new THREE.BufferGeometry().setFromPoints(
-          Array.from({ length: seg }, (_, i) => {
-            const a = (i / seg) * Math.PI * 2;
-            return new THREE.Vector3(Math.cos(a) * radius, Math.sin(a) * radius, 0);
-          }),
-        );
-      const rim = new THREE.LineLoop(
-        ring(R),
-        new THREE.LineBasicMaterial({ color: muted, transparent: true, opacity: 0.18, fog: false }),
-      );
-      rim.position.copy(globe.position); // อยู่นอก globe จึงไม่หมุนตาม — เป็นเงาขอบโลกเสมอ
-      scene.add(rim);
 
       // node ลอยเหนือผิวโลก เคลื่อนช้า ๆ บนเปลือกทรงกลมของตัวเอง
       const M = 110;
@@ -127,7 +114,7 @@ export function OrbitHero({ className }: { className?: string }) {
       globe.add(
         new THREE.Points(
           nodeGeo,
-          new THREE.PointsMaterial({ size: 0.12, vertexColors: true, fog: false }),
+          new THREE.PointsMaterial({ size: light ? 0.14 : 0.12, vertexColors: true, fog: false }),
         ),
       );
 
@@ -140,7 +127,12 @@ export function OrbitHero({ className }: { className?: string }) {
         new THREE.LineSegments(
           lineGeo,
           // fog: false — fog ดึงสีเขียวไปทางสีพื้นจนเส้นกลายเป็นเทา ให้ fog ทำงานแค่ที่ผิวโลก
-          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.16, fog: false }),
+          new THREE.LineBasicMaterial({
+            color: accent,
+            transparent: true,
+            opacity: light ? 0.42 : 0.16,
+            fog: false,
+          }),
         ),
       );
 
