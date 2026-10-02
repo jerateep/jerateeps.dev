@@ -43,10 +43,11 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
   if (!isLocale(lang)) notFound();
 
   const projects = profile.projects.filter((p) => !p.compact);
-  const contacts = [
-    profile.location[lang],
-    ...profile.links.map((l) => strip(l.href)),
-    strip(SITE),
+  const link = (label: string) => strip(profile.links.find((l) => l.label === label)?.href ?? "");
+  // สองแถวตายตัว: ช่องทางติดต่อหลักก่อน แล้วค่อยโปรไฟล์ — ปล่อย wrap เองแล้วตัดบรรทัดไม่เป็นที่
+  const contactRows = [
+    [profile.location[lang], link("Email"), strip(SITE)],
+    [link("LinkedIn"), link("GitHub")],
   ];
 
   return (
@@ -61,11 +62,11 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
       <header>
         <h1 className="text-2xl font-semibold text-neutral-900">{profile.name[lang]}</h1>
         <p className="mt-0.5 font-medium">{profile.role[lang]}</p>
-        <p className="mt-1 flex flex-wrap gap-x-3 text-xs text-neutral-600">
-          {contacts.map((c) => (
-            <span key={c} className="whitespace-nowrap">{c}</span>
+        <div className="mt-1.5 space-y-0.5 text-xs text-neutral-600">
+          {contactRows.map((row, i) => (
+            <p key={i}>{row.join("  ·  ")}</p>
           ))}
-        </p>
+        </div>
       </header>
 
       <Heading>{lang === "th" ? "สรุป" : "Summary"}</Heading>
