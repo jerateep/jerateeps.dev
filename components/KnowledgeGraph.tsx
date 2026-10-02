@@ -33,7 +33,7 @@ export function KnowledgeGraph({
           aria-label={label}
           className="block"
         >
-          {/* ภาษาเดียวกับลูกโลกที่ hero: เส้นสี accent บางและจาง จุดเล็ก โน้ตหลักมีวงเรืองจาง ๆ */}
+          {/* ภาษาเดียวกับลูกโลกที่ hero: เส้นสี accent บางและจาง จุดเล็ก */}
           <g className="stroke-accent" strokeWidth={0.7} opacity={0.22}>
             {graph.edges.map(([a, b], i) => (
               <line
@@ -45,22 +45,16 @@ export function KnowledgeGraph({
               />
             ))}
           </g>
-          <g className="fill-accent" opacity={0.1}>
-            {graph.nodes
-              .filter((n) => n.r >= HUB)
-              .map((n, i) => (
-                <circle key={i} cx={n.x} cy={n.y} r={n.r * 2.6} />
-              ))}
-          </g>
           <g className="fill-accent">
             {graph.nodes.map((n, i) => (
               <circle
                 key={i}
                 cx={n.x}
                 cy={n.y}
-                r={n.r * 0.7}
-                // โน้ตที่ถูกอ้างถึงบ่อยจะทั้งใหญ่และเข้มกว่า
-                opacity={n.r >= HUB ? 0.95 : 0.35 + Math.min(n.r / 12, 0.35)}
+                r={n.r * 0.75}
+                // ความเข้มต่างกันตามกลุ่ม ให้แต่ละเกาะอ่านแยกกันได้ด้วยสีเดียว
+                // โน้ตหลักเข้มเต็มที่เสมอ ไม่ใช้วงเรือง (วงซ้อนกันแล้วเป็นปื้น)
+                opacity={n.r >= HUB ? 1 : 0.4 + ((n.g * 0.618) % 1) * 0.4}
               />
             ))}
           </g>
