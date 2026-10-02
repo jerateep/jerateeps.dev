@@ -80,8 +80,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           LinkedIn ↗
         </a>
         <a
-          href="/Jerateep-Saelee-Resume.pdf"
-          download
+          href={`/${lang}/download`}
           className="mt-6 ml-3 inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent/50"
         >
           {ui.resumePdf[lang]} ↓
@@ -368,8 +367,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <ul className="mt-6 flex flex-wrap gap-3">
           <li>
             <a
-              href="/Jerateep-Saelee-Resume.pdf"
-              download
+              href={`/${lang}/download`}
               className="inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
             >
               {ui.resumePdf[lang]}
