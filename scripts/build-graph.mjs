@@ -1,9 +1,9 @@
 /**
  * สร้างภาพกราฟความรู้จากโครงสร้างลิงก์จริงใน second-brain vault
  *
- * ผลลัพธ์คือ content/graph.json ที่มี "พิกัดกับเส้น" เท่านั้น — ไม่มีชื่อโน้ต
- * ไม่มีชื่อโฟลเดอร์ ไม่มีข้อความใด ๆ ติดออกมา เพราะชื่อโน้ตคือชื่อระบบภายใน
- * ซึ่งเป็นสิ่งที่ทั้งเว็บนี้ตั้งใจไม่เปิดเผย
+ * ผลลัพธ์คือ content/graph.json ที่มีพิกัด เส้น และป้ายหัวข้อของกลุ่ม — ไม่มีชื่อโน้ต
+ * และไม่มีชื่อโฟลเดอร์ เพราะชื่อเหล่านั้นคือชื่อระบบภายในที่ทั้งเว็บตั้งใจไม่เปิดเผย
+ * ป้ายมาจากตาราง TOPICS ด้านล่างเท่านั้น (ชื่อตามหน้าที่ที่เจ้าของตรวจแล้ว)
  *
  * รันมือเมื่อ vault เปลี่ยนโครงสร้างจนอยากอัปเดตภาพ:
  *   node scripts/build-graph.mjs <path-ไป-vault>
@@ -21,6 +21,26 @@ if (!VAULT) {
 }
 
 const ROOT = join(VAULT, "knowledge");
+
+/**
+ * ป้ายหัวข้อของแต่ละกลุ่ม: โฟลเดอร์ใน vault → ชื่อตามหน้าที่ที่ขึ้นเว็บได้
+ * ⚠️ ค่าทางขวาจะขึ้นเว็บสาธารณะ — ใช้ชื่อตามหน้าที่เท่านั้น ห้ามชื่อระบบภายใน
+ * โฟลเดอร์ที่ไม่อยู่ในตารางนี้ไม่มีป้าย (ตั้งใจ ไม่ได้ลืม) และกลุ่มเล็กกว่า MIN_LABEL โน้ตก็ไม่มีป้าย
+ */
+const TOPICS = {
+  rpa: "RPA",
+  webflow: "Website",
+  memoonline: "Budget approval",
+  "sap-doc": "SAP documents",
+  "menu-permission": "Permissions",
+  timesheet: "Timesheet",
+  "sap-webservice": "SAP integration",
+  sso: "SSO",
+  memory: "Working rules",
+  infra: "Infrastructure",
+  cms: "Capacity",
+};
+const MIN_LABEL = 7;
 
 function walk(dir) {
   const out = [];
@@ -140,6 +160,17 @@ const offX = (W - (maxX - minX) * scale) / 2 - minX * scale;
 const offY = (H - (maxY - minY) * scale) / 2 - minY * scale;
 
 const round = (v) => Math.round(v * 10) / 10;
+
+// ป้ายวางที่จุดศูนย์ถ่วงของกลุ่ม (คิดหลัง normalise แล้ว)
+const labels = [];
+for (const [folder, g] of groups) {
+  const text = TOPICS[folder];
+  const members = groupOf.flatMap((gi, i) => (gi === g ? [i] : []));
+  if (!text || members.length < MIN_LABEL) continue;
+  const cx = members.reduce((s, i) => s + x[i], 0) / members.length;
+  const cy = members.reduce((s, i) => s + y[i], 0) / members.length;
+  labels.push({ x: round(cx * scale + offX), y: round(cy * scale + offY), text });
+}
 const nodes = [];
 for (let i = 0; i < n; i++) {
   nodes.push({
@@ -152,15 +183,16 @@ for (let i = 0; i < n; i++) {
 
 const out = {
   _comment:
-    "สร้างโดย scripts/build-graph.mjs — มีแต่พิกัดกับเส้น ไม่มีชื่อโน้ตหรือชื่อโฟลเดอร์",
+    "สร้างโดย scripts/build-graph.mjs — พิกัด เส้น และป้ายหัวข้อจากตาราง TOPICS ไม่มีชื่อโน้ตหรือชื่อโฟลเดอร์",
   width: W,
   height: H,
   groups: groups.size,
   nodes,
   edges,
+  labels,
 };
 
 writeFileSync(join(process.cwd(), "content", "graph.json"), JSON.stringify(out));
 console.log(
-  `graph.json: ${n} nodes, ${edges.length} edges, ${groups.size} clusters — ไม่มีชื่อใด ๆ ติดออกมา`,
+  `graph.json: ${n} nodes, ${edges.length} edges, ${groups.size} clusters, ${labels.length} labels: ${labels.map((l) => l.text).join(", ")}`,
 );
