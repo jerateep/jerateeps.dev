@@ -150,3 +150,15 @@
 body {
   overflow-x: clip;
 }
+
+/* หน้า /resume ตอนพิมพ์และตอนสร้าง PDF — ขอบกระดาษมาจาก @page ส่วน padding ของหน้าถูกตัดออกใน print */
+@page {
+  size: A4;
+  margin: 12mm 15mm;
+}
+@media print {
+  /* body ทาสีตามธีม — ตอนพิมพ์ให้เป็นกระดาษขาว ไม่งั้นพื้นที่ใต้เนื้อหาติดสีครีม */
+  body {
+    background: #fff;
+  }
+}

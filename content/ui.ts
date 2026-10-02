@@ -63,11 +63,15 @@ export const ui = {
   },
   scrollHint: { th: "เลื่อนแนวนอนเพื่อดูภาพทั้งหมด", en: "Scroll horizontally to view the full diagram." },
   contactLead: {
-    th: "เปิดรับโอกาสร่วมงานด้าน enterprise system, system integration และ automation ติดต่อทางอีเมลหรือ LinkedIn ได้เลย",
-    en: "Open to roles in enterprise systems, integration and automation. Email or LinkedIn is the best way to reach me.",
+    th: "ติดต่อทางอีเมลหรือ LinkedIn ได้เลย",
+    en: "Email or LinkedIn is the best way to reach me.",
   },
   moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },
   contactCta: { th: "ติดต่อผม", en: "Get in touch" },
+  // ใช้คำว่า resume ไม่ใช่ CV — สาย IT ในไทยและฝั่งอเมริกาใช้ resume (สั้น 1–2 หน้า) ส่วน CV คือฉบับยาวแบบสายวิชาการ/ยุโรป
+  resumeKeyProjects: { th: "ผลงานหลัก", en: "Key projects" },
+  resumeCore: { th: "ทักษะหลัก", en: "Core" },
+  resumePdf: { th: "ดาวน์โหลด Resume (PDF ภาษาอังกฤษ)", en: "Download resume (PDF)" },
   builtWith: {
     th: "เขียนด้วย Next.js และ Tailwind CSS · deploy บน Vercel",
     en: "Built with Next.js and Tailwind CSS · deployed on Vercel",
