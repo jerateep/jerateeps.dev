@@ -7,7 +7,7 @@ import type { Material } from "three";
  * ลูกโลกจุดกับ network ของ node ที่ลอยอยู่เหนือผิวโลก — ของตกแต่งหลัง hero (aria-hidden)
  * แนวเดียวกับต้นแบบที่ลองใน Gemini: โทนขาวดำ ลูกโลกใหญ่ล้นขอบขวา node ต่อเส้นหากันเมื่ออยู่ใกล้
  *
- * - สีมาจากธีมของเว็บ: ผิวโลกใช้ --muted, node ใช้ --fg และมีบางตัวเป็น --accent (ใช้ accent น้อย ๆ)
+ * - สีมาจากธีมของเว็บ: ผิวโลกใช้ --muted, เส้นกับ node ใช้ --accent ให้เข้าชุดกับปุ่มและหัวข้อ
  * - fog สีพื้น ทำให้ซีกหลังกลืนหาย อ่านเป็นทรงกลม
  * - ตำแหน่งสุ่มแบบมี seed ภาพจึงเหมือนเดิมทุกครั้งที่โหลด
  * - เอียงตามเมาส์เล็กน้อย (parallax) เฉพาะตอนเมาส์อยู่บนหน้า
@@ -88,14 +88,15 @@ export function OrbitHero({ className }: { className?: string }) {
       }));
       const nodePos = new Float32Array(M * 3);
       const nodeCol = new Float32Array(M * 3);
-      nodes.forEach((_, i) => (i % 9 === 0 ? accent : fg).toArray(nodeCol, i * 3));
+      // node ส่วนใหญ่สี accent ให้เข้าชุดกับเส้น มีบางตัวเป็นสีตัวอักษรตัดให้มีจังหวะ
+      nodes.forEach((_, i) => (i % 7 === 0 ? fg : accent).toArray(nodeCol, i * 3));
       const nodeGeo = new THREE.BufferGeometry();
       nodeGeo.setAttribute("position", new THREE.BufferAttribute(nodePos, 3));
       nodeGeo.setAttribute("color", new THREE.BufferAttribute(nodeCol, 3));
       globe.add(
         new THREE.Points(
           nodeGeo,
-          new THREE.PointsMaterial({ size: 0.11, vertexColors: true, transparent: true, opacity: 0.9 }),
+          new THREE.PointsMaterial({ size: 0.15, vertexColors: true, fog: false }),
         ),
       );
 
@@ -107,7 +108,8 @@ export function OrbitHero({ className }: { className?: string }) {
       globe.add(
         new THREE.LineSegments(
           lineGeo,
-          new THREE.LineBasicMaterial({ color: muted, transparent: true, opacity: 0.35 }),
+          // fog: false — fog ดึงสีเขียวไปทางสีพื้นจนเส้นกลายเป็นเทา ให้ fog ทำงานแค่ที่ผิวโลก
+          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.6, fog: false }),
         ),
       );
 
