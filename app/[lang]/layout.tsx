@@ -5,6 +5,11 @@ import Link from "next/link";
 import "../globals.css";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
+// ตั้ง data-theme ก่อนหน้าแรกวาด ไม่งั้นคนที่เลือกธีมเองจะเห็นธีมตามเครื่องแวบหนึ่งก่อน (flash)
+// สตริงคงที่ ไม่มีข้อมูลจากผู้ใช้ปน จึงใส่เป็น inline script ได้
+const themeInit = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
 const sansThai = IBM_Plex_Sans_Thai({
   variable: "--font-sans-thai",
@@ -69,7 +74,12 @@ export default async function RootLayout({
     <html
       lang={lang}
       className={`${sansThai.variable} ${geistMono.variable} h-full scroll-smooth`}
+      // script ด้านล่างเพิ่ม data-theme ก่อน hydrate — attribute บน <html> จึงต่างจากที่ server render ได้
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body className="font-sans min-h-full flex flex-col">
         <a
           href="#main"
@@ -108,6 +118,7 @@ export default async function RootLayout({
             >
               {ui.switchLang[lang]}
             </Link>
+            <ThemeToggle toDark={ui.themeToDark[lang]} toLight={ui.themeToLight[lang]} />
           </nav>
         </header>
 

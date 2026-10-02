@@ -75,6 +75,8 @@ export const ui = {
   skipToContent: { th: "ข้ามไปเนื้อหาหลัก", en: "Skip to main content" },
   switchLang: { th: "English", en: "ภาษาไทย" },
   switchLangLabel: { th: "Switch to English", en: "เปลี่ยนเป็นภาษาไทย" },
+  themeToDark: { th: "เปลี่ยนเป็นโหมดมืด", en: "Switch to dark mode" },
+  themeToLight: { th: "เปลี่ยนเป็นโหมดสว่าง", en: "Switch to light mode" },
 } satisfies Record<string, L | Record<string, L>>;
 
 /** หยิบข้อความตามภาษาปัจจุบัน */

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Material } from "three";
 
 /**
@@ -13,11 +13,18 @@ import type { Material } from "three";
  * - เอียงตามเมาส์เล็กน้อย (parallax) เฉพาะตอนเมาส์อยู่บนหน้า
  * - three.js โหลดหลังหน้าแรก render; reduced motion → เฟรมเดียว; ไม่มี WebGL หรือจอแคบ → ไม่โหลดเลย
  *
- * ponytail: อ่านสีจาก CSS variable ครั้งเดียวตอนสร้าง — ถ้าสลับธีมกลางคันต้อง reload
+ * ponytail: เปลี่ยนธีมตามการตั้งค่าเครื่องกลางคัน (ไม่ผ่านปุ่ม) ยังไม่สร้างฉากใหม่ — ต้อง reload
  * ponytail: เส้นเชื่อมคิดแบบ O(n²) ทุกเฟรม — n=110 ราว 6k คู่ต่อเฟรม ยังเบา ถ้าเพิ่ม node เป็นหลักพันค่อยทำ grid
  */
 export function OrbitHero({ className }: { className?: string }) {
   const box = useRef<HTMLDivElement>(null);
+  // สีอ่านจาก CSS variable ตอนสร้างฉาก — สลับธีมแล้วสร้างใหม่ (ThemeToggle ยิง event "themechange")
+  const [rev, setRev] = useState(0);
+  useEffect(() => {
+    const bump = () => setRev((r) => r + 1);
+    addEventListener("themechange", bump);
+    return () => removeEventListener("themechange", bump);
+  }, []);
 
   useEffect(() => {
     const el = box.current;
@@ -208,7 +215,7 @@ export function OrbitHero({ className }: { className?: string }) {
       cancelled = true;
       cleanup();
     };
-  }, []);
+  }, [rev]);
 
   return <div ref={box} aria-hidden className={className} />;
 }
