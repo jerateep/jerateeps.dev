@@ -30,6 +30,8 @@ export type Job = {
   summary: L;
   highlights: L[];
   stack: string[];
+  /** resume PDF แสดง bullet แค่กี่ข้อแรก (0 = บรรทัดตำแหน่งอย่างเดียว) — งานเก่าที่ไม่เกี่ยวกับสายที่สมัคร */
+  resumeHighlights?: number;
 };
 
 export type Project = {
@@ -39,6 +41,8 @@ export type Project = {
   role: L;
   impact: L[];
   stack: string[];
+  /** ข้อ impact ที่ resume PDF ใช้ (ค่าเริ่มต้น 0) — เลือกข้อที่ไม่ซ้ำกับ bullet ของงานด้านบน */
+  resumeImpact?: number;
   /** ใช้จัดลำดับและอ้างอิงตอนแก้เนื้อหา ไม่ได้แสดงบนหน้าเว็บ */
   year: string;
   /** ลิงก์สาธารณะเท่านั้น — ระบบภายในไม่ต้องใส่ */
@@ -84,7 +88,8 @@ export type Practice = {
 export type Education = {
   school: L;
   degree: L;
-  period: string;
+  /** ไทยใช้ พ.ศ. ให้ตรงกับช่วงเวลาของงาน ไม่งั้น recruiter คำนวณช่วงห่างผิด */
+  period: L;
 };
 
 export const profile = {
@@ -104,8 +109,8 @@ export const profile = {
       en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
     },
     {
-      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy ที่ใช้งานมานานอย่างระมัดระวัง โดยยึดการตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง เพื่อให้การ upgrade หรือ migrate ไม่กระทบ business process เดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
-      en: "Much of my work is modernising long-running systems carefully, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where getting it right matters most.",
+      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม ซึ่งสำคัญที่สุดกับระบบการเงินและการอนุมัติ",
+      en: "Much of my work is modernising long-running systems carefully, verifying how each one actually behaves against the database before changing it. Upgrades and migrations then keep the existing business process intact, which matters most where finance and approvals are involved.",
     },
     {
       th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และ knowledge base ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่ rewrite ควบคู่กับการทำ documentation ให้ระบบที่ไม่มีเอกสาร จนเป็น reference ที่ทีมใช้งานจริง",
@@ -122,7 +127,7 @@ export const profile = {
         th: "Gulf Space Technology (เดิมชื่อ บมจ. ไทยคม)",
         en: "Gulf Space Technology (formerly Thaicom PCL)",
       },
-      role: { th: "Full Stack Developer", en: "Full Stack Developer" },
+      role: { th: "Full-stack Developer", en: "Full-stack Developer" },
       period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
       summary: {
         th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
@@ -134,12 +139,8 @@ export const profile = {
           en: "Migrated decade-old ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, without service interruption.",
         },
         {
-          th: "กำกับงาน vendor และ outsource developer ทั้ง assign งาน, code review และตรวจรับงาน และ escalate ปัญหากับ vendor ของระบบ SAP",
-          en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
-        },
-        {
-          th: "ทดลองและแบ่งปันเครื่องมือที่ใช้ได้ผลให้ทีม ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน, RabbitMQ สำหรับทำ queue งาน RPA และการแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม",
-          en: "Tried out and shared tooling that proved useful to the team: Claude Code with shared skills and a knowledge base colleagues now use, RabbitMQ to queue RPA workloads, and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths.",
+          th: "พัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) ต่อยอดจากข้อเสนอของทีม DevOps แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
+          en: "Developed the central SSO on Microsoft Entra ID (OAuth 2.0), building on a proposal from the DevOps team, and worked through moving other applications onto it, replacing each app's separate login.",
         },
         {
           th: "ออกแบบ permission layer ที่ให้สิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการ assign สิทธิ์รายคน แก้ rule จุดเดียวมีผลกับทุกแอปที่อยู่หลัง SSO",
@@ -150,16 +151,20 @@ export const profile = {
           en: "Designed automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
         },
         {
-          th: "ต่อยอดข้อเสนอของทีม DevOps โดยพัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
-          en: "Following a proposal from the DevOps team, developed the central SSO on Microsoft Entra ID (OAuth 2.0) and worked through moving other applications onto it, replacing each app's separate login.",
-        },
-        {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อทำ user provisioning และ deprovisioning แบบอัตโนมัติ",
           en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
         },
         {
-          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ทั้ง debug และ reverse-engineer ระบบ legacy ลดงานที่เคยใช้หลายวันเหลือภายใน session เดียว",
-          en: "Brought AI tooling into the development process for debugging and reverse-engineering legacy systems, cutting work that took days down to a single session.",
+          th: "กำกับงาน vendor และ outsource developer ทั้ง assign งาน, code review และตรวจรับงาน และ escalate ปัญหากับ vendor ของระบบ SAP",
+          en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
+        },
+        {
+          th: "นำ RabbitMQ มาทำ queue งาน RPA และแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม หลังทดลองกับงานจริงแล้วได้ผล",
+          en: "Introduced RabbitMQ to queue RPA workloads and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths, after trialling both on real work.",
+        },
+        {
+          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน ใช้ debug และ reverse-engineer ระบบ legacy ลดงานที่เคยใช้หลายวันเหลือไม่ถึงวัน",
+          en: "Brought AI tooling into development — Claude Code with shared skills and a knowledge base colleagues now use — for debugging and reverse-engineering legacy systems, cutting work that took days to under a day.",
         },
       ],
       stack: [
@@ -181,7 +186,7 @@ export const profile = {
         en: "Bureau of Tuberculosis, Ministry of Public Health",
       },
       role: { th: "Programmer", en: "Programmer" },
-      period: { th: "ต.ค. 2560 – ต.ค. 2561 · กรุงเทพฯ", en: "Oct 2017 – Oct 2018 · Bangkok" },
+      period: { th: "ต.ค. 2560 – ต.ค. 2561", en: "Oct 2017 – Oct 2018" },
       summary: {
         th: "เก็บ requirement จากผู้ใช้งาน และพัฒนาทั้ง front end และ back end ด้วย C# บน .NET Framework พร้อมรับผิดชอบงานด้านฐานข้อมูลและ Active Directory",
         en: "Gathered requirements from users and developed both front end and back end in C# on .NET Framework, alongside database work and Active Directory administration.",
@@ -223,6 +228,7 @@ export const profile = {
         },
       ],
       stack: ["C#", "ASP.NET MVC", "Entity Framework", "Active Directory", "K2"],
+      resumeHighlights: 1,
     },
     {
       company: {
@@ -242,6 +248,7 @@ export const profile = {
         },
       ],
       stack: ["IT support", "Networking"],
+      resumeHighlights: 0,
     },
   ] satisfies Job[],
 
@@ -351,6 +358,7 @@ export const profile = {
     },
     {
       slug: "iam-rewrite",
+      resumeImpact: 1,
       name: {
         th: "ระบบ access management ขององค์กร (rewrite)",
         en: "Enterprise access management (rewrite)",
@@ -425,6 +433,7 @@ export const profile = {
     },
     {
       slug: "sap-middleware",
+      resumeImpact: 1,
       name: {
         th: "SAP integration middleware ของระบบ back-office",
         en: "SAP integration middleware",
@@ -460,6 +469,7 @@ export const profile = {
     },
     {
       slug: "budget-request",
+      resumeImpact: 1,
       name: {
         th: "ระบบขออนุมัติงบประมาณ",
         en: "Budget request & approval system",
@@ -526,7 +536,7 @@ export const profile = {
           en: "Fixed a transfer screen that accepted duplicate assets and reported errors that did not match the real cause.",
         },
       ],
-      stack: ["ASP.NET WebForms", "SQL Server", "SAP", "SOAP"],
+      stack: ["ASP.NET Web Forms", "SQL Server", "SAP", "SOAP"],
     },
     {
       slug: "logistics-inventory",
@@ -619,6 +629,7 @@ export const profile = {
     },
     {
       slug: "enterprise-automation",
+      resumeImpact: 2,
       name: {
         th: "งาน automation กลางขององค์กร",
         en: "Organisation-wide automation",
@@ -856,7 +867,7 @@ export const profile = {
         th: "วิทยาศาสตรบัณฑิต (วท.บ.) วิทยาการคอมพิวเตอร์",
         en: "B.Sc. Computer Science",
       },
-      period: "2009 – 2013",
+      period: { th: "2552 – 2556", en: "2009 – 2013" },
     },
     {
       school: { th: "วิทยาลัยเทคนิคตรัง", en: "Trang Technical College" },
@@ -864,7 +875,7 @@ export const profile = {
         th: "ปวช. และ ปวส. สาขาคอมพิวเตอร์ธุรกิจ",
         en: "Vocational Certificate and Higher Vocational Certificate, Business Computer",
       },
-      period: "2004 – 2009",
+      period: { th: "2547 – 2552", en: "2004 – 2009" },
     },
   ] satisfies Education[],
 
@@ -1017,18 +1028,18 @@ export const profile = {
     "ASP.NET Core",
     ".NET 8",
     "SQL Server",
-    "SAP integration (RFC)",
+    "SAP integration (SOAP/RFC)",
     "Power Automate",
   ],
 
   skills: [
     {
       title: { th: "หลัก", en: "Core" },
-      items: ["C#", "TypeScript", "SQL", "Python", "JavaScript", "Java"],
+      items: ["C#", "TypeScript", "SQL", "Python", "JavaScript"],
     },
     {
       title: { th: "Backend", en: "Backend" },
-      items: [".NET 8", "ASP.NET Core", "ASP.NET WebForms", "Dapper", "EF Core", "REST", "SOAP"],
+      items: [".NET 8", "ASP.NET Core", "ASP.NET Web Forms", "Dapper", "EF Core", "REST", "SOAP"],
     },
     {
       title: { th: "Frontend", en: "Frontend" },
@@ -1040,7 +1051,7 @@ export const profile = {
     },
     {
       title: { th: "Infra และ DevOps", en: "Infra & DevOps" },
-      items: ["Docker", "RabbitMQ", "Hangfire", "Git", "GitLab CI", "Nginx"],
+      items: ["Docker", "Portainer", "RabbitMQ", "Hangfire", "Git", "GitLab CI", "Nginx", "Azure Key Vault", "Azure Blob Storage"],
     },
     {
       title: { th: "AI engineering", en: "AI engineering" },
@@ -1056,7 +1067,7 @@ export const profile = {
     {
       title: { th: "Enterprise และ automation", en: "Enterprise & automation" },
       items: [
-        "SAP integration (RFC)",
+        "SAP integration (SOAP/RFC)",
         "Active Directory",
         "Microsoft Entra ID",
         "Microsoft Graph",

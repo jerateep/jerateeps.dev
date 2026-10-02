@@ -86,6 +86,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         >
           {ui.resumePdf[lang]} ↓
         </a>
+        {/* recruiter ไทยที่ส่งต่อให้ลูกค้าต่างชาติต้องใช้ฉบับอังกฤษ — ให้หยิบอีกภาษาได้โดยไม่ต้องสลับหน้า */}
+        <a
+          href={`/resume-${lang === "th" ? "en" : "th"}.pdf`}
+          download={`Jerateep-Saelee-Resume-${lang === "th" ? "EN" : "TH"}.pdf`}
+          className="mt-6 ml-3 inline-block text-xs text-muted underline-offset-4 hover:text-accent hover:underline"
+        >
+          {ui.resumeOtherLang[lang]}
+        </a>
       </section>
 
       {/* About */}
@@ -293,7 +301,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <p className="text-sm text-muted">
                     {item.degree[lang]}{" "}
                     <span className="font-mono text-xs whitespace-nowrap">
-                      · {item.period}
+                      · {item.period[lang]}
                     </span>
                   </p>
                 </div>

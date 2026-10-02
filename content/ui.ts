@@ -69,6 +69,9 @@ export const ui = {
   moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },
   contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   // ใช้คำว่า resume ไม่ใช่ CV — สาย IT ในไทยและฝั่งอเมริกาใช้ resume (สั้น 1–2 หน้า) ส่วน CV คือฉบับยาวแบบสายวิชาการ/ยุโรป
+  resumeKeyProjects: { th: "ผลงานหลัก", en: "Key projects" },
+  resumeCore: { th: "ทักษะหลัก", en: "Core" },
+  resumeOtherLang: { th: "English version", en: "ฉบับภาษาไทย" },
   resumePdf: { th: "ดาวน์โหลด Resume (PDF)", en: "Download resume (PDF)" },
   builtWith: {
     th: "เขียนด้วย Next.js และ Tailwind CSS · deploy บน Vercel",

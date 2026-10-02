@@ -11,6 +11,8 @@ import learn from "@/content/learn.json";
  * ขาวดำ ไม่มีกราฟิก ตามรูปแบบที่ ATS อ่านได้และ recruiter พิมพ์ได้ — สีบังคับขาวเสมอไม่ตามธีม
  */
 
+// ข้อจำกัดที่รู้แล้ว: Chrome ฝัง text layer ภาษาไทยไม่สะอาด (สระอำแยกเป็นสองตัวเวลา copy/parse)
+// ลอง Noto Sans Thai แล้วไม่ดีขึ้น — หน้าตาตอนพิมพ์ถูกต้อง แต่ถ้าต้องอัปโหลดเข้า ATS ให้ใช้ฉบับอังกฤษ
 const SITE = "https://jerateeps-dev.vercel.app";
 
 const isLocale = (value: string): value is Locale =>
@@ -28,9 +30,10 @@ export async function generateMetadata({
   };
 }
 
-function Heading({ children }: { children: string }) {
+// ตัวพิมพ์ใหญ่เฉพาะอังกฤษ — ภาษาไทยไม่มีตัวใหญ่ ถ้าปล่อยไว้คำอังกฤษในหัวข้อไทยจะโดดเป็น "BADGE"
+function Heading({ children, lang }: { children: string; lang: Locale }) {
   return (
-    <h2 className="mt-4 mb-2 break-after-avoid border-b border-neutral-300 pb-1 text-xs font-semibold tracking-wider text-neutral-900 uppercase">
+    <h2 className={`mt-4 mb-2 break-after-avoid border-b border-neutral-300 pb-1 text-xs font-semibold text-neutral-900 ${lang === "en" ? "tracking-wider uppercase" : ""}`}>
       {children}
     </h2>
   );
@@ -67,45 +70,58 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
             <p key={i}>{row.join("  ·  ")}</p>
           ))}
         </div>
+        <p className="mt-1.5 text-xs">
+          <span className="font-semibold text-neutral-900">{ui.resumeCore[lang]}:</span> {profile.coreSkills.join(" · ")}
+        </p>
       </header>
 
-      <Heading>{lang === "th" ? "สรุป" : "Summary"}</Heading>
+      <Heading lang={lang}>{lang === "th" ? "สรุป" : "Summary"}</Heading>
       <p>{profile.tagline[lang]}</p>
       <p className="mt-1.5">{profile.about[1][lang]}</p>
 
-      <Heading>{ui.sections.experience[lang]}</Heading>
+      <Heading lang={lang}>{ui.sections.experience[lang]}</Heading>
       <div className="space-y-3">
-        {profile.experience.map((job, i) => (
-          // งานสั้นห้ามขาดกลางหน้า — ไม่งั้นบรรทัด stack หลุดไปขึ้นหน้าใหม่บรรทัดเดียว
-          <section key={i} className={job.highlights.length <= 2 ? "break-inside-avoid" : ""}>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 break-after-avoid">
-              <h3 className="font-semibold text-neutral-900">
-                {job.role[lang]} <span className="font-normal text-neutral-700">— {job.company[lang]}</span>
-              </h3>
-              <span className="text-xs whitespace-nowrap text-neutral-600">{job.period[lang]}</span>
-            </div>
-            <ul className="mt-1 list-disc space-y-0.5 pl-4">
-              {job.highlights.map((item, j) => (
-                <li key={j} className="break-inside-avoid">{item[lang]}</li>
-              ))}
-            </ul>
-            <p className="mt-1 text-xs text-neutral-600">{job.stack.join(" · ")}</p>
-          </section>
-        ))}
+        {profile.experience.map((job, i) => {
+          const shown = job.highlights.slice(0, job.resumeHighlights ?? job.highlights.length);
+          return (
+            // งานสั้นห้ามขาดกลางหน้า — ไม่งั้นบรรทัด stack หลุดไปขึ้นหน้าใหม่บรรทัดเดียว
+            <section key={i} className={shown.length <= 2 ? "break-inside-avoid" : ""}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 break-after-avoid">
+                <h3 className="font-semibold text-neutral-900">
+                  {job.role[lang]} <span className="font-normal text-neutral-700">— {job.company[lang]}</span>
+                </h3>
+                <span className="text-xs whitespace-nowrap text-neutral-600">{job.period[lang]}</span>
+              </div>
+              {shown.length > 0 && (
+                <>
+                  <ul className="mt-1 list-disc space-y-0.5 pl-4">
+                    {shown.map((item, j) => (
+                      <li key={j} className="break-inside-avoid">{item[lang]}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-1 text-xs text-neutral-600">{job.stack.join(" · ")}</p>
+                </>
+              )}
+              {/* ผลงานเด่นทั้งหมดอยู่ที่บริษัทปัจจุบัน — วางใต้งานนี้ ไม่ใช่ท้ายประวัติงานเก่า */}
+              {i === 0 && (
+                <div className="mt-2.5 border-l-2 border-neutral-200 pl-3">
+                  <p className="font-semibold text-neutral-900">{ui.resumeKeyProjects[lang]}</p>
+                  <p className="mb-1 text-xs text-neutral-600 italic">{ui.projectsLead[lang]}</p>
+                  <div className="space-y-1">
+                    {projects.map((p) => (
+                      <p key={p.slug} className="break-inside-avoid">
+                        <span className="font-medium text-neutral-900">{p.name[lang]}</span> — {p.impact[p.resumeImpact ?? 0][lang]}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          );
+        })}
       </div>
 
-      <Heading>{ui.sections.projects[lang]}</Heading>
-      <p className="mb-2 text-xs text-neutral-600 italic">{ui.projectsLead[lang]}</p>
-      <div className="space-y-1.5">
-        {projects.map((p) => (
-          <section key={p.slug} className="break-inside-avoid">
-            <h3 className="font-semibold text-neutral-900">{p.name[lang]}</h3>
-            <p>{p.impact[0][lang]}</p>
-          </section>
-        ))}
-      </div>
-
-      <Heading>{ui.sections.skills[lang]}</Heading>
+      <Heading lang={lang}>{ui.sections.skills[lang]}</Heading>
       <dl className="space-y-0.5">
         {profile.skills.map((g, i) => (
           <div key={i} className="flex gap-3">
@@ -115,19 +131,19 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         ))}
       </dl>
 
-      <Heading>{ui.education[lang]}</Heading>
+      <Heading lang={lang}>{ui.education[lang]}</Heading>
       <div className="space-y-1">
         {profile.education.map((e, i) => (
           <div key={i} className="flex items-baseline justify-between gap-x-4">
             <p>
               <span className="font-medium text-neutral-900">{e.degree[lang]}</span> — {e.school[lang]}
             </p>
-            <span className="shrink-0 text-xs text-neutral-600">{e.period}</span>
+            <span className="shrink-0 text-xs text-neutral-600">{e.period[lang]}</span>
           </div>
         ))}
       </div>
 
-      <Heading>{ui.certifications[lang]}</Heading>
+      <Heading lang={lang}>{ui.certifications[lang]}</Heading>
       <p>
         <span className="font-medium text-neutral-900">{ui.microsoftLearn[lang]}:</span> {learn.courses.join(", ")}
       </p>
@@ -135,7 +151,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         <span className="font-medium text-neutral-900">{ui.googleCloud[lang]}:</span> {ui.googleCloudSummary[lang]}
       </p>
 
-      <Heading>{ui.languages[lang]}</Heading>
+      <Heading lang={lang}>{ui.languages[lang]}</Heading>
       <ul>
         {profile.languages.map((l, i) => (
           <li key={i}>
