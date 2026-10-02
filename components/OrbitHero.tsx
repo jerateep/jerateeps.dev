@@ -39,8 +39,6 @@ const FLEET = [
     ],
   },
 ];
-// ดาวเทียม geostationary ของผู้ให้บริการอื่น — แค่เติมวงให้ไม่โล่ง สีเทา
-const OTHER_GEO = [-150, -95, -40, 15];
 
 export function OrbitHero({ className }: { className?: string }) {
   const box = useRef<HTMLDivElement>(null);
@@ -155,13 +153,7 @@ export function OrbitHero({ className }: { className?: string }) {
         ),
       );
       const satGeom = new THREE.SphereGeometry(0.09, 12, 8);
-      const otherMat = new THREE.MeshBasicMaterial({ color: muted });
       const fleetMat = new THREE.MeshBasicMaterial({ color: accent });
-      for (const lon of OTHER_GEO) {
-        const m = new THREE.Mesh(satGeom, otherMat);
-        m.position.copy(toXYZ(0, lon, GEO));
-        earth.add(m);
-      }
 
       // กรุงเทพฯ (จุดหลัก ใหญ่สุด มีชีพจร)
       const bkk = toXYZ(BANGKOK.lat, BANGKOK.lon, R * 1.002);
