@@ -129,3 +129,8 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ลูกโลกหลัง hero ล้นถึงขอบจอขวา (50vw รวมความกว้าง scrollbar) — clip ไม่สร้าง scroll container จึงไม่ทำให้ header sticky พัง */
+body {
+  overflow-x: clip;
+}
