@@ -1,21 +1,34 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import type { Material, Texture } from "three";
+import { useEffect, useRef, useState } from "react";
+import type { Material } from "three";
+import land from "@/content/land.json";
 
 /**
- * ลูกโลกจุดกับวงโคจรดาวเทียมจาง ๆ หลัง hero — ของตกแต่งล้วน (aria-hidden)
+ * แผนที่จราจรดาวเทียมรอบโลก — ของตกแต่งหลัง hero (aria-hidden)
  *
- * - fog สีเดียวกับพื้นหลัง ทำให้ซีกหลังของโลกจางลง อ่านเป็นทรงกลม ไม่ใช่กองจุด
- * - ดาวเทียมมีหางจางตามหลัง และมีเส้นลิงก์บาง ๆ ลงสถานีภาคพื้นที่อยู่ซีกเดียวกัน
- * - three.js โหลดหลังหน้าแรก render เสร็จ ไม่ขวางเนื้อหา
- * - reduced motion → วาดเฟรมเดียวแล้วหยุด; ไม่มี WebGL → ไม่แสดงอะไร
- * - ซ่อนบนจอแคบ (ตั้งที่ className ของผู้เรียก) เพราะจะไปทับข้อความ
+ * - โลกเป็นจุดเฉพาะบนแผ่นดิน (content/land.json จาก scripts/build-land.mjs) อ่านออกว่าเป็นโลกจากรูปทวีป
+ *   ใช้จุดน้อย จึงคมทั้งโหมดสว่างและมืด และไม่เป็นลายจุดถี่ทั้งลูก
+ * - ทรงกลมล่องหน (เขียนแค่ depth) บังซีกหลัง — จุดและดาวเทียมด้านหลังโลกไม่ทะลุมาให้รก
+ * - ดาวเทียมวงโคจรต่ำหลายแนวเอียง วิ่งเร็วพร้อมหาง + วง geostationary ที่หมุนไปพร้อมโลก
+ * - จุดกรุงเทพฯ ส่งเส้นขึ้นไปหาดาวเทียม geostationary ดวงที่อยู่เหนือภูมิภาค
+ * - three.js โหลดหลังหน้าแรก render; reduced motion → เฟรมเดียว; ไม่มี WebGL หรือจอแคบ → ไม่โหลดเลย
  *
- * ponytail: อ่านสีจาก CSS variable ครั้งเดียวตอนสร้าง — ถ้าสลับธีมกลางคันต้อง reload
+ * ponytail: เปลี่ยนธีมตามการตั้งค่าเครื่องกลางคัน (ไม่ผ่านปุ่ม) ยังไม่สร้างฉากใหม่ — ต้อง reload
  */
+
+const DEG = Math.PI / 180;
+const BANGKOK = { lat: 13.75, lon: 100.5 };
+
 export function OrbitHero({ className }: { className?: string }) {
   const box = useRef<HTMLDivElement>(null);
+  // สีอ่านจาก CSS variable ตอนสร้างฉาก — สลับธีมแล้วสร้างใหม่ (ThemeToggle ยิง event "themechange")
+  const [rev, setRev] = useState(0);
+  useEffect(() => {
+    const bump = () => setRev((r) => r + 1);
+    addEventListener("themechange", bump);
+    return () => removeEventListener("themechange", bump);
+  }, []);
 
   useEffect(() => {
     const el = box.current;
@@ -31,154 +44,144 @@ export function OrbitHero({ className }: { className?: string }) {
       if (cancelled) return;
 
       const css = getComputedStyle(document.documentElement);
-      const accent = new THREE.Color(css.getPropertyValue("--accent").trim());
-      const bg = new THREE.Color(css.getPropertyValue("--bg").trim());
+      const color = (v: string) => new THREE.Color(css.getPropertyValue(v).trim());
+      const muted = color("--muted");
+      const accent = color("--accent");
+      const bg = color("--bg");
+      const light = bg.getHSL({ h: 0, s: 0, l: 0 }).l > 0.5;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.domElement.className = "size-full";
       el.appendChild(renderer.domElement);
 
-      const R = 1.6;
       const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(bg, 8.6, 12.2); // ซีกหน้าชัด ซีกหลังกลืนหายไปกับพื้น
-      const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-      camera.position.set(0, 1.1, 10);
-      camera.lookAt(0, 0, 0);
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.set(0, 0, 18);
 
-      const earth = new THREE.Group();
-      earth.rotation.z = 0.41; // แกนเอียงของโลก
-      scene.add(earth);
+      const R = 4.2;
+      const GEO = R * 1.75; // ไม่ใช่สัดส่วนจริง (จริง ~6.6 เท่า) — ย่อให้อยู่ในกรอบ
+      const toXYZ = (lat: number, lon: number, r: number) =>
+        new THREE.Vector3(
+          r * Math.cos(lat * DEG) * Math.cos(lon * DEG),
+          r * Math.sin(lat * DEG),
+          -r * Math.cos(lat * DEG) * Math.sin(lon * DEG),
+        );
 
-      // จุดกระจายบนผิวทรงกลมแบบ fibonacci — ความหนาแน่นสม่ำเสมอโดยไม่ต้องมี texture
-      const N = 1400;
-      const pts = new Float32Array(N * 3);
-      for (let i = 0; i < N; i++) {
-        const y = 1 - (i / (N - 1)) * 2;
-        const r = Math.sqrt(1 - y * y);
-        const t = i * Math.PI * (3 - Math.sqrt(5));
-        pts.set([Math.cos(t) * r * R, y * R, Math.sin(t) * r * R], i * 3);
-      }
-      const dotGeo = new THREE.BufferGeometry();
-      dotGeo.setAttribute("position", new THREE.BufferAttribute(pts, 3));
+      const tilt = new THREE.Group(); // เอียงแกนโลก + parallax ตามเมาส์
+      tilt.position.x = 2.6; // เยื้องขวา ให้ล้นขอบจอ
+      tilt.rotation.z = 23.5 * DEG;
+      scene.add(tilt);
+      const earth = new THREE.Group(); // หมุนรอบแกน — ทุกอย่างที่ติดกับผิวโลกอยู่ในนี้
+      // หันประเทศไทยเข้ากล้องตอนเริ่ม (เยื้องซ้ายนิดหน่อย จะได้หมุนผ่านกลางภาพ)
+      earth.rotation.y = -Math.PI / 2 - BANGKOK.lon * DEG - 0.5;
+      tilt.add(earth);
+
+      // ทรงกลมล่องหนบังซีกหลัง: เขียนแค่ depth ไม่วาดสี — จุดด้านหลังโลกไม่ทะลุมา
+      // แต่ไม่มีพื้นทึบไปบังตัวหนังสือ hero ที่ลูกโลกทับอยู่
+      const occluder = new THREE.Mesh(
+        new THREE.SphereGeometry(R * 0.985, 48, 32),
+        new THREE.MeshBasicMaterial({ colorWrite: false }),
+      );
+      occluder.renderOrder = -1; // ต้องเขียน depth ก่อนของอื่นวาด
+      earth.add(occluder);
+
+      // แผ่นดิน
+      const pts = land.points;
+      const landPos = new Float32Array((pts.length / 2) * 3);
+      for (let i = 0; i < pts.length; i += 2) toXYZ(pts[i], pts[i + 1], R).toArray(landPos, (i / 2) * 3);
+      const landGeo = new THREE.BufferGeometry();
+      landGeo.setAttribute("position", new THREE.BufferAttribute(landPos, 3));
       earth.add(
         new THREE.Points(
-          dotGeo,
-          new THREE.PointsMaterial({ color: accent, size: 0.03, transparent: true, opacity: 0.8 }),
+          landGeo,
+          new THREE.PointsMaterial({
+            color: muted,
+            size: 0.055,
+            transparent: true,
+            // สีเข้มบนพื้นสว่างตัดกันน้อยกว่าสีสว่างบนพื้นมืด จึงทึบกว่า
+            opacity: light ? 0.85 : 0.7,
+          }),
         ),
       );
 
-      // เส้นรุ้ง-แวงทุก 30° ให้รูปทรงชัดขึ้น (WireframeGeometry ให้ตาข่ายสามเหลี่ยม ไม่ใช่รุ้ง-แวง)
-      const gridPts: InstanceType<typeof THREE.Vector3>[] = [];
-      const S = 96;
-      const onSphere = (lat: number, lon: number) =>
-        new THREE.Vector3(Math.cos(lat) * Math.cos(lon) * R, Math.sin(lat) * R, Math.cos(lat) * Math.sin(lon) * R);
-      for (let lat = -60; lat <= 60; lat += 30)
-        for (let i = 0; i < S; i++)
-          gridPts.push(
-            onSphere((lat * Math.PI) / 180, (i / S) * Math.PI * 2),
-            onSphere((lat * Math.PI) / 180, ((i + 1) / S) * Math.PI * 2),
-          );
-      for (let lon = 0; lon < 180; lon += 30)
-        for (let i = 0; i < S; i++)
-          gridPts.push(
-            onSphere((i / S) * Math.PI * 2, (lon * Math.PI) / 180),
-            onSphere(((i + 1) / S) * Math.PI * 2, (lon * Math.PI) / 180),
-          );
+      // วง geostationary — หมุนไปพร้อมโลก (นิยามของ geostationary)
+      const ringGeo = new THREE.BufferGeometry().setFromPoints(
+        Array.from({ length: 200 }, (_, i) => toXYZ(0, (i / 200) * 360, GEO)),
+      );
       earth.add(
-        new THREE.LineSegments(
-          new THREE.BufferGeometry().setFromPoints(gridPts),
-          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.18 }),
+        new THREE.LineLoop(
+          ringGeo,
+          new THREE.LineBasicMaterial({ color: muted, transparent: true, opacity: light ? 0.35 : 0.3 }),
         ),
       );
-
-      // แสงเรืองรอบโลก — sprite ไล่สีจากกลางออกขอบ ไม่ได้รับ fog จึงไม่จางตามระยะ
-      const halo = document.createElement("canvas");
-      halo.width = halo.height = 128;
-      const hg = halo.getContext("2d")!;
-      const grad = hg.createRadialGradient(64, 64, 40, 64, 64, 64);
-      grad.addColorStop(0, `rgba(${accent.r * 255},${accent.g * 255},${accent.b * 255},0.08)`);
-      grad.addColorStop(1, "rgba(0,0,0,0)");
-      hg.fillStyle = grad;
-      hg.fillRect(0, 0, 128, 128);
-      const haloTex: Texture = new THREE.CanvasTexture(halo);
-      const glow = new THREE.Sprite(
-        new THREE.SpriteMaterial({ map: haloTex, fog: false, depthWrite: false }),
-      );
-      glow.scale.setScalar(R * 3.4);
-      scene.add(glow);
-
-      // สถานีภาคพื้น — จุดคงที่บนผิวโลก (หมุนไปพร้อมโลก)
-      const stations = [
-        [0.35, 1.9],
-        [-0.2, 0.6],
-        [0.7, -0.9],
-        [-0.55, 2.8],
-      ].map(([lat, lon]) => {
-        const p = new THREE.Vector3(
-          Math.cos(lat) * Math.cos(lon) * R,
-          Math.sin(lat) * R,
-          Math.cos(lat) * Math.sin(lon) * R,
-        );
-        const m = new THREE.Mesh(
-          new THREE.SphereGeometry(0.035, 10, 8),
-          new THREE.MeshBasicMaterial({ color: accent }),
-        );
-        m.position.copy(p);
+      const geoLons = [-150, -95, -40, 15, 60, 95, 140];
+      const geoMat = new THREE.MeshBasicMaterial({ color: muted });
+      const satGeom = new THREE.SphereGeometry(0.09, 12, 8);
+      for (const lon of geoLons) {
+        const m = new THREE.Mesh(satGeom, lon === 95 ? new THREE.MeshBasicMaterial({ color: accent }) : geoMat);
+        m.position.copy(toXYZ(0, lon, GEO));
         earth.add(m);
-        return m;
-      });
+      }
 
-      // วงโคจรสามวง ความเอียงต่างกัน วงนอกช้ากว่า
-      const TRAIL = 40;
-      const orbits = [
-        { radius: 2.25, tilt: 1.05, spin: 0.3, speed: 0.55, phase: 0 },
-        { radius: 2.6, tilt: 0.35, spin: -0.6, speed: 0.38, phase: 2.1 },
-        { radius: 3.0, tilt: -0.75, spin: 1.2, speed: 0.26, phase: 4.2 },
-      ].map(({ radius, tilt, spin, speed, phase }) => {
-        const pivot = new THREE.Group();
-        pivot.rotation.set(tilt, spin, 0);
-        scene.add(pivot);
-
-        const circle = (i: number, n: number) => {
-          const a = (i / n) * Math.PI * 2;
-          return new THREE.Vector3(Math.cos(a) * radius, 0, Math.sin(a) * radius);
-        };
-        pivot.add(
-          new THREE.LineLoop(
-            new THREE.BufferGeometry().setFromPoints(Array.from({ length: 160 }, (_, i) => circle(i, 160))),
-            new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.16 }),
-          ),
-        );
-
-        const sat = new THREE.Mesh(
-          new THREE.SphereGeometry(0.055, 12, 8),
-          new THREE.MeshBasicMaterial({ color: accent }),
-        );
-        pivot.add(sat);
-
-        // หาง: เส้นตามหลังดาวเทียม ไล่ความทึบด้วย vertex color จากสีพื้นไปสี accent
-        const trailGeo = new THREE.BufferGeometry();
-        trailGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(TRAIL * 3), 3));
-        const cols = new Float32Array(TRAIL * 3);
-        for (let i = 0; i < TRAIL; i++) {
-          const c = bg.clone().lerp(accent, i / (TRAIL - 1));
-          cols.set([c.r, c.g, c.b], i * 3);
-        }
-        trailGeo.setAttribute("color", new THREE.BufferAttribute(cols, 3));
-        pivot.add(new THREE.Line(trailGeo, new THREE.LineBasicMaterial({ vertexColors: true })));
-
-        return { pivot, sat, trailGeo, radius, speed, phase };
-      });
-
-      // ลิงก์ดาวเทียม ↔ สถานีที่อยู่ใกล้สุด (แสดงเฉพาะตอนดาวเทียมอยู่ฝั่งเดียวกับสถานี)
-      const linkGeo = new THREE.BufferGeometry();
-      linkGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(orbits.length * 6), 3));
-      const links = new THREE.LineSegments(
-        linkGeo,
-        new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.35 }),
+      // กรุงเทพฯ → ดาวเทียม geostationary เหนือภูมิภาค
+      const bkk = toXYZ(BANGKOK.lat, BANGKOK.lon, R * 1.002);
+      const geoSat = toXYZ(0, 95, GEO);
+      const marker = new THREE.Mesh(
+        new THREE.SphereGeometry(0.08, 12, 8),
+        new THREE.MeshBasicMaterial({ color: accent }),
       );
-      scene.add(links);
+      marker.position.copy(bkk);
+      earth.add(marker);
+      const pulse = new THREE.Mesh(
+        new THREE.RingGeometry(0.1, 0.13, 32),
+        new THREE.MeshBasicMaterial({ color: accent, transparent: true, side: THREE.DoubleSide }),
+      );
+      pulse.position.copy(bkk);
+      pulse.lookAt(bkk.clone().multiplyScalar(2)); // วางราบกับผิวโลก
+      earth.add(pulse);
+      earth.add(
+        new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([bkk, geoSat]),
+          new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.55 }),
+        ),
+      );
+      const packet = new THREE.Mesh(
+        new THREE.SphereGeometry(0.05, 8, 6),
+        new THREE.MeshBasicMaterial({ color: accent }),
+      );
+      earth.add(packet);
+
+      // ดาวเทียมวงโคจรต่ำ: แต่ละดวงมีระนาบวงโคจรของตัวเอง (เอียง + หมุนแกน) — seed คงที่
+      let seed = 20261002;
+      const rand = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+      const LEO = 64;
+      const TRAIL = 10;
+      const leo = Array.from({ length: LEO }, () => {
+        const q = new THREE.Quaternion().setFromEuler(
+          new THREE.Euler((rand() - 0.5) * Math.PI, rand() * Math.PI * 2, 0),
+        );
+        return { q, r: R * (1.08 + rand() * 0.14), a: rand() * Math.PI * 2, v: 0.25 + rand() * 0.25 };
+      });
+      const leoPos = new Float32Array(LEO * 3);
+      const leoGeo = new THREE.BufferGeometry();
+      leoGeo.setAttribute("position", new THREE.BufferAttribute(leoPos, 3));
+      tilt.add(
+        new THREE.Points(leoGeo, new THREE.PointsMaterial({ color: accent, size: light ? 0.11 : 0.1 })),
+      );
+      // หาง: เส้นต่อจุดย้อนหลัง ไล่สีจากสีพื้นไปสี accent
+      const trailPos = new Float32Array(LEO * (TRAIL - 1) * 6);
+      const trailCol = new Float32Array(LEO * (TRAIL - 1) * 6);
+      for (let s = 0; s < LEO; s++)
+        for (let k = 0; k < TRAIL - 1; k++) {
+          const o = (s * (TRAIL - 1) + k) * 6;
+          bg.clone().lerp(accent, (k / TRAIL) * (light ? 0.8 : 0.6)).toArray(trailCol, o);
+          bg.clone().lerp(accent, ((k + 1) / TRAIL) * (light ? 0.8 : 0.6)).toArray(trailCol, o + 3);
+        }
+      const trailGeo = new THREE.BufferGeometry();
+      trailGeo.setAttribute("position", new THREE.BufferAttribute(trailPos, 3));
+      trailGeo.setAttribute("color", new THREE.BufferAttribute(trailCol, 3));
+      tilt.add(new THREE.LineSegments(trailGeo, new THREE.LineBasicMaterial({ vertexColors: true })));
 
       const resize = () => {
         const { width, height } = el.getBoundingClientRect();
@@ -190,41 +193,48 @@ export function OrbitHero({ className }: { className?: string }) {
       ro.observe(el);
       resize();
 
-      const sw = new THREE.Vector3();
-      const st = new THREE.Vector3();
-      const clock = new THREE.Clock();
+      // parallax: เอียงตามตำแหน่งเมาส์บนจอ แบบหน่วงนุ่ม ๆ
+      let lean = 0;
+      const onMouse = (e: MouseEvent) => (lean = (e.clientY / innerHeight - 0.5) * 0.2);
+      addEventListener("mousemove", onMouse);
+
+      const v = new THREE.Vector3();
+      const orbitPoint = (s: (typeof leo)[number], a: number) =>
+        v.set(Math.cos(a) * s.r, 0, Math.sin(a) * s.r).applyQuaternion(s.q);
+      const lp = leoGeo.attributes.position as InstanceType<typeof THREE.BufferAttribute>;
+      const tp = trailGeo.attributes.position as InstanceType<typeof THREE.BufferAttribute>;
+      // THREE.Clock เลิกใช้แล้วในเวอร์ชันนี้ — นับเวลาเองจาก performance.now()
+      const start = performance.now();
+      let last = start;
       const frame = () => {
-        const t = clock.getElapsedTime() + 3;
-        earth.rotation.y = t * 0.07;
-        earth.updateMatrixWorld();
-        const lp = linkGeo.attributes.position as InstanceType<typeof THREE.BufferAttribute>;
+        const now = performance.now();
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        const t = (now - start) / 1000;
+        earth.rotation.y += dt * 0.05;
+        tilt.rotation.x += (lean - tilt.rotation.x) * 0.04;
 
-        orbits.forEach((o, k) => {
-          const a = t * o.speed + o.phase;
-          o.sat.position.set(Math.cos(a) * o.radius, 0, Math.sin(a) * o.radius);
-
-          const tp = o.trailGeo.attributes.position as InstanceType<typeof THREE.BufferAttribute>;
-          for (let i = 0; i < TRAIL; i++) {
-            const b = a - (TRAIL - 1 - i) * 0.018; // i สุดท้าย = ตำแหน่งดาวเทียม
-            tp.setXYZ(i, Math.cos(b) * o.radius, 0, Math.sin(b) * o.radius);
+        leo.forEach((s, i) => {
+          s.a += s.v * dt;
+          orbitPoint(s, s.a);
+          lp.setXYZ(i, v.x, v.y, v.z);
+          for (let k = 0; k < TRAIL - 1; k++) {
+            const o = (i * (TRAIL - 1) + k) * 2;
+            orbitPoint(s, s.a - (TRAIL - 1 - k) * 0.035);
+            tp.setXYZ(o, v.x, v.y, v.z);
+            orbitPoint(s, s.a - (TRAIL - 2 - k) * 0.035);
+            tp.setXYZ(o + 1, v.x, v.y, v.z);
           }
-          tp.needsUpdate = true;
-
-          o.pivot.updateMatrixWorld();
-          o.sat.getWorldPosition(sw);
-          let best = Infinity;
-          for (const s of stations) {
-            s.getWorldPosition(st);
-            // สถานีต้องหันหาดาวเทียม (อยู่เหนือขอบฟ้าของสถานี)
-            if (st.dot(sw.clone().sub(st)) <= 0) continue;
-            const d = st.distanceTo(sw);
-            if (d < best) best = d;
-            if (d === best) lp.setXYZ(k * 2 + 1, st.x, st.y, st.z);
-          }
-          if (best === Infinity) lp.setXYZ(k * 2 + 1, sw.x, sw.y, sw.z); // ไม่มีสถานีเห็น → เส้นยาวศูนย์
-          lp.setXYZ(k * 2, sw.x, sw.y, sw.z);
         });
         lp.needsUpdate = true;
+        tp.needsUpdate = true;
+
+        // ชีพจรที่กรุงเทพฯ + ข้อมูลวิ่งขึ้นดาวเทียม
+        const p = (t % 2.4) / 2.4;
+        pulse.scale.setScalar(1 + p * 2.5);
+        (pulse.material as InstanceType<typeof THREE.MeshBasicMaterial>).opacity = 1 - p;
+        packet.position.lerpVectors(bkk, geoSat, (t * 0.35) % 1);
+
         renderer.render(scene, camera);
       };
       if (still) frame();
@@ -233,13 +243,13 @@ export function OrbitHero({ className }: { className?: string }) {
       cleanup = () => {
         renderer.setAnimationLoop(null);
         ro.disconnect();
+        removeEventListener("mousemove", onMouse);
         scene.traverse((o) => {
-          if (o instanceof THREE.Mesh || o instanceof THREE.Line || o instanceof THREE.Points || o instanceof THREE.Sprite) {
+          if (o instanceof THREE.Points || o instanceof THREE.Line || o instanceof THREE.Mesh) {
             o.geometry.dispose();
             (o.material as Material).dispose();
           }
         });
-        haloTex.dispose();
         renderer.dispose();
         renderer.domElement.remove();
       };
@@ -249,7 +259,7 @@ export function OrbitHero({ className }: { className?: string }) {
       cancelled = true;
       cleanup();
     };
-  }, []);
+  }, [rev]);
 
   return <div ref={box} aria-hidden className={className} />;
 }

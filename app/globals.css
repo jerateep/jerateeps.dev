@@ -9,10 +9,15 @@
   --muted: #6b6a65;
   --accent: #0f766e;
   --accent-soft: #e6f4f1;
+  color-scheme: light;
 }
 
+/*
+ * ค่าเริ่มต้นตามเครื่องของคนดู แต่ปุ่มสลับธีมเขียน data-theme ทับได้ (components/ThemeToggle.tsx)
+ * ชุดสีมืดจึงต้องมีสองที่: ตามเครื่อง (ถ้าไม่ได้เลือก light เอง) และตอนเลือก dark เอง
+ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0c0d0f;
     --surface: #131519;
     --border: #24272d;
@@ -20,7 +25,18 @@
     --muted: #9298a2;
     --accent: #5eead4;
     --accent-soft: #10241f;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0c0d0f;
+  --surface: #131519;
+  --border: #24272d;
+  --fg: #e9eaec;
+  --muted: #9298a2;
+  --accent: #5eead4;
+  --accent-soft: #10241f;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -128,4 +144,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ลูกโลกหลัง hero ล้นถึงขอบจอขวา (50vw รวมความกว้าง scrollbar) — clip ไม่สร้าง scroll container จึงไม่ทำให้ header sticky พัง */
+body {
+  overflow-x: clip;
 }
