@@ -22,16 +22,16 @@ export const ui = {
     contact: { th: "ติดต่อ", en: "Get in touch" },
   },
   aiLead: {
-    th: "ใช้ AI เป็นส่วนหนึ่งของกระบวนการทำงาน ไม่ใช่แค่ตัวเติมโค้ด ทั้งคลังความรู้ skill ที่แชร์ในทีม hook ที่ตรวจงานก่อนส่งมอบ และการต่อเข้ากับแพลตฟอร์มผ่าน MCP",
+    th: "ใช้ AI เป็นส่วนหนึ่งของกระบวนการทำงาน ไม่ใช่แค่ code completion ทั้ง knowledge base, skill ที่แชร์ในทีม, hook ที่ตรวจงานก่อนส่งมอบ และการต่อเข้ากับแพลตฟอร์มผ่าน MCP",
     en: "AI is part of the working process rather than a code-completion tool: a knowledge base, skills shared across the team, hooks that check work before delivery, and connections to the platforms over MCP.",
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   graphCaption: {
-    th: "โครงสร้างคลังความรู้จริงที่ใช้งานอยู่ — 229 บันทึก เชื่อมถึงกัน 503 เส้น แบ่งเป็น 28 กลุ่มระบบ · ไม่แสดงชื่อบันทึกเพราะเป็นชื่อระบบภายใน",
-    en: "The live structure of the knowledge base — 229 notes, 503 links between them, clustered into 28 systems. Note titles are omitted because they are internal system names.",
+    th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่ — 229 note เชื่อมถึงกัน 503 link แบ่งเป็น 28 กลุ่มระบบ",
+    en: "The live structure of the knowledge base — 229 notes, 503 links between them, clustered into 28 systems.",
   },
   graphLabel: {
-    th: "แผนภาพจุดและเส้นแสดงความเชื่อมโยงของบันทึกในคลังความรู้",
+    th: "แผนภาพ node และ link แสดงความเชื่อมโยงของ note ใน knowledge base",
     en: "A node-and-link diagram showing how notes in the knowledge base connect.",
   },
   projectsLead: {
@@ -48,7 +48,7 @@ export const ui = {
   },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
   learnCourses: {
-    th: "หลักสูตรตามแนวข้อสอบที่เรียนจบ",
+    th: "คอร์สสาย exam track ที่เรียนจบ",
     en: "Completed exam-track courses",
   },
   verifyAt: { th: "ตรวจสอบได้ที่", en: "Verify at" },
@@ -58,12 +58,12 @@ export const ui = {
     en: "Systems I own and systems I support, all within one organisation. The names are confidential, so they are listed by function.",
   },
   diagramCaption: {
-    th: "ภาพรวมเชิงแนวคิด — ไม่ใช่ผังระบบจริง",
+    th: "ภาพรวมเชิง concept — ไม่ใช่ topology จริงของระบบ",
     en: "Conceptual overview, not the actual system topology.",
   },
   scrollHint: { th: "เลื่อนแนวนอนเพื่อดูภาพทั้งหมด", en: "Scroll horizontally to view the full diagram." },
   contactLead: {
-    th: "เปิดรับโอกาสร่วมงานด้านระบบองค์กร การเชื่อมต่อระบบ และ automation ติดต่อทางอีเมลหรือ LinkedIn ได้เลย",
+    th: "เปิดรับโอกาสร่วมงานด้าน enterprise system, system integration และ automation ติดต่อทางอีเมลหรือ LinkedIn ได้เลย",
     en: "Open to roles in enterprise systems, integration and automation. Email or LinkedIn is the best way to reach me.",
   },
   moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },

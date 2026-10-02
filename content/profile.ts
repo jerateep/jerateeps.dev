@@ -90,25 +90,25 @@ export type Education = {
 export const profile = {
   name: { th: "Jerateep Saelee", en: "Jerateep Saelee" } satisfies L,
   role: {
-    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบการเงินและการเชื่อมต่อระบบองค์กร",
+    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบการเงินและ enterprise integration",
     en: "Full-stack Developer (.NET) · 10+ years · Enterprise Finance & Integration Systems",
   } satisfies L,
   tagline: {
-    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้งสายอนุมัติงบประมาณ การเชื่อมต่อ SAP และระบบยืนยันตัวตนกลาง พร้อมสนับสนุนระบบอื่นในองค์กร งานช่วงหลังรวมถึงการย้ายระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่หยุดให้บริการ",
+    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่มี downtime",
     en: "Building and looking after core back-office systems at a satellite operator (finance approvals, SAP integration, central sign-in) and supporting others across the organisation. Recent work includes moving decade-old platforms to .NET 8 without service interruption.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้งสายอนุมัติงบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และการกำหนดว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกหลายระบบพึ่งพาอยู่",
+      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้ง approval workflow งบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และ access control ว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกหลายระบบพึ่งพาอยู่",
       en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
     },
     {
-      th: "งานส่วนใหญ่คือการยกระดับระบบที่ใช้งานมานานอย่างระมัดระวัง โดยยึดวิธีตรวจสอบพฤติกรรมจริงของระบบเทียบกับฐานข้อมูลก่อนแก้ไขทุกครั้ง เพื่อให้การปรับปรุงหรือย้ายระบบไม่กระทบกระบวนการทางธุรกิจเดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
+      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy ที่ใช้งานมานานอย่างระมัดระวัง โดยยึดการตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง เพื่อให้การ upgrade หรือ migrate ไม่กระทบ business process เดิม โดยเฉพาะระบบที่เกี่ยวข้องกับการเงินและการอนุมัติซึ่งต้องการความถูกต้องสมบูรณ์",
       en: "Much of my work is modernising long-running systems carefully, working from verified behaviour — checking how a system actually runs against the database before any change so that upgrades and migrations preserve the existing business process — particularly for systems handling finance and approvals, where getting it right matters most.",
     },
     {
-      th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และคลังความรู้ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่เขียนใหม่ ควบคู่กับการเปลี่ยนระบบที่ไม่มีเอกสารให้เป็นเอกสารอ้างอิงที่ทีมใช้งานจริง",
+      th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และ knowledge base ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่ rewrite ควบคู่กับการทำ documentation ให้ระบบที่ไม่มีเอกสาร จนเป็น reference ที่ทีมใช้งานจริง",
       en: "Likes trying tools that might help the team and sharing the ones that work — Claude Code with shared skills and a knowledge base the team now uses, and a clean-architecture split of back end and front end for rewrites — alongside turning undocumented systems into references the team works from.",
     },
   ] satisfies L[],
@@ -125,40 +125,40 @@ export const profile = {
       role: { th: "Full Stack Developer", en: "Full Stack Developer" },
       period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
       summary: {
-        th: "รับผิดชอบระบบ back-office หลัก และสนับสนุนระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน สายอนุมัติ ระบบสิทธิ์ และการเชื่อมต่อ SAP ทั้งการดูแลระบบเดิมบน Web Forms การพัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่งเซิร์ฟเวอร์และ RPA",
+        th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
         en: "Own the core back-office systems and support many others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
       },
       highlights: [
         {
-          th: "ย้ายระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้นสู่ .NET 8 และ Next.js โดยใช้ฐานข้อมูลเดิมต่อเนื่อง และไม่มีการหยุดให้บริการ",
+          th: "Migrate ระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้น .NET 8 และ Next.js บนฐานข้อมูลเดิม โดยไม่มี downtime",
           en: "Migrated decade-old ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, without service interruption.",
         },
         {
-          th: "กำกับงานผู้รับเหมาและนักพัฒนาภายนอก ทั้งการมอบหมายงาน การตรวจรับโค้ด และการติดตามปัญหากับผู้ขายระบบ SAP",
+          th: "กำกับงาน vendor และ outsource developer ทั้ง assign งาน, code review และตรวจรับงาน และ escalate ปัญหากับ vendor ของระบบ SAP",
           en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
         },
         {
-          th: "ทดลองและแบ่งปันเครื่องมือที่ใช้ได้ผลให้ทีม ได้แก่ Claude Code พร้อม skill และคลังความรู้ที่ทีมใช้ร่วมกัน, RabbitMQ สำหรับจัดคิวงาน RPA และการแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม",
+          th: "ทดลองและแบ่งปันเครื่องมือที่ใช้ได้ผลให้ทีม ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน, RabbitMQ สำหรับทำ queue งาน RPA และการแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม",
           en: "Tried out and shared tooling that proved useful to the team: Claude Code with shared skills and a knowledge base colleagues now use, RabbitMQ to queue RPA workloads, and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths.",
         },
         {
-          th: "ออกแบบชั้นการจัดการสิทธิ์ที่กำหนดสิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการผูกสิทธิ์รายบุคคล การแก้ไขกฎเพียงจุดเดียวมีผลกับทุกแอปพลิเคชันที่ใช้ SSO",
+          th: "ออกแบบ permission layer ที่ให้สิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการ assign สิทธิ์รายคน แก้ rule จุดเดียวมีผลกับทุกแอปที่อยู่หลัง SSO",
           en: "Designed a permission layer granting access by organisational attributes (business unit, department, position) rather than per-user assignment; a single rule change propagates to every application behind SSO.",
         },
         {
-          th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงานประมวลผลเอกสาร และเพื่อรองรับข้อจำกัดของระบบ SAP ECC6",
+          th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงาน document processing และเพื่อ workaround ข้อจำกัดของ SAP ECC6",
           en: "Designed automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
         },
         {
-          th: "ต่อยอดข้อเสนอของทีม DevOps โดยพัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) แล้วค่อย ๆ ย้ายระบบอื่นมาเชื่อมต่อ แทนการล็อกอินแยกของแต่ละแอป",
+          th: "ต่อยอดข้อเสนอของทีม DevOps โดยพัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
           en: "Following a proposal from the DevOps team, developed the central SSO on Microsoft Entra ID (OAuth 2.0) and worked through moving other applications onto it, replacing each app's separate login.",
         },
         {
-          th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อให้การเปิดและปิดบัญชีผู้ใช้เป็นไปโดยอัตโนมัติ",
+          th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อทำ user provisioning และ deprovisioning แบบอัตโนมัติ",
           en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
         },
         {
-          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ทั้งวิเคราะห์ข้อผิดพลาดและ reverse-engineer ระบบเดิม ลดงานที่เคยใช้หลายวันเหลือภายในรอบการทำงานเดียว",
+          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ทั้ง debug และ reverse-engineer ระบบ legacy ลดงานที่เคยใช้หลายวันเหลือภายใน session เดียว",
           en: "Brought AI tooling into the development process for debugging and reverse-engineering legacy systems, cutting work that took days down to a single session.",
         },
       ],
@@ -183,7 +183,7 @@ export const profile = {
       role: { th: "Programmer", en: "Programmer" },
       period: { th: "ต.ค. 2560 – ต.ค. 2561 · กรุงเทพฯ", en: "Oct 2017 – Oct 2018 · Bangkok" },
       summary: {
-        th: "รวบรวมความต้องการจากผู้ใช้งานและพัฒนาทั้งส่วนหน้าและส่วนหลังด้วย C# บน .NET Framework พร้อมรับผิดชอบงานด้านฐานข้อมูลและ Active Directory",
+        th: "เก็บ requirement จากผู้ใช้งาน และพัฒนาทั้ง front end และ back end ด้วย C# บน .NET Framework พร้อมรับผิดชอบงานด้านฐานข้อมูลและ Active Directory",
         en: "Gathered requirements from users and developed both front end and back end in C# on .NET Framework, alongside database work and Active Directory administration.",
       },
       highlights: [
@@ -214,11 +214,11 @@ export const profile = {
       },
       highlights: [
         {
-          th: "พัฒนาระบบจัดการทรัพย์สิน IT ระบบรับคำขอบริการ IT (C#, ASP.NET MVC, Entity Framework) และระบบลงทะเบียนงานสัมมนา",
+          th: "พัฒนาระบบ IT asset management ระบบ IT service request (C#, ASP.NET MVC, Entity Framework) และระบบลงทะเบียนงานสัมมนา",
           en: "Built an IT asset management system, an IT service request system (C#, ASP.NET MVC, Entity Framework) and a seminar registration system.",
         },
         {
-          th: "ดูแล Active Directory ระบบเอกสารอิเล็กทรอนิกส์ และ G Suite รวมถึงการย้ายข้อมูลอีเมล งานด้าน hardware และเครือข่าย และการจัดทำแผนบำรุงรักษาเชิงป้องกัน",
+          th: "ดูแล Active Directory ระบบ e-document และ G Suite รวมถึง mailbox migration งาน hardware และ network และวางแผน preventive maintenance",
           en: "Administered Active Directory, the electronic document system and G Suite (including mailbox migration), plus hardware, network and preventive-maintenance planning.",
         },
       ],
@@ -232,12 +232,12 @@ export const profile = {
       role: { th: "IT Technician", en: "IT Technician" },
       period: { th: "ก.ค. 2556 – มี.ค. 2557", en: "Jul 2013 – Mar 2014" },
       summary: {
-        th: "ให้บริการ IT support ณ สถานที่ปฏิบัติงานในโรงพยาบาล ครอบคลุมการดูแลอุปกรณ์ เครือข่าย และระบบติดตามปัญหา",
+        th: "ให้บริการ IT support แบบ on-site ในโรงพยาบาล ครอบคลุมการดูแลอุปกรณ์ network และ issue tracking",
         en: "Provided on-site IT support in a hospital, covering equipment and network maintenance and issue tracking.",
       },
       highlights: [
         {
-          th: "สนับสนุนบุคลากรทางการแพทย์ ณ สถานที่ปฏิบัติงาน และดำเนินการบำรุงรักษาเชิงป้องกันของอุปกรณ์และเครือข่าย",
+          th: "Support บุคลากรทางการแพทย์แบบ on-site และทำ preventive maintenance ให้อุปกรณ์ IT และ network",
           en: "Supported medical staff on site and carried out preventive maintenance on IT equipment and networks.",
         },
       ],
@@ -249,15 +249,15 @@ export const profile = {
     {
       slug: "sap-doc-pipeline",
       name: {
-        th: "ระบบผลิตเอกสารจาก SAP อัตโนมัติ (end-to-end)",
+        th: "Pipeline ออกเอกสารจาก SAP อัตโนมัติ (end-to-end)",
         en: "End-to-end SAP document production pipeline",
       },
       summary: {
-        th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบครบวงจร ตั้งแต่การดึงข้อมูลด้วย robot การแปลง print-image เป็นข้อมูลเชิงโครงสร้าง การเรนเดอร์เอกสาร จนถึงการส่งต่อให้ระบบรับบิลของคู่ค้า",
+        th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบ end-to-end ตั้งแต่ใช้ robot ดึงข้อมูล, parse print-image เป็น structured data, render เอกสาร จนถึงส่งต่อเข้าระบบ billing ของคู่ค้า",
         en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
       },
       role: {
-        th: "ออกแบบสถาปัตยกรรม พัฒนาทั้งสามภาษา และกำหนดวิธีตรวจสอบความถูกต้อง",
+        th: "ออกแบบ architecture, พัฒนาทั้งสามภาษา และวางวิธี verify ความถูกต้อง",
         en: "Architecture, implementation across three languages, and the correctness verification strategy",
       },
       confidential: true,
@@ -318,23 +318,23 @@ export const profile = {
       } satisfies Record<string, L>,
       impact: [
         {
-          th: "ประมวลผลเอกสารย้อนหลังทั้งคลัง (หลักหมื่นฉบับ) และตรวจเทียบกับต้นฉบับรายฉบับจนไม่พบความแตกต่าง ก่อนเปลี่ยนมาใช้ระบบใหม่เป็นค่าเริ่มต้น",
+          th: "Re-process เอกสารย้อนหลังทั้งหมด (หลักหมื่นฉบับ) แล้ว diff กับต้นฉบับทีละฉบับจนไม่พบความแตกต่าง ก่อนเปลี่ยนมาใช้ระบบใหม่เป็น default",
           en: "Re-processed the entire back catalogue (tens of thousands of documents) and diffed every one against its original to zero differences before the new path became the default.",
         },
         {
-          th: "ออกแบบให้อ่าน print-image เพียงครั้งเดียวแล้วจัดเก็บเป็นข้อมูลเชิงโครงสร้าง ทั้งขั้นตอนออกเอกสารและขั้นตอนแสดงตัวอย่างจึงอ่านจากแหล่งข้อมูลเดียวกัน ลดความเสี่ยงที่ตรรกะสองชุดจะให้ผลลัพธ์ต่างกัน",
+          th: "ออกแบบให้ parse print-image ครั้งเดียวแล้วเก็บเป็น structured data ทั้งขั้น render และ preview จึงอ่านจาก source เดียวกัน ลดความเสี่ยงที่ logic สองชุดจะให้ผลต่างกัน",
           en: "Settled on parse-once: the print image is read a single time into structured storage, so rendering and preview read the same source and there is no second builder to drift.",
         },
         {
-          th: "ข้อมูลที่ผู้ใช้แก้ไขเองจะถูกทำเครื่องหมายไว้ และการประมวลผลซ้ำในภายหลังจะข้ามเอกสารฉบับนั้นอย่างถาวร เพื่อไม่ให้ข้อมูลที่ผ่านการตรวจสอบโดยบุคคลถูกเขียนทับ",
+          th: "ข้อมูลที่ผู้ใช้แก้เองจะถูก flag ไว้ และการ re-parse ภายหลังจะข้ามเอกสารฉบับนั้นถาวร เพื่อไม่ให้ข้อมูลที่คนตรวจแล้วถูกเขียนทับ",
           en: "Human edits are flagged, so later re-parses skip those documents permanently — work a person verified never gets overwritten.",
         },
         {
-          th: "จัดเก็บ print-image ต้นฉบับแบบอ่านอย่างเดียวเพื่อใช้เป็น audit trail สำหรับตรวจสอบย้อนกลับเมื่อสงสัยว่าการอ่านข้อมูลไม่ครบถ้วน",
+          th: "เก็บ print-image ต้นฉบับแบบ read-only เป็น audit trail ไว้ตรวจย้อนกลับเมื่อสงสัยว่า parse ข้อมูลไม่ครบ",
           en: "The original print image is kept read-only as an audit trail, so a suspected missed line can be compared against the source immediately.",
         },
         {
-          th: "จัดให้ pipeline ทั้งหมดรันบนเครื่องนักพัฒนาได้ด้วยคำสั่งเดียว ทำให้ตรวจผลการแก้ไข layout ได้โดยไม่ต้องรอรอบ deploy",
+          th: "ทำให้ pipeline ทั้งหมดรันบนเครื่อง local ได้ด้วยคำสั่งเดียว ตรวจผลการแก้ layout ได้โดยไม่ต้องรอรอบ deploy",
           en: "The entire pipeline runs locally with a single command, allowing layout changes to be verified without waiting for a deployment cycle.",
         },
       ],
@@ -352,25 +352,25 @@ export const profile = {
     {
       slug: "iam-rewrite",
       name: {
-        th: "ระบบจัดการสิทธิ์เข้าถึงองค์กร (เขียนใหม่)",
+        th: "ระบบ access management ขององค์กร (rewrite)",
         en: "Enterprise access management (rewrite)",
       },
       summary: {
-        th: "ยกระบบสิทธิ์เมนูของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js โดยใช้ฐานข้อมูลเดิม หลักการสำคัญคือการให้สิทธิ์ตามกฎที่อ้างอิงโครงสร้างองค์กร แทนการกำหนดสิทธิ์รายบุคคล",
+        th: "ย้ายระบบ menu permission ของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js บนฐานข้อมูลเดิม หลักสำคัญคือให้สิทธิ์ผ่าน rule ที่อิงโครงสร้างองค์กร แทนการ assign สิทธิ์รายคน",
         en: "Lifted the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API + Next.js front end on the same database. The governing principle is to grant access through org-structure rules rather than per-person assignment.",
       },
       role: { th: "Full-stack · ออกแบบและพัฒนา", en: "Full-stack · design + build" },
       confidential: true,
       year: "2025",
       flow: [
-        { label: { th: "กฎตามโครงสร้างองค์กร", en: "Org-structure rules" }, icon: "rules" },
-        { label: { th: "ชุดสิทธิ์และเมนู", en: "Permission sets" }, icon: "queue" },
+        { label: { th: "Rule ตามโครงสร้างองค์กร", en: "Org-structure rules" }, icon: "rules" },
+        { label: { th: "Permission set และเมนู", en: "Permission sets" }, icon: "queue" },
         { label: { th: "ทุกแอปที่ผ่าน SSO", en: "Every app behind SSO" }, icon: "browser" },
-        { label: { th: "รายงานตรวจสอบตาม ISO", en: "ISO audit reports" }, icon: "report" },
+        { label: { th: "รายงาน audit ตาม ISO", en: "ISO audit reports" }, icon: "report" },
       ],
       impact: [
         {
-          th: "การเพิ่มพนักงานใหม่ไม่ต้องกำหนดสิทธิ์รายบุคคลอีกต่อไป ผู้ใช้ที่เข้าเงื่อนไขของกฎใดจะได้รับชุดเมนูของกฎนั้นทันที",
+          th: "Onboard พนักงานใหม่ไม่ต้อง config สิทธิ์รายคนอีกต่อไป ใครเข้าเงื่อนไขของ rule ไหนก็ได้ชุดเมนูของ rule นั้นทันที",
           en: "Onboarding no longer requires per-person configuration; matching a rule grants the corresponding menu set immediately.",
         },
         {
@@ -378,7 +378,7 @@ export const profile = {
           en: "Added an ISO-audit reporting set: rule×menu matrix, access comparison between users, orphan-account detection, and audit logging.",
         },
         {
-          th: "จัดทำหน้า My Access ให้พนักงานตรวจสอบสิทธิ์ของตนเองได้ ลดปริมาณคำถามที่ส่งมายังทีม IT",
+          th: "ทำหน้า My Access แบบ self-service ให้พนักงานเช็กสิทธิ์ของตัวเองได้ ลดปริมาณคำถามที่ส่งมายังทีม IT",
           en: "A self-service My Access page allows staff to review their own permissions, reducing the volume of enquiries directed to IT.",
         },
       ],
@@ -388,36 +388,36 @@ export const profile = {
       slug: "sso-platform",
       compact: true,
       name: {
-        th: "ระบบยืนยันตัวตนกลางและการมอบอำนาจอนุมัติ",
+        th: "ระบบ authentication กลางและ approval delegation",
         en: "Central authentication and approval delegation",
       },
       summary: {
-        th: "บริการยืนยันตัวตนที่ทุกระบบ back-office เรียกใช้ร่วมกัน ล็อกอินครั้งเดียวแล้วคืนทั้งตัวตน เมนูที่มีสิทธิ์ และสายการมอบอำนาจอนุมัติกลับไปให้แอป ทำให้แต่ละแอปไม่ต้องอ่านตารางสิทธิ์เอง",
+        th: "Authentication service ที่ทุกระบบ back-office ใช้ร่วมกัน login ครั้งเดียวแล้วคืนทั้ง identity เมนูที่มีสิทธิ์ และ delegation chain ของการอนุมัติกลับไปให้แอป แต่ละแอปจึงไม่ต้องอ่าน permission table เอง",
         en: "The authentication service every back-office system shares. One sign-in returns the user's identity, the menus they may use, and their approval-delegation chain — so no application has to read the permission tables itself.",
       },
       role: {
-        th: "ดูแลต่อเนื่องและต่อระบบใหม่เข้ากับบริการนี้",
+        th: "ดูแลต่อเนื่อง และ integrate ระบบใหม่เข้ากับ service นี้",
         en: "Ongoing maintenance, and integrating new systems onto it",
       },
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "ผู้ใช้ล็อกอินครั้งเดียว", en: "One sign-in" }, icon: "person" },
-        { label: { th: "บริการกลางตรวจสิทธิ์", en: "Central service resolves" }, icon: "shield" },
-        { label: { th: "คืนเมนูและกลุ่มสิทธิ์", en: "Menus and groups returned" }, icon: "queue" },
+        { label: { th: "ผู้ใช้ login ครั้งเดียว", en: "One sign-in" }, icon: "person" },
+        { label: { th: "Central service ตรวจสิทธิ์", en: "Central service resolves" }, icon: "shield" },
+        { label: { th: "คืนเมนูและ permission group", en: "Menus and groups returned" }, icon: "queue" },
         { label: { th: "ทุกแอปใช้ผลเดียวกัน", en: "Every app uses the same result" }, icon: "browser" },
       ],
       impact: [
         {
-          th: "แอปที่ต่อเข้ามาไม่ต้องเข้าถึงฐานข้อมูลสิทธิ์โดยตรง ลดทั้งสิทธิ์ที่ต้องขอและจุดที่ตรรกะสิทธิ์จะแตกต่างกันเอง",
+          th: "แอปที่ต่อเข้ามาไม่ต้องแตะ permission database โดยตรง ลดทั้งสิทธิ์ที่ต้องขอ และจุดที่ permission logic จะเพี้ยนไม่ตรงกัน",
           en: "Connected applications never touch the permission database directly, which cuts both the access they must be granted and the places where permission logic can drift apart.",
         },
         {
-          th: "รองรับการมอบอำนาจอนุมัติหลายรูปแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และการมอบเฉพาะกิจ ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
+          th: "รองรับ approval delegation หลายแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และมอบแบบ ad hoc ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
           en: "Carries several kinds of approval delegation — to an assistant, by org line, and ad hoc — the conditions every approval system in the organisation depends on.",
         },
         {
-          th: "ปรับให้รองรับโดเมนใหม่ตอนองค์กรเปลี่ยนชื่อ โดยย้ายค่าที่เคยตายตัวในโค้ดไปเป็นค่าตั้งที่แยกตามสภาพแวดล้อม",
+          th: "ปรับให้รองรับ domain ใหม่ตอนองค์กรเปลี่ยนชื่อ โดยย้ายค่าที่เคย hardcode ในโค้ดไปเป็น config แยกตาม environment",
           en: "Extended to accept a new domain during the corporate rename, moving values that had been fixed in code into per-environment configuration.",
         },
       ],
@@ -426,11 +426,11 @@ export const profile = {
     {
       slug: "sap-middleware",
       name: {
-        th: "ตัวกลางคุย SAP ของระบบหลังบ้าน",
+        th: "SAP integration middleware ของระบบ back-office",
         en: "SAP integration middleware",
       },
       summary: {
-        th: "ห่อ SOAP web service ของ SAP ให้กลายเป็น REST ที่ระบบอื่นเรียกง่าย ๆ พร้อม job ตามเวลาที่ดึง master data ไปป้อนระบบปลายน้ำ (ทรัพย์สิน, สินค้าคงคลัง, ลูกค้า, ผู้ขาย, งบประมาณ)",
+        th: "Wrap SOAP web service ของ SAP เป็น REST API ที่ระบบอื่นเรียกได้ง่าย ๆ พร้อม scheduled job ที่ดึง master data ไปป้อนระบบ downstream (ทรัพย์สิน, สินค้าคงคลัง, ลูกค้า, vendor, งบประมาณ)",
         en: "Wraps SAP's SOAP services as a REST API other systems can call, plus scheduled jobs that feed master data downstream (assets, inventory, customers, vendors, budgets).",
       },
       role: { th: "Backend · ออกแบบและพัฒนา", en: "Backend · design + build" },
@@ -438,21 +438,21 @@ export const profile = {
       year: "2025",
       flow: [
         { label: { th: "SAP", en: "SAP" }, icon: "erp" },
-        { label: { th: "REST API ตัวกลาง", en: "REST middleware" }, icon: "browser" },
-        { label: { th: "งานตามเวลา", en: "Scheduled jobs" }, icon: "gear" },
-        { label: { th: "ระบบปลายทาง", en: "Downstream systems" }, icon: "worker" },
+        { label: { th: "REST middleware", en: "REST middleware" }, icon: "browser" },
+        { label: { th: "Scheduled job", en: "Scheduled jobs" }, icon: "gear" },
+        { label: { th: "ระบบ downstream", en: "Downstream systems" }, icon: "worker" },
       ],
       impact: [
         {
-          th: "ระบบปลายทางไม่ต้องเชื่อมต่อ SAP แยกกันอีกต่อไป เหลือจุดดูแลรักษาเพียงจุดเดียว",
+          th: "ระบบ downstream ไม่ต้อง integrate กับ SAP แยกกันเองอีกต่อไป เหลือจุด maintain เพียงจุดเดียว",
           en: "Removed the need for each downstream system to integrate with SAP independently, consolidating maintenance into a single point.",
         },
         {
-          th: "เพิ่มช่องทางอ่านตาราง SAP โดยตรงสำหรับข้อมูลที่ service เดิมเข้าถึงไม่ได้ ลดการพึ่งพาการพัฒนาเพิ่มเติมจากทีม ABAP",
+          th: "เพิ่มทางอ่าน table ของ SAP โดยตรงสำหรับข้อมูลที่ service เดิมเข้าไม่ถึง ลดการรอทีม ABAP พัฒนา endpoint เพิ่ม",
           en: "Added a direct table-read path for data the existing services couldn't see, removing the wait on the ABAP team for new endpoints.",
         },
         {
-          th: "เพิ่มการแจ้งเตือนเมื่อการ sync ข้อมูลไม่สำเร็จ ทำให้รู้ได้ทันทีว่าข้อมูลปลายทางยังไม่อัปเดต",
+          th: "เพิ่ม alert เมื่อ sync ข้อมูลไม่สำเร็จ ทำให้รู้ทันทีว่าข้อมูลฝั่ง downstream ยังไม่อัปเดต",
           en: "Added alerting on failed synchronisation, so a stale downstream dataset is now visible immediately.",
         },
       ],
@@ -465,7 +465,7 @@ export const profile = {
         en: "Budget request & approval system",
       },
       summary: {
-        th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ สร้างสายอนุมัติอัตโนมัติจากโครงสร้างองค์กรและวงเงิน พร้อมยกระดับผู้อนุมัติเองเมื่อเกินงบ",
+        th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ generate สายอนุมัติ (approval line) อัตโนมัติจากโครงสร้างองค์กรและวงเงิน และ escalate ผู้อนุมัติขึ้นเองเมื่อเกินงบ",
         en: "Submit and approve funding requests — budgeted, non-budgeted, and budget transfers. The approver line is generated from org structure and amount, and escalates automatically when a request goes over budget.",
       },
       role: { th: "Full-stack · พัฒนาและบำรุงรักษา", en: "Full-stack · ongoing development" },
@@ -475,11 +475,11 @@ export const profile = {
         { label: { th: "ยื่นคำขอ", en: "Submit request" }, icon: "form" },
         { label: { th: "ตรวจงบคงเหลือกับ SAP", en: "Check budget in SAP" }, icon: "erp" },
         { label: { th: "สายอนุมัติอัตโนมัติ", en: "Approver line" }, icon: "rules" },
-        { label: { th: "อนุมัติในพอร์ทัลกลาง", en: "Approve in portal" }, icon: "shield" },
+        { label: { th: "อนุมัติใน portal กลาง", en: "Approve in portal" }, icon: "shield" },
       ],
       impact: [
         {
-          th: "ยกเลิกขั้นตอนเดินเอกสารกระดาษทั้งหมด ผู้อนุมัติดำเนินการผ่านพอร์ทัลกลางได้โดยตรง",
+          th: "ยกเลิกขั้นตอนเดินเอกสารกระดาษทั้งหมด ผู้อนุมัติทำรายการผ่าน portal กลางได้โดยตรง",
           en: "Eliminated paper routing entirely; approvers complete the process through the central portal.",
         },
         {
@@ -497,7 +497,7 @@ export const profile = {
         en: "Corporate asset management",
       },
       summary: {
-        th: "ระบบติดตามทรัพย์สินตลอดอายุการใช้งาน ครอบคลุมเอกสารเจ็ดประเภท ตั้งแต่การย้ายทรัพย์สินเข้า-ออกอาคาร การโอนผู้ถือครองและศูนย์ต้นทุน ไปจนถึงการยืม คืน และต่ออายุ ทุกใบวิ่งผ่านสายอนุมัติและบันทึกกลับเข้าระบบบัญชี",
+        th: "ระบบติดตามทรัพย์สินตลอดอายุการใช้งาน ครอบคลุมเอกสารเจ็ดประเภท ตั้งแต่การย้ายทรัพย์สินเข้า-ออกอาคาร การโอนผู้ถือครองและ cost center ไปจนถึงการยืม คืน และต่ออายุ ทุกใบวิ่งผ่าน approval workflow และ post กลับเข้าระบบบัญชี",
         en: "Tracks assets across their working life through seven document types — moving assets in and out of the building, transferring holder and cost centre, and borrowing, returning and extending. Every document runs an approval line and posts back to the accounting system.",
       },
       role: {
@@ -509,16 +509,16 @@ export const profile = {
       flow: [
         { label: { th: "ยื่นเอกสารทรัพย์สิน", en: "Raise an asset document" }, icon: "form" },
         { label: { th: "สายอนุมัติตามประเภท", en: "Approval line per type" }, icon: "rules" },
-        { label: { th: "บันทึกกลับระบบบัญชี", en: "Post to accounting" }, icon: "erp" },
+        { label: { th: "Post กลับระบบบัญชี", en: "Post to accounting" }, icon: "erp" },
         { label: { th: "ติดตามสถานะทรัพย์สิน", en: "Track asset status" }, icon: "database" },
       ],
       impact: [
         {
-          th: "จัดทำเอกสารอ้างอิงของ workflow ครบทั้งเจ็ดประเภทจากโค้ดและฐานข้อมูลจริง พร้อม flowchart และตารางผู้รับผิดชอบราย step ให้ทีมใช้ต่อได้",
+          th: "ทำเอกสาร reference ของ workflow ครบทั้งเจ็ดประเภทจากโค้ดและฐานข้อมูลจริง พร้อม flowchart และตาราง owner ราย step ให้ทีมใช้ต่อได้",
           en: "Produced a workflow reference covering all seven document types, derived from the code and the live database, with flowcharts and per-step ownership for the team to work from.",
         },
         {
-          th: "ข้อมูลหลักของทรัพย์สินรับมาจากระบบบัญชีตามเวลาโดยอัตโนมัติ แทนการคีย์ซ้ำในสองระบบ",
+          th: "Asset master data sync มาจากระบบบัญชีตาม schedule อัตโนมัติ แทนการคีย์ซ้ำในสองระบบ",
           en: "Asset master data arrives from the accounting system on a schedule, instead of being keyed into two systems.",
         },
         {
@@ -536,11 +536,11 @@ export const profile = {
         en: "Inventory and logistics",
       },
       summary: {
-        th: "ระบบที่ดูแลการเบิกจ่ายและเคลื่อนย้ายสินค้าคงคลัง ต่อเนื่องไปถึงงานขนส่ง การคิดต้นทุนรายงาน และการวางบิลผู้ให้บริการขนส่ง พร้อมงานปิดรอบสิ้นเดือนที่ต้องกระทบยอดกับระบบบัญชี",
+        th: "ระบบที่ดูแลการเบิกจ่ายและเคลื่อนย้ายสินค้าคงคลัง ต่อเนื่องไปถึงงานขนส่ง การคิดต้นทุนราย job และการวางบิล forwarder พร้อมงาน month-end close ที่ต้อง reconcile กับระบบบัญชี",
         en: "Covers stock issue and movement through to freight jobs, per-job costing, forwarder billing, and the month-end close that has to reconcile against the accounting system.",
       },
       role: {
-        th: "พัฒนาและแก้ปัญหาความถูกต้องของข้อมูล",
+        th: "พัฒนา และแก้ปัญหา data integrity",
         en: "Development, with a focus on data-integrity defects",
       },
       confidential: true,
@@ -548,12 +548,12 @@ export const profile = {
       flow: [
         { label: { th: "เบิกจ่ายและเคลื่อนย้าย", en: "Issue and movement" }, icon: "folder" },
         { label: { th: "งานขนส่งและต้นทุน", en: "Freight jobs and costing" }, icon: "worker" },
-        { label: { th: "วางบิลผู้ให้บริการ", en: "Forwarder billing" }, icon: "report" },
-        { label: { th: "ปิดรอบกระทบยอด", en: "Month-end reconciliation" }, icon: "erp" },
+        { label: { th: "วางบิล forwarder", en: "Forwarder billing" }, icon: "report" },
+        { label: { th: "ปิดรอบ reconcile", en: "Month-end reconciliation" }, icon: "erp" },
       ],
       impact: [
         {
-          th: "แก้ชุดข้อบกพร่องด้านความถูกต้องของข้อมูล เช่น เงื่อนไขค้นหาที่กว้างเกินจนแก้ข้อมูลผิดรายการ และการลบแล้วเพิ่มใหม่ทุกครั้งที่แก้ไข ซึ่งทำให้ความเชื่อมโยงระหว่างเอกสารขาด",
+          th: "ไล่แก้ bug ด้าน data integrity เช่น where condition ที่กว้างเกินจน update ผิด row และ edit path ที่ delete แล้ว insert ใหม่ทุกครั้ง ทำให้ link ระหว่างเอกสารขาด",
           en: "Worked through a set of data-integrity defects — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
         },
         {
@@ -561,7 +561,7 @@ export const profile = {
           en: "Defined a clear state machine for the dates along a shipment, after finding that saving one stage could overwrite and lose another.",
         },
         {
-          th: "ย้ายชุดตารางวิเคราะห์ข้อมูลมาไว้บนฐานข้อมูลปัจจุบัน และกู้คีย์หลักที่หายระหว่างการย้าย",
+          th: "ย้ายชุด analytical table มาไว้บนฐานข้อมูลปัจจุบัน และกู้ primary key ที่หายระหว่าง migrate",
           en: "Consolidated the analytical tables onto the current database platform and restored the primary keys lost in transit.",
         },
       ],
@@ -570,11 +570,11 @@ export const profile = {
     {
       slug: "identity-automation",
       name: {
-        th: "ระบบอัตโนมัติของวงจรชีวิตบัญชีพนักงาน",
+        th: "ระบบ automation ของ account lifecycle พนักงาน",
         en: "Employee identity lifecycle automation",
       },
       summary: {
-        th: "ยกงานเปิด แก้ และปิดบัญชีพนักงานทั้งวงจรให้เป็นอัตโนมัติ ตั้งแต่รับพนักงานใหม่ไปจนถึงวันลาออก ประกอบด้วย Web API ที่สั่งงาน directory ขององค์กร และชุด cloud flow กว่า 30 ตัวที่ครอบคลุมทั้งพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก",
+        th: "ทำให้งานเปิด แก้ และปิด account พนักงานทั้ง lifecycle เป็นอัตโนมัติ ตั้งแต่ onboard ไปจนถึงวันลาออก ประกอบด้วย Web API ที่สั่งงาน corporate directory และ cloud flow กว่า 30 ตัวที่ครอบคลุมทั้งพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก",
         en: "Automates the full employee account lifecycle from joining to leaving: a Web API that drives the corporate directory, plus more than thirty cloud flows covering staff in the HR system, staff outside it, and external people.",
       },
       role: {
@@ -587,11 +587,11 @@ export const profile = {
         { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" }, icon: "database" },
         { label: { th: "flow แยกตามประเภทบุคคล", en: "Flows per person type" }, icon: "rules" },
         { label: { th: "สั่งงาน directory และเมล", en: "Directory and mail actions" }, icon: "shield" },
-        { label: { th: "บัญชี สิทธิ์ และกลุ่มเมล", en: "Accounts, licences, groups" }, icon: "contact" },
+        { label: { th: "Account, license และ mail group", en: "Accounts, licences, groups" }, icon: "contact" },
       ],
       impact: [
         {
-          th: "งานวันลาออกรวมเป็นชุดเดียวที่ทำงานตามกำหนดเวลา ทั้งปิดบัญชี ถอนสิทธิ์ใช้งาน ถอดออกจากกลุ่มเมล และตั้งการส่งต่อเมล จากเดิมที่ต้องไล่ทำทีละระบบด้วยมือ",
+          th: "งานวันลาออกรวมเป็น scheduled job ชุดเดียว ทั้ง disable account, ดึง license คืน, ถอดออกจาก mail group และตั้ง mail forwarding จากเดิมที่ต้องไล่ทำทีละระบบด้วยมือ",
           en: "Leaving-day work runs as one scheduled set — disabling the account, reclaiming licences, removing group memberships and setting mail forwarding — instead of being worked through system by system by hand.",
         },
         {
@@ -599,11 +599,11 @@ export const profile = {
           en: "Splits the path for HR-registered staff, staff outside the HR system, and external people, because the three differ in where their data comes from and when their access should expire.",
         },
         {
-          th: "งานชุดใหญ่ที่สุดมีกว่าร้อยขั้นตอนในหนึ่ง flow — จัดการกลุ่มเมลและสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
+          th: "flow ที่ใหญ่ที่สุดมีกว่าร้อย step ในตัวเดียว — จัดการ mail group และสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
           en: "The largest single flow runs well over a hundred steps, maintaining organisation-wide mail groups and their members — work that previously recurred every month by hand.",
         },
         {
-          th: "มี flow ตรวจสถานะการเชื่อมต่อของตัวเองตามเวลา ทำให้รู้ก่อนที่ connector หมดอายุจะทำให้ทั้งชุดหยุดทำงาน",
+          th: "มี scheduled flow เช็ก health ของ connection ตัวเอง ทำให้รู้ก่อนที่ connector หมดอายุจะทำให้ทั้งชุดหยุดทำงาน",
           en: "A scheduled flow checks the health of its own connections, so an expiring connector is caught before it can stop the whole set.",
         },
       ],
@@ -624,7 +624,7 @@ export const profile = {
         en: "Organisation-wide automation",
       },
       summary: {
-        th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็นกาวเชื่อมระหว่างระบบภายใน ครอบคลุมงานซิงก์ข้อมูลตามเวลา งานแจ้งเตือน งานเปิด API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
+        th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็น glue ระหว่างระบบภายใน ครอบคลุม scheduled sync, alert, API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
         en: "A set of production cloud flows acting as glue between internal systems — scheduled synchronisation, alerting, APIs other systems call, and document handling — more than sixty in total.",
       },
       role: {
@@ -634,30 +634,30 @@ export const profile = {
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "ตัวกระตุ้นตามเวลาและ HTTP", en: "Schedules and HTTP triggers" }, icon: "gear" },
-        { label: { th: "ซิงก์ข้อมูลข้ามระบบ", en: "Cross-system sync" }, icon: "database" },
-        { label: { th: "แจ้งเตือนไปยังผู้ดูแล", en: "Alerts to the right people" }, icon: "mail" },
+        { label: { th: "Schedule และ HTTP trigger", en: "Schedules and HTTP triggers" }, icon: "gear" },
+        { label: { th: "Sync ข้อมูลข้ามระบบ", en: "Cross-system sync" }, icon: "database" },
+        { label: { th: "Alert ไปยังผู้ดูแล", en: "Alerts to the right people" }, icon: "mail" },
         { label: { th: "เอกสารและรายงาน", en: "Documents and reports" }, icon: "report" },
       ],
       impact: [
         {
-          th: "ซิงก์ข้อมูลพนักงานลง directory ภายในองค์กรตามเวลา ทำให้ระบบที่อ่าน directory ได้ข้อมูลตรงกันโดยไม่ต้องต่อ HR เอง",
+          th: "Sync ข้อมูลพนักงานลง on-premise directory ตาม schedule ทำให้ระบบที่อ่าน directory ได้ข้อมูลตรงกันโดยไม่ต้อง integrate กับ HR เอง",
           en: "Synchronises employee data into the on-premise directory on a schedule, so every system reading from it stays consistent without integrating with HR directly.",
         },
         {
-          th: "ซิงก์การจองห้องและทรัพยากรเข้าปฏิทินกลาง พร้อม flow แยกต่อห้องสำหรับรับการเปลี่ยนแปลงแบบทันที",
+          th: "Sync การจองห้องและ resource เข้า shared calendar พร้อม flow แยกรายห้องสำหรับรับการเปลี่ยนแปลงแบบ real-time",
           en: "Synchronises room and resource bookings into the shared calendar, with a per-room flow to pick up changes as they happen.",
         },
         {
-          th: "ทำช่องทางแจ้งเตือนกลางที่ระบบอื่นยิงเข้ามาได้ ทั้งแจ้งเตือนอุปกรณ์เครือข่าย สถานะงานประมวลผลเอกสาร และคิวส่งเมลที่ค้าง ส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
+          th: "ทำ alerting endpoint กลางที่ระบบอื่นยิงเข้ามาได้ ทั้ง alert อุปกรณ์ network, สถานะงาน document processing และ mail queue ที่ค้าง แล้วส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
           en: "Provides a shared alerting endpoint other systems post to — network-device alerts, document-processing status, stalled mail queues — routed into the responsible team's chat.",
         },
         {
-          th: "ห่อข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น ผังองค์กร และข้อมูลอ้างอิงของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
+          th: "Wrap ข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น org chart และ reference data ของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
           en: "Wraps internal data as APIs other systems can call — the org chart, and reference data from the resource-allocation system — without exposing databases to each other.",
         },
         {
-          th: "งานตามเวลาที่ดึงข้อมูลอัตราแลกเปลี่ยนและรันงานฝั่ง ERP แล้วนำผลเข้าระบบปลายทาง ลดงานที่เคยต้องมีคนกดเองทุกวัน",
+          th: "Scheduled job ที่ดึงอัตราแลกเปลี่ยนและรัน batch ฝั่ง ERP แล้วนำผลเข้าระบบ downstream ลดงานที่เคยต้องมีคนกดเองทุกวัน",
           en: "Scheduled jobs pull exchange rates and run ERP-side batches, feeding the results downstream and removing work that previously needed a person to trigger it daily.",
         },
         {
@@ -683,7 +683,7 @@ export const profile = {
         en: "Cloud-native staff app on Kubernetes (digital name card)",
       },
       summary: {
-        th: "เว็บแอปที่ให้พนักงานเปิดนามบัตรดิจิทัลของตัวเองและให้คนอื่นบันทึกลงสมุดโทรศัพท์ได้ในขั้นตอนเดียว ล็อกอินด้วยบัญชีองค์กร สร้าง QR code ให้รายบุคคล และแปลงข้อมูลเป็นไฟล์รายชื่อมาตรฐานที่โทรศัพท์ทุกเครื่องอ่านได้",
+        th: "เว็บแอปที่ให้พนักงานเปิดนามบัตรดิจิทัลของตัวเองและให้คนอื่น save ลง contacts ได้ในขั้นตอนเดียว login ด้วยบัญชีองค์กร สร้าง QR code ให้รายบุคคล และเสิร์ฟข้อมูลเป็นไฟล์ contact มาตรฐานที่มือถือทุกเครื่องอ่านได้",
         en: "A web app where staff open their own digital name card and anyone can save it to their contacts in a single step. Sign-in uses the corporate account, each person gets a QR code, and the data is served as the standard contact-file format that every phone understands.",
       },
       role: {
@@ -693,22 +693,22 @@ export const profile = {
       confidential: true,
       year: "2026",
       flow: [
-        { label: { th: "ล็อกอินบัญชีองค์กร", en: "Corporate sign-in" }, icon: "shield" },
+        { label: { th: "Login บัญชีองค์กร", en: "Corporate sign-in" }, icon: "shield" },
         { label: { th: "นามบัตรของตัวเอง", en: "Your own card" }, icon: "contact" },
         { label: { th: "QR code รายบุคคล", en: "Personal QR code" }, icon: "qr" },
-        { label: { th: "บันทึกลงสมุดโทรศัพท์", en: "Save to contacts" }, icon: "folder" },
+        { label: { th: "Save ลง contacts", en: "Save to contacts" }, icon: "folder" },
       ],
       impact: [
         {
-          th: "ยืนยันตัวตนผ่าน Microsoft Entra ID ทำให้พนักงานเห็นและแก้ได้เฉพาะนามบัตรของตัวเอง โดยไม่ต้องสร้างระบบผู้ใช้ขึ้นมาใหม่",
+          th: "Authenticate ผ่าน Microsoft Entra ID ทำให้พนักงานเห็นและแก้ได้เฉพาะนามบัตรของตัวเอง โดยไม่ต้องสร้าง user system ขึ้นมาใหม่",
           en: "Authentication through Microsoft Entra ID means each person sees and edits only their own card, without standing up a separate user system.",
         },
         {
-          th: "เก็บ secret ทั้งหมดไว้ใน Azure Key Vault และดึงตอนรัน ไม่มีค่าอ่อนไหวฝังอยู่ในโค้ดหรือไฟล์ตั้งค่า",
+          th: "เก็บ secret ทั้งหมดไว้ใน Azure Key Vault และดึงตอน runtime ไม่มีค่า sensitive ฝังอยู่ใน source code หรือ config file",
           en: "All secrets live in Azure Key Vault and are fetched at run time; none are embedded in source or configuration files.",
         },
         {
-          th: "ส่งขึ้นใช้งานเป็น container บน Kubernetes พร้อม CI/CD ที่ต้องมีผู้อนุมัติก่อน deploy ขึ้น production",
+          th: "Ship เป็น container บน Kubernetes พร้อม CI/CD pipeline ที่ต้องมีผู้อนุมัติก่อน deploy ขึ้น production",
           en: "Ships as a container on Kubernetes, with a CI/CD pipeline that requires an approver before a production deploy.",
         },
       ],
@@ -730,36 +730,36 @@ export const profile = {
         en: "Bilingual corporate website on Webflow",
       },
       summary: {
-        th: "ย้ายเว็บไซต์องค์กรจาก WordPress เดิมขึ้นแพลตฟอร์ม Webflow พร้อมจัดโครงสร้างเนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา โดยให้เจ้าของเนื้อหาแก้ไขเองได้โดยไม่ต้องผ่านนักพัฒนา ดูแลงานพัฒนาเอง และภายหลังต่อผ่าน MCP ช่วยให้แก้ไขได้สะดวกขึ้น",
+        th: "Migrate เว็บไซต์องค์กรจาก WordPress เดิมขึ้น Webflow พร้อม restructure เนื้อหาใหม่เป็น CMS collection และรองรับสองภาษา ให้ content owner แก้เองได้โดยไม่ต้องผ่าน developer ดูแลงาน build และ maintain เอง และภายหลังต่อผ่าน MCP ทำให้แก้ไขได้สะดวกขึ้น",
         en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement. I handle the build and upkeep, and connecting it over MCP later made changes easier.",
       },
       role: {
-        th: "พัฒนาและย้ายข้อมูล ผ่าน API เป็นหลัก",
+        th: "พัฒนาและ migrate content ผ่าน API ของแพลตฟอร์มเป็นหลัก",
         en: "Implementation and content migration, primarily through the platform API",
       },
       confidential: true,
       year: "2025–2026",
       flow: [
         { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" }, icon: "wordpress" },
-        { label: { th: "ดึงเนื้อหาออกมา", en: "Extract content" }, icon: "parse" },
+        { label: { th: "Extract content", en: "Extract content" }, icon: "parse" },
         { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" }, icon: "database" },
         { label: { th: "เว็บสองภาษา", en: "Bilingual site" }, icon: "globe" },
       ],
       impact: [
         {
-          th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของปลั๊กอิน จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
+          th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของ plugin จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
           en: "Parts of the old site were not present in the HTML because a plugin loaded them over AJAX, so those endpoints were analysed and called directly to retrieve the content in full.",
         },
         {
-          th: "ออกแบบให้องค์ประกอบสำคัญของหน้าแรก ทั้งวิดีโอพื้นหลัง ข้อความหลัก และการไล่สี ผูกกับ CMS เพื่อให้เจ้าของเนื้อหาปรับเองได้",
+          th: "ผูก element สำคัญของ homepage ทั้ง background video, headline และการไล่สี เข้ากับ CMS เพื่อให้ content owner ปรับเองได้",
           en: "Bound the key homepage elements — background video, headline and its colour treatment — to the CMS so content owners can adjust them directly.",
         },
         {
-          th: "ทำให้หน้ารายการแสดงข้อมูลได้ครบทุกรายการ โดยออกแบบรอบข้อจำกัดจำนวนรายการต่อ Collection List ของแพลตฟอร์ม",
+          th: "ทำให้หน้า listing แสดงข้อมูลได้ครบทุกรายการ โดยออกแบบเลี่ยง limit จำนวน item ต่อ Collection List ของแพลตฟอร์ม",
           en: "Made a listing page show its full dataset by designing around the platform cap on items per Collection List.",
         },
         {
-          th: "รองรับงานเปลี่ยนอัตลักษณ์องค์กร ทั้งชุดสี โลโก้ และหน้าแจ้งปิดปรับปรุงระหว่างเปลี่ยนผ่าน",
+          th: "รองรับงาน rebrand องค์กร ทั้ง color system โลโก้ และหน้า maintenance ระหว่างเปลี่ยนผ่าน",
           en: "Supported a corporate rebrand, covering the colour system, logo and the maintenance page used during the transition.",
         },
       ],
@@ -773,7 +773,7 @@ export const profile = {
         en: "Employee intranet on Power Pages",
       },
       summary: {
-        th: "เว็บภายในสำหรับพนักงานที่สร้างบน Power Pages โดยเก็บเนื้อหาทั้งหมดไว้ใน Dataverse และมีแอปหลังบ้านให้ทีมสื่อสารองค์กรจัดการเองได้ ครอบคลุมข่าวสาร เอกสาร และลิงก์ระบบภายใน",
+        th: "เว็บภายในสำหรับพนักงานที่สร้างบน Power Pages โดยเก็บเนื้อหาทั้งหมดไว้ใน Dataverse และมีแอป back-office ให้ทีมสื่อสารองค์กรจัดการเองได้ ครอบคลุมข่าวสาร เอกสาร และลิงก์ระบบภายใน",
         en: "The staff-facing internal site, built on Power Pages with all content held in Dataverse and a back-office app the communications team runs themselves — news, documents and links into internal systems.",
       },
       role: {
@@ -785,20 +785,20 @@ export const profile = {
       flow: [
         { label: { th: "ทีมสื่อสารจัดการเนื้อหา", en: "Comms team edits content" }, icon: "form" },
         { label: { th: "เก็บใน Dataverse", en: "Stored in Dataverse" }, icon: "database" },
-        { label: { th: "แสดงผลบน Power Pages", en: "Rendered by Power Pages" }, icon: "browser" },
+        { label: { th: "Render บน Power Pages", en: "Rendered by Power Pages" }, icon: "browser" },
         { label: { th: "พนักงานเข้าถึงได้ทั่วองค์กร", en: "Reaches all staff" }, icon: "person" },
       ],
       impact: [
         {
-          th: "จัดทำแผนผังของไซต์ทั้งชุดจากตัวไซต์โดยตรง ทำให้ทีมมีเอกสารอ้างอิงสำหรับแก้ไขครั้งต่อไป",
+          th: "ทำแผนผังไซต์ทั้งชุดจากตัวไซต์จริงโดยตรง ทำให้ทีมมี reference ไว้ใช้ตอนแก้ครั้งต่อไป",
           en: "Mapped the site in full, working directly from the live site, giving the team a reference to work from next time.",
         },
         {
-          th: "เริ่มเขียนหลังบ้านใหม่เป็นเว็บแอปที่ออกแบบตามลำดับงานจริงของทีมสื่อสาร แทน model-driven app เดิม",
+          th: "เริ่ม rewrite ฝั่ง back office เป็นเว็บแอปที่ออกแบบตาม workflow จริงของทีมสื่อสาร แทน model-driven app เดิม",
           en: "The back office is being rewritten as a web app shaped around how the communications team actually works, replacing the original model-driven app.",
         },
         {
-          th: "ปรับอัตลักษณ์องค์กรใหม่ทั้งไซต์ ทั้งชุดสี โลโก้ และชื่อที่ฝังอยู่ในส่วนประกอบหลายจุดของไซต์",
+          th: "ทำ rebrand ทั้งไซต์ ทั้ง color system โลโก้ และชื่อที่ฝังอยู่ใน component หลายจุดของไซต์",
           en: "Applied the corporate rebrand across the site — colour system, logo, and the name embedded in components throughout it.",
         },
       ],
@@ -814,14 +814,14 @@ export const profile = {
         { th: "ระบบขออนุมัติงบประมาณ ทั้งแบบมีงบ ไม่มีงบ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
         { th: "ระบบเบิกค่าใช้จ่ายและเงินยืมทดรองของพนักงาน", en: "Employee expenses and cash advances" },
         { th: "การวิเคราะห์อายุลูกหนี้และสถานะความเสี่ยงของลูกหนี้", en: "Receivable ageing and risk-status analysis" },
-        { th: "พอร์ทัลอนุมัติกลางที่เชื่อมต่อจากทุกระบบ", en: "Central approval portal integrated with every system" },
+        { th: "Approval portal กลางที่ทุกระบบ integrate เข้ามา", en: "Central approval portal integrated with every system" },
       ],
     },
     {
-      title: { th: "ปฏิบัติการและซัพพลายเชน", en: "Operations & supply chain" },
+      title: { th: "ปฏิบัติการและ supply chain", en: "Operations & supply chain" },
       items: [
         { th: "ระบบจัดการทรัพย์สิน ครอบคลุมการย้าย โอน ยืม และคืน", en: "Asset management: movement, transfer, borrow, return" },
-        { th: "ระบบงานขนส่งและการคิดต้นทุนงานของผู้ให้บริการขนส่ง", en: "Logistics jobs and forwarder job costing" },
+        { th: "ระบบงานขนส่งและ job costing ของ forwarder", en: "Logistics jobs and forwarder job costing" },
         { th: "ระบบจัดสรร capacity ดาวเทียมและคำขอใช้บริการ", en: "Satellite capacity allocation and service requests" },
         { th: "ระบบบริหารความเสี่ยงองค์กร", en: "Enterprise risk management" },
       ],
@@ -830,8 +830,8 @@ export const profile = {
       title: { th: "แพลตฟอร์มกลาง", en: "Shared platforms" },
       items: [
         { th: "ระบบ single sign-on และการมอบอำนาจอนุมัติ", en: "Single sign-on and approval delegation" },
-        { th: "ระบบจัดการสิทธิ์การเข้าถึงและการตรวจสอบตามมาตรฐาน ISO", en: "Menu permissions and ISO-aligned audit" },
-        { th: "ระบบคิวส่งอีเมลกลางพร้อมการติดตามสถานะการส่ง", en: "Central mail queue with delivery tracking" },
+        { th: "ระบบ menu permission และ audit ตามมาตรฐาน ISO", en: "Menu permissions and ISO-aligned audit" },
+        { th: "Mail queue กลางพร้อม delivery tracking", en: "Central mail queue with delivery tracking" },
         { th: "Middleware จองปฏิทินและจัดการ mailbox บน Microsoft 365", en: "Calendar booking and mailbox management middleware on Microsoft 365" },
       ],
     },
@@ -841,7 +841,7 @@ export const profile = {
         { th: "เว็บไซต์องค์กรสองภาษาบนแพลตฟอร์ม Webflow", en: "Bilingual corporate website on Webflow" },
         { th: "ระบบอินทราเน็ตพนักงานบน Dataverse และ Power Pages", en: "Employee intranet on Dataverse + Power Pages" },
         { th: "แอปพลิเคชันจัดการข้อมูลบน SharePoint ผ่าน Microsoft Graph", en: "SharePoint data-management applications via Microsoft Graph" },
-        { th: "Cloud flow เชื่อมต่อแบบฟอร์ม ฐานข้อมูล และระบบอีเมล", en: "Cloud flows integrating forms, databases and mail" },
+        { th: "Cloud flow ที่ integrate form ฐานข้อมูล และระบบอีเมล", en: "Cloud flows integrating forms, databases and mail" },
       ],
     },
   ] satisfies DomainGroup[],
@@ -924,15 +924,15 @@ export const profile = {
   aiPractice: [
     {
       title: {
-        th: "คลังความรู้และคู่มือเฉพาะระบบ",
+        th: "Knowledge base และ playbook รายระบบ",
         en: "A knowledge base and per-system playbooks",
       },
       body: {
-        th: "สิ่งที่ประวัติ git ไม่ได้บอก เช่น เหตุผลของการออกแบบ ข้อควรระวัง และข้อเท็จจริงเรื่องฐานข้อมูลและการ deploy จะบันทึกแยกตามระบบลงคลังความรู้กลาง และทำเป็นคู่มือที่เครื่องมือ AI โหลดเองเมื่อเข้าหัวข้อนั้น เช่น สัญญาของ webservice โครงสร้างสิทธิ์ และเงื่อนไขของสายอนุมัติ",
+        th: "สิ่งที่ git history ไม่ได้บอก เช่น เหตุผลของการออกแบบ ข้อควรระวัง และข้อเท็จจริงเรื่องฐานข้อมูลและการ deploy จะบันทึกแยกตามระบบลง knowledge base กลาง และทำเป็น playbook ที่เครื่องมือ AI โหลดเองเมื่อเข้าหัวข้อนั้น เช่น webservice contract, โครงสร้าง permission และเงื่อนไขของ approval workflow",
         en: "What version history doesn't record — design rationale, pitfalls, database and deployment facts — goes into per-system notes in a central knowledge base, and into playbooks the AI tooling loads when a topic comes up: webservice contracts, permission structures, approval-flow rules.",
       },
       result: {
-        th: "คำถามว่าระบบทำงานอย่างไรตอบได้ในระดับนาทีแทนครึ่งวัน และคำตอบอ้างอิงพฤติกรรมจริงของระบบ ไม่ใช่รูปแบบทั่วไปที่ฟังดูถูกแต่ผิดบริบท",
+        th: "คำถามว่าระบบทำงานอย่างไรตอบได้ในระดับนาทีแทนครึ่งวัน และคำตอบอ้างอิง behavior จริงของระบบ ไม่ใช่ pattern ทั่วไปที่ฟังดูถูกแต่ผิดบริบท",
         en: "Questions about how a system works take minutes instead of half a day, and answers rest on documented behaviour rather than plausible general patterns.",
       },
     },
@@ -942,7 +942,7 @@ export const profile = {
         en: "Skills for repeatable work, shared with the team",
       },
       body: {
-        th: "งานที่ทำบ่อยและพลาดง่ายถูกเขียนเป็น skill ให้ AI ทำตามขั้นตอนเดิมทุกครั้ง เช่น ตั้งชื่อ branch และ commit ตามมาตรฐาน deploy ขึ้นเซิร์ฟเวอร์ผ่าน FTP โดยสำรองไฟล์เดิมก่อน ทดสอบหน้าเว็บผ่านเบราว์เซอร์จริงพร้อมเก็บหลักฐาน และร่างเอกสาร change ตัวที่ลองจนใช้ได้แล้วแชร์ให้คนในทีมใช้ต่อ",
+        th: "งานที่ทำบ่อยและพลาดง่ายถูกเขียนเป็น skill ให้ AI ทำตามขั้นตอนเดิมทุกครั้ง เช่น ตั้งชื่อ branch และ commit ตามมาตรฐาน deploy ขึ้น server ผ่าน FTP โดย backup ไฟล์เดิมก่อน, test หน้าเว็บผ่าน browser จริงพร้อมเก็บ evidence และ draft เอกสาร change ตัวที่ลองจนใช้ได้แล้วแชร์ให้คนในทีมใช้ต่อ",
         en: "Frequent, error-prone work is written up as skills the AI follows the same way every time: branch and commit conventions, FTP deploys that back up the current files first, real-browser tests that capture evidence, and change-record drafting. The ones that prove themselves are shared with the team.",
       },
       result: {
@@ -952,15 +952,15 @@ export const profile = {
     },
     {
       title: {
-        th: "hook เป็นด่านตรวจแทนการอาศัยความจำ",
+        th: "ใช้ hook เป็น gate แทนการอาศัยความจำ",
         en: "Hooks as gates instead of memory",
       },
       body: {
-        th: "กฎที่เคยต้องจำเองถูกย้ายไปเป็น hook ที่ทำงาน ณ จุดที่เกี่ยวข้อง ได้แก่ ตรวจช่องโหว่ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push บันทึกความรู้ลงคลังทุกครั้งที่ commit และเตือนให้หยุดถามก่อนเมื่องานแตะเงิน สายอนุมัติ หรือกำลังจะสรุปพฤติกรรมระบบเดิมโดยยังไม่ได้อ่านซอร์สโค้ด",
+        th: "กฎที่เคยต้องจำเองถูกย้ายไปเป็น hook ที่ทำงาน ณ จุดที่เกี่ยวข้อง ได้แก่ security scan ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push, บันทึกความรู้ลง knowledge base ทุกครั้งที่ commit และเตือนให้หยุดถามก่อนเมื่องานแตะเงิน approval workflow หรือกำลังจะสรุป behavior ของระบบ legacy โดยยังไม่ได้อ่าน source code",
         en: "Rules that used to rely on memory now run as hooks at the point they matter: a security scan against the organisation's quality-gate criteria before every push, knowledge captured at every commit, and a prompt to stop and ask when work touches money or approvals, or is about to assume legacy behaviour without reading the source.",
       },
       result: {
-        th: "ข้อผิดพลาดถูกจับได้ก่อนส่งมอบ แทนที่จะไปเจอตอน review หรือหลัง deploy",
+        th: "Bug ถูกจับได้ก่อนส่งมอบ แทนที่จะไปเจอตอน review หรือหลัง deploy",
         en: "Defects are caught before delivery rather than at review or after deployment.",
       },
     },
@@ -970,7 +970,7 @@ export const profile = {
         en: "Connecting AI to the platforms over MCP",
       },
       body: {
-        th: "ต่อเครื่องมือ AI เข้ากับแพลตฟอร์มที่ใช้งานจริงผ่าน MCP ทั้ง Power Automate, Webflow, เบราว์เซอร์สำหรับทดสอบ และเอกสารอ้างอิงของ Microsoft ทำให้ตรวจ flow แก้เนื้อหาเว็บ และทดสอบหน้าจอได้จากที่เดียว โดยคนยังเป็นผู้อนุมัติทุกการเปลี่ยนแปลง",
+        th: "ต่อเครื่องมือ AI เข้ากับแพลตฟอร์มที่ใช้งานจริงผ่าน MCP ทั้ง Power Automate, Webflow, browser สำหรับ test และ Microsoft docs ทำให้ตรวจ flow แก้ content เว็บ และ test หน้าจอได้จากที่เดียว โดยคนยังเป็นผู้อนุมัติทุกการเปลี่ยนแปลง",
         en: "The AI tooling is connected over MCP to the platforms in daily use — Power Automate, Webflow, a browser for testing, and Microsoft's documentation — so flows can be inspected, site content changed and screens tested from one place, with a person approving every change.",
       },
       result: {
@@ -984,11 +984,11 @@ export const profile = {
         en: "Tooling covers breadth, judgement stays human",
       },
       body: {
-        th: "มอบหมายงานที่ใช้เวลามากแต่ไม่ต้องใช้วิจารณญาณ เช่น การตรวจอ่านไฟล์จำนวนมาก การเปรียบเทียบสภาพแวดล้อม dev กับ production และการร่างเอกสาร ให้เครื่องมือทำงานขนานกัน ส่วนการตัดสินใจเชิงออกแบบและงานที่เกี่ยวข้องกับข้อมูลจริง จะตรวจสอบด้วยตนเองทุกครั้ง",
+        th: "มอบงานที่ใช้เวลามากแต่ไม่ต้องใช้วิจารณญาณ เช่น อ่านไฟล์จำนวนมาก เทียบ environment dev กับ production และ draft เอกสาร ให้เครื่องมือทำแบบ parallel ส่วน design decision และงานที่เกี่ยวข้องกับข้อมูลจริง จะตรวจสอบด้วยตนเองทุกครั้ง",
         en: "Work that consumes time but not judgement — reviewing large numbers of files, comparing dev against production, drafting documentation — is delegated to run in parallel. Design decisions and anything touching production data are always reviewed personally first.",
       },
       result: {
-        th: "งาน reverse-engineering ที่เดิมใช้เวลาหลายวัน ดำเนินการเสร็จภายในรอบการทำงานเดียว โดยยังคงมีผู้รับผิดชอบผลลัพธ์",
+        th: "งาน reverse-engineering ที่เดิมใช้เวลาหลายวัน เสร็จภายใน session เดียว โดยยังคงมีผู้รับผิดชอบผลลัพธ์",
         en: "Reverse-engineering that previously took days is completed within a single working session, with a person remaining accountable for the result.",
       },
     },
@@ -998,7 +998,7 @@ export const profile = {
         en: "Wiring AI into the systems of record, not just the editor",
       },
       body: {
-        th: "งานส่งมอบขึ้น production ต้องเปิดเอกสาร change ในระบบ ITSM ทุกครั้ง ซึ่งเดิมเป็นงานเขียนซ้ำ ๆ จึงต่อ API ของระบบนั้นเข้ากับกระบวนการ แล้วให้ AI ประกอบเนื้อหาจากสิ่งที่แก้จริง ทั้งรายการไฟล์ คำสั่งฐานข้อมูล แผนติดตั้ง แผนถอยกลับ และแผนทดสอบ ก่อนเปิดเป็นฉบับร่างรอคนตรวจ",
+        th: "ทุก release ขึ้น production ต้องเปิดเอกสาร change ในระบบ ITSM ทุกครั้ง ซึ่งเดิมเป็นงานเขียนซ้ำ ๆ จึงต่อ API ของระบบนั้นเข้ากับกระบวนการ แล้วให้ AI ประกอบเนื้อหาจากสิ่งที่แก้จริง ทั้งรายการไฟล์ database script, implementation plan, rollback plan และ test plan ก่อนเปิดเป็น draft รอคนตรวจ",
         en: "Every production release requires a change record in the ITSM system, which was repetitive writing. The system API is now wired into the process and AI assembles the content from what actually changed — file list, database steps, implementation, backout and test plans — opening it as a draft for a person to review.",
       },
       result: {
@@ -1039,11 +1039,11 @@ export const profile = {
       items: ["SQL Server", "MySQL", "MariaDB", "Oracle"],
     },
     {
-      title: { th: "โครงสร้างและ DevOps", en: "Infra & DevOps" },
+      title: { th: "Infra และ DevOps", en: "Infra & DevOps" },
       items: ["Docker", "RabbitMQ", "Hangfire", "Git", "GitLab CI", "Nginx"],
     },
     {
-      title: { th: "AI ในงานวิศวกรรม", en: "AI engineering" },
+      title: { th: "AI engineering", en: "AI engineering" },
       items: [
         "Claude Code",
         "Skills & hooks",
@@ -1054,7 +1054,7 @@ export const profile = {
       ],
     },
     {
-      title: { th: "องค์กรและ automation", en: "Enterprise & automation" },
+      title: { th: "Enterprise และ automation", en: "Enterprise & automation" },
       items: [
         "SAP integration (RFC)",
         "Active Directory",
