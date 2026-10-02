@@ -61,9 +61,9 @@ export function KnowledgeGraph({
           {/* ขอบสีพื้นรอบตัวอักษร (paint-order) ให้ป้ายอ่านออกแม้วางทับเส้นและจุด */}
           <g
             className="fill-fg stroke-bg font-sans"
-            fontSize={15}
+            fontSize={13}
             fontWeight={500}
-            strokeWidth={5}
+            strokeWidth={4}
             paintOrder="stroke"
             textAnchor="middle"
           >

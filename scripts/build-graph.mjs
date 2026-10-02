@@ -30,18 +30,25 @@ if (!VAULT) {
  */
 const TOPICS = {
   rpa: "RPA",
-  webflow: "Website",
-  memoonline: "Budget approval",
+  webflow: "Corporate website",
+  memoonline: "Memo",
   "sap-doc": "SAP documents",
-  "menu-permission": "Permissions",
+  "menu-permission": "IAM",
   timesheet: "Timesheet",
   "sap-webservice": "SAP integration",
   sso: "SSO",
-  memory: "Working rules",
-  infra: "Infrastructure",
+  memory: "AI · Claude Code",
+  infra: "Azure · Entra · runbooks",
   cms: "Capacity",
+  arm: "AR system",
+  ams: "Asset management",
+  "power-automate": "Power Automate",
+  intranet: "Intranet",
+  erm: "Risk management",
+  edi: "EDI · logistics",
+  mailcenter: "Mail center",
 };
-const MIN_LABEL = 7;
+const MIN_LABEL = 2;
 
 // ---- อ่านโครงสร้าง: จาก vault หรือจาก graph.json เดิม ----
 let n, edges, groupOf, groupNames, groupCount;
