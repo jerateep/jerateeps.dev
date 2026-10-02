@@ -1,5 +1,8 @@
 import graph from "@/content/graph.json";
 
+// ระบุ type เอง — ตอน graph.json ยังไม่มีป้าย TS จะอนุมาน [] เป็น never[]
+const labels: { x: number; y: number; text: string }[] = graph.labels;
+
 /**
  * ภาพคลังความรู้ — โครงสร้างลิงก์จริงจาก second-brain vault
  *
@@ -59,7 +62,7 @@ export function KnowledgeGraph({
             paintOrder="stroke"
             textAnchor="middle"
           >
-            {graph.labels.map((l) => (
+            {labels.map((l) => (
               <text key={l.text} x={l.x} y={l.y} dy="0.35em">
                 {l.text}
               </text>
