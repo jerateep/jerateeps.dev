@@ -60,7 +60,8 @@ export function OrbitHero({ className }: { className?: string }) {
       const rand = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
 
       // ผิวโลก: จุดกระจายแบบ fibonacci ความหนาแน่นสม่ำเสมอ
-      const N = 2600;
+      // จุดห่าง ๆ ไม่ให้เป็นลายถี่ — จุดแน่นบนพื้นสว่างกระตุ้นอาการกลัวรู (trypophobia) ได้
+      const N = 600;
       const surface = new Float32Array(N * 3);
       const golden = Math.PI * (3 - Math.sqrt(5));
       for (let i = 0; i < N; i++) {
@@ -73,9 +74,42 @@ export function OrbitHero({ className }: { className?: string }) {
       globe.add(
         new THREE.Points(
           surfaceGeo,
-          new THREE.PointsMaterial({ color: muted, size: 0.045, transparent: true, opacity: 0.55 }),
+          new THREE.PointsMaterial({
+            color: muted,
+            size: 0.05,
+            transparent: true,
+            // พื้นสว่างจุดเทาเห็นชัดกว่าพื้นมืดมาก จึงจางกว่า
+            opacity: bg.getHSL({ h: 0, s: 0, l: 0 }).l > 0.5 ? 0.2 : 0.5,
+          }),
         ),
       );
+
+      // รูปทรงโลกบอกด้วยเส้นแทนจุดถี่ ๆ: ขอบวงกลมที่หันเข้ากล้องเสมอ + เส้นรุ้ง-แวงจาง ๆ ไม่กี่เส้น
+      const ring = (radius: number, seg = 160) =>
+        new THREE.BufferGeometry().setFromPoints(
+          Array.from({ length: seg }, (_, i) => {
+            const a = (i / seg) * Math.PI * 2;
+            return new THREE.Vector3(Math.cos(a) * radius, Math.sin(a) * radius, 0);
+          }),
+        );
+      const rim = new THREE.LineLoop(
+        ring(R),
+        new THREE.LineBasicMaterial({ color: muted, transparent: true, opacity: 0.45, fog: false }),
+      );
+      rim.position.copy(globe.position); // อยู่นอก globe จึงไม่หมุนตาม — เป็นเงาขอบโลกเสมอ
+      scene.add(rim);
+      const gridMat = new THREE.LineBasicMaterial({ color: muted, transparent: true, opacity: 0.25 });
+      for (const lat of [-0.6, 0, 0.6]) {
+        const loop = new THREE.LineLoop(ring(R * Math.cos(lat)), gridMat);
+        loop.rotation.x = Math.PI / 2;
+        loop.position.y = R * Math.sin(lat);
+        globe.add(loop);
+      }
+      for (const lon of [0, Math.PI / 3, (2 * Math.PI) / 3]) {
+        const loop = new THREE.LineLoop(ring(R), gridMat);
+        loop.rotation.y = lon;
+        globe.add(loop);
+      }
 
       // node ลอยเหนือผิวโลก เคลื่อนช้า ๆ บนเปลือกทรงกลมของตัวเอง
       const M = 110;
@@ -170,7 +204,7 @@ export function OrbitHero({ className }: { className?: string }) {
         ro.disconnect();
         removeEventListener("mousemove", onMouse);
         scene.traverse((o) => {
-          if (o instanceof THREE.Points || o instanceof THREE.LineSegments) {
+          if (o instanceof THREE.Points || o instanceof THREE.Line) {
             o.geometry.dispose();
             (o.material as Material).dispose();
           }
