@@ -6,6 +6,7 @@ import "../globals.css";
 import { locales, profile, type Locale } from "@/content/profile";
 import { ui } from "@/content/ui";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Analytics } from "@vercel/analytics/next";
 
 // ตั้ง data-theme ก่อนหน้าแรกวาด ไม่งั้นคนที่เลือกธีมเองจะเห็นธีมตามเครื่องแวบหนึ่งก่อน (flash)
 // สตริงคงที่ ไม่มีข้อมูลจากผู้ใช้ปน จึงใส่เป็น inline script ได้
@@ -132,6 +133,8 @@ export default async function RootLayout({
             </p>
           </div>
         </footer>
+        {/* Vercel Web Analytics (ฟรี, ไม่ใช้ cookie) — ต้องกด Enable ที่แท็บ Analytics ของโปรเจกต์ด้วย ไม่งั้นไม่เก็บ */}
+        <Analytics />
       </body>
     </html>
   );
