@@ -79,6 +79,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         >
           LinkedIn ↗
         </a>
+        <a
+          href={`/resume-${lang}.pdf`}
+          download={`Jerateep-Saelee-Resume-${lang.toUpperCase()}.pdf`}
+          className="mt-6 ml-3 inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent/50"
+        >
+          {ui.resumePdf[lang]} ↓
+        </a>
       </section>
 
       {/* About */}
@@ -359,6 +366,15 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Section id="contact" title={ui.sections.contact[lang]}>
         <p className="text-muted">{ui.contactLead[lang]}</p>
         <ul className="mt-6 flex flex-wrap gap-3">
+          <li>
+            <a
+              href={`/resume-${lang}.pdf`}
+              download={`Jerateep-Saelee-Resume-${lang.toUpperCase()}.pdf`}
+              className="inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
+            >
+              {ui.resumePdf[lang]}
+            </a>
+          </li>
           {profile.links.map((link) => (
             <li key={link.label}>
               <a

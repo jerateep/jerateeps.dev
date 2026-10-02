@@ -83,12 +83,12 @@ export default async function RootLayout({
       <body className="font-sans min-h-full flex flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only print:hidden focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-bg"
         >
           {ui.skipToContent[lang]}
         </a>
 
-        <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/80 backdrop-blur">
+        <header className="print:hidden sticky top-0 z-40 border-b border-border/70 bg-bg/80 backdrop-blur">
           <nav className="mx-auto flex max-w-3xl items-center gap-6 px-6 py-4 text-sm">
             <Link
               href={`/${lang}`}
@@ -124,7 +124,7 @@ export default async function RootLayout({
 
         {children}
 
-        <footer className="mt-auto border-t border-border/70">
+        <footer className="print:hidden mt-auto border-t border-border/70">
           <div className="mx-auto max-w-3xl px-6 py-8 text-sm text-muted">
             <p>
               © {new Date().getFullYear()} {profile.name[lang]} ·{" "}
