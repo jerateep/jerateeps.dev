@@ -60,7 +60,10 @@ export function OrbitHero({ className }: { className?: string }) {
       camera.position.set(0, 0, 18);
 
       const R = 4.2;
-      const GEO = R * 1.75; // ไม่ใช่สัดส่วนจริง (จริง ~6.6 เท่า) — ย่อให้อยู่ในกรอบ
+      // ไม่ใช่สัดส่วนจริง (จริง ~6.6 เท่า) — ย่อให้วงทั้งวงอยู่ในกรอบ ไม่หลุดขอบขวา
+      const GEO = R * 1.38;
+      // มองลงจากด้านบนเล็กน้อย — ถ้ามองระนาบศูนย์สูตรแนวราบพอดี วง geostationary จะแบนเป็นเส้นตรง
+      const VIEW_TILT = 0.38;
       const toXYZ = (lat: number, lon: number, r: number) =>
         new THREE.Vector3(
           r * Math.cos(lat * DEG) * Math.cos(lon * DEG),
@@ -71,6 +74,7 @@ export function OrbitHero({ className }: { className?: string }) {
       const tilt = new THREE.Group(); // เอียงแกนโลก + parallax ตามเมาส์
       tilt.position.x = 2.6; // เยื้องขวา ให้ล้นขอบจอ
       tilt.rotation.z = 23.5 * DEG;
+      tilt.rotation.x = VIEW_TILT;
       scene.add(tilt);
       const earth = new THREE.Group(); // หมุนรอบแกน — ทุกอย่างที่ติดกับผิวโลกอยู่ในนี้
       // หันประเทศไทยเข้ากล้องตอนเริ่ม (เยื้องซ้ายนิดหน่อย จะได้หมุนผ่านกลางภาพ)
@@ -215,7 +219,7 @@ export function OrbitHero({ className }: { className?: string }) {
         last = now;
         const t = (now - start) / 1000;
         earth.rotation.y += dt * 0.05;
-        tilt.rotation.x += (lean - tilt.rotation.x) * 0.04;
+        tilt.rotation.x += (VIEW_TILT + lean - tilt.rotation.x) * 0.04;
 
         leo.forEach((s, i) => {
           s.a += s.v * dt;
