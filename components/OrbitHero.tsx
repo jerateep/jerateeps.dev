@@ -155,8 +155,11 @@ export function OrbitHero({ className }: { className?: string }) {
       // ดาวเทียมวงโคจรต่ำ: แต่ละดวงมีระนาบวงโคจรของตัวเอง (เอียง + หมุนแกน) — seed คงที่
       let seed = 20261002;
       const rand = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
-      const LEO = 64;
-      const TRAIL = 10;
+      const LEO = 44;
+      // หางยาว ~70° ของวงโคจรแล้วค่อย ๆ จางหาย — หางสั้นดูเป็นขีดขาด ๆ ไม่เหมือนแนววงโคจร
+      const TRAIL = 40;
+      const STEP = 0.03;
+      const fade = (k: number) => Math.pow(k / TRAIL, 1.6) * (light ? 0.85 : 0.65);
       const leo = Array.from({ length: LEO }, () => {
         const q = new THREE.Quaternion().setFromEuler(
           new THREE.Euler((rand() - 0.5) * Math.PI, rand() * Math.PI * 2, 0),
@@ -175,8 +178,8 @@ export function OrbitHero({ className }: { className?: string }) {
       for (let s = 0; s < LEO; s++)
         for (let k = 0; k < TRAIL - 1; k++) {
           const o = (s * (TRAIL - 1) + k) * 6;
-          bg.clone().lerp(accent, (k / TRAIL) * (light ? 0.8 : 0.6)).toArray(trailCol, o);
-          bg.clone().lerp(accent, ((k + 1) / TRAIL) * (light ? 0.8 : 0.6)).toArray(trailCol, o + 3);
+          bg.clone().lerp(accent, fade(k)).toArray(trailCol, o);
+          bg.clone().lerp(accent, fade(k + 1)).toArray(trailCol, o + 3);
         }
       const trailGeo = new THREE.BufferGeometry();
       trailGeo.setAttribute("position", new THREE.BufferAttribute(trailPos, 3));
@@ -220,9 +223,9 @@ export function OrbitHero({ className }: { className?: string }) {
           lp.setXYZ(i, v.x, v.y, v.z);
           for (let k = 0; k < TRAIL - 1; k++) {
             const o = (i * (TRAIL - 1) + k) * 2;
-            orbitPoint(s, s.a - (TRAIL - 1 - k) * 0.035);
+            orbitPoint(s, s.a - (TRAIL - 1 - k) * STEP);
             tp.setXYZ(o, v.x, v.y, v.z);
-            orbitPoint(s, s.a - (TRAIL - 2 - k) * 0.035);
+            orbitPoint(s, s.a - (TRAIL - 2 - k) * STEP);
             tp.setXYZ(o + 1, v.x, v.y, v.z);
           }
         });
