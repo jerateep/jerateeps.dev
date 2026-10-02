@@ -196,15 +196,14 @@ const nodes = keep.map((i) => ({
 }));
 const keptEdges = edges.map(([a, b]) => [newId.get(a), newId.get(b)]);
 
-// ป้ายวางที่จุดศูนย์ถ่วงของกลุ่ม (คิดหลัง normalise แล้ว)
+// ป้ายวางเหนือโน้ตหลักของกลุ่ม (ลิงก์มากสุด) — จุดศูนย์ถ่วงมักตกไปอยู่ในที่ว่างระหว่างเกาะ
 const labels = [];
 (groupNames ?? []).forEach((folder, g) => {
   const text = TOPICS[folder];
   const members = nodes.filter((node) => node.g === g);
   if (!text || members.length < MIN_LABEL) return;
-  const cx = members.reduce((s, m) => s + m.x, 0) / members.length;
-  const cy = members.reduce((s, m) => s + m.y, 0) / members.length;
-  labels.push({ x: round(cx), y: round(cy), text });
+  const hub = members.reduce((a, b) => (b.r > a.r ? b : a));
+  labels.push({ x: hub.x, y: round(hub.y - hub.r - 9), text });
 });
 
 writeFileSync(

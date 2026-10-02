@@ -34,16 +34,21 @@ export function KnowledgeGraph({
           className="block"
         >
           {/* ภาษาเดียวกับลูกโลกที่ hero: เส้นสี accent บางและจาง จุดเล็ก */}
-          <g className="stroke-accent" strokeWidth={0.7} opacity={0.22}>
-            {graph.edges.map(([a, b], i) => (
-              <line
-                key={i}
-                x1={graph.nodes[a].x}
-                y1={graph.nodes[a].y}
-                x2={graph.nodes[b].x}
-                y2={graph.nodes[b].y}
-              />
-            ))}
+          {/* เส้นในกลุ่มชัด เส้นข้ามกลุ่มจางมาก — ไม่งั้นเส้นยาวข้ามภาพจะกลายเป็นใยแมงมุมกลางจอ */}
+          <g className="stroke-accent" strokeWidth={0.7}>
+            {graph.edges.map(([a, b], i) => {
+              const same = graph.nodes[a].g === graph.nodes[b].g;
+              return (
+                <line
+                  key={i}
+                  x1={graph.nodes[a].x}
+                  y1={graph.nodes[a].y}
+                  x2={graph.nodes[b].x}
+                  y2={graph.nodes[b].y}
+                  opacity={same ? 0.35 : 0.07}
+                />
+              );
+            })}
           </g>
           <g className="fill-accent">
             {graph.nodes.map((n, i) => (
@@ -60,15 +65,16 @@ export function KnowledgeGraph({
           </g>
           {/* ขอบสีพื้นรอบตัวอักษร (paint-order) ให้ป้ายอ่านออกแม้วางทับเส้นและจุด */}
           <g
-            className="fill-fg stroke-bg font-sans"
-            fontSize={13}
+            className="fill-muted stroke-bg font-sans"
+            fontSize={12}
             fontWeight={500}
+            letterSpacing={0.3}
             strokeWidth={4}
             paintOrder="stroke"
             textAnchor="middle"
           >
             {labels.map((l) => (
-              <text key={l.text} x={l.x} y={l.y} dy="0.35em">
+              <text key={l.text} x={l.x} y={l.y}>
                 {l.text}
               </text>
             ))}
