@@ -3,6 +3,9 @@ import graph from "@/content/graph.json";
 // ระบุ type เอง — ตอน graph.json ยังไม่มีป้าย TS จะอนุมาน [] เป็น never[]
 const labels: { x: number; y: number; text: string }[] = graph.labels;
 
+// รัศมีที่ถือว่าเป็นโน้ตหลัก (ถูกอ้างถึง ~7 ครั้งขึ้นไป ตามสูตรใน build-graph.mjs)
+const HUB = 6;
+
 /**
  * ภาพคลังความรู้ — โครงสร้างลิงก์จริงจาก second-brain vault
  *
@@ -30,7 +33,8 @@ export function KnowledgeGraph({
           aria-label={label}
           className="block"
         >
-          <g className="stroke-border" strokeWidth={0.9} opacity={0.9}>
+          {/* ภาษาเดียวกับลูกโลกที่ hero: เส้นสี accent บางและจาง จุดเล็ก โน้ตหลักมีวงเรืองจาง ๆ */}
+          <g className="stroke-accent" strokeWidth={0.7} opacity={0.22}>
             {graph.edges.map(([a, b], i) => (
               <line
                 key={i}
@@ -41,15 +45,22 @@ export function KnowledgeGraph({
               />
             ))}
           </g>
+          <g className="fill-accent" opacity={0.1}>
+            {graph.nodes
+              .filter((n) => n.r >= HUB)
+              .map((n, i) => (
+                <circle key={i} cx={n.x} cy={n.y} r={n.r * 2.6} />
+              ))}
+          </g>
           <g className="fill-accent">
             {graph.nodes.map((n, i) => (
               <circle
                 key={i}
                 cx={n.x}
                 cy={n.y}
-                r={n.r}
-                // จุดที่ถูกอ้างถึงบ่อยจะทั้งใหญ่และเข้มกว่า
-                opacity={0.45 + Math.min(n.r / 9, 0.5)}
+                r={n.r * 0.7}
+                // โน้ตที่ถูกอ้างถึงบ่อยจะทั้งใหญ่และเข้มกว่า
+                opacity={n.r >= HUB ? 0.95 : 0.35 + Math.min(n.r / 12, 0.35)}
               />
             ))}
           </g>
