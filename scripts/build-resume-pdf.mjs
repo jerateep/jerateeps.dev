@@ -1,4 +1,4 @@
-// สร้าง public/resume-<lang>.pdf จากหน้า /<lang>/resume ด้วย Chrome/Edge headless ที่มีในเครื่อง
+// สร้าง public/Jerateep-Saelee-Resume.pdf จากหน้า /en/resume ด้วย Chrome/Edge headless ที่มีในเครื่อง
 // ต้องเปิด server ไว้ก่อน (npm run dev หรือ build+start) แล้วรัน: npm run resume:pdf [-- http://localhost:3000]
 // รันใหม่ทุกครั้งที่แก้ profile.ts — PDF เป็นไฟล์ static ที่ commit ไว้ ไม่ได้สร้างตอน build บน Vercel
 // ponytail: ใช้ browser ในเครื่องแทน puppeteer เพื่อไม่เพิ่ม dependency — เครื่องอื่นตั้ง CHROME=<path> เอง
@@ -16,15 +16,13 @@ const browser = [
 ].find((p) => p && existsSync(p));
 if (!browser) throw new Error("Chrome/Edge not found — set CHROME=<path to browser>");
 
-for (const lang of ["en", "th"]) {
-  const out = resolve(`public/resume-${lang}.pdf`);
-  execFileSync(browser, [
-    "--headless",
-    "--disable-gpu",
-    "--no-pdf-header-footer",
-    "--virtual-time-budget=5000", // รอฟอนต์โหลดครบก่อนพิมพ์
-    `--print-to-pdf=${out}`,
-    `${base}/${lang}/resume`,
-  ], { stdio: "ignore" });
-  console.log(`${out}  ${(statSync(out).size / 1024).toFixed(0)} KB`);
-}
+const out = resolve("public/Jerateep-Saelee-Resume.pdf");
+execFileSync(browser, [
+  "--headless",
+  "--disable-gpu",
+  "--no-pdf-header-footer",
+  "--virtual-time-budget=5000", // รอฟอนต์โหลดครบก่อนพิมพ์
+  `--print-to-pdf=${out}`,
+  `${base}/en/resume`,
+], { stdio: "ignore" });
+console.log(`${out}  ${(statSync(out).size / 1024).toFixed(0)} KB`);

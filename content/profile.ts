@@ -163,8 +163,8 @@ export const profile = {
           en: "Introduced RabbitMQ to queue RPA workloads and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths, after trialling both on real work.",
         },
         {
-          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน ใช้ debug และ reverse-engineer ระบบ legacy ลดงานที่เคยใช้หลายวันเหลือไม่ถึงวัน",
-          en: "Brought AI tooling into development — Claude Code with shared skills and a knowledge base colleagues now use — for debugging and reverse-engineering legacy systems, cutting work that took days to under a day.",
+          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน ใช้ debug และ reverse-engineer ระบบ legacy ทำให้งานส่วนนี้เร็วขึ้นชัดเจน",
+          en: "Brought AI tooling into development — Claude Code with shared skills and a knowledge base colleagues now use — for debugging and reverse-engineering legacy systems, which has made that work noticeably faster.",
         },
       ],
       stack: [
@@ -264,8 +264,8 @@ export const profile = {
         en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
       },
       role: {
-        th: "ออกแบบ architecture, พัฒนาทั้งสามภาษา และวางวิธี verify ความถูกต้อง",
-        en: "Architecture, implementation across three languages, and the correctness verification strategy",
+        th: "ออกแบบ architecture, เลือก JasperReports มาแทนขั้นตอนเดิมที่ต้องวางข้อความลง Excel แล้วสั่งพิมพ์ PDF ทีละฉบับ และวางวิธี verify ความถูกต้อง",
+        en: "Architecture, choosing JasperReports to replace the old step of pasting text into Excel and printing each PDF by hand, and the correctness verification strategy",
       },
       confidential: true,
       featured: true,
@@ -348,7 +348,7 @@ export const profile = {
       stack: [
         "Python",
         ".NET",
-        "Java",
+        "JasperReports",
         "RabbitMQ",
         "SQL Server",
         "Docker",

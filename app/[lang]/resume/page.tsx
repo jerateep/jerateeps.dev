@@ -5,14 +5,12 @@ import { ui } from "@/content/ui";
 import learn from "@/content/learn.json";
 
 /**
- * Resume ฉบับทางการ — ต้นฉบับของ public/resume-<lang>.pdf (สร้างด้วย scripts/build-resume-pdf.mjs)
+ * Resume ฉบับทางการ — ต้นฉบับของ public/Jerateep-Saelee-Resume.pdf (ภาษาอังกฤษอย่างเดียว) (สร้างด้วย scripts/build-resume-pdf.mjs)
  * ดึงข้อมูลจาก profile.ts ชุดเดียวกับหน้าหลัก แก้เนื้อหาแล้วต้องสร้าง PDF ใหม่
  *
  * ขาวดำ ไม่มีกราฟิก ตามรูปแบบที่ ATS อ่านได้และ recruiter พิมพ์ได้ — สีบังคับขาวเสมอไม่ตามธีม
  */
 
-// ข้อจำกัดที่รู้แล้ว: Chrome ฝัง text layer ภาษาไทยไม่สะอาด (สระอำแยกเป็นสองตัวเวลา copy/parse)
-// ลอง Noto Sans Thai แล้วไม่ดีขึ้น — หน้าตาตอนพิมพ์ถูกต้อง แต่ถ้าต้องอัปโหลดเข้า ATS ให้ใช้ฉบับอังกฤษ
 const SITE = "https://jerateeps-dev.vercel.app";
 
 const isLocale = (value: string): value is Locale =>
@@ -30,10 +28,9 @@ export async function generateMetadata({
   };
 }
 
-// ตัวพิมพ์ใหญ่เฉพาะอังกฤษ — ภาษาไทยไม่มีตัวใหญ่ ถ้าปล่อยไว้คำอังกฤษในหัวข้อไทยจะโดดเป็น "BADGE"
-function Heading({ children, lang }: { children: string; lang: Locale }) {
+function Heading({ children }: { children: string }) {
   return (
-    <h2 className={`mt-4 mb-2 break-after-avoid border-b border-neutral-300 pb-1 text-xs font-semibold text-neutral-900 ${lang === "en" ? "tracking-wider uppercase" : ""}`}>
+    <h2 className={`mt-4 mb-2 break-after-avoid border-b border-neutral-300 pb-1 text-xs font-semibold text-neutral-900 tracking-wider uppercase`}>
       {children}
     </h2>
   );
@@ -43,7 +40,8 @@ const strip = (href: string) => href.replace(/^mailto:|^https:\/\/(www\.)?/, "")
 
 export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
   const { lang } = await params;
-  if (!isLocale(lang)) notFound();
+  // ฉบับไทยตัดออก: Chrome ฝังข้อความไทยใน PDF ไม่สะอาด (สระอำแยกตัว) ATS อ่านพลาด และ recruiter ใช้ฉบับอังกฤษอยู่แล้ว
+  if (lang !== "en") notFound();
 
   const projects = profile.projects.filter((p) => !p.compact);
   const link = (label: string) => strip(profile.links.find((l) => l.label === label)?.href ?? "");
@@ -57,10 +55,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
     <main
       id="main"
       tabIndex={-1}
-      className={`mx-auto my-8 w-full max-w-[210mm] bg-white px-[15mm] py-[12mm] leading-snug text-neutral-800 shadow print:my-0 print:max-w-none print:p-0 print:shadow-none ${
-        // อักษรไทยกินความสูงบรรทัดมากกว่า — ลดขนาดนิดเดียวให้ฉบับไทยจบใน 2 หน้าเท่าฉบับอังกฤษ
-        lang === "th" ? "text-[12.5px]" : "text-[13px]"
-      }`}
+      className={`mx-auto my-8 w-full max-w-[210mm] bg-white px-[15mm] py-[12mm] leading-snug text-neutral-800 shadow print:my-0 print:max-w-none print:p-0 print:shadow-none text-[13px]`}
     >
       <header>
         <h1 className="text-2xl font-semibold text-neutral-900">{profile.name[lang]}</h1>
@@ -75,11 +70,11 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         </p>
       </header>
 
-      <Heading lang={lang}>{lang === "th" ? "สรุป" : "Summary"}</Heading>
+      <Heading>Summary</Heading>
       <p>{profile.tagline[lang]}</p>
       <p className="mt-1.5">{profile.about[1][lang]}</p>
 
-      <Heading lang={lang}>{ui.sections.experience[lang]}</Heading>
+      <Heading>{ui.sections.experience[lang]}</Heading>
       <div className="space-y-3">
         {profile.experience.map((job, i) => {
           const shown = job.highlights.slice(0, job.resumeHighlights ?? job.highlights.length);
@@ -121,7 +116,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         })}
       </div>
 
-      <Heading lang={lang}>{ui.sections.skills[lang]}</Heading>
+      <Heading>{ui.sections.skills[lang]}</Heading>
       <dl className="space-y-0.5">
         {profile.skills.map((g, i) => (
           <div key={i} className="flex gap-3">
@@ -131,7 +126,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         ))}
       </dl>
 
-      <Heading lang={lang}>{ui.education[lang]}</Heading>
+      <Heading>{ui.education[lang]}</Heading>
       <div className="space-y-1">
         {profile.education.map((e, i) => (
           <div key={i} className="flex items-baseline justify-between gap-x-4">
@@ -143,7 +138,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         ))}
       </div>
 
-      <Heading lang={lang}>{ui.certifications[lang]}</Heading>
+      <Heading>{ui.certifications[lang]}</Heading>
       <p>
         <span className="font-medium text-neutral-900">{ui.microsoftLearn[lang]}:</span> {learn.courses.join(", ")}
       </p>
@@ -151,7 +146,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         <span className="font-medium text-neutral-900">{ui.googleCloud[lang]}:</span> {ui.googleCloudSummary[lang]}
       </p>
 
-      <Heading lang={lang}>{ui.languages[lang]}</Heading>
+      <Heading>{ui.languages[lang]}</Heading>
       <ul>
         {profile.languages.map((l, i) => (
           <li key={i}>

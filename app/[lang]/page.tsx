@@ -80,19 +80,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           LinkedIn ↗
         </a>
         <a
-          href={`/resume-${lang}.pdf`}
-          download={`Jerateep-Saelee-Resume-${lang.toUpperCase()}.pdf`}
+          href="/Jerateep-Saelee-Resume.pdf"
+          download
           className="mt-6 ml-3 inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent/50"
         >
           {ui.resumePdf[lang]} ↓
-        </a>
-        {/* recruiter ไทยที่ส่งต่อให้ลูกค้าต่างชาติต้องใช้ฉบับอังกฤษ — ให้หยิบอีกภาษาได้โดยไม่ต้องสลับหน้า */}
-        <a
-          href={`/resume-${lang === "th" ? "en" : "th"}.pdf`}
-          download={`Jerateep-Saelee-Resume-${lang === "th" ? "EN" : "TH"}.pdf`}
-          className="mt-6 ml-3 inline-block text-xs text-muted underline-offset-4 hover:text-accent hover:underline"
-        >
-          {ui.resumeOtherLang[lang]}
         </a>
       </section>
 
@@ -376,8 +368,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <ul className="mt-6 flex flex-wrap gap-3">
           <li>
             <a
-              href={`/resume-${lang}.pdf`}
-              download={`Jerateep-Saelee-Resume-${lang.toUpperCase()}.pdf`}
+              href="/Jerateep-Saelee-Resume.pdf"
+              download
               className="inline-block rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
             >
               {ui.resumePdf[lang]}
