@@ -457,8 +457,8 @@ export const profile = {
           en: "Removed the need for each downstream system to integrate with SAP independently, consolidating maintenance into a single point.",
         },
         {
-          th: "เพิ่มทางอ่าน table ของ SAP โดยตรงสำหรับข้อมูลที่ service เดิมเข้าไม่ถึง ลดการรอทีม ABAP พัฒนา endpoint เพิ่ม",
-          en: "Added a direct table-read path for data the existing services couldn't see, removing the wait on the ABAP team for new endpoints.",
+          th: "ใช้ AI ช่วยหาวิธีเขียน XML query กับ SOAP service ที่ vendor มีอยู่แล้ว เพื่อดึงข้อมูลที่ต้องการ เช่น ข้อมูลลูกค้า โดยไม่ต้องรอทีม ABAP พัฒนา endpoint ใหม่",
+          en: "Used AI to work out XML queries against the vendor's existing SOAP services to pull the data needed, such as customer records, instead of waiting on the ABAP team for new endpoints.",
         },
         {
           th: "เพิ่ม alert เมื่อ sync ข้อมูลไม่สำเร็จ ทำให้รู้ทันทีว่าข้อมูลฝั่ง downstream ยังไม่อัปเดต",
@@ -1028,7 +1028,6 @@ export const profile = {
     "ASP.NET Core",
     ".NET 8",
     "SQL Server",
-    "SAP integration (SOAP/RFC)",
     "Power Automate",
   ],
 
@@ -1067,7 +1066,7 @@ export const profile = {
     {
       title: { th: "Enterprise และ automation", en: "Enterprise & automation" },
       items: [
-        "SAP integration (SOAP/RFC)",
+        "SAP SOAP services (consumer)",
         "Active Directory",
         "Microsoft Entra ID",
         "Microsoft Graph",
