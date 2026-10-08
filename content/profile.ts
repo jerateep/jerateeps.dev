@@ -152,20 +152,20 @@ export const profile = {
           en: "Delivered several projects end to end on my own: gathering requirements, development, testing (manual test cases across document conditions, AI-assisted unit tests for smaller functions) and support after go-live.",
         },
         {
-          th: "พัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) ต่อยอดจากข้อเสนอของทีม DevOps แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
-          en: "Built the central SSO on Microsoft Entra ID (OAuth 2.0), based on a DevOps team proposal, and moved apps onto it one by one to replace their separate logins.",
+          th: "พัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) ต่อยอดจากข้อเสนอของทีม DevOps แล้วค่อย ๆ ย้ายแอปมาใช้ ปัจจุบันมีแอปภายในราว 40 ระบบบน portal กลาง แทน login แยกของแต่ละแอป",
+          en: "Developed the central SSO on Microsoft Entra ID (OAuth 2.0), based on a DevOps team proposal, and moved apps onto it one by one; around 40 internal applications on the company portal now sign in through it.",
         },
         {
           th: "ออกแบบ permission layer ที่ให้สิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการ assign สิทธิ์รายคน แก้ rule จุดเดียวมีผลกับทุกแอปที่อยู่หลัง SSO",
           en: "Designed a permission layer that grants access by business unit, department and position instead of per user. One rule change applies to every app behind SSO.",
         },
         {
-          th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงาน document processing และเพื่อ workaround ข้อจำกัดของ SAP ECC6",
-          en: "Built automation with Power Automate, AI Builder and UiPath for document processing and to work around SAP ECC6 limits.",
+          th: "สร้าง Power Automate cloud flow มากกว่า 90 flow บน environment production และ IAM รวมถึงงาน AI Builder และ UiPath สำหรับ document processing, เชื่อมระบบ และ workaround ข้อจำกัดของ SAP ECC6",
+          en: "Built 90+ Power Automate cloud flows across production and IAM environments, plus AI Builder and UiPath automation, for document processing, system integration and SAP ECC6 workarounds.",
         },
         {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อทำ user provisioning และ deprovisioning แบบอัตโนมัติ",
-          en: "Built a web service and flow that syncs employee data into on-premises Active Directory, automating user provisioning and deprovisioning.",
+          en: "Implemented a web service and flow that syncs employee data into on-premises Active Directory, automating user provisioning and deprovisioning.",
         },
         {
           th: "กำกับงาน vendor และ outsource developer ทั้ง assign งาน, code review และตรวจรับงาน และ escalate ปัญหากับ vendor ของระบบ SAP",
@@ -674,7 +674,7 @@ export const profile = {
         },
         {
           th: "ทำ alerting endpoint กลางที่ระบบอื่นยิงเข้ามาได้ ทั้ง alert อุปกรณ์ network, สถานะงาน document processing และ mail queue ที่ค้าง แล้วส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
-          en: "Built a shared alert endpoint that routes network, document-processing and mail-queue alerts from other systems to the right team's chat.",
+          en: "Created a shared alert endpoint that routes network, document-processing and mail-queue alerts from other systems to the right team's chat.",
         },
         {
           th: "Wrap ข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น org chart และ reference data ของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
