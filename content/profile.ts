@@ -97,8 +97,8 @@ export type Education = {
 export const profile = {
   name: { th: "Jerateep Saelee", en: "Jerateep Saelee" } satisfies L,
   role: {
-    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบการเงินและ enterprise integration",
-    en: "Full-stack Developer (.NET) · 10+ years · Enterprise Finance & Integration Systems",
+    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบ enterprise, integration และ automation",
+    en: "Full-stack Developer (.NET) · 10+ years · Enterprise Systems, Integration & Automation",
   } satisfies L,
   tagline: {
     th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่มี downtime",
@@ -146,6 +146,10 @@ export const profile = {
         {
           th: "Migrate ระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้น .NET 8 และ Next.js บนฐานข้อมูลเดิม โดยไม่มี downtime",
           en: "Migrated ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, with no downtime.",
+        },
+        {
+          th: "รับผิดชอบหลายโปรเจกต์ตั้งแต่ต้นจนจบคนเดียว ตั้งแต่เก็บ requirement, พัฒนา, ทดสอบ (เขียน test case แบบ manual ตามเงื่อนไขเอกสาร และให้ AI ช่วยเขียน unit test สำหรับ function ย่อย) จนถึง support หลังขึ้นระบบจริง",
+          en: "Delivered several projects end to end on my own: gathering requirements, development, testing (manual test cases across document conditions, AI-assisted unit tests for smaller functions) and support after go-live.",
         },
         {
           th: "พัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) ต่อยอดจากข้อเสนอของทีม DevOps แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
