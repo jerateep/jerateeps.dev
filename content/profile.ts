@@ -186,7 +186,7 @@ export const profile = {
         "RabbitMQ",
         "Python",
         "Docker",
-        "SAP",
+        "SAP SOAP services",
       ],
     },
     {
