@@ -28,6 +28,8 @@ export type Job = {
   role: L;
   period: L;
   summary: L;
+  /** ตำแหน่งก่อนหน้าในบริษัทเดียวกัน (ใหม่ → เก่า) — ให้เห็นว่าบทบาทขยับ ไม่ใช่ตำแหน่งเดิม 8 ปี */
+  previousRoles?: { role: L; period: L }[];
   highlights: L[];
   stack: string[];
   /** resume PDF แสดง bullet แค่กี่ข้อแรก (0 = บรรทัดตำแหน่งอย่างเดียว) — งานเก่าที่ไม่เกี่ยวกับสายที่สมัคร */
@@ -128,7 +130,14 @@ export const profile = {
         en: "Gulf Space Technology (formerly Thaicom PCL)",
       },
       role: { th: "Full-stack Developer", en: "Full-stack Developer" },
-      period: { th: "ธ.ค. 2561 – ปัจจุบัน", en: "Dec 2018 – Present" },
+      // เปลี่ยนตำแหน่งราวกลางปี 2022 — เจ้าของจำเดือนไม่ได้ จึงใส่แค่ปี
+      period: { th: "2565 – ปัจจุบัน", en: "2022 – Present" },
+      previousRoles: [
+        {
+          role: { th: "Senior Programmer Analyst", en: "Senior Programmer Analyst" },
+          period: { th: "ธ.ค. 2561 – 2565", en: "Dec 2018 – 2022" },
+        },
+      ],
       summary: {
         th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
         en: "Own the core back-office systems and support many others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",

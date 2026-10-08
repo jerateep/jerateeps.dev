@@ -69,6 +69,7 @@ export const ui = {
   moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },
   contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   // ใช้คำว่า resume ไม่ใช่ CV — สาย IT ในไทยและฝั่งอเมริกาใช้ resume (สั้น 1–2 หน้า) ส่วน CV คือฉบับยาวแบบสายวิชาการ/ยุโรป
+  previously: { th: "ก่อนหน้านี้:", en: "Previously:" },
   resumeKeyProjects: { th: "ผลงานหลัก", en: "Key projects" },
   resumeCore: { th: "ทักษะหลัก", en: "Core" },
   downloadTitle: { th: "กำลังดาวน์โหลด Resume", en: "Downloading resume" },
