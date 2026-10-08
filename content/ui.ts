@@ -36,7 +36,7 @@ export const ui = {
   },
   projectsLead: {
     th: "ผลงานส่วนใหญ่เป็นระบบภายใน จึงไม่เปิดเผยชื่อและภาพหน้าจอ แต่อธิบายตามหน้าที่ของระบบ และยินดีลงรายละเอียดในการสัมภาษณ์",
-    en: "Most are internal systems, so names and screenshots are withheld. Each is described by what it does, and I'm glad to go deeper in interview.",
+    en: "These are internal systems, so they are described by function, not name. Happy to discuss details in an interview.",
   },
   education: { th: "การศึกษา", en: "Education" },
   // เป็นคอร์สและ badge ที่เรียนเพื่อประเมินว่าเอามาใช้กับงานได้ไหม ไม่ใช่ certification ที่สอบ — ห้ามเรียกว่าใบรับรอง

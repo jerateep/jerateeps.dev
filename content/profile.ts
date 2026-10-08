@@ -100,21 +100,21 @@ export const profile = {
   } satisfies L,
   tagline: {
     th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่มี downtime",
-    en: "Building and looking after core back-office systems at a satellite operator (finance approvals, SAP integration, central sign-in) and supporting others across the organisation. Recent work includes moving decade-old platforms to .NET 8 without service interruption.",
+    en: "I build and maintain core back-office systems at a satellite operator (finance approvals, SAP integration, single sign-on) and support other systems across the organisation. Recently moved decade-old systems to .NET 8 with no downtime.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "งานส่วนใหญ่อยู่ในจุดที่ธุรกิจผิดพลาดไม่ได้ ทั้ง approval workflow งบประมาณ การส่งข้อมูลเข้าและออกจาก SAP และ access control ว่าใครเข้าถึงอะไรได้ ระบบเหล่านี้ใช้งานทั่วทั้งองค์กร และมีระบบ back-office อื่นอีกหลายระบบพึ่งพาอยู่",
-      en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
+      th: "ดูแลระบบที่เกี่ยวกับการเงินและการอนุมัติ เช่น approval workflow งบประมาณ การรับส่งข้อมูลกับ SAP และการกำหนดสิทธิ์การเข้าถึง ระบบเหล่านี้มีผู้ใช้ทั่วองค์กร การแก้ไขจึงต้องระมัดระวัง",
+      en: "I maintain systems around finance and approvals: budget approval workflows, data exchange with SAP, and access permissions. People across the organisation use them, so changes need care.",
     },
     {
       th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม ซึ่งสำคัญที่สุดกับระบบการเงินและการอนุมัติ บางระบบใช้งานมาราว 20 ปีแต่ยังต้องใช้ต่อ จึงต้องดูแลให้ไปต่อได้ ส่วนระบบใหม่เขียนด้วยเทคโนโลยีปัจจุบัน",
-      en: "Much of my work is modernising long-running systems carefully, verifying how each one actually behaves against the database before changing it. Upgrades and migrations then keep the existing business process intact, which matters most where finance and approvals are involved. Some have been in use for around 20 years and still need to keep running; new systems are built on current technology.",
+      en: "I modernise legacy systems carefully. Before changing anything, I check how the system really behaves against the database, so upgrades keep the business process unchanged. Some of these systems are about 20 years old and must keep running; new systems use current technology.",
     },
     {
       th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และ knowledge base ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่ rewrite ควบคู่กับการทำ documentation ให้ระบบที่ไม่มีเอกสาร จนเป็น reference ที่ทีมใช้งานจริง",
-      en: "Likes trying tools that might help the team and sharing the ones that work — Claude Code with shared skills and a knowledge base the team now uses, and a clean-architecture split of back end and front end for rewrites — alongside turning undocumented systems into references the team works from.",
+      en: "I like trying tools that could help the team and sharing the ones that work, such as Claude Code with shared skills and a knowledge base the team now uses. I also write documentation for undocumented systems, which the team now uses as a reference.",
     },
   ] satisfies L[],
 
@@ -136,35 +136,35 @@ export const profile = {
       highlights: [
         {
           th: "Migrate ระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้น .NET 8 และ Next.js บนฐานข้อมูลเดิม โดยไม่มี downtime",
-          en: "Migrated decade-old ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, without service interruption.",
+          en: "Migrated ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, with no downtime.",
         },
         {
           th: "พัฒนาระบบ SSO กลางบน Microsoft Entra ID (OAuth 2.0) ต่อยอดจากข้อเสนอของทีม DevOps แล้วค่อย ๆ ย้ายแอปอื่นมาใช้ แทน login แยกของแต่ละแอป",
-          en: "Developed the central SSO on Microsoft Entra ID (OAuth 2.0), building on a proposal from the DevOps team, and worked through moving other applications onto it, replacing each app's separate login.",
+          en: "Built the central SSO on Microsoft Entra ID (OAuth 2.0), based on a DevOps team proposal, and moved apps onto it one by one to replace their separate logins.",
         },
         {
           th: "ออกแบบ permission layer ที่ให้สิทธิ์ตามโครงสร้างองค์กร (สังกัด แผนก ตำแหน่ง) แทนการ assign สิทธิ์รายคน แก้ rule จุดเดียวมีผลกับทุกแอปที่อยู่หลัง SSO",
-          en: "Designed a permission layer granting access by organisational attributes (business unit, department, position) rather than per-user assignment; a single rule change propagates to every application behind SSO.",
+          en: "Designed a permission layer that grants access by business unit, department and position instead of per user. One rule change applies to every app behind SSO.",
         },
         {
           th: "ออกแบบระบบ automation ด้วย Power Automate, AI Builder และ UiPath สำหรับงาน document processing และเพื่อ workaround ข้อจำกัดของ SAP ECC6",
-          en: "Designed automation with Power Automate, AI Builder and UiPath for document processing and to work around limits of the SAP ECC6 system.",
+          en: "Built automation with Power Automate, AI Builder and UiPath for document processing and to work around SAP ECC6 limits.",
         },
         {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อทำ user provisioning และ deprovisioning แบบอัตโนมัติ",
-          en: "Built a web service and flow that syncs employee data into on-premise Active Directory, automating user provisioning and deprovisioning.",
+          en: "Built a web service and flow that syncs employee data into on-premises Active Directory, automating user provisioning and deprovisioning.",
         },
         {
           th: "กำกับงาน vendor และ outsource developer ทั้ง assign งาน, code review และตรวจรับงาน และ escalate ปัญหากับ vendor ของระบบ SAP",
-          en: "Directed external vendors and outsourced developers: task assignment, code review and acceptance, and escalation with the SAP system vendor.",
+          en: "Supervised vendors and outsourced developers: assigning tasks, reviewing code, accepting deliverables, and escalating issues to the SAP vendor.",
         },
         {
           th: "นำ RabbitMQ มาทำ queue งาน RPA และแยก .NET API กับ Next.js ตาม clean architecture แทนโครงสร้าง monolith เดิม หลังทดลองกับงานจริงแล้วได้ผล",
-          en: "Introduced RabbitMQ to queue RPA workloads and a clean-architecture split of .NET API and Next.js front end in place of the old monoliths, after trialling both on real work.",
+          en: "After testing both on real work, introduced RabbitMQ for RPA job queues and split old monoliths into a .NET API and a Next.js front end (clean architecture).",
         },
         {
-          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน ใช้ debug และ reverse-engineer ระบบ legacy ทำให้งานส่วนนี้เร็วขึ้นชัดเจน",
-          en: "Brought AI tooling into development — Claude Code with shared skills and a knowledge base colleagues now use — for debugging and reverse-engineering legacy systems, which has made that work noticeably faster.",
+          th: "นำเครื่องมือ AI เข้ามาในกระบวนการพัฒนา ได้แก่ Claude Code พร้อม skill และ knowledge base ที่ทีมใช้ร่วมกัน ช่วย debug และ reverse-engineer ระบบ legacy",
+          en: "Brought AI tools into development (Claude Code with shared skills and a knowledge base the team now uses) to help debug and reverse-engineer legacy systems.",
         },
       ],
       stack: [
@@ -257,7 +257,7 @@ export const profile = {
       slug: "sap-doc-pipeline",
       name: {
         th: "Pipeline ออกเอกสารจาก SAP อัตโนมัติ (end-to-end)",
-        en: "End-to-end SAP document production pipeline",
+        en: "Automated SAP invoice and receipt pipeline",
       },
       summary: {
         th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบ end-to-end ตั้งแต่ใช้ robot ดึงข้อมูล, parse print-image เป็น structured data, render เอกสาร จนถึงส่งต่อเข้าระบบ billing ของคู่ค้า",
@@ -326,7 +326,7 @@ export const profile = {
       impact: [
         {
           th: "Re-process เอกสารย้อนหลังทั้งหมด (หลักหมื่นฉบับ) แล้ว diff กับต้นฉบับทีละฉบับจนไม่พบความแตกต่าง ก่อนเปลี่ยนมาใช้ระบบใหม่เป็น default",
-          en: "Re-processed the entire back catalogue (tens of thousands of documents) and diffed every one against its original to zero differences before the new path became the default.",
+          en: "Before go-live, re-ran all past documents (tens of thousands) and compared each with its original until there were zero differences.",
         },
         {
           th: "ออกแบบให้ parse print-image ครั้งเดียวแล้วเก็บเป็น structured data ทั้งขั้น render และ preview จึงอ่านจาก source เดียวกัน ลดความเสี่ยงที่ logic สองชุดจะให้ผลต่างกัน",
@@ -383,7 +383,7 @@ export const profile = {
         },
         {
           th: "เพิ่มชุด report สำหรับ audit ตามมาตรฐาน ISO: matrix กฎ×เมนู, เทียบสิทธิ์ระหว่างคน, หา orphan account, และ audit log",
-          en: "Added an ISO-audit reporting set: rule×menu matrix, access comparison between users, orphan-account detection, and audit logging.",
+          en: "Added ISO audit reports: rule-by-menu matrix, user access comparison, orphan-account detection and audit log.",
         },
         {
           th: "ทำหน้า My Access แบบ self-service ให้พนักงานเช็กสิทธิ์ของตัวเองได้ ลดปริมาณคำถามที่ส่งมายังทีม IT",
@@ -458,7 +458,7 @@ export const profile = {
         },
         {
           th: "ใช้ AI ช่วยหาวิธีเขียน XML query กับ SOAP service ที่ vendor มีอยู่แล้ว เพื่อดึงข้อมูลที่ต้องการ เช่น ข้อมูลลูกค้า โดยไม่ต้องรอทีม ABAP พัฒนา endpoint ใหม่",
-          en: "Used AI to work out XML queries against the vendor's existing SOAP services to pull the data needed, such as customer records, instead of waiting on the ABAP team for new endpoints.",
+          en: "Used AI to work out XML queries for the vendor's existing SOAP services (e.g. customer data), instead of waiting for the ABAP team to build new endpoints.",
         },
         {
           th: "เพิ่ม alert เมื่อ sync ข้อมูลไม่สำเร็จ ทำให้รู้ทันทีว่าข้อมูลฝั่ง downstream ยังไม่อัปเดต",
@@ -494,7 +494,7 @@ export const profile = {
         },
         {
           th: "ตรวจสอบยอดงบประมาณคงเหลือกับ SAP ตั้งแต่ขั้นตอนยื่นคำขอ แทนการตรวจพบเมื่อเอกสารถึงฝ่ายการเงินแล้ว",
-          en: "Validates remaining budget against SAP at submission, rather than at the point the request reaches finance.",
+          en: "Added a budget check against SAP at submission, instead of when the request reaches finance.",
         },
       ],
       stack: ["ASP.NET MVC", "SQL Server", "SOAP integration"],
@@ -581,7 +581,7 @@ export const profile = {
       slug: "identity-automation",
       name: {
         th: "ระบบ automation ของ account lifecycle พนักงาน",
-        en: "Employee identity lifecycle automation",
+        en: "Employee onboarding/offboarding automation",
       },
       summary: {
         th: "ทำให้งานเปิด แก้ และปิด account พนักงานทั้ง lifecycle เป็นอัตโนมัติ ตั้งแต่ onboard ไปจนถึงวันลาออก ประกอบด้วย Web API ที่สั่งงาน corporate directory และ cloud flow กว่า 30 ตัวที่ครอบคลุมทั้งพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก",
@@ -602,7 +602,7 @@ export const profile = {
       impact: [
         {
           th: "งานวันลาออกรวมเป็น scheduled job ชุดเดียว ทั้ง disable account, ดึง license คืน, ถอดออกจาก mail group และตั้ง mail forwarding จากเดิมที่ต้องไล่ทำทีละระบบด้วยมือ",
-          en: "Leaving-day work runs as one scheduled set — disabling the account, reclaiming licences, removing group memberships and setting mail forwarding — instead of being worked through system by system by hand.",
+          en: "Automated offboarding as one scheduled job (disable account, reclaim licences, remove groups, forward mail), replacing manual steps in each system.",
         },
         {
           th: "แยกเส้นทางของพนักงานในระบบ HR พนักงานนอกระบบ และบุคคลภายนอก ออกจากกัน เพราะสามกลุ่มนี้มีต้นทางข้อมูลและเงื่อนไขการหมดอายุต่างกัน",
@@ -653,7 +653,7 @@ export const profile = {
       impact: [
         {
           th: "Sync ข้อมูลพนักงานลง on-premise directory ตาม schedule ทำให้ระบบที่อ่าน directory ได้ข้อมูลตรงกันโดยไม่ต้อง integrate กับ HR เอง",
-          en: "Synchronises employee data into the on-premise directory on a schedule, so every system reading from it stays consistent without integrating with HR directly.",
+          en: "Synchronises employee data into the on-premises directory on a schedule, so every system reading from it stays consistent without integrating with HR directly.",
         },
         {
           th: "Sync การจองห้องและ resource เข้า shared calendar พร้อม flow แยกรายห้องสำหรับรับการเปลี่ยนแปลงแบบ real-time",
@@ -661,7 +661,7 @@ export const profile = {
         },
         {
           th: "ทำ alerting endpoint กลางที่ระบบอื่นยิงเข้ามาได้ ทั้ง alert อุปกรณ์ network, สถานะงาน document processing และ mail queue ที่ค้าง แล้วส่งต่อเข้าแชตของทีมที่รับผิดชอบ",
-          en: "Provides a shared alerting endpoint other systems post to — network-device alerts, document-processing status, stalled mail queues — routed into the responsible team's chat.",
+          en: "Built a shared alert endpoint that routes network, document-processing and mail-queue alerts from other systems to the right team's chat.",
         },
         {
           th: "Wrap ข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น org chart และ reference data ของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
@@ -873,7 +873,7 @@ export const profile = {
       school: { th: "วิทยาลัยเทคนิคตรัง", en: "Trang Technical College" },
       degree: {
         th: "ปวช. และ ปวส. สาขาคอมพิวเตอร์ธุรกิจ",
-        en: "Vocational Certificate and Higher Vocational Certificate, Business Computer",
+        en: "Vocational Certificate and Higher Vocational Certificate, Business Computing",
       },
       period: { th: "2547 – 2552", en: "2004 – 2009" },
     },
@@ -922,8 +922,8 @@ export const profile = {
     {
       name: { th: "อังกฤษ", en: "English" },
       level: {
-        th: "อ่านและเขียนระดับใช้งานจริง (เอกสารเทคนิค อีเมล แชต) · การพูดยังไม่คล่อง",
-        en: "Professional reading and writing (technical documentation, email, chat) · spoken English limited",
+        th: "อ่านและเขียนระดับใช้งานจริง (เอกสารเทคนิค อีเมล แชต) · ยังพูดสื่อสารไม่ได้",
+        en: "Reading and writing for work (technical documentation, email, chat) · not conversational in spoken English",
       },
     },
   ],
