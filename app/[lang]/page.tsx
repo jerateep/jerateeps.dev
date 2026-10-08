@@ -108,6 +108,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p className="mt-1 font-mono text-xs text-muted">
                 {job.period[lang]}
               </p>
+              {job.previousRoles?.map((prev) => (
+                <p key={prev.period.en} className="mt-1 text-sm text-muted">
+                  {ui.previously[lang]} {prev.role[lang]}{" "}
+                  <span className="font-mono text-xs">· {prev.period[lang]}</span>
+                </p>
+              ))}
               <p className="mt-4 text-muted">{job.summary[lang]}</p>
               <ul className="mt-4 space-y-2 text-muted">
                 {job.highlights.map((item, j) => (

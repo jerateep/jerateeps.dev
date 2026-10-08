@@ -36,7 +36,7 @@ export const ui = {
   },
   projectsLead: {
     th: "ผลงานส่วนใหญ่เป็นระบบภายใน จึงไม่เปิดเผยชื่อและภาพหน้าจอ แต่อธิบายตามหน้าที่ของระบบ และยินดีลงรายละเอียดในการสัมภาษณ์",
-    en: "Most are internal systems, so names and screenshots are withheld. Each is described by what it does, and I'm glad to go deeper in interview.",
+    en: "These are internal systems, so they are described by function, not name. Happy to discuss details in an interview.",
   },
   education: { th: "การศึกษา", en: "Education" },
   // เป็นคอร์สและ badge ที่เรียนเพื่อประเมินว่าเอามาใช้กับงานได้ไหม ไม่ใช่ certification ที่สอบ — ห้ามเรียกว่าใบรับรอง
@@ -69,6 +69,7 @@ export const ui = {
   moreProjects: { th: "ระบบอื่นที่พัฒนาและดูแล", en: "Other systems I build and maintain" },
   contactCta: { th: "ติดต่อผม", en: "Get in touch" },
   // ใช้คำว่า resume ไม่ใช่ CV — สาย IT ในไทยและฝั่งอเมริกาใช้ resume (สั้น 1–2 หน้า) ส่วน CV คือฉบับยาวแบบสายวิชาการ/ยุโรป
+  previously: { th: "ก่อนหน้านี้:", en: "Previously:" },
   resumeKeyProjects: { th: "ผลงานหลัก", en: "Key projects" },
   resumeCore: { th: "ทักษะหลัก", en: "Core" },
   downloadTitle: { th: "กำลังดาวน์โหลด Resume", en: "Downloading resume" },

@@ -87,6 +87,12 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
                 </h3>
                 <span className="text-xs whitespace-nowrap text-neutral-600">{job.period[lang]}</span>
               </div>
+              {job.previousRoles?.map((prev) => (
+                <div key={prev.period.en} className="flex items-baseline justify-between gap-x-4 break-after-avoid">
+                  <p className="text-neutral-700">{ui.previously[lang]} {prev.role[lang]}</p>
+                  <span className="text-xs whitespace-nowrap text-neutral-600">{prev.period[lang]}</span>
+                </div>
+              ))}
               {shown.length > 0 && (
                 <>
                   <ul className="mt-1 list-disc space-y-0.5 pl-4">
