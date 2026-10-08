@@ -109,8 +109,8 @@ export const profile = {
       en: "Most of my work sits where the business can't afford errors: budget approvals, data flowing in and out of SAP, and who can access what. These systems are used across the organisation, and many other back-office systems depend on them.",
     },
     {
-      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม ซึ่งสำคัญที่สุดกับระบบการเงินและการอนุมัติ",
-      en: "Much of my work is modernising long-running systems carefully, verifying how each one actually behaves against the database before changing it. Upgrades and migrations then keep the existing business process intact, which matters most where finance and approvals are involved.",
+      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม ซึ่งสำคัญที่สุดกับระบบการเงินและการอนุมัติ บางระบบใช้งานมาราว 20 ปีแต่ยังต้องใช้ต่อ จึงต้องดูแลให้ไปต่อได้ ส่วนระบบใหม่เขียนด้วยเทคโนโลยีปัจจุบัน",
+      en: "Much of my work is modernising long-running systems carefully, verifying how each one actually behaves against the database before changing it. Upgrades and migrations then keep the existing business process intact, which matters most where finance and approvals are involved. Some have been in use for around 20 years and still need to keep running; new systems are built on current technology.",
     },
     {
       th: "ชอบลองเครื่องมือที่น่าจะช่วยงานของทีมได้ แล้วแบ่งปันตัวที่ใช้ได้ผลจริง เช่น Claude Code พร้อม skill และ knowledge base ที่แชร์ให้ทีมใช้ต่อ และแยก backend กับ frontend ตาม clean architecture ในระบบที่ rewrite ควบคู่กับการทำ documentation ให้ระบบที่ไม่มีเอกสาร จนเป็น reference ที่ทีมใช้งานจริง",
@@ -1026,7 +1026,7 @@ export const profile = {
   coreSkills: [
     "C#",
     "ASP.NET Core",
-    ".NET 8",
+    ".NET Framework 2.0 – .NET 10",
     "SQL Server",
     "Power Automate",
   ],
@@ -1038,7 +1038,7 @@ export const profile = {
     },
     {
       title: { th: "Backend", en: "Backend" },
-      items: [".NET 8", "ASP.NET Core", "ASP.NET Web Forms", "Dapper", "EF Core", "REST", "SOAP"],
+      items: [".NET Framework 2.0 / 3.5 / 4.x", ".NET Core 1 – 3.1", ".NET 5 / 6 / 8 / 10", "ASP.NET Core", "ASP.NET Web Forms", "Dapper", "EF Core", "REST", "SOAP"],
     },
     {
       title: { th: "Frontend", en: "Frontend" },
