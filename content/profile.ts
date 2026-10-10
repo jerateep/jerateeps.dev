@@ -54,7 +54,7 @@ export type Project = {
    * visual ย่อประจำการ์ด — 3–5 ขั้น บอกรูปร่างของระบบ
    * กฎเดียวกับแผนภาพใหญ่: ชื่อเชิงหน้าที่เท่านั้น
    */
-  flow?: { label: L; icon: string }[];
+  flow?: { label: L }[];
   /**
    * ป้ายในแผนภาพสถาปัตยกรรม (ตำแหน่งอยู่ในคอมโพเนนต์)
    * เรียกทุกอย่างตามหน้าที่ ห้ามชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อคู่ค้า
@@ -288,53 +288,42 @@ export const profile = {
        * ห้ามใส่ชื่อเครื่อง พอร์ต path ชื่อตาราง หรือชื่อระบบของคู่ค้า
        */
       diagram: {
-        panelApp: { th: "เซิร์ฟเวอร์แอป", en: "APP SERVER" },
-        panelWorker: { th: "เครื่องประมวลผล", en: "WORKER MACHINE" },
-        panelData: { th: "SQL SERVER", en: "SQL SERVER" },
-
+        // 9 กล่อง 9 เส้น ตามงบของ diagram-design — กล่องที่เดินคู่กันเสมอถูกรวม (consumer เข้า queue,
+        // JasperReports เข้า render, ค่าตั้งเข้าคลังบล็อก) และตัดกล่องปลายทางที่ซ้ำความหมายออก
         user: { th: "ผู้ใช้", en: "User" },
+        userSub: { th: "เลขเอกสาร", en: "document number" },
         portal: { th: "เว็บพอร์ทัล", en: "Web portal" },
         portalSub: { th: "ASP.NET", en: "ASP.NET" },
-        queue: { th: "RabbitMQ", en: "RabbitMQ" },
-        queueSub: { th: "1 งาน = 1 message", en: "1 job = 1 message" },
-        render: { th: "Render service", en: "Render service" },
-        renderSub: { th: "ประกอบ payload", en: "payload builder" },
-        engine: { th: "JasperReports", en: "JasperReports" },
-        engineSub: { th: "PDF · HTML · DOCX", en: "PDF · HTML · DOCX" },
-
-        consumer: { th: "Consumer", en: "Consumer" },
-        consumerSub: { th: ".NET · ขนานกัน", en: ".NET · parallel" },
-        robot: { th: "Power Automate", en: "Power Automate" },
-        robotSub: { th: "Desktop · ขับ SAP", en: "Desktop · to SAP" },
-        parser: { th: "ตัวแปลงข้อความ", en: "Parser" },
-        parserSub: { th: "Python", en: "Python" },
-
-        config: { th: "ค่าตั้งระบบ", en: "Configuration" },
-        configSub: { th: "แหล่งเดียว ทับ env", en: "one source, wins" },
-        blocks: { th: "คลังบล็อก", en: "Block store" },
-        blocksSub: { th: "แปลงครั้งเดียว", en: "parsed once" },
-
+        queue: { th: "คิวงาน", en: "Job queue" },
+        queueSub: { th: "RabbitMQ · .NET", en: "RabbitMQ · .NET" },
+        robot: { th: "Robot", en: "Robot" },
+        robotSub: { th: "Power Automate", en: "Power Automate" },
         erp: { th: "SAP ECC", en: "SAP ECC" },
         erpSub: { th: "ต้นทาง print-image", en: "print-image source" },
-        partner: { th: "ระบบรับบิลคู่ค้า", en: "Partner billing" },
-        partnerSub: { th: "ล้มเหลว → แจ้งเตือน", en: "alerts on failure" },
-        share: { th: "ไฟล์แชร์เอกสาร", en: "Document share" },
-        shareSub: { th: "แยกฉบับ + รวมเล่ม", en: "per-sheet + merged" },
+        parser: { th: "ตัวแปลงข้อความ", en: "Parser" },
+        parserSub: { th: "Python", en: "Python" },
+        store: { th: "คลังบล็อก", en: "Block store" },
+        storeSub: { th: "SQL Server", en: "SQL Server" },
+        render: { th: "Render service", en: "Render service" },
+        renderSub: { th: "JasperReports", en: "JasperReports" },
+        partner: { th: "ระบบบิลคู่ค้า", en: "Partner billing" },
+        partnerSub: { th: "ปลายทาง", en: "destination" },
 
-        eSubmit: { th: "ส่งเลขเอกสาร", en: "submit doc" },
-        eEnqueue: { th: "เข้าคิว", en: "enqueue" },
-        eConsume: { th: "ดึงงาน", en: "consume" },
-        eTrigger: { th: "สั่งทำงาน", en: "trigger" },
-        ePull: { th: "ดึง print-image", en: "pull print image" },
-        eHandoff: { th: "ส่งไฟล์ต่อ", en: "hand off file" },
-        eStore: { th: "เก็บโครงสร้าง", en: "store blocks" },
-        eConfig: { th: "โหลดค่าตั้ง", en: "load config" },
-        eRenderIngest: { th: "เรนเดอร์ตอนออกใบ", en: "render on ingest" },
-        ePreview: { th: "พรีวิว", en: "preview" },
-        eLoadBlocks: { th: "อ่านบล็อกเดิม", en: "load blocks" },
-        eRender: { th: "เรนเดอร์", en: "render" },
-        eUpload: { th: "อัปโหลดบิล", en: "upload billing" },
-        eSave: { th: "บันทึกไฟล์", en: "save files" },
+        eSubmit: { th: "ส่งงาน", en: "SUBMIT" },
+        eEnqueue: { th: "เข้าคิว", en: "ENQUEUE" },
+        eTrigger: { th: "สั่งงาน", en: "TRIGGER" },
+        ePull: { th: "ดึงเอกสาร", en: "PULL" },
+        eHandoff: { th: "print-image", en: "PRINT IMAGE" },
+        eParse: { th: "แปลงทีเดียว", en: "PARSE ONCE" },
+        eLoad: { th: "อ่านบล็อก", en: "LOAD" },
+        eUpload: { th: "อัปโหลด", en: "UPLOAD" },
+        ePreview: { th: "พรีวิว", en: "PREVIEW" },
+
+        lgStep: { th: "ขั้นตอน", en: "Step" },
+        lgCore: { th: "ขั้นหลัก", en: "Core step" },
+        lgExternal: { th: "ระบบภายนอก", en: "External system" },
+        lgFlow: { th: "ส่งต่อข้อมูล", en: "Hand-off" },
+        lgCall: { th: "เรียกระบบภายนอก", en: "External call" },
       } satisfies Record<string, L>,
       impact: [
         {
@@ -384,10 +373,10 @@ export const profile = {
       confidential: true,
       year: "2025",
       flow: [
-        { label: { th: "Rule ตามโครงสร้างองค์กร", en: "Org-structure rules" }, icon: "rules" },
-        { label: { th: "Permission set และเมนู", en: "Permission sets" }, icon: "queue" },
-        { label: { th: "ทุกแอปที่ผ่าน SSO", en: "Every app behind SSO" }, icon: "browser" },
-        { label: { th: "รายงาน audit ตาม ISO", en: "ISO audit reports" }, icon: "report" },
+        { label: { th: "Rule ตามโครงสร้างองค์กร", en: "Org-structure rules" } },
+        { label: { th: "Permission set และเมนู", en: "Permission sets" } },
+        { label: { th: "ทุกแอปที่ผ่าน SSO", en: "Every app behind SSO" } },
+        { label: { th: "รายงาน audit ตาม ISO", en: "ISO audit reports" } },
       ],
       impact: [
         {
@@ -423,10 +412,10 @@ export const profile = {
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "ผู้ใช้ login ครั้งเดียว", en: "One sign-in" }, icon: "person" },
-        { label: { th: "Central service ตรวจสิทธิ์", en: "Central service resolves" }, icon: "shield" },
-        { label: { th: "คืนเมนูและ permission group", en: "Menus and groups returned" }, icon: "queue" },
-        { label: { th: "ทุกแอปใช้ผลเดียวกัน", en: "Every app uses the same result" }, icon: "browser" },
+        { label: { th: "ผู้ใช้ login ครั้งเดียว", en: "One sign-in" } },
+        { label: { th: "Central service ตรวจสิทธิ์", en: "Central service resolves" } },
+        { label: { th: "คืนเมนูและ permission group", en: "Menus and groups returned" } },
+        { label: { th: "ทุกแอปใช้ผลเดียวกัน", en: "Every app uses the same result" } },
       ],
       impact: [
         {
@@ -459,10 +448,10 @@ export const profile = {
       confidential: true,
       year: "2025",
       flow: [
-        { label: { th: "SAP", en: "SAP" }, icon: "erp" },
-        { label: { th: "REST middleware", en: "REST middleware" }, icon: "browser" },
-        { label: { th: "Scheduled job", en: "Scheduled jobs" }, icon: "gear" },
-        { label: { th: "ระบบ downstream", en: "Downstream systems" }, icon: "worker" },
+        { label: { th: "SAP", en: "SAP" } },
+        { label: { th: "REST middleware", en: "REST middleware" } },
+        { label: { th: "Scheduled job", en: "Scheduled jobs" } },
+        { label: { th: "ระบบ downstream", en: "Downstream systems" } },
       ],
       impact: [
         {
@@ -495,10 +484,10 @@ export const profile = {
       confidential: true,
       year: "2024–2025",
       flow: [
-        { label: { th: "ยื่นคำขอ", en: "Submit request" }, icon: "form" },
-        { label: { th: "ตรวจงบคงเหลือกับ SAP", en: "Check budget in SAP" }, icon: "erp" },
-        { label: { th: "สายอนุมัติอัตโนมัติ", en: "Approver line" }, icon: "rules" },
-        { label: { th: "อนุมัติใน portal กลาง", en: "Approve in portal" }, icon: "shield" },
+        { label: { th: "ยื่นคำขอ", en: "Submit request" } },
+        { label: { th: "ตรวจงบคงเหลือกับ SAP", en: "Check budget in SAP" } },
+        { label: { th: "สายอนุมัติอัตโนมัติ", en: "Approver line" } },
+        { label: { th: "อนุมัติใน portal กลาง", en: "Approve in portal" } },
       ],
       impact: [
         {
@@ -530,10 +519,10 @@ export const profile = {
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "ยื่นเอกสารทรัพย์สิน", en: "Raise an asset document" }, icon: "form" },
-        { label: { th: "สายอนุมัติตามประเภท", en: "Approval line per type" }, icon: "rules" },
-        { label: { th: "Post กลับระบบบัญชี", en: "Post to accounting" }, icon: "erp" },
-        { label: { th: "ติดตามสถานะทรัพย์สิน", en: "Track asset status" }, icon: "database" },
+        { label: { th: "ยื่นเอกสารทรัพย์สิน", en: "Raise an asset document" } },
+        { label: { th: "สายอนุมัติตามประเภท", en: "Approval line per type" } },
+        { label: { th: "Post กลับระบบบัญชี", en: "Post to accounting" } },
+        { label: { th: "ติดตามสถานะทรัพย์สิน", en: "Track asset status" } },
       ],
       impact: [
         {
@@ -569,10 +558,10 @@ export const profile = {
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "เบิกจ่ายและเคลื่อนย้าย", en: "Issue and movement" }, icon: "folder" },
-        { label: { th: "งานขนส่งและต้นทุน", en: "Freight jobs and costing" }, icon: "worker" },
-        { label: { th: "วางบิล forwarder", en: "Forwarder billing" }, icon: "report" },
-        { label: { th: "ปิดรอบ reconcile", en: "Month-end reconciliation" }, icon: "erp" },
+        { label: { th: "เบิกจ่ายและเคลื่อนย้าย", en: "Issue and movement" } },
+        { label: { th: "งานขนส่งและต้นทุน", en: "Freight jobs and costing" } },
+        { label: { th: "วางบิล forwarder", en: "Forwarder billing" } },
+        { label: { th: "ปิดรอบ reconcile", en: "Month-end reconciliation" } },
       ],
       impact: [
         {
@@ -607,10 +596,10 @@ export const profile = {
       confidential: true,
       year: "2025–2026",
       flow: [
-        { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" }, icon: "database" },
-        { label: { th: "flow แยกตามประเภทบุคคล", en: "Flows per person type" }, icon: "rules" },
-        { label: { th: "สั่งงาน directory และเมล", en: "Directory and mail actions" }, icon: "shield" },
-        { label: { th: "Account, license และ mail group", en: "Accounts, licences, groups" }, icon: "contact" },
+        { label: { th: "ข้อมูลพนักงานจาก HR", en: "HR employee data" } },
+        { label: { th: "flow แยกตามประเภทบุคคล", en: "Flows per person type" } },
+        { label: { th: "สั่งงาน directory และเมล", en: "Directory and mail actions" } },
+        { label: { th: "Account, license และ mail group", en: "Accounts, licences, groups" } },
       ],
       impact: [
         {
@@ -658,10 +647,10 @@ export const profile = {
       confidential: true,
       year: "2024–2026",
       flow: [
-        { label: { th: "Schedule และ HTTP trigger", en: "Schedules and HTTP triggers" }, icon: "gear" },
-        { label: { th: "Sync ข้อมูลข้ามระบบ", en: "Cross-system sync" }, icon: "database" },
-        { label: { th: "Alert ไปยังผู้ดูแล", en: "Alerts to the right people" }, icon: "mail" },
-        { label: { th: "เอกสารและรายงาน", en: "Documents and reports" }, icon: "report" },
+        { label: { th: "Schedule และ HTTP trigger", en: "Schedules and HTTP triggers" } },
+        { label: { th: "Sync ข้อมูลข้ามระบบ", en: "Cross-system sync" } },
+        { label: { th: "Alert ไปยังผู้ดูแล", en: "Alerts to the right people" } },
+        { label: { th: "เอกสารและรายงาน", en: "Documents and reports" } },
       ],
       impact: [
         {
@@ -717,10 +706,10 @@ export const profile = {
       confidential: true,
       year: "2026",
       flow: [
-        { label: { th: "Login บัญชีองค์กร", en: "Corporate sign-in" }, icon: "shield" },
-        { label: { th: "นามบัตรของตัวเอง", en: "Your own card" }, icon: "contact" },
-        { label: { th: "QR code รายบุคคล", en: "Personal QR code" }, icon: "qr" },
-        { label: { th: "Save ลง contacts", en: "Save to contacts" }, icon: "folder" },
+        { label: { th: "Login บัญชีองค์กร", en: "Corporate sign-in" } },
+        { label: { th: "นามบัตรของตัวเอง", en: "Your own card" } },
+        { label: { th: "QR code รายบุคคล", en: "Personal QR code" } },
+        { label: { th: "Save ลง contacts", en: "Save to contacts" } },
       ],
       impact: [
         {
@@ -764,10 +753,10 @@ export const profile = {
       confidential: true,
       year: "2025–2026",
       flow: [
-        { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" }, icon: "wordpress" },
-        { label: { th: "Extract content", en: "Extract content" }, icon: "parse" },
-        { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" }, icon: "database" },
-        { label: { th: "เว็บสองภาษา", en: "Bilingual site" }, icon: "globe" },
+        { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" } },
+        { label: { th: "Extract content", en: "Extract content" } },
+        { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" } },
+        { label: { th: "เว็บสองภาษา", en: "Bilingual site" } },
       ],
       impact: [
         {
@@ -807,10 +796,10 @@ export const profile = {
       confidential: true,
       year: "2025–2026",
       flow: [
-        { label: { th: "ทีมสื่อสารจัดการเนื้อหา", en: "Comms team edits content" }, icon: "form" },
-        { label: { th: "เก็บใน Dataverse", en: "Stored in Dataverse" }, icon: "database" },
-        { label: { th: "Render บน Power Pages", en: "Rendered by Power Pages" }, icon: "browser" },
-        { label: { th: "พนักงานเข้าถึงได้ทั่วองค์กร", en: "Reaches all staff" }, icon: "person" },
+        { label: { th: "ทีมสื่อสารจัดการเนื้อหา", en: "Comms team edits content" } },
+        { label: { th: "เก็บใน Dataverse", en: "Stored in Dataverse" } },
+        { label: { th: "Render บน Power Pages", en: "Rendered by Power Pages" } },
+        { label: { th: "พนักงานเข้าถึงได้ทั่วองค์กร", en: "Reaches all staff" } },
       ],
       impact: [
         {

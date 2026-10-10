@@ -13,17 +13,14 @@
 import { profile } from "../content/profile.ts";
 
 /** ความกว้างของกล่อง/ตัวอักษร ต้องตรงกับ components/PipelineDiagram.tsx */
-const BOX_W = 180;
-const WIDE_BOX_W = 190;
-const ICON_OFFSET = 40;
-const RIGHT_PAD = 10;
-const TITLE_PX = 16;
-const SUB_PX = 12.5;
-
-/** กล่องที่กว้างกว่ามาตรฐาน — ฝั่งขวาของแผนภาพ */
-const WIDE = new Set(["erp", "partner", "share"]);
-/** กล่องผู้ใช้แคบกว่าและไม่มีบรรทัดย่อย */
-const NARROW = { user: 110 };
+const BOX_W = 176;
+const LEFT_PAD = 12;
+const RIGHT_PAD = 12;
+const TITLE_PX = 17;
+const SUB_PX = 13;
+/** ป้ายบนเส้นต้องพอดีช่องระหว่างกล่อง (272 − 176) */
+const EDGE_GAP = 96;
+const LABEL_PX = 12.5;
 
 /**
  * ประมาณความกว้างข้อความ
@@ -54,16 +51,15 @@ if (!diagram) {
 const problems = [];
 for (const [key, value] of Object.entries(diagram)) {
   const isSub = key.endsWith("Sub");
-  const base = key.replace(/Sub$/, "");
-  if (key.startsWith("e") && /^e[A-Z]/.test(key)) continue; // ป้ายบนเส้น ไม่ได้อยู่ในกล่อง
-  if (key.startsWith("panel")) continue; // ป้ายกรอบกลุ่ม อยู่บนเส้นขอบ ไม่มีกล่องคุม
-
-  const boxW = NARROW[base] ?? (WIDE.has(base) ? WIDE_BOX_W : BOX_W);
-  const budget = boxW - ICON_OFFSET - RIGHT_PAD;
-  const px = isSub ? SUB_PX : TITLE_PX;
+  if (key.startsWith("lg")) continue; // legend อยู่แถบล่าง มีที่ว่างพอ
+  const isEdge = /^e[A-Z]/.test(key);
+  // ป้ายบนเส้นใช้ mono และต้องพอดีช่องระหว่างกล่อง รวม padding 12
+  const budget = isEdge ? EDGE_GAP - 12 : BOX_W - LEFT_PAD - RIGHT_PAD;
+  const px = isEdge ? LABEL_PX : isSub ? SUB_PX : TITLE_PX;
+  const mono = isEdge || isSub;
 
   for (const [lang, text] of Object.entries(value)) {
-    const w = estimate(text, px);
+    const w = estimate(text, px, mono);
     if (w > budget) {
       problems.push(
         `  ${key} (${lang}) ≈ ${Math.round(w)}u เกินงบ ${budget}u — "${text}"`,
