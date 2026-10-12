@@ -97,21 +97,21 @@ export type Education = {
 export const profile = {
   name: { th: "Jerateep Saelee", en: "Jerateep Saelee" } satisfies L,
   role: {
-    th: "Full-stack Developer (.NET) · ประสบการณ์ 10+ ปี · ระบบ enterprise, integration และ automation",
-    en: "Full-stack Developer (.NET) · 10+ years · Enterprise Systems, Integration & Automation",
+    th: "Full-stack Developer (.NET) · ระบบ enterprise, integration และ automation",
+    en: "Full-stack Developer (.NET) · Enterprise Systems, Integration & Automation",
   } satisfies L,
   tagline: {
     th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่มี downtime",
-    en: "I build and maintain core back-office systems at a satellite operator (finance approvals, SAP integration, single sign-on) and support other systems across the organisation. Recently moved decade-old systems to .NET 8 with no downtime.",
+    en: "I build and maintain core back-office systems at a satellite operator (approval workflows, SAP integration, single sign-on) and support other systems across the organisation. Recently moved decade-old systems to .NET 8 with no downtime.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "ดูแลระบบที่เกี่ยวกับการเงินและการอนุมัติ เช่น approval workflow งบประมาณ การรับส่งข้อมูลกับ SAP และการกำหนดสิทธิ์การเข้าถึง ระบบเหล่านี้มีผู้ใช้ทั่วองค์กร การแก้ไขจึงต้องระมัดระวัง",
-      en: "I maintain systems around finance and approvals: budget approval workflows, data exchange with SAP, and access permissions. People across the organisation use them, so changes need care.",
+      th: "ดูแลระบบ back-office และการอนุมัติ เช่น approval workflow งบประมาณ การรับส่งข้อมูลกับ SAP และการกำหนดสิทธิ์การเข้าถึง ระบบเหล่านี้มีผู้ใช้ทั่วองค์กร การแก้ไขจึงต้องระมัดระวัง",
+      en: "I maintain back-office and approval systems: budget approval workflows, data exchange with SAP, and access permissions. People across the organisation use them, so changes need care.",
     },
     {
-      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม ซึ่งสำคัญที่สุดกับระบบการเงินและการอนุมัติ บางระบบใช้งานมาราว 20 ปีแต่ยังต้องใช้ต่อ จึงต้องดูแลให้ไปต่อได้ ส่วนระบบใหม่เขียนด้วยเทคโนโลยีปัจจุบัน",
+      th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม บางระบบใช้งานมาราว 20 ปีแต่ยังต้องใช้ต่อ จึงต้องดูแลให้ไปต่อได้ ส่วนระบบใหม่เขียนด้วยเทคโนโลยีปัจจุบัน",
       en: "I modernise legacy systems carefully. Before changing anything, I check how the system really behaves against the database, so upgrades keep the business process unchanged. Some of these systems are about 20 years old and must keep running; new systems use current technology.",
     },
     {
@@ -139,8 +139,8 @@ export const profile = {
         },
       ],
       summary: {
-        th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงานการเงิน approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
-        en: "Own the core back-office systems and support many others across finance, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
+        th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงาน back-office, approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
+        en: "Own the core back-office systems and support many others across back-office, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
       },
       highlights: [
         {
@@ -822,7 +822,7 @@ export const profile = {
   /** ความกว้างของงาน — ชื่อกลาง ๆ ทั้งหมด ไม่มีชื่อระบบภายใน */
   domains: [
     {
-      title: { th: "การเงินและอนุมัติ", en: "Finance & approvals" },
+      title: { th: "Back-office และอนุมัติ", en: "Back-office & approvals" },
       items: [
         { th: "ระบบขออนุมัติงบประมาณ ทั้งแบบมีงบ ไม่มีงบ และการโอนงบ", en: "Funding requests (budgeted, non-budgeted, transfers)" },
         { th: "ระบบเบิกค่าใช้จ่ายและเงินยืมทดรองของพนักงาน", en: "Employee expenses and cash advances" },
