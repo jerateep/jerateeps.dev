@@ -335,7 +335,7 @@ export const profile = {
           en: "Settled on parse-once: the print image is read a single time into structured storage, so rendering and preview read the same source and there is no second builder to drift.",
         },
         {
-          th: "ข้อมูลที่ผู้ใช้แก้เองจะถูก flag ไว้ และการ re-parse ภายหลังจะข้ามเอกสารฉบับนั้นถาวร เพื่อไม่ให้ข้อมูลที่คนตรวจแล้วถูกเขียนทับ",
+          th: "ระบบ flag ข้อมูลที่ผู้ใช้แก้เองไว้ การ re-parse ภายหลังจะข้ามเอกสารฉบับนั้นถาวร ข้อมูลที่คนตรวจแล้วจึงไม่โดนเขียนทับ",
           en: "Human edits are flagged, and later re-parses skip those documents, so a person's corrections are never overwritten.",
         },
         {
@@ -423,7 +423,7 @@ export const profile = {
           en: "Connected applications never touch the permission database directly, which cuts both the access they must be granted and the places where permission logic can drift apart.",
         },
         {
-          th: "รองรับ approval delegation หลายแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และมอบแบบ ad hoc ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
+          th: "รองรับ approval delegation หลายแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และมอบแบบ ad hoc ระบบอนุมัติทุกตัวใช้เงื่อนไขชุดนี้ร่วมกัน",
           en: "Supports the approval delegation every approval system in the organisation relies on: to an assistant, by reporting line, and ad hoc.",
         },
         {
@@ -611,7 +611,7 @@ export const profile = {
           en: "Splits the path for HR-registered staff, staff outside the HR system, and external people, because the three differ in where their data comes from and when their access should expire.",
         },
         {
-          th: "flow ที่ใหญ่ที่สุดมีกว่าร้อย step ในตัวเดียว — จัดการ mail group และสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
+          th: "flow ที่ใหญ่ที่สุดมีกว่าร้อย step จัดการ mail group และสมาชิกทั้งองค์กร งานนี้เดิมต้องทำมือทุกเดือน",
           en: "The largest single flow runs well over a hundred steps and maintains organisation-wide mail groups and their members, which used to be done by hand every month.",
         },
         {
@@ -637,7 +637,7 @@ export const profile = {
         en: "Organisation-wide automation",
       },
       summary: {
-        th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็น glue ระหว่างระบบภายใน ครอบคลุม scheduled sync, alert, API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
+        th: "ชุด cloud flow บน environment production ที่เชื่อมระบบภายในเข้าด้วยกัน ครอบคลุม scheduled sync, alert, API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
         en: "Production cloud flows that connect internal systems: scheduled synchronisation, alerting, APIs other systems call, and document handling. There are more than sixty in total.",
       },
       role: {
@@ -755,12 +755,12 @@ export const profile = {
       flow: [
         { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" } },
         { label: { th: "Extract content", en: "Extract content" } },
-        { label: { th: "จัดเป็น CMS collection", en: "Into CMS collections" } },
+        { label: { th: "แปลงเป็น CMS collection", en: "Into CMS collections" } },
         { label: { th: "เว็บสองภาษา", en: "Bilingual site" } },
       ],
       impact: [
         {
-          th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เนื่องจากถูกโหลดผ่าน AJAX ของ plugin จึงต้องวิเคราะห์และเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
+          th: "เนื้อหาบางส่วนของเว็บเดิมไม่ปรากฏใน HTML เพราะ plugin โหลดผ่าน AJAX จึงต้องเรียก endpoint เหล่านั้นโดยตรงเพื่อดึงข้อมูลมาให้ครบ",
           en: "Parts of the old site were not present in the HTML because a plugin loaded them over AJAX, so those endpoints were analysed and called directly to retrieve the content in full.",
         },
         {
@@ -955,7 +955,7 @@ export const profile = {
         en: "Skills for repeatable work, shared with the team",
       },
       body: {
-        th: "งานที่ทำบ่อยและพลาดง่ายถูกเขียนเป็น skill ให้ AI ทำตามขั้นตอนเดิมทุกครั้ง เช่น ตั้งชื่อ branch และ commit ตามมาตรฐาน deploy ขึ้น server ผ่าน FTP โดย backup ไฟล์เดิมก่อน, test หน้าเว็บผ่าน browser จริงพร้อมเก็บ evidence และ draft เอกสาร change ตัวที่ลองจนใช้ได้แล้วแชร์ให้คนในทีมใช้ต่อ",
+        th: "เขียนงานที่ทำบ่อยและพลาดง่ายเป็น skill ให้ AI ทำตามขั้นตอนเดิมทุกครั้ง เช่น ตั้งชื่อ branch และ commit ตามมาตรฐาน deploy ขึ้น server ผ่าน FTP โดย backup ไฟล์เดิมก่อน, test หน้าเว็บผ่าน browser จริงพร้อมเก็บ evidence และ draft เอกสาร change ตัวที่ลองจนใช้ได้แล้วแชร์ให้คนในทีมใช้ต่อ",
         en: "Frequent, error-prone work is written up as skills the AI follows the same way every time: branch and commit conventions, FTP deploys that back up the current files first, real-browser tests that capture evidence, and change-record drafting. The ones that prove themselves are shared with the team.",
       },
       result: {
@@ -969,11 +969,11 @@ export const profile = {
         en: "Hooks as gates instead of memory",
       },
       body: {
-        th: "กฎที่เคยต้องจำเองถูกย้ายไปเป็น hook ที่ทำงาน ณ จุดที่เกี่ยวข้อง ได้แก่ security scan ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push, บันทึกความรู้ลง knowledge base ทุกครั้งที่ commit และเตือนให้หยุดถามก่อนเมื่องานแตะเงิน approval workflow หรือกำลังจะสรุป behavior ของระบบ legacy โดยยังไม่ได้อ่าน source code",
+        th: "ย้ายกฎที่เคยต้องจำเองไปเป็น hook ที่ทำงาน ณ จุดที่เกี่ยวข้อง ได้แก่ security scan ตามเกณฑ์เดียวกับ quality gate ขององค์กรก่อน push, บันทึกความรู้ลง knowledge base ทุกครั้งที่ commit และเตือนให้หยุดถามก่อนเมื่องานแตะเงิน approval workflow หรือกำลังจะสรุป behavior ของระบบ legacy โดยยังไม่ได้อ่าน source code",
         en: "Rules that used to rely on memory now run as hooks at the point they matter: a security scan against the organisation's quality-gate criteria before every push, knowledge captured at every commit, and a prompt to stop and ask when work touches money or approvals, or is about to assume legacy behaviour without reading the source.",
       },
       result: {
-        th: "Bug ถูกจับได้ก่อนส่งมอบ แทนที่จะไปเจอตอน review หรือหลัง deploy",
+        th: "จับ bug ได้ก่อนส่งมอบ แทนที่จะไปเจอตอน review หรือหลัง deploy",
         en: "Defects are caught before delivery rather than at review or after deployment.",
       },
     },
@@ -1007,7 +1007,7 @@ export const profile = {
     },
     {
       title: {
-        th: "ต่อ AI เข้ากับระบบงานจริง ไม่ใช่แค่ในเอดิเตอร์",
+        th: "ต่อ AI เข้ากับระบบที่ใช้ทำงาน",
         en: "Connecting AI to the systems I work in",
       },
       body: {

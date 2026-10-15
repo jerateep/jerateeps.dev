@@ -27,7 +27,7 @@ export const ui = {
   },
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   graphCaption: {
-    th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่ — 251 note เชื่อมถึงกัน 508 link แบ่งเป็น 28 กลุ่มระบบ",
+    th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่: 251 note เชื่อมกัน 508 link แบ่งเป็น 28 กลุ่มระบบ",
     en: "The live structure of the knowledge base: 251 notes and 508 links between them, clustered into 28 systems.",
   },
   graphLabel: {
@@ -43,7 +43,7 @@ export const ui = {
   certifications: { th: "การอบรมและ badge", en: "Training & badges" },
   googleCloud: { th: "Google Cloud", en: "Google Cloud" },
   googleCloudSummary: {
-    th: "skill badge — Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
+    th: "skill badge ด้าน Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
     en: "skill badges in Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
   },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
@@ -58,7 +58,7 @@ export const ui = {
     en: "Systems I own and systems I support, all within one organisation. The names are confidential, so they are listed by function.",
   },
   diagramCaption: {
-    th: "ภาพรวมเชิง concept — ไม่ใช่ topology จริงของระบบ",
+    th: "ภาพรวมเชิง concept ไม่ใช่ topology จริงของระบบ",
     en: "Conceptual overview, not the actual system topology.",
   },
   scrollHint: { th: "เลื่อนแนวนอนเพื่อดูภาพทั้งหมด", en: "Scroll horizontally to view the full diagram." },
