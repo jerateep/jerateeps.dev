@@ -140,7 +140,7 @@ export const profile = {
       ],
       summary: {
         th: "รับผิดชอบระบบ back-office หลัก และ support ระบบอื่นทั่วองค์กร ครอบคลุมงาน back-office, approval workflow, access management และ SAP integration ทั้งดูแลระบบ legacy บน Web Forms, พัฒนาระบบใหม่บน ASP.NET Core และงาน automation ทั้งฝั่ง server และ RPA",
-        en: "Own the core back-office systems and support many others across back-office, approvals, access management and SAP integration — spanning legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
+        en: "Own the core back-office systems and support many others across back-office, approvals, access management and SAP integration. The work covers legacy Web Forms support, new builds on ASP.NET Core, and automation on both the server and RPA side.",
       },
       highlights: [
         {
@@ -274,7 +274,7 @@ export const profile = {
       },
       summary: {
         th: "ระบบที่ใหญ่ที่สุดที่ดูแลอยู่ ปรับกระบวนการออกเอกสารสำหรับลูกค้า (ใบแจ้งหนี้ ใบลดหนี้ ใบเสร็จ) จากเดิมที่ต้องสั่งพิมพ์จากระบบ ERP ทีละฉบับ มาเป็น pipeline อัตโนมัติแบบ end-to-end ตั้งแต่ใช้ robot ดึงข้อมูล, parse print-image เป็น structured data, render เอกสาร จนถึงส่งต่อเข้าระบบ billing ของคู่ค้า",
-        en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results are transferred to partner billing systems — replacing a process that previously required printing each document individually from the ERP.",
+        en: "The largest system I look after. It handles customer-facing documents (invoices, credit notes, receipts) end to end: a robot retrieves the data, the print image is parsed into structured form, documents are rendered, and the results go to partner billing systems. Before this, each document had to be printed one by one from the ERP.",
       },
       role: {
         th: "ออกแบบ architecture, เลือก JasperReports มาแทนขั้นตอนเดิมที่ต้องวางข้อความลง Excel แล้วสั่งพิมพ์ PDF ทีละฉบับ และวางวิธี verify ความถูกต้อง",
@@ -336,7 +336,7 @@ export const profile = {
         },
         {
           th: "ข้อมูลที่ผู้ใช้แก้เองจะถูก flag ไว้ และการ re-parse ภายหลังจะข้ามเอกสารฉบับนั้นถาวร เพื่อไม่ให้ข้อมูลที่คนตรวจแล้วถูกเขียนทับ",
-          en: "Human edits are flagged, so later re-parses skip those documents permanently — work a person verified never gets overwritten.",
+          en: "Human edits are flagged, and later re-parses skip those documents, so a person's corrections are never overwritten.",
         },
         {
           th: "เก็บ print-image ต้นฉบับแบบ read-only เป็น audit trail ไว้ตรวจย้อนกลับเมื่อสงสัยว่า parse ข้อมูลไม่ครบ",
@@ -367,7 +367,7 @@ export const profile = {
       },
       summary: {
         th: "ย้ายระบบ menu permission ของ back-office ทั้งองค์กรจาก WebForms รุ่นเก่าขึ้น .NET 8 Web API + Next.js บนฐานข้อมูลเดิม หลักสำคัญคือให้สิทธิ์ผ่าน rule ที่อิงโครงสร้างองค์กร แทนการ assign สิทธิ์รายคน",
-        en: "Lifted the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API + Next.js front end on the same database. The governing principle is to grant access through org-structure rules rather than per-person assignment.",
+        en: "Moved the organisation-wide back-office menu permission system from legacy WebForms to a .NET 8 Web API and Next.js front end on the same database. Access is granted by org-structure rules, not per person.",
       },
       role: { th: "Full-stack · ออกแบบและพัฒนา", en: "Full-stack · design + build" },
       confidential: true,
@@ -403,7 +403,7 @@ export const profile = {
       },
       summary: {
         th: "Authentication service ที่ทุกระบบ back-office ใช้ร่วมกัน login ครั้งเดียวแล้วคืนทั้ง identity เมนูที่มีสิทธิ์ และ delegation chain ของการอนุมัติกลับไปให้แอป แต่ละแอปจึงไม่ต้องอ่าน permission table เอง",
-        en: "The authentication service every back-office system shares. One sign-in returns the user's identity, the menus they may use, and their approval-delegation chain — so no application has to read the permission tables itself.",
+        en: "The authentication service every back-office system shares. One sign-in returns the user's identity, the menus they may use and their approval-delegation chain, so no application reads the permission tables itself.",
       },
       role: {
         th: "ดูแลต่อเนื่อง และ integrate ระบบใหม่เข้ากับ service นี้",
@@ -424,7 +424,7 @@ export const profile = {
         },
         {
           th: "รองรับ approval delegation หลายแบบ ทั้งมอบให้ผู้ช่วย รักษาการตามสายงาน และมอบแบบ ad hoc ซึ่งเป็นเงื่อนไขที่ระบบอนุมัติทุกตัวต้องใช้ร่วมกัน",
-          en: "Carries several kinds of approval delegation — to an assistant, by org line, and ad hoc — the conditions every approval system in the organisation depends on.",
+          en: "Supports the approval delegation every approval system in the organisation relies on: to an assistant, by reporting line, and ad hoc.",
         },
         {
           th: "ปรับให้รองรับ domain ใหม่ตอนองค์กรเปลี่ยนชื่อ โดยย้ายค่าที่เคย hardcode ในโค้ดไปเป็น config แยกตาม environment",
@@ -478,7 +478,7 @@ export const profile = {
       },
       summary: {
         th: "ระบบยื่นและอนุมัติคำขอใช้เงินทั้งแบบมีงบ ไม่มีงบ และโอนงบข้ามรายการ generate สายอนุมัติ (approval line) อัตโนมัติจากโครงสร้างองค์กรและวงเงิน และ escalate ผู้อนุมัติขึ้นเองเมื่อเกินงบ",
-        en: "Submit and approve funding requests — budgeted, non-budgeted, and budget transfers. The approver line is generated from org structure and amount, and escalates automatically when a request goes over budget.",
+        en: "Submit and approve funding requests: budgeted, non-budgeted, and budget transfers. The approver line is generated from org structure and amount, and escalates automatically when a request goes over budget.",
       },
       role: { th: "Full-stack · พัฒนาและบำรุงรักษา", en: "Full-stack · ongoing development" },
       confidential: true,
@@ -510,7 +510,7 @@ export const profile = {
       },
       summary: {
         th: "ระบบติดตามทรัพย์สินตลอดอายุการใช้งาน ครอบคลุมเอกสารเจ็ดประเภท ตั้งแต่การย้ายทรัพย์สินเข้า-ออกอาคาร การโอนผู้ถือครองและ cost center ไปจนถึงการยืม คืน และต่ออายุ ทุกใบวิ่งผ่าน approval workflow และ post กลับเข้าระบบบัญชี",
-        en: "Tracks assets across their working life through seven document types — moving assets in and out of the building, transferring holder and cost centre, and borrowing, returning and extending. Every document runs an approval line and posts back to the accounting system.",
+        en: "Tracks assets across their working life through seven document types: moving assets in and out of the building, transferring holder and cost centre, and borrowing, returning and extending. Every document runs an approval line and posts back to the accounting system.",
       },
       role: {
         th: "พัฒนาและดูแล รวมถึง reverse-engineer กระบวนการเดิม",
@@ -566,7 +566,7 @@ export const profile = {
       impact: [
         {
           th: "ไล่แก้ bug ด้าน data integrity เช่น where condition ที่กว้างเกินจน update ผิด row และ edit path ที่ delete แล้ว insert ใหม่ทุกครั้ง ทำให้ link ระหว่างเอกสารขาด",
-          en: "Worked through a set of data-integrity defects — a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, severing the links between documents.",
+          en: "Fixed a set of data-integrity defects: a search condition broad enough to update the wrong rows, and an edit path that deleted and re-inserted records, which broke the links between documents.",
         },
         {
           th: "วาง state machine ของวันที่ในเส้นทางขนส่งให้ชัดเจน หลังพบว่าการบันทึกวันที่บางขั้นถูกเขียนทับจนหายไป",
@@ -612,7 +612,7 @@ export const profile = {
         },
         {
           th: "flow ที่ใหญ่ที่สุดมีกว่าร้อย step ในตัวเดียว — จัดการ mail group และสมาชิกทั้งองค์กร ซึ่งเดิมเป็นงานที่ต้องทำซ้ำทุกเดือน",
-          en: "The largest single flow runs well over a hundred steps, maintaining organisation-wide mail groups and their members — work that previously recurred every month by hand.",
+          en: "The largest single flow runs well over a hundred steps and maintains organisation-wide mail groups and their members, which used to be done by hand every month.",
         },
         {
           th: "มี scheduled flow เช็ก health ของ connection ตัวเอง ทำให้รู้ก่อนที่ connector หมดอายุจะทำให้ทั้งชุดหยุดทำงาน",
@@ -638,7 +638,7 @@ export const profile = {
       },
       summary: {
         th: "ชุด cloud flow บน environment production ที่ทำหน้าที่เป็น glue ระหว่างระบบภายใน ครอบคลุม scheduled sync, alert, API ให้ระบบอื่นเรียก และงานรับส่งเอกสาร รวมกว่า 60 flow",
-        en: "A set of production cloud flows acting as glue between internal systems — scheduled synchronisation, alerting, APIs other systems call, and document handling — more than sixty in total.",
+        en: "Production cloud flows that connect internal systems: scheduled synchronisation, alerting, APIs other systems call, and document handling. There are more than sixty in total.",
       },
       role: {
         th: "ออกแบบ พัฒนา และดูแลต่อเนื่อง",
@@ -667,7 +667,7 @@ export const profile = {
         },
         {
           th: "Wrap ข้อมูลของระบบภายในเป็น API ให้ระบบอื่นเรียกใช้ เช่น org chart และ reference data ของระบบจัดสรรทรัพยากร โดยไม่ต้องเปิดฐานข้อมูลให้กันตรง ๆ",
-          en: "Wraps internal data as APIs other systems can call — the org chart, and reference data from the resource-allocation system — without exposing databases to each other.",
+          en: "Wraps internal data (the org chart, and reference data from the resource-allocation system) as APIs other systems can call, so databases are not exposed to each other.",
         },
         {
           th: "Scheduled job ที่ดึงอัตราแลกเปลี่ยนและรัน batch ฝั่ง ERP แล้วนำผลเข้าระบบ downstream ลดงานที่เคยต้องมีคนกดเองทุกวัน",
@@ -765,7 +765,7 @@ export const profile = {
         },
         {
           th: "ผูก element สำคัญของ homepage ทั้ง background video, headline และการไล่สี เข้ากับ CMS เพื่อให้ content owner ปรับเองได้",
-          en: "Bound the key homepage elements — background video, headline and its colour treatment — to the CMS so content owners can adjust them directly.",
+          en: "Bound the homepage background video, headline and headline colour to the CMS so content owners can change them directly.",
         },
         {
           th: "ทำให้หน้า listing แสดงข้อมูลได้ครบทุกรายการ โดยออกแบบเลี่ยง limit จำนวน item ต่อ Collection List ของแพลตฟอร์ม",
@@ -787,7 +787,7 @@ export const profile = {
       },
       summary: {
         th: "เว็บภายในสำหรับพนักงานที่สร้างบน Power Pages โดยเก็บเนื้อหาทั้งหมดไว้ใน Dataverse และมีแอป back-office ให้ทีมสื่อสารองค์กรจัดการเองได้ ครอบคลุมข่าวสาร เอกสาร และลิงก์ระบบภายใน",
-        en: "The staff-facing internal site, built on Power Pages with all content held in Dataverse and a back-office app the communications team runs themselves — news, documents and links into internal systems.",
+        en: "The staff-facing internal site for news, documents and links into internal systems. It is built on Power Pages with all content in Dataverse, and the communications team runs it through a back-office app.",
       },
       role: {
         th: "พัฒนา ดูแล และ reverse-engineer โครงสร้างเดิม",
@@ -808,11 +808,11 @@ export const profile = {
         },
         {
           th: "เริ่ม rewrite ฝั่ง back office เป็นเว็บแอปที่ออกแบบตาม workflow จริงของทีมสื่อสาร แทน model-driven app เดิม",
-          en: "The back office is being rewritten as a web app shaped around how the communications team actually works, replacing the original model-driven app.",
+          en: "The back office is being rewritten as a web app built around the communications team's workflow, replacing the original model-driven app.",
         },
         {
           th: "ทำ rebrand ทั้งไซต์ ทั้ง color system โลโก้ และชื่อที่ฝังอยู่ใน component หลายจุดของไซต์",
-          en: "Applied the corporate rebrand across the site — colour system, logo, and the name embedded in components throughout it.",
+          en: "Applied the corporate rebrand across the site: colour system, logo, and the company name inside its components.",
         },
       ],
       stack: ["Power Pages", "Dataverse", "Power Platform", "JavaScript", "CSS"],
@@ -942,7 +942,7 @@ export const profile = {
       },
       body: {
         th: "สิ่งที่ git history ไม่ได้บอก เช่น เหตุผลของการออกแบบ ข้อควรระวัง และข้อเท็จจริงเรื่องฐานข้อมูลและการ deploy จะบันทึกแยกตามระบบลง knowledge base กลาง และทำเป็น playbook ที่เครื่องมือ AI โหลดเองเมื่อเข้าหัวข้อนั้น เช่น webservice contract, โครงสร้าง permission และเงื่อนไขของ approval workflow",
-        en: "What version history doesn't record — design rationale, pitfalls, database and deployment facts — goes into per-system notes in a central knowledge base, and into playbooks the AI tooling loads when a topic comes up: webservice contracts, permission structures, approval-flow rules.",
+        en: "Design rationale, pitfalls, and database and deployment facts that version history doesn't record go into per-system notes in a central knowledge base. Playbooks the AI tooling loads when a topic comes up cover webservice contracts, permission structures and approval-flow rules.",
       },
       result: {
         th: "คำถามว่าระบบทำงานอย่างไรตอบได้ในระดับนาทีแทนครึ่งวัน และคำตอบอ้างอิง behavior จริงของระบบ ไม่ใช่ pattern ทั่วไปที่ฟังดูถูกแต่ผิดบริบท",
@@ -984,7 +984,7 @@ export const profile = {
       },
       body: {
         th: "ต่อเครื่องมือ AI เข้ากับแพลตฟอร์มที่ใช้งานจริงผ่าน MCP ทั้ง Power Automate, Webflow, browser สำหรับ test และ Microsoft docs ทำให้ตรวจ flow แก้ content เว็บ และ test หน้าจอได้จากที่เดียว โดยคนยังเป็นผู้อนุมัติทุกการเปลี่ยนแปลง",
-        en: "The AI tooling is connected over MCP to the platforms in daily use — Power Automate, Webflow, a browser for testing, and Microsoft's documentation — so flows can be inspected, site content changed and screens tested from one place, with a person approving every change.",
+        en: "The AI tooling is connected over MCP to the platforms in daily use (Power Automate, Webflow, a browser for testing, and Microsoft's documentation). Flows can be inspected, site content changed and screens tested from one place, and a person approves every change.",
       },
       result: {
         th: "งานที่เคยต้องสลับเข้าหลายหน้าจอทำได้ในรอบเดียว และแก้ไขได้สะดวกขึ้นมาก",
@@ -998,7 +998,7 @@ export const profile = {
       },
       body: {
         th: "มอบงานที่ใช้เวลามากแต่ไม่ต้องใช้วิจารณญาณ เช่น อ่านไฟล์จำนวนมาก เทียบ environment dev กับ production และ draft เอกสาร ให้เครื่องมือทำแบบ parallel ส่วน design decision และงานที่เกี่ยวข้องกับข้อมูลจริง จะตรวจสอบด้วยตนเองทุกครั้ง",
-        en: "Work that consumes time but not judgement — reviewing large numbers of files, comparing dev against production, drafting documentation — is delegated to run in parallel. Design decisions and anything touching production data are always reviewed personally first.",
+        en: "Time-consuming work that needs little judgement, such as reviewing large numbers of files, comparing dev against production and drafting documentation, runs in parallel. I review design decisions and anything touching production data myself first.",
       },
       result: {
         th: "งาน reverse-engineering ที่เดิมใช้เวลาหลายวัน เสร็จภายใน session เดียว โดยยังคงมีผู้รับผิดชอบผลลัพธ์",
@@ -1008,15 +1008,15 @@ export const profile = {
     {
       title: {
         th: "ต่อ AI เข้ากับระบบงานจริง ไม่ใช่แค่ในเอดิเตอร์",
-        en: "Wiring AI into the systems of record, not just the editor",
+        en: "Connecting AI to the systems I work in",
       },
       body: {
         th: "ทุก release ขึ้น production ต้องเปิดเอกสาร change ในระบบ ITSM ทุกครั้ง ซึ่งเดิมเป็นงานเขียนซ้ำ ๆ จึงต่อ API ของระบบนั้นเข้ากับกระบวนการ แล้วให้ AI ประกอบเนื้อหาจากสิ่งที่แก้จริง ทั้งรายการไฟล์ database script, implementation plan, rollback plan และ test plan ก่อนเปิดเป็น draft รอคนตรวจ",
-        en: "Every production release requires a change record in the ITSM system, which was repetitive writing. The system API is now wired into the process and AI assembles the content from what actually changed — file list, database steps, implementation, backout and test plans — opening it as a draft for a person to review.",
+        en: "Every production release needs a change record in the ITSM system, which was repetitive writing. The system API is now part of the process: AI drafts the record from the changes made (file list, database steps, implementation, backout and test plans) and opens it as a draft for a person to review.",
       },
       result: {
         th: "เอกสาร change ตรงกับสิ่งที่แก้จริงเสมอ เพราะสร้างจาก diff ไม่ใช่จากความจำ และคนยังเป็นผู้ตรวจและกดส่งเองทุกฉบับ",
-        en: "The change record always matches what was actually changed, because it is generated from the diff rather than from memory — and a person still reviews and submits every one.",
+        en: "The change record matches what changed because it is generated from the diff, not from memory. A person still reviews and submits every one.",
       },
     },
   ] satisfies Practice[],

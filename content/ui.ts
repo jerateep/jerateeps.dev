@@ -28,7 +28,7 @@ export const ui = {
   aiResultLabel: { th: "ผลที่ได้", en: "Result" },
   graphCaption: {
     th: "โครงสร้าง knowledge base จริงที่ใช้งานอยู่ — 251 note เชื่อมถึงกัน 508 link แบ่งเป็น 28 กลุ่มระบบ",
-    en: "The live structure of the knowledge base — 251 notes, 508 links between them, clustered into 28 systems.",
+    en: "The live structure of the knowledge base: 251 notes and 508 links between them, clustered into 28 systems.",
   },
   graphLabel: {
     th: "แผนภาพ node และ link แสดงความเชื่อมโยงของ note ใน knowledge base",
@@ -44,7 +44,7 @@ export const ui = {
   googleCloud: { th: "Google Cloud", en: "Google Cloud" },
   googleCloudSummary: {
     th: "skill badge — Gemini, multi-agent, RAG, Document AI, Kubernetes และงานแพลตฟอร์มพื้นฐาน",
-    en: "skill badges — Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
+    en: "skill badges in Gemini, multi-agent, RAG, Document AI, Kubernetes and core platform work",
   },
   microsoftLearn: { th: "Microsoft Learn", en: "Microsoft Learn" },
   learnCourses: {

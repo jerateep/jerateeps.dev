@@ -103,7 +103,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <article key={i}>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h3 className="text-lg font-medium">{job.role[lang]}</h3>
-                <span className="text-muted">— {job.company[lang]}</span>
+                <span className="text-muted">· {job.company[lang]}</span>
               </div>
               <p className="mt-1 font-mono text-xs text-muted">
                 {job.period[lang]}
@@ -357,7 +357,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <ul className="space-y-1.5 text-sm text-muted">
                 {profile.languages.map((item, i) => (
                   <li key={i}>
-                    <span className="text-fg">{item.name[lang]}</span> —{" "}
+                    <span className="text-fg">{item.name[lang]}:</span>{" "}
                     {item.level[lang]}
                   </li>
                 ))}
