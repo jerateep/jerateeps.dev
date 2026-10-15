@@ -83,7 +83,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
             <section key={i} className={shown.length <= 2 ? "break-inside-avoid" : ""}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 break-after-avoid">
                 <h3 className="font-semibold text-neutral-900">
-                  {job.role[lang]} <span className="font-normal text-neutral-700">— {job.company[lang]}</span>
+                  {job.role[lang]} <span className="font-normal text-neutral-700">· {job.company[lang]}</span>
                 </h3>
                 <span className="text-xs whitespace-nowrap text-neutral-600">{job.period[lang]}</span>
               </div>
@@ -111,7 +111,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
                   <div className="space-y-1">
                     {projects.map((p) => (
                       <p key={p.slug} className="break-inside-avoid">
-                        <span className="font-medium text-neutral-900">{p.name[lang]}</span> — {p.impact[p.resumeImpact ?? 0][lang]}
+                        <span className="font-medium text-neutral-900">{p.name[lang]}:</span> {p.impact[p.resumeImpact ?? 0][lang]}
                       </p>
                     ))}
                   </div>
@@ -137,7 +137,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
         {profile.education.map((e, i) => (
           <div key={i} className="flex items-baseline justify-between gap-x-4">
             <p>
-              <span className="font-medium text-neutral-900">{e.degree[lang]}</span> — {e.school[lang]}
+              <span className="font-medium text-neutral-900">{e.degree[lang]}</span>, {e.school[lang]}
             </p>
             <span className="shrink-0 text-xs text-neutral-600">{e.period[lang]}</span>
           </div>
@@ -156,7 +156,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
       <ul>
         {profile.languages.map((l, i) => (
           <li key={i}>
-            <span className="font-medium text-neutral-900">{l.name[lang]}</span> — {l.level[lang]}
+            <span className="font-medium text-neutral-900">{l.name[lang]}:</span> {l.level[lang]}
           </li>
         ))}
       </ul>
