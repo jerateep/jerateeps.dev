@@ -45,6 +45,10 @@ export type Project = {
   stack: string[];
   /** ข้อ impact ที่ resume PDF ใช้ (ค่าเริ่มต้น 0) — เลือกข้อที่ไม่ซ้ำกับ bullet ของงานด้านบน */
   resumeImpact?: number;
+  /** ข้อความเฉพาะใน resume แทน impact — ใช้เมื่อต้องรวมบริบทกับผลลัพธ์ไว้บรรทัดเดียว */
+  resumeLine?: L;
+  /** ขึ้น Key projects ใน resume แม้จะเป็นการ์ดย่อ (compact) บนเว็บ */
+  onResume?: boolean;
   /** ใช้จัดลำดับและอ้างอิงตอนแก้เนื้อหา ไม่ได้แสดงบนหน้าเว็บ */
   year: string;
   /** ลิงก์สาธารณะเท่านั้น — ระบบภายในไม่ต้องใส่ */
@@ -190,6 +194,7 @@ export const profile = {
         "RabbitMQ",
         "Python",
         "Docker",
+        "JasperReports",
         "SAP SOAP services",
       ],
     },
@@ -268,6 +273,10 @@ export const profile = {
   projects: [
     {
       slug: "sap-doc-pipeline",
+      resumeLine: {
+        th: "เปลี่ยนจากการสั่งพิมพ์เอกสารทีละฉบับ เป็น pipeline ที่ render เอกสารด้วย JasperReports แล้วส่งเข้าระบบบิลของคู่ค้า ก่อนขึ้นระบบจริง re-run เอกสารย้อนหลังทั้งหมด (หลักหมื่นฉบับ) และเทียบกับต้นฉบับทีละฉบับจนไม่พบความแตกต่าง",
+        en: "Replaced printing each document by hand with a pipeline that renders documents in JasperReports and sends them to partner billing systems. Before go-live, re-ran all past documents (tens of thousands) and compared each with its original until there were zero differences.",
+      },
       name: {
         th: "Pipeline ออกเอกสารจาก SAP อัตโนมัติ (end-to-end)",
         en: "Automated SAP invoice and receipt pipeline",
@@ -737,6 +746,11 @@ export const profile = {
     },
     {
       slug: "corporate-website",
+      onResume: true,
+      resumeLine: {
+        th: "ย้ายเว็บไซต์องค์กรจาก WordPress ขึ้น Webflow เนื้อหาสองภาษาเก็บเป็น CMS collection ที่ content owner แก้เองได้โดยไม่ต้องพึ่ง developer",
+        en: "Migrated the corporate website from WordPress to Webflow, with bilingual content in CMS collections that content owners can edit without a developer.",
+      },
       compact: true,
       name: {
         th: "เว็บไซต์องค์กรสองภาษาบน Webflow",
@@ -780,6 +794,11 @@ export const profile = {
     },
     {
       slug: "employee-intranet",
+      onResume: true,
+      resumeLine: {
+        th: "พัฒนาและดูแลอินทราเน็ตพนักงานบน Power Pages และ Dataverse และทำแผนผังไซต์ทั้งชุดจากระบบจริงไว้เป็น reference ให้ทีม",
+        en: "Develop and maintain the staff intranet on Power Pages and Dataverse, and mapped the whole site from the live system as a reference for the team.",
+      },
       compact: true,
       name: {
         th: "อินทราเน็ตพนักงานบน Power Pages",

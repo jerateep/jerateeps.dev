@@ -43,7 +43,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
   // ฉบับไทยตัดออก: Chrome ฝังข้อความไทยใน PDF ไม่สะอาด (สระอำแยกตัว) ATS อ่านพลาด และ recruiter ใช้ฉบับอังกฤษอยู่แล้ว
   if (lang !== "en") notFound();
 
-  const projects = profile.projects.filter((p) => !p.compact);
+  const projects = profile.projects.filter((p) => !p.compact || p.onResume);
   const link = (label: string) => strip(profile.links.find((l) => l.label === label)?.href ?? "");
   // สองแถวตายตัว: ช่องทางติดต่อหลักก่อน แล้วค่อยโปรไฟล์ — ปล่อย wrap เองแล้วตัดบรรทัดไม่เป็นที่
   const contactRows = [
@@ -111,7 +111,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
                   <div className="space-y-1">
                     {projects.map((p) => (
                       <p key={p.slug} className="break-inside-avoid">
-                        <span className="font-medium text-neutral-900">{p.name[lang]}:</span> {p.impact[p.resumeImpact ?? 0][lang]}
+                        <span className="font-medium text-neutral-900">{p.name[lang]}:</span> {(p.resumeLine ?? p.impact[p.resumeImpact ?? 0])[lang]}
                       </p>
                     ))}
                   </div>
