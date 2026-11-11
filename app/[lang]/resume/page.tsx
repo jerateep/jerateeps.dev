@@ -47,7 +47,8 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
   const link = (label: string) => strip(profile.links.find((l) => l.label === label)?.href ?? "");
   // สองแถวตายตัว: ช่องทางติดต่อหลักก่อน แล้วค่อยโปรไฟล์ — ปล่อย wrap เองแล้วตัดบรรทัดไม่เป็นที่
   const contactRows = [
-    [profile.location[lang], link("Email"), strip(SITE)],
+    // RESUME_PHONE ตั้งเฉพาะตอนสร้างฉบับ ATS บนเครื่อง — Vercel ไม่มีตัวแปรนี้ เบอร์จึงไม่ขึ้นเว็บสาธารณะ
+    [profile.location[lang], process.env.RESUME_PHONE, link("Email"), strip(SITE)].filter(Boolean),
     [link("LinkedIn"), link("GitHub")],
   ];
 
