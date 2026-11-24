@@ -74,6 +74,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
+      data-scroll-behavior="smooth"
       className={`${sansThai.variable} ${geistMono.variable} h-full scroll-smooth`}
       // script ด้านล่างเพิ่ม data-theme ก่อน hydrate — attribute บน <html> จึงต่างจากที่ server render ได้
       suppressHydrationWarning
@@ -111,14 +112,16 @@ export default async function RootLayout({
                 ),
               )}
             </ul>
-            <Link
+            {/* <a> ไม่ใช่ <Link>: [lang] คือ root layout — client navigation ต้อง re-render <html>/<head> ทั้งก้อน
+                (script ใน head ไม่รันซ้ำ + scroll-smooth เลื่อนค้าง) ทำให้ดูเหมือนกดไม่ติด; หน้าเป็น static โหลดเต็มหน้าก็เร็ว */}
+            <a
               href={`/${other}`}
               hrefLang={other}
               aria-label={ui.switchLangLabel[lang]}
               className="shrink-0 rounded-full border border-border px-3 py-1 text-muted transition-colors hover:border-accent hover:text-accent"
             >
               {ui.switchLang[lang]}
-            </Link>
+            </a>
             <ThemeToggle toDark={ui.themeToDark[lang]} toLight={ui.themeToLight[lang]} />
           </nav>
         </header>
