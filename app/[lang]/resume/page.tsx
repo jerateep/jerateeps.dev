@@ -73,7 +73,7 @@ export default async function Resume({ params }: PageProps<"/[lang]/resume">) {
 
       <Heading>Summary</Heading>
       <p>{profile.tagline[lang]}</p>
-      <p className="mt-1.5">{profile.about[1][lang]}</p>
+      <p className="mt-1.5">{profile.about[0][lang]}</p>
 
       <Heading>{ui.sections.experience[lang]}</Heading>
       <div className="space-y-3">

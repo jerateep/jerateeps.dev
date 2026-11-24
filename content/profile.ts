@@ -111,10 +111,6 @@ export const profile = {
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
     {
-      th: "ดูแลระบบ back-office และการอนุมัติ เช่น approval workflow งบประมาณ การรับส่งข้อมูลกับ SAP และการกำหนดสิทธิ์การเข้าถึง ระบบเหล่านี้มีผู้ใช้ทั่วองค์กร การแก้ไขจึงต้องระมัดระวัง",
-      en: "I maintain back-office and approval systems: budget approval workflows, data exchange with SAP, and access permissions. People across the organisation use them, so changes need care.",
-    },
-    {
       th: "งานส่วนใหญ่คือการ modernize ระบบ legacy อย่างระมัดระวัง โดยตรวจ behavior จริงของระบบเทียบกับฐานข้อมูลก่อนแก้ทุกครั้ง การ upgrade หรือ migrate จึงไม่กระทบ business process เดิม บางระบบใช้งานมาราว 20 ปีแต่ยังต้องใช้ต่อ จึงต้องดูแลให้ไปต่อได้ ส่วนระบบใหม่เขียนด้วยเทคโนโลยีปัจจุบัน",
       en: "I modernise legacy systems carefully. Before changing anything, I check how the system really behaves against the database, so upgrades keep the business process unchanged. Some of these systems are about 20 years old and must keep running; new systems use current technology.",
     },
