@@ -164,8 +164,8 @@ export const profile = {
           en: "Designed a permission layer that grants access by business unit, department and position instead of per user. One rule change applies to every app behind SSO.",
         },
         {
-          th: "สร้าง Power Automate cloud flow บน environment production และ IAM รวมถึงงาน AI Builder และ UiPath สำหรับ document processing, เชื่อมระบบ และ workaround ข้อจำกัดของ SAP ECC6",
-          en: "Built Power Automate cloud flows across production and IAM environments, plus AI Builder and UiPath automation, for document processing, system integration and SAP ECC6 workarounds.",
+          th: "ย้ายงาน automation เดิมจาก UiPath มาเขียนใหม่บน Power Automate ค่า license ลดลงกว่า 95% (ช่วงใช้ UiPath ก็เขียนระบบคิวงานเองแทนการซื้อ UiPath Orchestrator) แล้วต่อยอด flow ใหม่ร่วมกับ AI Builder สำหรับ document processing, เชื่อมระบบ และ workaround ข้อจำกัดของ SAP ECC6",
+          en: "Rebuilt the existing UiPath automations on Power Automate, cutting licence costs by over 95% (while on UiPath, I had written an in-house job queue instead of buying UiPath Orchestrator). Then added new flows with AI Builder for document processing, system integration and SAP ECC6 workarounds.",
         },
         {
           th: "พัฒนา web service และ flow สำหรับ sync ข้อมูลพนักงานจาก SQL Server เข้าสู่ Active Directory เพื่อทำ user provisioning และ deprovisioning แบบอัตโนมัติ",
