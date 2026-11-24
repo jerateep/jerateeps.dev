@@ -744,8 +744,8 @@ export const profile = {
       slug: "corporate-website",
       onResume: true,
       resumeLine: {
-        th: "ย้ายเว็บไซต์องค์กรจาก WordPress ขึ้น Webflow เนื้อหาสองภาษาเก็บเป็น CMS collection ที่ content owner แก้เองได้โดยไม่ต้องพึ่ง developer",
-        en: "Migrated the corporate website from WordPress to Webflow, with bilingual content in CMS collections that content owners can edit without a developer.",
+        th: "ย้ายเว็บไซต์องค์กร (gulfspacetech.com) จาก WordPress ขึ้น Webflow ตามดีไซน์ของทีมสื่อสารองค์กร เนื้อหาสองภาษาเก็บเป็น CMS collection ที่ content owner แก้เองได้โดยไม่ต้องพึ่ง developer",
+        en: "Migrated the corporate website (gulfspacetech.com) from WordPress to Webflow, built on the corporate communications team's design, with bilingual content in CMS collections that content owners can edit without a developer.",
       },
       compact: true,
       name: {
@@ -757,11 +757,11 @@ export const profile = {
         en: "Migrated the corporate website from a legacy WordPress platform to Webflow, restructuring the content into CMS collections with full bilingual support so that content owners can make changes without developer involvement. I handle the build and upkeep, and connecting it over MCP later made changes easier.",
       },
       role: {
-        th: "พัฒนาและ migrate content ผ่าน API ของแพลตฟอร์มเป็นหลัก",
-        en: "Implementation and content migration, primarily through the platform API",
+        th: "พัฒนาและ migrate content ผ่าน API ของแพลตฟอร์มเป็นหลัก ดีไซน์โดยทีมสื่อสารองค์กร",
+        en: "Implementation and content migration, primarily through the platform API. Design by the corporate communications team.",
       },
-      confidential: true,
       year: "2025–2026",
+      link: "https://www.gulfspacetech.com/",
       flow: [
         { label: { th: "เว็บเดิมบน WordPress", en: "Legacy WordPress site" } },
         { label: { th: "Extract content", en: "Extract content" } },

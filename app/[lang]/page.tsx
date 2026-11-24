@@ -204,6 +204,16 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <li key={project.slug} className="py-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="font-medium">{project.name[lang]}</h3>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-accent hover:underline"
+                    >
+                      {new URL(project.link).hostname.replace(/^www\./, "")} ↗
+                    </a>
+                  )}
                 </div>
                 <p className="mt-1 max-w-[68ch] text-sm text-muted">
                   {project.summary[lang]}
