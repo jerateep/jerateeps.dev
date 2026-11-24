@@ -35,8 +35,8 @@ export const ui = {
     en: "A node-and-link diagram showing how notes in the knowledge base connect.",
   },
   projectsLead: {
-    th: "ผลงานส่วนใหญ่เป็นระบบภายใน จึงไม่เปิดเผยชื่อและภาพหน้าจอ แต่อธิบายตามหน้าที่ของระบบ และยินดีลงรายละเอียดในการสัมภาษณ์",
-    en: "These are internal systems, so they are described by function, not name. Happy to discuss details in an interview.",
+    th: "ผลงานส่วนใหญ่เป็นระบบภายใน จึงไม่เปิดเผยชื่อและภาพหน้าจอ แต่อธิบายตามหน้าที่ของระบบ ยกเว้นเว็บไซต์องค์กรที่เปิดให้บุคคลภายนอกเข้าชม และยินดีลงรายละเอียดในการสัมภาษณ์",
+    en: "Most of these are internal systems, so they are described by function, not name. The corporate website is the exception, as it is public. Happy to discuss details in an interview.",
   },
   education: { th: "การศึกษา", en: "Education" },
   // เป็นคอร์สและ badge ที่เรียนเพื่อประเมินว่าเอามาใช้กับงานได้ไหม ไม่ใช่ certification ที่สอบ — ห้ามเรียกว่าใบรับรอง
