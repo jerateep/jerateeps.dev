@@ -105,8 +105,8 @@ export const profile = {
     en: "Full-stack Developer (.NET) · Enterprise Systems, Integration & Automation",
   } satisfies L,
   tagline: {
-    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8 โดยไม่มี downtime",
-    en: "I build and maintain core back-office systems at a satellite operator (approval workflows, SAP integration, single sign-on) and support other systems across the organisation. Recently moved decade-old systems to .NET 8 with no downtime.",
+    th: "พัฒนาและดูแลระบบ back-office หลักของผู้ให้บริการดาวเทียม ทั้ง approval workflow งบประมาณ, SAP integration และ SSO กลาง พร้อม support ระบบอื่นในองค์กร งานช่วงหลังรวมถึงการ migrate ระบบอายุกว่าสิบปีขึ้น .NET 8",
+    en: "I build and maintain core back-office systems at a satellite operator (approval workflows, SAP integration, single sign-on) and support other systems across the organisation. Recently moved decade-old systems to .NET 8.",
   } satisfies L,
   location: { th: "นนทบุรี ประเทศไทย", en: "Nonthaburi, Thailand" } satisfies L,
   about: [
@@ -144,8 +144,8 @@ export const profile = {
       },
       highlights: [
         {
-          th: "Migrate ระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้น .NET 8 และ Next.js บนฐานข้อมูลเดิม โดยไม่มี downtime",
-          en: "Migrated ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database, with no downtime.",
+          th: "Migrate ระบบ ASP.NET Web Forms ที่ใช้งานมากว่าสิบปีขึ้น .NET 8 และ Next.js บนฐานข้อมูลเดิม",
+          en: "Migrated ASP.NET Web Forms systems to .NET 8 and Next.js on the existing database.",
         },
         {
           th: "รับผิดชอบหลายโปรเจกต์ตั้งแต่ต้นจนจบคนเดียว ตั้งแต่เก็บ requirement, พัฒนา, ทดสอบ (เขียน test case แบบ manual ตามเงื่อนไขเอกสาร และให้ AI ช่วยเขียน unit test สำหรับ function ย่อย) จนถึง support หลังขึ้นระบบจริง",
